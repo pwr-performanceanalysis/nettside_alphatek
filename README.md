@@ -1,7 +1,7 @@
 # Nettside Alphatek
 
 Velkommen til Nettside Alphatek-prosjektet! Dette prosjektet er bygget med HTML og har som mål å levere en optimal nettside for ytelsesanalyse.
-
+URL: https://pwr-performanceanalysis.github.io/nettside_alphatek/
 ## Innhold
 
 - [Introduksjon](#introduksjon)
