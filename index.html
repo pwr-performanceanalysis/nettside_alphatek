@@ -37,6 +37,9 @@
             line-height: 1.6;
             font-weight: var(--font-weight-light);
         }
+        body.modal-open {
+            overflow: hidden;
+        }
 
         .container {
             width: 90%;
@@ -136,24 +139,36 @@
         header nav ul {
             list-style: none;
             display: flex;
+            align-items: center;
         }
 
         header nav ul li {
-            margin-left: 30px;
+            margin-left: 25px;
         }
 
         header nav ul li a {
             color: var(--color-grey-lightest);
             font-weight: var(--font-weight-light);
             transition: color 0.3s ease;
-            text-transform: uppercase;
-            font-size: 0.9rem;
+            text-transform: capitalize;
+            font-size: 0.95rem;
         }
 
         header nav ul li a:hover {
             color: var(--color-brand-accent);
             text-decoration: none;
         }
+        .search-icon {
+            color: var(--color-grey-lightest);
+            font-size: 1.05rem;
+            margin-left: 25px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .search-icon:hover {
+            color: var(--color-brand-accent);
+        }
+
 
         #hero-video {
             position: fixed;
@@ -165,48 +180,49 @@
             height: auto;
             object-fit: cover;
             z-index: -1;
-            filter: brightness(0.7) contrast(1.0);
+            filter: brightness(0.6) contrast(1.0);
         }
 
         .hero-section {
             min-height: 100vh;
             display: flex;
-            flex-direction: column; /* Stabler elementer vertikalt */
-            align-items: flex-start; /* Venstrestiller innholdet i hero-seksjonen */
-            justify-content: flex-end; /* Plasserer innholdet nederst */
+            flex-direction: column;
+            align-items: flex-start; 
+            justify-content: flex-end; 
             position: relative;
             z-index: 1;
             padding-top: 100px; 
             padding-bottom: 5vh; 
-            padding-left: 20px; /* Samme som header for konsistens */
+            padding-left: 20px; 
             padding-right: 20px;
             box-sizing: border-box;
         }
 
-        .hero-text-group { /* Ny container for hero-headlines og intro-text-box */
+        .hero-text-group {
             width: 100%;
-            max-width: 750px; /* Juster denne for ønsket maksbredde på gruppen */
-            margin-left: 0; /* Sikrer venstrestilling */
+            max-width: 700px;
+            margin-left: 5vw; 
             margin-right: auto;
-            text-align: left; /* Tekst inni denne gruppen venstrestilles */
+            text-align: left; 
         }
 
-        .hero-content { /* Container for de store, animerte tekstene */
-            position: relative; /* Endret fra absolute */
-            min-height: 80px; /* Juster for å passe tekststørrelsen */
-            width: 100%; /* Tar bredden av .hero-text-group */
-            margin-bottom: 15px; /* Avstand til intro-text-boksen under */
-            text-align: left; /* Overskrifter venstrestilt */
+        .hero-content {
+            position: relative; 
+            min-height: 80px; 
+            width: 100%; 
+            margin-bottom: 5px;
+            text-align: left; 
+            max-width: 650px;
         }
 
         .hero-headline {
-            font-size: clamp(1.6rem, 3vw, 2.2rem); /* Gjort hero-teksten mindre */
+            font-size: clamp(1.6rem, 3vw, 2.2rem); 
             color: var(--color-brand-white);
             font-weight: var(--font-weight-light);
-            position: absolute; /* Beholdes for animasjon */
-            top: 0; /* Justert for å være øverst i .hero-content */
-            left: 0; /* Justert for å være venstrestilt i .hero-content */
-            transform: none; /* Fjerner sentreringstransformasjon */
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            transform: none; 
             width: 100%;
             margin: 0;
             opacity: 0;
@@ -241,29 +257,28 @@
             transform: translateY(0);
         }
 
-        /* .intro-text-section er fjernet, .intro-text-box er nå direkte i .hero-text-group */
 
         .intro-text-box {
-            background-color: rgba(44, 44, 44, 0.35);
-            backdrop-filter: blur(10px);
+            background-color: transparent;
             border-radius: 12px;
-            padding: 20px 25px;
-            max-width: 100%; /* Tar bredden av .hero-text-group */
-            /* margin-left: 0; Ikke nødvendig, styres av .hero-text-group */
-            /* margin-right: auto; Ikke nødvendig */
+            padding: 5px 0px;
+            max-width: 600px;
             color: var(--color-brand-white); 
-            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            box-shadow: none;
             font-size: 1rem; 
             line-height: 1.6;
             text-align: left;
             margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         .intro-text-box p { 
             color: var(--color-brand-white);
             font-size: 1rem;
             margin-bottom: 0.8em;
         }
-        .intro-text-box.fade-in-on-scroll { transition-delay: 0.2s; } /* Dette vil ikke fungere som før, da den ikke lenger er i scrollbart innhold */
+
 
         .cta-button-container {
             text-align: left;
@@ -291,7 +306,6 @@
             color: var(--color-brand-white);
             transform: translateY(-2px);
         }
-        /* .cta-button.fade-in-on-scroll { transition-delay: 0.4s; } - Animasjon vil ikke fungere som før */
 
 
         .divider {
@@ -305,7 +319,7 @@
 
 
         .categories {
-            padding: 80px 20px;
+            padding: 80px 20px 150px 20px;
         }
         .categories .container {
         }
@@ -372,16 +386,69 @@
             font-weight: var(--font-weight-light);
         }
 
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1050;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+        }
+        .modal-overlay.is-visible {
+            opacity: 1;
+        }
+
+        .contact-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            z-index: 1051;
+            opacity: 0;
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        }
+        .contact-modal.is-visible {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
         .contact-form-container {
-            background-color: rgba(44, 44, 44, 0.45);
-            backdrop-filter: blur(12px);
+            background-color: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(18px);
             border-radius: 15px;
-            padding: 30px;
+            padding: 35px 40px;
             color: var(--color-grey-lightest);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            max-width: 100%;
+            box-shadow: none; /* Skygge fjernet */
+            width: 90vw;
+            max-width: 550px;
             text-align: left;
-            margin-top: 20px;
+            position: relative;
+        }
+        .contact-modal-title {
+            font-size: 1.8rem;
+            color: var(--color-brand-white);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .close-modal-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--color-grey-light);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close-modal-btn:hover {
+            color: var(--color-brand-white);
         }
 
 
@@ -424,15 +491,16 @@
         }
 
         .submit-btn {
-            display: inline-block;
+            display: block; 
+            width: 100%;
             background-color: rgba(47, 124, 83, 0.25);
             backdrop-filter: blur(10px);
             color: var(--color-brand-white);
-            padding: 12px 25px;
+            padding: 10px 20px;
             border: none;
             border-radius: 8px;
             font-family: var(--font-primary);
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: var(--font-weight-light);
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
@@ -459,9 +527,21 @@
             margin-bottom: 0;
             color: var(--color-grey-lightest);
          }
+         .footer-social-icons {
+            margin-top: 1em;
+         }
+         .footer-social-icons a {
+            color: var(--color-grey-lightest);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+         }
+         .footer-social-icons a:hover {
+            color: var(--color-brand-accent);
+         }
 
         @keyframes loopText1 {
-            0% { opacity: 0; transform: translate(0, -50%) scale(0.98); } /* Justert transform for venstrestilling */
+            0% { opacity: 0; transform: translate(0, -50%) scale(0.98); }
             5% { opacity: 1; transform: translate(0, -50%) scale(1); }
             28% { opacity: 1; transform: translate(0, -50%) scale(1); }
             33% { opacity: 0; transform: translate(0, -50%) scale(0.98); }
@@ -507,40 +587,45 @@
                 margin-left: 10px;
             }
              header nav ul li a {
-                font-size: 0.75rem;
+                font-size: 0.85rem;
+            }
+            .search-icon {
+                margin-left: 15px;
+                font-size: 0.95rem;
             }
 
+
             .hero-section { min-height: 100vh; padding-bottom: 20px;}
+            .hero-text-group {
+                margin-left: 0; 
+            }
             .hero-content {
                 min-height: 80px;
-                width: 100%; /* Tar full bredde av .hero-section på mobil */
+                width: 100%; 
                 max-width: none;
-                margin-bottom: 20px; 
+                margin-bottom: 10px;
             }
             .hero-headline {
                 font-size: 1.4rem; 
-                text-align: left; /* Sikrer venstrestilling på mobil også */
-                left: 0; /* Justerer for venstrestilling */
-                transform: translateY(-50%); /* Kun vertikal sentrering */
-            }
-            .intro-text-section { 
-                width: 100%; 
-                padding: 0 15px; 
+                text-align: left; 
+                left: 0; 
+                transform: translateY(-50%); 
             }
             .intro-text-box {
-                font-size: 0.95rem; 
-                padding: 20px;
+                font-size: 0.9rem; 
+                padding: 15px 0px;
                 max-width: none;
                 margin-left: 0;
                 margin-right: 0;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             .intro-text-box p {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
             }
-            .intro-text-box.fade-in-on-scroll { transition-delay: 0.1s; }
-            .cta-button-container { margin-bottom: 40px; text-align: left;} /* Behøver ikke sentrering */
-            .cta-button { font-size: 0.85rem; padding: 8px 18px;}
+            .cta-button-container { margin-bottom: 30px; text-align: left;} 
+            .cta-button { font-size: 0.8rem; padding: 8px 15px;}
+            .contact-modal-title { font-size: 1.5rem; }
+            .contact-form-container { max-width: 90vw; padding: 30px 25px;}
 
 
             .categories, .contact-section {
@@ -590,20 +675,24 @@
                 margin-left: 8px;
             }
              header nav ul li a {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
             }
+            .search-icon {
+                margin-left: 10px;
+                font-size: 0.85rem;
+            }
+
             .hero-section { min-height: 100vh; }
             .hero-content {
                 min-height: 70px;
-                margin-bottom: 15px;
+                margin-bottom: 10px;
             }
             .hero-headline {
                 font-size: 1.2rem; 
             }
-            .intro-text-section { padding: 0 10px; }
-            .intro-text-box { font-size: 0.85rem; margin-bottom: 15px;}
-            .intro-text-box p { font-size: 0.85rem; }
-            .cta-button { font-size: 0.8rem; padding: 8px 15px;}
+            .intro-text-box { font-size: 0.8rem; margin-bottom: 10px; padding: 10px 0px;}
+            .intro-text-box p { font-size: 0.8rem; }
+            .cta-button { font-size: 0.75rem; padding: 6px 12px;}
 
 
             .category-card-icon {
@@ -617,7 +706,7 @@
 <body>
 
     <video autoplay muted loop playsinline id="hero-video">
-        <source src="https://storage.cloud.google.com/intro_alphatek/intro.mov" type="video/mp4">
+        <source src="https://storage.cloud.google.com/intro_alphatek/intro.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
@@ -635,7 +724,8 @@
                     <li><a href="#products">Products</a></li>
                     <li><a href="#science">Science</a></li>
                     <li><a href="#support">Support</a></li>
-                    <li><a href="#contact-form-anchor">Contact</a></li>
+                    <li><a href="#" id="nav-contact-link">Contact</a></li>
+                    <li><a href="#" aria-label="Search" class="search-icon"><i class="fas fa-search"></i></a></li>
                 </ul>
             </nav>
         </div>
@@ -649,29 +739,11 @@
                     <h1 class="hero-headline headline-2">Saves time by making coaching and therapy more efficient.</h1>
                     <h1 class="hero-headline headline-3">Easy to use, and made to keep people motivated.</h1>
                 </div>
-                <div class="intro-text-box fade-in-on-scroll">
+                <div class="intro-text-box">
                     <p>Discover our advanced testing and training station. We provide the data for accurate fitness tracking and targeted rehabilitation, helping individuals reach their full potential. With real-time insights, our station enables focused recovery and performance enhancement, lifting the human body to new levels.</p>
-                    <div class="cta-button-container fade-in-on-scroll">
-                        <a href="#embedded-contact-form" class="cta-button" id="show-contact-form-btn">Contact Us</a>
+                    <div class="cta-button-container">
+                        <a href="#" class="cta-button" id="show-contact-form-btn">Contact Us</a>
                     </div>
-                    <div id="embedded-contact-form" class="contact-form-container" style="display: none;">
-                        <form action="#" method="POST">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" name="message" required></textarea>
-                            </div>
-                            <button type="submit" class="submit-btn">Send Message</button>
-                        </form>
-                    </div>
-                    <div id="contact-form-anchor"></div>
                 </div>
             </div>
         </section>
@@ -708,12 +780,39 @@
                 </div>
             </div>
         </section>
-
     </main>
+
+    <div id="modal-overlay" class="modal-overlay"></div>
+    <div id="contact-modal" class="contact-modal">
+        <div class="contact-form-container">
+            <button id="close-modal-btn" class="close-modal-btn" aria-label="Close contact form">×</button>
+            <h2 class="contact-modal-title">Contact Us</h2>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="modal-name">Name</label>
+                    <input type="text" id="modal-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-email">Email</label>
+                    <input type="email" id="modal-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-message">Message</label>
+                    <textarea id="modal-message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Alphatek. All rights reserved.</p>
+            <p>© 2024 Alphatek. All rights reserved.</p>
+            <div class="footer-social-icons">
+                <a href="https://www.instagram.com/alphatekofficial" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@alphatek7373" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
         </div>
     </footer>
 
@@ -721,7 +820,27 @@
         document.addEventListener('DOMContentLoaded', () => {
             const elementsToFadeIn = document.querySelectorAll('.fade-in-on-scroll');
             const showContactFormBtn = document.getElementById('show-contact-form-btn');
-            const embeddedContactForm = document.getElementById('embedded-contact-form');
+            const navContactLink = document.getElementById('nav-contact-link');
+            const contactModal = document.getElementById('contact-modal');
+            const modalOverlay = document.getElementById('modal-overlay');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+
+            const introBox = document.querySelector('.intro-text-box');
+            const ctaButtonContainer = document.querySelector('.cta-button-container');
+
+            const heroElementsToAnimate = [introBox, ctaButtonContainer];
+            let heroDelay = 300; 
+
+            heroElementsToAnimate.forEach(el => {
+                if(el) {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, heroDelay);
+                    heroDelay += 200; 
+                }
+            });
+
 
             if (elementsToFadeIn.length > 0) {
                 const observerOptions = {
@@ -733,10 +852,10 @@
                 const observerCallback = (entries, observer) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            if (!entry.target.isEqualNode(embeddedContactForm)) {
+                            if (!heroElementsToAnimate.includes(entry.target)) {
                                 entry.target.classList.add('is-visible');
                             }
-                            if (!entry.target.isEqualNode(embeddedContactForm)) {
+                            if (!heroElementsToAnimate.includes(entry.target) ) {
                                 observer.unobserve(entry.target);
                             }
                         }
@@ -746,24 +865,54 @@
                 const fadeInObserver = new IntersectionObserver(observerCallback, observerOptions);
 
                 elementsToFadeIn.forEach(el => {
-                    fadeInObserver.observe(el);
+                    if (!heroElementsToAnimate.includes(el)) { 
+                         fadeInObserver.observe(el);
+                    }
                 });
             }
 
-            if (showContactFormBtn && embeddedContactForm) {
+            function openModal() {
+                if (contactModal && modalOverlay) {
+                    modalOverlay.style.display = 'block';
+                    contactModal.style.display = 'block';
+                    document.body.classList.add('modal-open');
+                    setTimeout(() => {
+                        modalOverlay.classList.add('is-visible');
+                        contactModal.classList.add('is-visible');
+                    }, 10);
+                }
+            }
+
+            function closeModal() {
+                if (contactModal && modalOverlay) {
+                    modalOverlay.classList.remove('is-visible');
+                    contactModal.classList.remove('is-visible');
+                    document.body.classList.remove('modal-open');
+                    setTimeout(() => {
+                        modalOverlay.style.display = 'none';
+                        contactModal.style.display = 'none';
+                    }, 300); 
+                }
+            }
+
+            if (showContactFormBtn) {
                 showContactFormBtn.addEventListener('click', (event) => {
                     event.preventDefault(); 
-                    const isVisible = embeddedContactForm.style.display === 'block';
-                    embeddedContactForm.style.display = isVisible ? 'none' : 'block';
-
-                    if (!isVisible) {
-                        setTimeout(() => {
-                            embeddedContactForm.classList.add('is-visible');
-                        }, 10);
-                    } else {
-                        embeddedContactForm.classList.remove('is-visible');
-                    }
+                    openModal();
                 });
+            }
+            if (navContactLink) {
+                navContactLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    openModal();
+                });
+            }
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
+            if (modalOverlay) {
+                modalOverlay.addEventListener('click', closeModal);
             }
         });
     </script>
