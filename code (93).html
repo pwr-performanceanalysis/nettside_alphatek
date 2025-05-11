@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphatek - For Everyone, Efficient, Engaging</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        :root {
+            --color-brand-black: #0D0D0D;
+            --color-brand-accent: rgb(47, 124, 83);
+            --color-brand-white: #FFFFFF;
+            --color-grey-darkest: #1A1A1A;
+            --color-grey-dark: #2C2C2C;
+            --color-grey-medium: #595959;
+            --color-grey-light: #A6A6A6;
+            --color-grey-lightest: #D9D9D9;
+
+            --font-primary: 'Roboto', sans-serif;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-bold: 700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-brand-black);
+            color: var(--color-grey-lightest);
+            line-height: 1.6;
+            font-weight: var(--font-weight-light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        a {
+            color: var(--color-brand-accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h2, h3, h4 {
+            margin-bottom: 0.8em;
+            font-weight: var(--font-weight-light);
+            color: var(--color-brand-white);
+        }
+
+        h2.section-title-animated {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 1.5em;
+            padding-top: 20px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+        h4 {
+            font-size: 1.3rem;
+            color: var(--color-grey-lightest);
+            margin-bottom: 0.6em;
+        }
+
+        p {
+            margin-bottom: 1em;
+            color: var(--color-grey-light);
+            font-weight: var(--font-weight-light);
+        }
+
+        header {
+            background-color: rgba(13, 13, 13, 0.5);
+            padding: 0.8em 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        header .header-inner-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 100%;
+            max-width: none;
+            position: relative;
+        }
+
+        header .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.3em;
+            font-weight: var(--font-weight-light);
+            color: var(--color-brand-white);
+        }
+
+        .header-logo-img {
+            height: 40px;
+            width: auto;
+            margin-right: 12px;
+        }
+        .header-tagline {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.75em;
+            font-weight: var(--font-weight-light);
+            color: var(--color-grey-light);
+            white-space: nowrap;
+            z-index: -1; 
+        }
+
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin-left: 30px;
+        }
+
+        header nav ul li a {
+            color: var(--color-grey-lightest);
+            font-weight: var(--font-weight-light);
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        header nav ul li a:hover {
+            color: var(--color-brand-accent);
+            text-decoration: none;
+        }
+
+        #hero-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.7) contrast(1.0);
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column; /* Stabler elementer vertikalt */
+            align-items: flex-start; /* Venstrestiller innholdet i hero-seksjonen */
+            justify-content: flex-end; /* Plasserer innholdet nederst */
+            position: relative;
+            z-index: 1;
+            padding-top: 100px; 
+            padding-bottom: 5vh; 
+            padding-left: 20px; /* Samme som header for konsistens */
+            padding-right: 20px;
+            box-sizing: border-box;
+        }
+
+        .hero-text-group { /* Ny container for hero-headlines og intro-text-box */
+            width: 100%;
+            max-width: 750px; /* Juster denne for ønsket maksbredde på gruppen */
+            margin-left: 0; /* Sikrer venstrestilling */
+            margin-right: auto;
+            text-align: left; /* Tekst inni denne gruppen venstrestilles */
+        }
+
+        .hero-content { /* Container for de store, animerte tekstene */
+            position: relative; /* Endret fra absolute */
+            min-height: 80px; /* Juster for å passe tekststørrelsen */
+            width: 100%; /* Tar bredden av .hero-text-group */
+            margin-bottom: 15px; /* Avstand til intro-text-boksen under */
+            text-align: left; /* Overskrifter venstrestilt */
+        }
+
+        .hero-headline {
+            font-size: clamp(1.6rem, 3vw, 2.2rem); /* Gjort hero-teksten mindre */
+            color: var(--color-brand-white);
+            font-weight: var(--font-weight-light);
+            position: absolute; /* Beholdes for animasjon */
+            top: 0; /* Justert for å være øverst i .hero-content */
+            left: 0; /* Justert for å være venstrestilt i .hero-content */
+            transform: none; /* Fjerner sentreringstransformasjon */
+            width: 100%;
+            margin: 0;
+            opacity: 0;
+            line-height: 1.3;
+        }
+
+        .hero-headline.headline-1 {
+            animation: loopText1 9s infinite; 
+        }
+
+        .hero-headline.headline-2 {
+            animation: loopText2 9s infinite;
+        }
+        .hero-headline.headline-3 {
+            animation: loopText3 9s infinite;
+        }
+
+
+        .scrollable-content {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(13, 13, 13, 0.3);
+        }
+
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* .intro-text-section er fjernet, .intro-text-box er nå direkte i .hero-text-group */
+
+        .intro-text-box {
+            background-color: rgba(44, 44, 44, 0.35);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px 25px;
+            max-width: 100%; /* Tar bredden av .hero-text-group */
+            /* margin-left: 0; Ikke nødvendig, styres av .hero-text-group */
+            /* margin-right: auto; Ikke nødvendig */
+            color: var(--color-brand-white); 
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            font-size: 1rem; 
+            line-height: 1.6;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+        .intro-text-box p { 
+            color: var(--color-brand-white);
+            font-size: 1rem;
+            margin-bottom: 0.8em;
+        }
+        .intro-text-box.fade-in-on-scroll { transition-delay: 0.2s; } /* Dette vil ikke fungere som før, da den ikke lenger er i scrollbart innhold */
+
+        .cta-button-container {
+            text-align: left;
+            width: 100%; 
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: rgba(47, 124, 83, 0.25);
+            backdrop-filter: blur(10px);
+            color: var(--color-brand-white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            font-weight: var(--font-weight-light);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+        .cta-button:hover {
+            background-color: rgba(47, 124, 83, 0.65);
+            color: var(--color-brand-white);
+            transform: translateY(-2px);
+        }
+        /* .cta-button.fade-in-on-scroll { transition-delay: 0.4s; } - Animasjon vil ikke fungere som før */
+
+
+        .divider {
+            width: 60%;
+            max-width: 400px;
+            height: 1px;
+            background-color: var(--color-brand-white);
+            margin: 0 auto 35px auto;
+        }
+        .divider.fade-in-on-scroll { transition-delay: 0.3s; }
+
+
+        .categories {
+            padding: 80px 20px;
+        }
+        .categories .container {
+        }
+
+        .categories h2.section-title-animated {
+            color: var(--color-brand-white);
+            font-weight: var(--font-weight-light);
+        }
+        .categories h2.section-title-animated.fade-in-on-scroll { transition-delay: 0.5s; }
+
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .category-card {
+            background-color: rgba(44, 44, 44, 0.45);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            color: var(--color-grey-lightest);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .category-card.fade-in-on-scroll:nth-child(1) { transition-delay: 0.7s; }
+        .category-card.fade-in-on-scroll:nth-child(2) { transition-delay: 0.9s; }
+        .category-card.fade-in-on-scroll:nth-child(3) { transition-delay: 1.1s; }
+
+
+        .category-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+            background-color: rgba(44, 44, 44, 0.6);
+            text-decoration: none;
+        }
+
+        .category-card-icon {
+            width: 65px;
+            height: 65px;
+            margin-bottom: 25px;
+            color: var(--color-brand-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+        }
+
+        .category-card h3 {
+            color: var(--color-brand-white);
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+            font-weight: var(--font-weight-light);
+        }
+
+        .category-card p {
+            font-size: 0.95rem;
+            color: var(--color-grey-lightest);
+            flex-grow: 1;
+            font-weight: var(--font-weight-light);
+        }
+
+        .contact-form-container {
+            background-color: rgba(44, 44, 44, 0.45);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            padding: 30px;
+            color: var(--color-grey-lightest);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-width: 100%;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: .5rem;
+            color: var(--color-grey-lightest);
+            font-weight: var(--font-weight-normal);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--color-grey-lightest);
+            font-family: var(--font-primary);
+            font-weight: var(--font-weight-light);
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            background-color: rgba(47, 124, 83, 0.25);
+            backdrop-filter: blur(10px);
+            color: var(--color-brand-white);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            font-weight: var(--font-weight-light);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: rgba(47, 124, 83, 0.65);
+            color: var(--color-brand-white);
+            transform: translateY(-2px);
+        }
+
+
+        footer {
+            background-color: rgba(13, 13, 13, 0.5);
+            backdrop-filter: blur(8px);
+            color: var(--color-grey-lightest);
+            text-align: center;
+            padding: 1.5em 0;
+            position: relative;
+            z-index: 1;
+        }
+         footer p {
+            font-weight: var(--font-weight-light);
+            margin-bottom: 0;
+            color: var(--color-grey-lightest);
+         }
+
+        @keyframes loopText1 {
+            0% { opacity: 0; transform: translate(0, -50%) scale(0.98); } /* Justert transform for venstrestilling */
+            5% { opacity: 1; transform: translate(0, -50%) scale(1); }
+            28% { opacity: 1; transform: translate(0, -50%) scale(1); }
+            33% { opacity: 0; transform: translate(0, -50%) scale(0.98); }
+            100% { opacity: 0; transform: translate(0, -50%) scale(0.98); }
+        }
+
+        @keyframes loopText2 {
+            0%, 33% { opacity: 0; transform: translate(0, -50%) scale(0.98); }
+            38% { opacity: 1; transform: translate(0, -50%) scale(1); }
+            61% { opacity: 1; transform: translate(0, -50%) scale(1); }
+            66% { opacity: 0; transform: translate(0, -50%) scale(0.98); }
+            100% { opacity: 0; transform: translate(0, -50%) scale(0.98); }
+        }
+        @keyframes loopText3 {
+            0%, 66% { opacity: 0; transform: translate(0, -50%) scale(0.98); }
+            71% { opacity: 1; transform: translate(0, -50%) scale(1); }
+            94% { opacity: 1; transform: translate(0, -50%) scale(1); }
+            99% { opacity: 0; transform: translate(0, -50%) scale(0.98); }
+            100% { opacity: 0; transform: translate(0, -50%) scale(0.98); }
+        }
+
+
+        @media (max-width: 768px) {
+            header .header-inner-container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            header .logo-area {
+            }
+            header .logo {
+                font-size: 1.1em;
+            }
+            .header-logo-img {
+                height: 30px;
+            }
+            .header-tagline {
+                font-size: 0.65em;
+            }
+            header nav {
+                margin-top: 0;
+            }
+            header nav ul li {
+                margin-left: 10px;
+            }
+             header nav ul li a {
+                font-size: 0.75rem;
+            }
+
+            .hero-section { min-height: 100vh; padding-bottom: 20px;}
+            .hero-content {
+                min-height: 80px;
+                width: 100%; /* Tar full bredde av .hero-section på mobil */
+                max-width: none;
+                margin-bottom: 20px; 
+            }
+            .hero-headline {
+                font-size: 1.4rem; 
+                text-align: left; /* Sikrer venstrestilling på mobil også */
+                left: 0; /* Justerer for venstrestilling */
+                transform: translateY(-50%); /* Kun vertikal sentrering */
+            }
+            .intro-text-section { 
+                width: 100%; 
+                padding: 0 15px; 
+            }
+            .intro-text-box {
+                font-size: 0.95rem; 
+                padding: 20px;
+                max-width: none;
+                margin-left: 0;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            .intro-text-box p {
+                font-size: 0.95rem;
+            }
+            .intro-text-box.fade-in-on-scroll { transition-delay: 0.1s; }
+            .cta-button-container { margin-bottom: 40px; text-align: left;} /* Behøver ikke sentrering */
+            .cta-button { font-size: 0.85rem; padding: 8px 18px;}
+
+
+            .categories, .contact-section {
+                padding: 60px 15px;
+            }
+            .divider {
+                margin-bottom: 25px;
+                width: 50%;
+            }
+            .divider.fade-in-on-scroll { transition-delay: 0.15s; }
+            h2.section-title-animated.fade-in-on-scroll { transition-delay: 0.25s; }
+            .category-card.fade-in-on-scroll:nth-child(1) { transition-delay: 0.35s; }
+            .category-card.fade-in-on-scroll:nth-child(2) { transition-delay: 0.45s; }
+            .category-card.fade-in-on-scroll:nth-child(3) { transition-delay: 0.55s; }
+
+
+            .category-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .category-card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 30px;
+            }
+            .category-card, .contact-form-container, .intro-text-box {
+                backdrop-filter: blur(10px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .header-inner-container {
+                 padding-left: 10px;
+                 padding-right: 10px;
+            }
+            header .logo {
+                font-size: 1em;
+            }
+             .header-logo-img {
+                height: 28px;
+                margin-right: 8px;
+            }
+            .header-tagline {
+                font-size: 0.6em;
+            }
+            header nav ul li {
+                margin-left: 8px;
+            }
+             header nav ul li a {
+                font-size: 0.7rem;
+            }
+            .hero-section { min-height: 100vh; }
+            .hero-content {
+                min-height: 70px;
+                margin-bottom: 15px;
+            }
+            .hero-headline {
+                font-size: 1.2rem; 
+            }
+            .intro-text-section { padding: 0 10px; }
+            .intro-text-box { font-size: 0.85rem; margin-bottom: 15px;}
+            .intro-text-box p { font-size: 0.85rem; }
+            .cta-button { font-size: 0.8rem; padding: 8px 15px;}
+
+
+            .category-card-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop playsinline id="hero-video">
+        <source src="intro.mov" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <header>
+        <div class="header-inner-container">
+            <div class="logo-area">
+                <div class="logo">
+                    <img src="logo.png" alt="Alphatek Logo" class="header-logo-img">
+                    <span>Alphatek</span>
+                </div>
+            </div>
+            <span class="header-tagline">Designed in Norway 🇳🇴</span>
+            <nav>
+                <ul>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#science">Science</a></li>
+                    <li><a href="#support">Support</a></li>
+                    <li><a href="#contact-form-anchor">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="scrollable-content">
+        <section class="hero-section">
+            <div class="hero-text-group">
+                <div class="hero-content">
+                    <h1 class="hero-headline headline-1">Built for everyone—seniors, everyday users, and athletes.</h1>
+                    <h1 class="hero-headline headline-2">Saves time by making coaching and therapy more efficient.</h1>
+                    <h1 class="hero-headline headline-3">Easy to use, and made to keep people motivated.</h1>
+                </div>
+                <div class="intro-text-box fade-in-on-scroll">
+                    <p>Discover our advanced testing and training station. We provide the data for accurate fitness tracking and targeted rehabilitation, helping individuals reach their full potential. With real-time insights, our station enables focused recovery and performance enhancement, lifting the human body to new levels.</p>
+                    <div class="cta-button-container fade-in-on-scroll">
+                        <a href="#embedded-contact-form" class="cta-button" id="show-contact-form-btn">Contact Us</a>
+                    </div>
+                    <div id="embedded-contact-form" class="contact-form-container" style="display: none;">
+                        <form action="#" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                    <div id="contact-form-anchor"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="categories">
+            <div class="container">
+                <div class="divider fade-in-on-scroll"></div>
+                <h2 class="section-title-animated fade-in-on-scroll">Choose Your Focus</h2>
+                <div class="category-grid">
+                    <a href="gym.html" class="category-card fade-in-on-scroll">
+                        <div class="category-card-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3>GYM</h3>
+                        <p>Solutions for modern fitness centers.</p>
+                    </a>
+
+                    <a href="physio.html" class="category-card fade-in-on-scroll">
+                        <div class="category-card-icon">
+                            <i class="fas fa-briefcase-medical"></i>
+                        </div>
+                        <h3>Physiotherapist</h3>
+                        <p>Advanced tools for patient rehabilitation.</p>
+                    </a>
+
+                    <a href="sports.html" class="category-card fade-in-on-scroll">
+                        <div class="category-card-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Sports Team</h3>
+                        <p>Optimize athlete performance and recovery.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Alphatek. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementsToFadeIn = document.querySelectorAll('.fade-in-on-scroll');
+            const showContactFormBtn = document.getElementById('show-contact-form-btn');
+            const embeddedContactForm = document.getElementById('embedded-contact-form');
+
+            if (elementsToFadeIn.length > 0) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.1
+                };
+
+                const observerCallback = (entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            if (!entry.target.isEqualNode(embeddedContactForm)) {
+                                entry.target.classList.add('is-visible');
+                            }
+                            if (!entry.target.isEqualNode(embeddedContactForm)) {
+                                observer.unobserve(entry.target);
+                            }
+                        }
+                    });
+                };
+
+                const fadeInObserver = new IntersectionObserver(observerCallback, observerOptions);
+
+                elementsToFadeIn.forEach(el => {
+                    fadeInObserver.observe(el);
+                });
+            }
+
+            if (showContactFormBtn && embeddedContactForm) {
+                showContactFormBtn.addEventListener('click', (event) => {
+                    event.preventDefault(); 
+                    const isVisible = embeddedContactForm.style.display === 'block';
+                    embeddedContactForm.style.display = isVisible ? 'none' : 'block';
+
+                    if (!isVisible) {
+                        setTimeout(() => {
+                            embeddedContactForm.classList.add('is-visible');
+                        }, 10);
+                    } else {
+                        embeddedContactForm.classList.remove('is-visible');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
