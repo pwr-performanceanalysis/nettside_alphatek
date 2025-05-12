@@ -95,11 +95,10 @@
             padding: 0;
             position: fixed;
             width: 100%;
-            /* Endret top for å legge til plass over headeren */
             top: 10px;
             z-index: 1000;
             backdrop-filter: none;
-            transition: background-color 0.3s ease, backdrop-filter 0.3s ease, top 0.3s ease; /* La til transition for top */
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease, top 0.3s ease;
         }
 
         header .header-inner-container {
@@ -196,7 +195,7 @@
         }
 
         .custom-dropdown-content {
-            display: none;
+            display: none; /* Start hidden */
             position: fixed;
             background-color: rgba(44, 44, 44, 0.45);
             backdrop-filter: blur(12px);
@@ -205,19 +204,19 @@
             min-width: 200px;
             box-shadow: none;
             z-index: 1001;
-            opacity: 0;
-            transform: translateY(-15px) scale(0.9);
+            opacity: 0; /* Start transparent */
+            transform: translateY(-15px) scale(0.9); /* Start slightly up and scaled down */
             transform-origin: top center;
             transition: opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
                         transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            pointer-events: none;
+            pointer-events: none; /* Not interactive when hidden */
         }
 
         .custom-dropdown-content.is-active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
+            /* display: block; /* JS will handle display if needed, but opacity/transform makes it visible */
+            opacity: 1; /* Fade in */
+            transform: translateY(0) scale(1); /* Animate to final position */
+            pointer-events: auto; /* Interactive when visible */
         }
 
         .custom-dropdown-content a {
@@ -393,9 +392,7 @@
             justify-content: flex-end;
             position: relative;
             z-index: 1;
-            /* Dynamisk padding-top basert på header høyde + top verdi settes med JS */
-            /* Justert fallback padding for å ta høyde for header.top */
-            padding-top: 190px; /* (Gammel padding 160px + header.top 30px) */
+            padding-top: 190px; /* Fallback */
             padding-bottom: 5vh;
             padding-left: 5vw;
             padding-right: 5vw;
@@ -418,7 +415,6 @@
             text-align: left;
             max-width: 650px;
         }
-        /* CSS animasjon for hero-content */
         header.header-loaded ~ .scrollable-content .hero-section .hero-content {
              animation: fadeInFromLeftHeroContent 0.7s ease-out forwards;
              animation-delay: 1s;
@@ -458,15 +454,16 @@
         /* Animate on Scroll - Base Styles */
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(30px); /* Initial position for scroll animation */
+            /* Transition for the initial scroll animation ONLY */
             transition-property: opacity, transform;
-            transition-duration: 0.8s;
+            transition-duration: 0.8s; /* Original duration for scroll-in */
             transition-timing-function: ease-out;
             /* transition-delay settes av JS */
         }
         .animate-on-scroll.is-visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0); /* Final position for scroll animation */
         }
         /* ------ SCROLLABLE CONTENT & ANIMATIONS END ------ */
 
@@ -478,19 +475,20 @@
             margin-bottom: 25px;
         }
 
-        /* P og CTA Container trenger .animate-on-scroll for JS-logikken */
         .intro-text-box p.animate-on-scroll {
             color: var(--color-brand-white);
             font-size: 1rem;
             margin-bottom: 1.5em;
             font-weight: var(--font-weight-light);
             line-height: 1.6;
+            /* Inherits scroll animation transition */
         }
 
         .cta-button-container.animate-on-scroll {
             text-align: left;
             width: 100%;
             margin-bottom: 0;
+            /* Inherits scroll animation transition */
         }
 
         .cta-button {
@@ -505,28 +503,30 @@
             font-size: 0.9rem;
             font-weight: var(--font-weight-light);
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+            /* Fast transitions for hover effects */
+            transition: background-color 0.15s ease, transform 0.1s ease-out, color 0.15s ease;
             text-decoration: none;
         }
         .cta-button:hover {
             background-color: rgba(47, 124, 83, 0.75);
             color: var(--color-brand-white);
             transform: translateY(-2px);
+            text-decoration: none;
         }
         /* ------ INTRO TEXT & CTA STYLES END ------ */
 
         /* ------ DIVIDER & CATEGORIES SECTION STYLES START ------ */
-        /* Divider og tittel trenger .animate-on-scroll for JS-logikken */
         .divider.animate-on-scroll {
             width: 60%;
             max-width: 400px;
             height: 1px;
             background-color: var(--color-brand-white);
             margin: 0 auto 35px auto;
+            /* Inherits scroll animation transition */
         }
 
         .categories {
-            padding: 80px 20px 180px 20px;
+            padding: 80px 20px 280px 20px; /* Increased padding-bottom */
         }
 
         .categories h2.section-title.animate-on-scroll {
@@ -537,6 +537,7 @@
             margin-top: 4em;
             margin-bottom: 2em;
             padding-top: 0;
+            /* Inherits scroll animation transition */
         }
 
 
@@ -546,30 +547,38 @@
             gap: 25px;
         }
 
-        /* Category card trenger .animate-on-scroll for JS-logikken */
-        .category-card.animate-on-scroll {
+        /* Base Category card style */
+        .category-card {
             background-color: rgba(44, 44, 44, 0.45);
             backdrop-filter: blur(12px);
             border-radius: 15px;
             padding: 30px;
             text-align: center;
-            color: var(--color-grey-lightest);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            box-shadow: none !important; /* Skygge fjernet helt */
             display: flex;
             flex-direction: column;
             align-items: center;
-             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, opacity 0.8s ease-out, transform 0.8s ease-out;
+            text-decoration: none;
+            /* Define transitions for HOVER properties */
+            /* Transform starts immediately, but has a duration */
+            transition: transform 0.2s ease-out, /* Duration for the lift */
+                        background-color 0.1s ease-out; /* Fast background change */
+            /* Scroll animation (opacity, transform 0.8s) is inherited from .animate-on-scroll */
+        }
+
+        /* Category card needs .animate-on-scroll for JS logic */
+        .category-card.animate-on-scroll {
+            /* This class provides the initial opacity:0 and transform:translateY(30px) */
+            /* and the transition for those properties when .is-visible is added */
         }
 
 
         .category-card:hover {
-            transform: translateY(-10px) scale(1.02) !important;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-            background-color: rgba(44, 44, 44, 0.6);
+            /* Apply hover styles */
+            transform: translateY(-8px) scale(1.01); /* The lift effect */
+            background-color: rgba(47, 124, 83, 0.25);
             text-decoration: none;
-        }
-        .category-card.is-visible:hover {
-             transform: translateY(-10px) scale(1.02) !important;
+            /* Color changes for children happen via their own transitions below */
         }
 
 
@@ -582,6 +591,12 @@
             align-items: center;
             justify-content: center;
             font-size: 38px;
+            /* Fast transition ONLY for icon color on hover */
+            transition: color 0.1s ease-out;
+        }
+
+        .category-card:hover .category-card-icon {
+            color: var(--color-brand-white); /* Target color */
         }
 
         .category-card h3 {
@@ -589,13 +604,23 @@
             margin-bottom: 10px;
             font-size: 1.6rem;
             font-weight: var(--font-weight-light);
+            /* Fast transition ONLY for title color on hover */
+            transition: color 0.1s ease-out;
         }
+         .category-card:hover h3 {
+             color: var(--color-brand-white); /* Target color */
+         }
 
         .category-card p {
             font-size: 0.95rem;
             color: var(--color-grey-lightest);
             flex-grow: 1;
             font-weight: var(--font-weight-light);
+            /* Fast transition ONLY for paragraph color on hover */
+            transition: color 0.1s ease-out;
+        }
+        .category-card:hover p {
+            color: var(--color-brand-white); /* Target color */
         }
         /* ------ DIVIDER & CATEGORIES SECTION STYLES END ------ */
 
@@ -684,107 +709,104 @@
         @media (max-width: 1024px) {
              .header-logo-img { height: 80px; }
              header .header-inner-container { padding: 8px 5vw; }
-             /* Justert fallback padding for å ta høyde for header.top */
-             .hero-section { padding-top: 170px; } /* (Gammel padding 140px + header.top 30px) */
+             .hero-section { padding-top: 170px; }
 
              header nav ul li { margin: 0 10px; }
              header nav ul li a { font-size: 0.85rem; }
              .header-icon { font-size: 1rem; margin-left: 15px; }
              .nav-menu-wrapper { padding: 4px 10px; }
              .hero-headline { font-size: clamp(1.6rem, 3.5vw, 2.2rem); }
-             .categories { padding-bottom: 160px; }
+             .categories { padding-bottom: 260px; } /* Adjusted responsive padding */
         }
 
         @media (max-width: 768px) {
              .header-logo-img { height: 60px; }
              header .header-inner-container { padding: 6px 5vw; }
-             /* Justert fallback padding for å ta høyde for header.top */
-             .hero-section { padding-top: 150px; } /* (Gammel padding 120px + header.top 30px) */
+             .hero-section { padding-top: 150px; }
 
-            header .header-inner-container {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            header .logo-area {
-                flex-basis: auto;
-                margin-bottom: 0;
-                min-width: auto;
-            }
+             header .header-inner-container {
+                 flex-direction: row;
+                 flex-wrap: wrap;
+             }
+             header .logo-area {
+                 flex-basis: auto;
+                 margin-bottom: 0;
+                 min-width: auto;
+             }
 
-            header nav {
-                order: 3;
-                width: 100%;
-                justify-content: center;
-                margin: 10px 0 0 0;
-            }
-            .nav-menu-wrapper { width: auto; max-width: 100%; overflow-x: auto; }
-            .nav-menu-wrapper::-webkit-scrollbar { display: none; }
-            .nav-menu-wrapper { scrollbar-width: none; }
+             header nav {
+                 order: 3;
+                 width: 100%;
+                 justify-content: center;
+                 margin: 10px 0 0 0;
+             }
+             .nav-menu-wrapper { width: auto; max-width: 100%; overflow-x: auto; }
+             .nav-menu-wrapper::-webkit-scrollbar { display: none; }
+             .nav-menu-wrapper { scrollbar-width: none; }
 
-            header nav ul { flex-wrap: nowrap; justify-content: flex-start; }
-            header nav ul li { margin: 0 8px; }
-            header nav ul li a { font-size: 0.8rem; }
+             header nav ul { flex-wrap: nowrap; justify-content: flex-start; }
+             header nav ul li { margin: 0 8px; }
+             header nav ul li a { font-size: 0.8rem; }
 
-            .header-icons {
-                order: 2;
-                flex-basis: auto;
-                margin-left: auto;
-                min-width: auto;
-            }
-            .header-icon { font-size: 1rem; margin-left: 15px; }
+             .header-icons {
+                 order: 2;
+                 flex-basis: auto;
+                 margin-left: auto;
+                 min-width: auto;
+             }
+             .header-icon { font-size: 1rem; margin-left: 15px; }
 
-            .hero-text-group { margin-left: 0; text-align: left; }
-            .hero-content { text-align: left; margin-bottom: 30px; }
-            .hero-headline { font-size: 1.4rem; text-align: left; position:absolute; }
+             .hero-text-group { margin-left: 0; text-align: left; }
+             .hero-content { text-align: left; margin-bottom: 30px; }
+             .hero-headline { font-size: 1.4rem; text-align: left; position:absolute; }
 
-            .intro-text-box {
-                font-size: 0.9rem;
-                max-width: 100%;
-                margin-left: 0;
-                margin-right: 0;
-                margin-bottom: 15px;
-                text-align: left;
-            }
-            .intro-text-box p { font-size: 0.9rem; }
-            .cta-button-container { text-align: left; }
-            .cta-button { font-size: 0.8rem; padding: 8px 15px;}
+             .intro-text-box {
+                 font-size: 0.9rem;
+                 max-width: 100%;
+                 margin-left: 0;
+                 margin-right: 0;
+                 margin-bottom: 15px;
+                 text-align: left;
+             }
+             .intro-text-box p { font-size: 0.9rem; }
+             .cta-button-container { text-align: left; }
+             .cta-button { font-size: 0.8rem; padding: 8px 15px;}
 
-            .contact-modal-title { font-size: 1.5rem; }
-            .contact-form-container { max-width: 90vw; padding: 30px 25px;}
+             .contact-modal-title { font-size: 1.5rem; }
+             .contact-form-container { max-width: 90vw; padding: 30px 25px;}
 
-            .categories { padding: 60px 15px 140px 15px; }
-            .categories h2.section-title { margin-top: 3em; margin-bottom: 1.5em; }
-            .divider { margin-bottom: 25px; width: 50%; }
+             .categories { padding: 60px 15px 240px 15px; } /* Adjusted responsive padding */
+             .categories h2.section-title { margin-top: 3em; margin-bottom: 1.5em; }
+             .divider { margin-bottom: 25px; width: 50%; }
 
-            .category-grid { grid-template-columns: 1fr; gap: 20px; }
-            .category-card-icon { width: 50px; height: 50px; font-size: 30px; }
-            .category-card, .contact-form-container { backdrop-filter: blur(10px); }
+             .category-grid { grid-template-columns: 1fr; gap: 20px; }
+             .category-card-icon { width: 50px; height: 50px; font-size: 30px; }
+             .category-card, .contact-form-container { backdrop-filter: blur(10px); }
 
-            .site-tagline { font-size: 0.6em; bottom: 10px; right: 10px; background: none; padding: 0;}
+             .site-tagline { font-size: 0.6em; bottom: 10px; right: 10px; background: none; padding: 0;}
 
-            .floating-search-input { font-size: 1rem; padding: 12px 15px; }
-            .close-search-btn { font-size: 1.8rem; top: -5px; }
+             .floating-search-input { font-size: 1rem; padding: 12px 15px; }
+             .close-search-btn { font-size: 1.8rem; top: -5px; }
         }
 
         @media (max-width: 480px) {
              .header-logo-img { height: 50px; }
              header .header-inner-container { padding: 5px 5vw; }
-             /* Justert fallback padding for å ta høyde for header.top */
-             .hero-section { padding-top: 130px; } /* (Gammel padding 100px + header.top 30px) */
+             .hero-section { padding-top: 130px; }
 
-            header nav ul li { margin: 0 5px; }
-            header nav ul li a { font-size: 0.75rem; }
-            .header-icon { font-size: 0.9rem; margin-left: 10px;}
-            .nav-menu-wrapper { padding: 3px 8px; }
+             header nav ul li { margin: 0 5px; }
+             header nav ul li a { font-size: 0.75rem; }
+             .header-icon { font-size: 0.9rem; margin-left: 10px;}
+             .nav-menu-wrapper { padding: 3px 8px; }
 
-            .hero-content { min-height: 70px; margin-bottom: 25px; }
-            .hero-headline { font-size: 1.2rem; }
-            .intro-text-box { font-size: 0.8rem; margin-bottom: 10px; }
-            .intro-text-box p { font-size: 0.8rem; }
-            .cta-button { font-size: 0.75rem; padding: 6px 12px;}
+             .hero-content { min-height: 70px; margin-bottom: 25px; }
+             .hero-headline { font-size: 1.2rem; }
+             .intro-text-box { font-size: 0.8rem; margin-bottom: 10px; }
+             .intro-text-box p { font-size: 0.8rem; }
+             .cta-button { font-size: 0.75rem; padding: 6px 12px;}
 
-            .categories { padding-bottom: 120px; }
-            .category-card-icon { width: 45px; height: 45px; font-size: 26px; }
+             .categories { padding-bottom: 220px; } /* Adjusted responsive padding */
+             .category-card-icon { width: 45px; height: 45px; font-size: 26px; }
         }
         /* ------ RESPONSIVE STYLES END ------ */
 
@@ -892,26 +914,26 @@
                  <h2 class="section-title animate-on-scroll" data-delay-order="1">Choose Your Focus</h2>
                 <div class="category-grid">
                      <a href="segments/gym.html" class="category-card animate-on-scroll" data-delay-order="2">
-                        <div class="category-card-icon">
-                            <i class="fas fa-dumbbell"></i>
-                        </div>
-                        <h3>GYM</h3>
-                        <p>Solutions for modern fitness centers.</p>
-                    </a>
+                         <div class="category-card-icon">
+                             <i class="fas fa-dumbbell"></i>
+                         </div>
+                         <h3>GYM</h3>
+                         <p>Solutions for modern fitness centers.</p>
+                     </a>
                      <a href="segments/physio.html" class="category-card animate-on-scroll" data-delay-order="3">
-                        <div class="category-card-icon">
-                            <i class="fas fa-briefcase-medical"></i>
-                        </div>
-                        <h3>Physiotherapist</h3>
-                        <p>Advanced tools for patient rehabilitation.</p>
-                    </a>
+                         <div class="category-card-icon">
+                             <i class="fas fa-briefcase-medical"></i>
+                         </div>
+                         <h3>Physiotherapist</h3>
+                         <p>Advanced tools for patient rehabilitation.</p>
+                     </a>
                      <a href="segments/sports.html" class="category-card animate-on-scroll" data-delay-order="4">
-                        <div class="category-card-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <h3>Sports Team</h3>
-                        <p>Optimize athlete performance and recovery.</p>
-                    </a>
+                         <div class="category-card-icon">
+                             <i class="fas fa-trophy"></i>
+                         </div>
+                         <h3>Sports Team</h3>
+                         <p>Optimize athlete performance and recovery.</p>
+                     </a>
                 </div>
             </div>
         </section>
@@ -955,142 +977,135 @@
             const header = document.querySelector('header');
             const heroSection = document.querySelector('.hero-section');
 
-            // Function to adjust hero padding based on header height AND header top offset
             function adjustHeroPadding() {
                 if (header && heroSection) {
                     const headerTopStyle = window.getComputedStyle(header).getPropertyValue('top');
-                    // Fjerner 'px' og konverterer til tall, default til 0 hvis verdien er ugyldig
                     const headerTopOffset = parseFloat(headerTopStyle) || 0;
-
-                    // Debounce or throttle resize event for performance
-                    let resizeTimer;
-                    window.addEventListener('resize', () => {
-                        clearTimeout(resizeTimer);
-                        resizeTimer = setTimeout(() => {
-                             const headerHeight = header.offsetHeight;
-                             // Kalkulerer nødvendig padding: headerens høyde + dens top-offset + ønsket ekstra plass (80px)
-                             const totalPadding = headerHeight + headerTopOffset + 80;
-                             // Bruker Math.max for å sikre en minimum padding
-                             heroSection.style.paddingTop = `${Math.max(80 + headerTopOffset, totalPadding)}px`;
-                        }, 100); // Adjust delay as needed
-                    });
-                    // Initial adjustment
                     const headerHeight = header.offsetHeight;
                     const totalPadding = headerHeight + headerTopOffset + 80;
                     heroSection.style.paddingTop = `${Math.max(80 + headerTopOffset, totalPadding)}px`;
                 }
             }
 
-            // --- Header Entry Animations ---
+             let resizeTimer;
+             window.addEventListener('resize', () => {
+                 clearTimeout(resizeTimer);
+                 resizeTimer = setTimeout(adjustHeroPadding, 100);
+             });
+
             if (header) {
                 setTimeout(() => {
                     header.classList.add('header-loaded');
-                    // Adjust padding *after* animations might affect height and top offset is set
                     adjustHeroPadding();
-                }, 500); // Delay after page load
+                }, 500);
             } else {
-                 // Adjust padding immediately if header exists but no animation delay needed
                  adjustHeroPadding();
             }
 
-
-             // --- Animasjonslogikk ---
             const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
             const basePageLoadDelay = 500;
+            const scrollAnimationBaseDelay = 150;
 
-            // --- Intersection Observer Oppsett ---
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
                 threshold: 0.1
             };
 
-            const scrollAnimationBaseDelay = 150; // ms
-
             const observerCallback = (entries, observer) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         const targetEl = entry.target;
                         const initialDelayAttr = targetEl.dataset.animationDelay;
+                        let calculatedDelay = 0;
 
                         if (initialDelayAttr) {
-                            const intrinsicDelay = parseInt(initialDelayAttr, 10);
-                            const totalDelay = basePageLoadDelay + intrinsicDelay;
-                            targetEl.style.transitionDelay = `${totalDelay}ms`;
-                            requestAnimationFrame(() => {
-                                requestAnimationFrame(() => {
-                                    targetEl.classList.add('is-visible');
-                                });
-                            });
+                            calculatedDelay = basePageLoadDelay + parseInt(initialDelayAttr, 10);
                         } else {
                             const delayOrder = parseInt(targetEl.dataset.delayOrder || '0', 10);
-                            const calculatedDelay = delayOrder * scrollAnimationBaseDelay;
-                            targetEl.style.transitionDelay = `${calculatedDelay}ms`;
-                            requestAnimationFrame(() => {
-                                requestAnimationFrame(() => {
-                                    targetEl.classList.add('is-visible');
-                                });
-                            });
+                            calculatedDelay = delayOrder * scrollAnimationBaseDelay;
                         }
+                        
+                        targetEl.style.transitionDelay = `${calculatedDelay}ms`;
+
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                targetEl.classList.add('is-visible');
+                                // Viktig: Nullstill transition-delay ETTER at scroll-animasjonen har startet
+                                // for å unngå at den påvirker hover-overganger.
+                                setTimeout(() => {
+                                    targetEl.style.transitionDelay = '0ms';
+                                }, calculatedDelay > 0 ? calculatedDelay + 50 : 50 ); // +50 for buffer
+                            });
+                        });
                         observer.unobserve(targetEl);
                     }
                 });
             };
 
             const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
-            elementsToAnimate.forEach(el => {
-                scrollObserver.observe(el);
-            });
+            elementsToAnimate.forEach(el => scrollObserver.observe(el));
 
-
-            // --- Custom Dropdown Logic ---
             const dropdownTriggers = document.querySelectorAll('[data-dropdown-target]');
             let activeDropdown = null;
             let hideTimeout = null;
+            const hideDelay = 150;
 
             function showDropdown(triggerElement) {
                 clearTimeout(hideTimeout);
                 const targetId = triggerElement.dataset.dropdownTarget;
                 const dropdownElement = document.getElementById(targetId);
 
+                if (!dropdownElement) return;
+
                 if (activeDropdown && activeDropdown !== dropdownElement) {
                     activeDropdown.classList.remove('is-active');
+                    // Ensure display is none after transition for previous dropdown
+                    // Store in a closure to avoid issues if another dropdown is quickly hovered
+                    const prevDropdown = activeDropdown;
+                    setTimeout(() => {
+                        if (prevDropdown && !prevDropdown.classList.contains('is-active')) {
+                           prevDropdown.style.display = 'none';
+                        }
+                    }, 350); // Match CSS transition duration
                 }
+                
+                activeDropdown = dropdownElement; // Set new active dropdown
 
-                if (dropdownElement) {
-                    const triggerRect = triggerElement.getBoundingClientRect();
-                    dropdownElement.style.display = 'block'; // Temporarily display to calculate width
-                    dropdownElement.style.opacity = '0';
-                    const dropdownWidth = dropdownElement.offsetWidth;
-                    dropdownElement.style.display = ''; // Reset display
-                    dropdownElement.style.opacity = ''; // Reset opacity
+                const triggerRect = triggerElement.getBoundingClientRect();
+                dropdownElement.style.display = 'block'; // Make it block to calculate dimensions
+                const dropdownWidth = dropdownElement.offsetWidth;
+                
+                const leftPosition = triggerRect.left + (triggerRect.width / 2) - (dropdownWidth / 2);
+                const headerRect = header ? header.getBoundingClientRect() : { bottom: triggerRect.bottom + 12 };
+                const headerBottom = headerRect.bottom;
 
-                    const leftPosition = triggerRect.left + (triggerRect.width / 2) - (dropdownWidth / 2);
-                    // Adjust top position based on header height AND top offset dynamically
-                    const headerCurrentHeight = header ? header.offsetHeight : 0;
-                    // Use getBoundingClientRect().bottom which includes the top offset
-                    const headerBottom = header ? header.getBoundingClientRect().bottom : triggerRect.bottom + 12;
+                const adjustedLeft = Math.max(5, Math.min(leftPosition, window.innerWidth - dropdownWidth - 5));
 
-                    dropdownElement.style.left = `${leftPosition}px`;
-                    // Position below the bottom edge of the header, adding a small gap (5px)
-                    dropdownElement.style.top = `${headerBottom + 5}px`;
+                dropdownElement.style.left = `${adjustedLeft}px`;
+                dropdownElement.style.top = `${headerBottom + 5}px`;
 
+                // Force reflow before adding class to ensure transition plays
+                void dropdownElement.offsetWidth; 
 
-                    dropdownElement.style.display = 'block';
-                    requestAnimationFrame(() => { // Ensure styles are applied before adding class
-                        requestAnimationFrame(() => {
-                             dropdownElement.classList.add('is-active');
-                        });
-                    });
-                    activeDropdown = dropdownElement;
-                }
+                dropdownElement.classList.add('is-active');
             }
 
+            function hideDropdown(immediately = false) {
+                if (!activeDropdown) return;
+                const currentDropdown = activeDropdown; // Capture current active dropdown
 
-            function hideDropdown() {
-                if (activeDropdown) {
-                    activeDropdown.classList.remove('is-active');
-                    activeDropdown = null;
+                currentDropdown.classList.remove('is-active');
+                activeDropdown = null; // Clear active reference
+
+                if (immediately) {
+                    currentDropdown.style.display = 'none';
+                } else {
+                    setTimeout(() => {
+                        if (!currentDropdown.classList.contains('is-active')) { // Check if it wasn't re-activated
+                           currentDropdown.style.display = 'none';
+                        }
+                    }, 350); // Match CSS transition duration for opacity/transform
                 }
             }
 
@@ -1098,28 +1113,36 @@
                 const targetId = trigger.dataset.dropdownTarget;
                 const dropdownElement = document.getElementById(targetId);
 
-                trigger.addEventListener('mouseenter', () => {
-                    showDropdown(trigger);
-                });
+                trigger.addEventListener('mouseenter', () => showDropdown(trigger));
                 trigger.addEventListener('mouseleave', () => {
                     hideTimeout = setTimeout(() => {
                         if (activeDropdown && !activeDropdown.matches(':hover')) {
                             hideDropdown();
                         }
-                    }, 150);
+                    }, hideDelay);
                 });
+
                 if(dropdownElement){
-                    dropdownElement.addEventListener('mouseenter', () => {
-                        clearTimeout(hideTimeout);
-                    });
+                    dropdownElement.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
                     dropdownElement.addEventListener('mouseleave', () => {
-                        hideTimeout = setTimeout(hideDropdown, 150);
+                        hideTimeout = setTimeout(() => hideDropdown(), hideDelay);
+                    });
+                    dropdownElement.querySelectorAll('a').forEach(link => {
+                         link.addEventListener('click', () => hideDropdown(true));
                     });
                 }
             });
 
+             document.addEventListener('click', (event) => {
+                 if (activeDropdown && !activeDropdown.contains(event.target)) {
+                     let isTrigger = false;
+                     dropdownTriggers.forEach(trigger => {
+                         if (trigger.contains(event.target)) isTrigger = true;
+                     });
+                     if (!isTrigger) hideDropdown(true);
+                 }
+             });
 
-            // --- Contact Modal Logic (Uendret) ---
             const showContactFormBtn = document.getElementById('show-contact-form-btn');
             const navContactLink = document.getElementById('nav-contact-link');
             const contactModal = document.getElementById('contact-modal');
@@ -1128,19 +1151,22 @@
 
             function openModal() {
                 closeSearch();
+                hideDropdown(true);
                 if (contactModal && modalOverlay) {
                     modalOverlay.style.display = 'block';
                     contactModal.style.display = 'block';
                     document.body.classList.add('modal-open');
-                    setTimeout(() => {
-                        modalOverlay.classList.add('is-visible');
-                        contactModal.classList.add('is-visible');
-                    }, 10);
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            modalOverlay.classList.add('is-visible');
+                            contactModal.classList.add('is-visible');
+                        });
+                    });
                 }
             }
 
             function closeModal() {
-                if (contactModal && modalOverlay) {
+                if (contactModal && modalOverlay && document.body.classList.contains('modal-open')) {
                     modalOverlay.classList.remove('is-visible');
                     contactModal.classList.remove('is-visible');
                     document.body.classList.remove('modal-open');
@@ -1155,9 +1181,11 @@
             if (navContactLink) navContactLink.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
             if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
             if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
-            if (contactModal) contactModal.addEventListener('click', (e) => { e.stopPropagation(); });
+            if (contactModal) {
+                 const formContainer = contactModal.querySelector('.contact-form-container');
+                 if (formContainer) formContainer.addEventListener('click', (e) => e.stopPropagation());
+            }
 
-            // --- Floating Search Logic (Uendret) ---
             const searchIconTrigger = document.getElementById('search-icon-trigger');
             const floatingSearchOverlay = document.getElementById('floating-search');
             const closeSearchBtn = document.getElementById('close-search-btn');
@@ -1165,37 +1193,40 @@
 
             function openSearch() {
                 closeModal();
+                hideDropdown(true);
                 if (floatingSearchOverlay) {
-                    floatingSearchOverlay.classList.add('is-visible');
-                    document.body.classList.add('search-open');
-                     setTimeout(() => {
-                        if(searchInput) searchInput.focus();
-                    }, 50);
+                     floatingSearchOverlay.classList.add('is-visible');
+                     document.body.classList.add('search-open');
+                      setTimeout(() => {
+                         if(searchInput) searchInput.focus();
+                      }, 50);
                 }
             }
 
             function closeSearch() {
-                 if (floatingSearchOverlay) {
+                 if (floatingSearchOverlay && document.body.classList.contains('search-open')) {
                     floatingSearchOverlay.classList.remove('is-visible');
                     document.body.classList.remove('search-open');
-                }
+                 }
             }
 
             if (searchIconTrigger) searchIconTrigger.addEventListener('click', (e) => { e.preventDefault(); openSearch(); });
             if (closeSearchBtn) closeSearchBtn.addEventListener('click', closeSearch);
             if (floatingSearchOverlay) {
                 floatingSearchOverlay.addEventListener('click', (e) => {
-                    if (e.target === floatingSearchOverlay) {
-                        closeSearch();
-                    }
+                    if (e.target === floatingSearchOverlay) closeSearch();
                 });
             }
+
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && document.body.classList.contains('search-open')) {
-                    closeSearch();
-                }
-                 if (e.key === 'Escape' && document.body.classList.contains('modal-open')) {
-                    closeModal();
+                if (e.key === 'Escape') {
+                     if (document.body.classList.contains('search-open')) {
+                         closeSearch();
+                     } else if (document.body.classList.contains('modal-open')) {
+                         closeModal();
+                     } else if (activeDropdown) {
+                         hideDropdown(true);
+                     }
                 }
             });
         });
