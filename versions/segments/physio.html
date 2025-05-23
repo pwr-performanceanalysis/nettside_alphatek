@@ -1,140 +1,568 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Segment Side - [Sett inn Tittel Her]</title>
+    <title>Rehabilitation & Recovery - Alphatek</title>
+    <meta name="description" content="Alphatek's solutions for physiotherapy and rehabilitation clinics, featuring video demonstrations and specific applications like Return to Play and Senior Fitness Testing.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        :root {
+            --color-brand-black: #0D0D0D;
+            --color-brand-accent: rgb(47, 124, 83); /* #2F7C53 */
+            --color-brand-white: #FFFFFF;
+            --color-headline-green: #307C53;
+            --color-grey-darkest: #1A1A1A;
+            --color-grey-dark: #2C2C2C;
+            --color-grey-medium: #595959;
+            --color-grey-light: #A6A6A6;
+            --color-grey-lightest: #D9D9D9;
+
+            --font-primary: 'Roboto', sans-serif;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-bold: 700;
+
+            --site-padding: 3vw;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif; /* Samme font som hovedsiden */
+            font-family: var(--font-primary);
+            background-color: var(--color-brand-black);
+            color: var(--color-grey-lightest);
+            line-height: 1.6;
+            font-weight: var(--font-weight-light);
+        }
+        body.modal-open { overflow: hidden; }
+        a { color: var(--color-brand-accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 0.8em;
+            font-weight: var(--font-weight-light);
+            color: var(--color-headline-green);
+        }
+        h2.section-heading {
+            font-size: 2rem;
+            text-align: left;
+            margin-bottom: 1em;
+            color: var(--color-headline-green);
+            border-bottom: 1px solid var(--color-grey-dark);
+            padding-bottom: 0.5em;
+        }
+         h3.feature-box-title {
+            color: var(--color-headline-green);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            font-weight: var(--font-weight-light);
+        }
+        p { margin-bottom: 1.5em; color: var(--color-grey-lightest); font-weight: var(--font-weight-light); }
+        ul { list-style-position: inside; padding-left: 0; margin-bottom: 1.5em;}
+        ul li { margin-bottom: 0.5em; color: var(--color-grey-lightest); }
+
+        header {
+            background-color: rgba(13, 13, 13, 0.85);
+            padding: 0.8em 0;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-grey-dark);
+        }
+        header .header-inner-container { display: flex; justify-content: space-between; align-items: center; padding-left: var(--site-padding); padding-right: var(--site-padding); width: 100%; max-width: none; position: relative;}
+        header .logo-area { display: flex; align-items: center; }
+        header .logo { display: flex; align-items: center; font-size: 1.3em; font-weight: var(--font-weight-light); color: var(--color-brand-white); }
+        .header-logo-img { height: 40px; width: auto; margin-right: 12px; }
+        .header-tagline { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0.75em; font-weight: var(--font-weight-light); color: var(--color-grey-light); white-space: nowrap; z-index: -1; text-shadow: 0 0 3px rgba(0,0,0,0.5); }
+        header nav ul { list-style: none; display: flex; align-items: center; }
+        header nav ul li { margin-left: 25px; }
+        header nav ul li a { color: var(--color-grey-lightest); font-weight: var(--font-weight-light); transition: color 0.3s ease; text-transform: capitalize; font-size: 0.95rem; }
+        header nav ul li a:hover { color: var(--color-brand-accent); text-decoration: none; }
+        .search-icon { color: var(--color-grey-lightest); font-size: 1.05rem; margin-left: 25px; cursor: pointer; transition: color 0.3s ease; }
+        .search-icon:hover { color: var(--color-brand-accent); }
+
+        .main-content-wrapper {
+             padding-top: 74px;
+        }
+
+        .video-banner-section {
+            position: relative;
+            width: 100%;
+            margin-bottom: 0;
+            background-color: var(--color-grey-darkest);
+        }
+        .video-banner-section .video-embed-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%;
+            background-color: var(--color-grey-darkest);
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .video-banner-section .video-embed-container iframe {
+            position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+            width: 100%; height: 100%; border: none;
+        }
+        .video-banner-section .video-embed-container .video-placeholder-content {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            padding: 20px;
+            text-align: center;
+            color: var(--color-grey-lightest);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        .video-banner-section .video-overlay-title {
+            position: absolute;
+            bottom: 20px;
+            left: var(--site-padding);
+            z-index: 2;
+            color: var(--color-brand-white);
+            font-size: 2.8rem;
+            font-weight: var(--font-weight-light);
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.65);
             margin: 0;
             padding: 0;
-            background-color: #0D0D0D; /* Mørk bakgrunn lik hovedsiden */
-            color: #D9D9D9; /* Lys tekstfarge */
-            line-height: 1.6;
-        }
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 2em auto; /* Litt marg på toppen og bunnen */
-            padding: 20px;
-            background-color: rgba(26, 26, 26, 0.8); /* Litt gjennomsiktig mørk boks */
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        header {
-            background-color: rgba(13, 13, 13, 0.7);
-            padding: 1em 0;
-            text-align: center;
-            margin-bottom: 2em;
-        }
-        header h1 {
-            color: #FFFFFF;
-            font-weight: 300;
-            margin: 0;
-        }
-        nav {
-            text-align: center;
-            margin-bottom: 2em;
-        }
-        nav a {
-            color: rgb(47, 124, 83); /* Accentfarge fra hovedsiden */
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 400;
-        }
-        nav a:hover {
-            text-decoration: underline;
+            text-align: left;
+            line-height: 1.2;
         }
 
-        h2 {
-            color: #FFFFFF;
-            font-weight: 300;
-            border-bottom: 1px solid rgb(47, 124, 83);
-            padding-bottom: 0.5em;
-            margin-top: 1.5em;
+        .feature-boxes-container {
+            padding: 40px var(--site-padding);
+            margin-bottom: 40px;
         }
-        p {
-            margin-bottom: 1em;
-            color: #A6A6A6; /* Lys grå tekst */
+        .feature-boxes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
         }
-        .back-link-container {
-            margin-top: 2em;
+        .feature-box-card {
+            background-color: var(--color-grey-darkest);
+            border: 1px solid var(--color-grey-dark);
+            border-radius: 15px;
+            padding: 35px;
             text-align: center;
+            color: var(--color-grey-lightest);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            min-height: 180px;
         }
-        .back-link {
+        .feature-box-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+            background-color: var(--color-grey-dark);
+            text-decoration: none;
+        }
+        .feature-box-card .feature-box-icon {
+            font-size: 2.5rem;
+            color: var(--color-brand-accent);
+            margin-bottom: 15px;
+        }
+
+        .content-section {
+            padding: 0 var(--site-padding);
+            margin-bottom: 40px;
+        }
+        .content-section-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 0;
+        }
+
+        /* CSS for image and text layout within sections - can be simplified or removed if no longer used elsewhere */
+        .section-layout-container {
+            /* display: flex; */ /* No longer strictly needed if only one child, but harmless */
+            /* flex-wrap: wrap; */
+            /* gap: 30px; */
+            /* align-items: flex-start; */
+        }
+        /* .section-image-column and .section-image styles are no longer used here but kept in case they are used elsewhere */
+        .section-image-column {
+            /* flex: 1 1 300px; */
+            /* min-width: 280px; */
+        }
+        .section-text-column {
+            /* flex: 2 1 400px; */ /* Will naturally take full width of its parent */
+        }
+        .section-image {
+            /* width: 100%; */
+            /* height: auto; */
+            /* border-radius: 10px; */
+            /* box-shadow: 0 5px 15px rgba(0,0,0,0.25); */
+            /* display: block; */
+        }
+
+        .cta-button-container {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            padding: 0 var(--site-padding);
+        }
+        .cta-button {
             display: inline-block;
-            padding: 10px 20px;
-            background-color: rgba(47, 124, 83, 0.5);
-            color: #FFFFFF;
-            border-radius: 5px;
+            background-color: var(--color-brand-accent);
+            color: var(--color-brand-white);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-primary); font-size: 1rem; font-weight: var(--font-weight-light);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
             text-decoration: none;
-            transition: background-color 0.3s ease;
         }
-        .back-link:hover {
-            background-color: rgba(47, 124, 83, 0.8);
-            text-decoration: none;
+        .cta-button:hover {
+            background-color: #226948;
+            color: var(--color-brand-white);
+            transform: translateY(-2px);
         }
 
-        /* Responsive justeringer */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); z-index: 1050; opacity: 0; transition: opacity 0.3s ease-out; }
+        .modal-overlay.is-visible { opacity: 1; }
+        .contact-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95); z-index: 1051; opacity: 0; transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
+        .contact-modal.is-visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .contact-form-container {
+            background-color: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(15px);
+            border-radius: 15px; padding: 35px 40px;
+            color: var(--color-grey-lightest);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            width: 90vw; max-width: 550px; text-align: left; position: relative;
+        }
+        .contact-modal-title { font-size: 1.8rem; color: var(--color-headline-green); text-align: center; margin-bottom: 1.5rem; }
+        .close-modal-btn { position: absolute; top: 15px; right: 20px; background: none; border: none; color: var(--color-grey-light); font-size: 1.8rem; cursor: pointer; transition: color 0.3s ease; }
+        .close-modal-btn:hover { color: var(--color-brand-white); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: .5rem; color: var(--color-grey-lightest); font-weight: var(--font-weight-normal); }
+        .form-group input[type="text"], .form-group input[type="email"], .form-group textarea {
+            width: 100%; padding: 12px; border-radius: 8px;
+            border: 1px solid var(--color-grey-medium);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--color-grey-lightest);
+            font-family: var(--font-primary); font-weight: var(--font-weight-light); font-size: 1rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .form-group input[type="text"]:focus, .form-group input[type="email"]:focus, .form-group textarea:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--color-brand-accent);
+        }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .submit-btn {
+            display: block; width: 100%;
+            background-color: var(--color-brand-accent);
+            color: var(--color-brand-white);
+            padding: 10px 20px; border: none; border-radius: 8px;
+            font-family: var(--font-primary); font-size: 0.9rem; font-weight: var(--font-weight-light);
+            cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .submit-btn:hover {
+            background-color: #226948;
+            color: var(--color-brand-white); transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(8px);
+            color: var(--color-grey-lightest);
+            text-align: center; padding: 2em 0;
+            position: relative; z-index: 1;
+            border-top: 1px solid var(--color-grey-dark);
+        }
+        footer .container {
+             width: 90%; max-width: 1200px; margin: 0 auto;
+             padding-left: var(--site-padding);
+             padding-right: var(--site-padding);
+        }
+        footer p { font-weight: var(--font-weight-light); margin-bottom: 0; color: var(--color-grey-lightest); }
+        .footer-social-icons { margin-top: 1em; }
+        .footer-social-icons a { color: var(--color-grey-lightest); margin: 0 10px; font-size: 1.5rem; transition: color 0.3s ease; }
+        .footer-social-icons a:hover { color: var(--color-brand-accent); }
+
         @media (max-width: 768px) {
-            .container {
-                width: 95%;
-                padding: 15px;
+            :root { --site-padding: 5vw; }
+            .video-banner-section .video-overlay-title {
+                font-size: 2.2rem;
+                bottom: 15px;
             }
-            header h1 {
+            h2.section-heading { font-size: 1.6rem; }
+            .feature-boxes-grid { grid-template-columns: 1fr; gap: 20px; }
+            .feature-box-card { padding: 25px; min-height: 150px; }
+            h3.feature-box-title { font-size: 1.3rem; }
+
+            /* These specific layout rules are less critical now but harmless */
+            /* .section-layout-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .section-text-column { order: 1; }
+            .section-image-column { order: 2; }
+
+            .section-image-column,
+            .section-text-column {
+                flex-basis: 100%;
+            } */
+
+            header .header-inner-container { padding-left: 15px; padding-right: 15px; }
+            header .logo { font-size: 1.1em; } .header-logo-img { height: 30px; }
+            .header-tagline { display: none; }
+            header nav ul li { margin-left: 10px; } header nav ul li a { font-size: 0.85rem; }
+            .search-icon { margin-left: 15px; font-size: 0.95rem; }
+            .content-section-inner { padding: 20px 0; }
+            .contact-modal-title { font-size: 1.5rem; }
+            .contact-form-container { max-width: 90vw; padding: 30px 25px;}
+        }
+        @media (max-width: 480px) {
+             :root { --site-padding: 20px; }
+             .video-banner-section .video-overlay-title {
                 font-size: 1.8rem;
+                bottom: 10px;
             }
-            nav a {
-                margin: 0 10px;
-                font-size: 0.9rem;
-            }
+            h2.section-heading {font-size: 1.4rem;}
+            .feature-box-card { padding: 20px; }
+            h3.feature-box-title { font-size: 1.2rem; }
+
+            header .header-inner-container { padding-left: 10px; padding-right: 10px; }
+            header .logo { font-size: 1em; } .header-logo-img { height: 28px; margin-right: 8px; }
+            header nav ul li { margin-left: 8px; } header nav ul li a { font-size: 0.75rem; }
+            .search-icon { margin-left: 10px; font-size: 0.85rem; }
+            .cta-button { font-size: 0.9rem; padding: 10px 20px;}
         }
     </style>
 </head>
 <body>
-
     <header>
-        <h1>GYM Segment</h1>
+        <div class="header-inner-container">
+            <div class="logo-area">
+                <a href="../index.html" class="logo">
+                    <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
+                    <span>Alphatek</span>
+                </a>
+            </div>
+            <span class="header-tagline">Designed in Norway 🇳🇴</span>
+            <nav>
+                <ul>
+                    <li><a href="../index.html#products">Products</a></li>
+                    <li><a href="../index.html#science">Science</a></li>
+                    <li><a href="../index.html#support">Support</a></li>
+                    <li><a href="#" id="nav-contact-link-physio">Contact</a></li>
+                    <li><a href="#" aria-label="Search" class="search-icon"><i class="fas fa-search" aria-hidden="true"></i></a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <nav>
-        <a href="../index.html">Tilbake til Hovedsiden</a>
-        </nav>
+    <div class="main-content-wrapper">
+        <section class="video-banner-section">
+            <div class="video-embed-container">
+                <div class="video-placeholder-content">
+                    <p>
+                        Video
+                        <br><br>
+                        (Example iframe code - replace with your own):<br>
+                        <code><iframe src="https://alphatekas.sharepoint.com/sites/Alphatek/_layouts/15/embed.aspx?UniqueId=din_unike_id_her..." width="640" height="360" frameborder="0" scrolling="no" allowfullscreen title="Product Video"></iframe></code>
+                    </p>
+                </div>
+            </div>
+            <h1 class="video-overlay-title">Rehab</h1>
+        </section>
 
-    <div class="container">
-        <h2>Velkommen til GYM-seksjonen</h2>
-        <p>
-            Her kan du legge inn spesifikk informasjon relatert til GYM-segmentet.
-            Dette kan inkludere detaljer om produkter, tjenester, fordeler, casestudier,
-            eller annen relevant informasjon for treningssentre.
-        </p>
+        <section class="feature-boxes-container">
+            <div class="feature-boxes-grid">
+                <a href="#return-to-play" class="feature-box-card">
+                    <h3 class="feature-box-title">Return to Play and Baseline Testing</h3>
+                </a>
+                <a href="#senior-fitness" class="feature-box-card">
+                    <h3 class="feature-box-title">Senior Fitness Testing</h3>
+                </a>
+            </div>
+        </section>
 
-        <p>
-            Du kan strukturere innholdet med flere overskrifter, avsnitt, lister, bilder, osv.
-        </p>
+        <section class="content-section">
+            <div class="content-section-inner">
+                <h2 class="section-heading">Objective Data for Enhanced Recovery</h2>
+                <p>Alphatek empowers physiotherapists and rehabilitation clinics with precise, data-driven tools to measure, track, and guide patient recovery. Move beyond subjective assessments and leverage objective metrics to create tailored rehabilitation programs that accelerate healing, restore function, and enhance patient motivation.</p>
+                <p>Our intelligent testing and training station offers a comprehensive suite of assessments to quantify strength, balance, range of motion, and neuromuscular control. This provides clear benchmarks for progress, enabling clinicians to make informed decisions and demonstrate tangible results to their patients.</p>
+            </div>
+        </section>
 
-        <h2>Våre Løsninger for Treningssentre</h2>
-        <ul>
-            <li>Avansert testutstyr</li>
-            <li>Programvare for progresjonssporing</li>
-            <li>Verktøy for kundeengasjement</li>
-            <li>Integrasjoner med eksisterende systemer</li>
-        </ul>
+        <section class="content-section">
+            <div class="content-section-inner">
+                <h2 class="section-heading">Key Benefits for Your Clinic</h2>
+                <ul>
+                    <li><strong>Quantifiable Progress:</strong> Objectively track recovery milestones with precise, reliable data.</li>
+                    <li><strong>Personalized Therapy:</strong> Design and adapt exercise programs based on individual patient needs and performance deficits.</li>
+                    <li><strong>Increased Patient Engagement:</strong> Visually demonstrate improvements to patients, boosting motivation and adherence.</li>
+                    <li><strong>Efficient Clinical Workflow:</strong> Streamline assessment processes and save valuable clinician time.</li>
+                    <li><strong>Evidence-Based Practice:</strong> Support your clinical decisions and treatment efficacy with objective metrics.</li>
+                    <li><strong>Attract More Patients:</strong> Differentiate your clinic with cutting-edge rehabilitation technology.</li>
+                </ul>
+            </div>
+        </section>
 
-        <p>
-            Kontakt oss for en demo eller mer informasjon om hvordan Alphatek kan
-            hjelpe ditt treningssenter.
-        </p>
+        <section id="return-to-play" class="content-section">
+            <div class="content-section-inner">
+                <div class="section-layout-container"> <!-- This div is still here but now only has one child -->
+                    <div class="section-text-column">
+                        <h2 class="section-heading">Return to Play and Baseline Testing</h2>
+                        <p>Detailed content about Return to Play and Baseline Testing will go here. This section provides specific information on how Alphatek supports athletes and patients in safely returning to their activities after an injury, using objective data to establish baselines and track progress effectively.</p>
+                        <p>Key aspects include:</p>
+                        <ul>
+                            <li>Pre-season baseline assessments.</li>
+                            <li>Post-injury functional testing.</li>
+                            <li>Symmetry analysis for limb comparison.</li>
+                            <li>Data-driven clearance for return to sport.</li>
+                        </ul>
+                         <p>Our system provides quantitative data on strength imbalances, reaction times, and functional movement patterns, crucial for making informed decisions about an athlete's readiness to return to play. This minimizes re-injury risk and optimizes performance upon return.</p>
+                    </div>
+                    <!-- Image column removed -->
+                </div>
+            </div>
+        </section>
 
-        <div class="back-link-container">
-            <a href="../index.html" class="back-link">Tilbake til Hovedsiden</a>
+        <section id="senior-fitness" class="content-section">
+            <div class="content-section-inner">
+                <div class="section-layout-container"> <!-- This div is still here but now only has one child -->
+                    <div class="section-text-column">
+                        <h2 class="section-heading">Senior Fitness Testing</h2>
+                        <p>Content related to Senior Fitness Testing will be placed here. Alphatek offers tailored assessments for the senior population, focusing on maintaining independence, mobility, and quality of life. Our system helps in identifying fall risks and tracking improvements in functional fitness.</p>
+                        <p>Common tests and applications:</p>
+                        <ul>
+                            <li>Balance and stability assessments (e.g., Single Leg Stance, Timed Up and Go).</li>
+                            <li>Strength testing (e.g., chair stand repetitions, grip strength if integrated).</li>
+                            <li>Mobility and flexibility measurements.</li>
+                            <li>Tracking changes over time to guide interventions and promote active aging.</li>
+                        </ul>
+                        <p>By regularly assessing key fitness parameters, clinicians can develop targeted exercise programs to enhance strength, balance, and confidence in older adults, ultimately improving their overall well-being and reducing the likelihood of falls.</p>
+                    </div>
+                    <!-- Image column removed -->
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-button-container">
+            <a href="#" class="cta-button" id="show-contact-form-btn-physio">Request a Demo or More Information</a>
         </div>
     </div>
 
-    <footer style="text-align: center; padding: 1.5em 0; margin-top: 2em; background-color: rgba(13, 13, 13, 0.7); color: #A6A6A6; font-size: 0.9em;">
-        <p>© 2024 Alphatek. All rights reserved.</p>
+    <div id="modal-overlay" class="modal-overlay"></div>
+    <div id="contact-modal" class="contact-modal">
+        <div class="contact-form-container">
+            <button id="close-modal-btn-physio" class="close-modal-btn" aria-label="Close contact form">×</button>
+            <h2 class="contact-modal-title">Contact Us</h2>
+            <form id="contact-physio-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="modal-name-physio">Name</label>
+                    <input type="text" id="modal-name-physio" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-email-physio">Email</label>
+                    <input type="email" id="modal-email-physio" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-message-physio">Message</label>
+                    <textarea id="modal-message-physio" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Alphatek. All rights reserved.</p>
+            <div class="footer-social-icons">
+                <a href="https://www.instagram.com/alphatekofficial" target="_blank" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://www.youtube.com/@AlphatekOfficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            </div>
+        </div>
     </footer>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const showContactFormBtnPhysio = document.getElementById('show-contact-form-btn-physio');
+        const navContactLinkPhysio = document.getElementById('nav-contact-link-physio');
+        const contactModalPhysio = document.getElementById('contact-modal');
+        const modalOverlayPhysio = document.getElementById('modal-overlay');
+        const closeModalBtnPhysio = document.getElementById('close-modal-btn-physio');
+        const contactFormPhysio = document.getElementById('contact-physio-form');
+        let focusedElementBeforeModalPhysio;
+
+        function openModalPhysio() {
+            if (contactModalPhysio && modalOverlayPhysio) {
+                focusedElementBeforeModalPhysio = document.activeElement;
+                modalOverlayPhysio.style.display = 'block';
+                contactModalPhysio.style.display = 'block';
+                document.body.classList.add('modal-open');
+                setTimeout(() => {
+                    modalOverlayPhysio.classList.add('is-visible');
+                    contactModalPhysio.classList.add('is-visible');
+                    const firstFocusableElement = contactModalPhysio.querySelector('input, textarea, button');
+                    if (firstFocusableElement) firstFocusableElement.focus();
+                }, 10);
+            }
+        }
+
+        function closeModalPhysio() {
+            if (contactModalPhysio && modalOverlayPhysio) {
+                modalOverlayPhysio.classList.remove('is-visible');
+                contactModalPhysio.classList.remove('is-visible');
+                document.body.classList.remove('modal-open');
+                setTimeout(() => {
+                    modalOverlayPhysio.style.display = 'none';
+                    contactModalPhysio.style.display = 'none';
+                    if (focusedElementBeforeModalPhysio) focusedElementBeforeModalPhysio.focus();
+                }, 300);
+            }
+        }
+
+        if (showContactFormBtnPhysio) {
+            showContactFormBtnPhysio.addEventListener('click', (event) => {
+                event.preventDefault(); openModalPhysio();
+            });
+        }
+        if (navContactLinkPhysio) {
+            navContactLinkPhysio.addEventListener('click', (event) => {
+                event.preventDefault(); openModalPhysio();
+            });
+        }
+        if (closeModalBtnPhysio) {
+            closeModalBtnPhysio.addEventListener('click', closeModalPhysio);
+        }
+        if (modalOverlayPhysio) {
+            modalOverlayPhysio.addEventListener('click', closeModalPhysio);
+        }
+        if (contactModalPhysio) {
+             contactModalPhysio.querySelector('.contact-form-container').addEventListener('click', (event) => event.stopPropagation());
+        }
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && contactModalPhysio && contactModalPhysio.classList.contains('is-visible')) {
+                closeModalPhysio();
+            }
+        });
+        if(contactFormPhysio) {
+            contactFormPhysio.addEventListener('submit', (event) => {
+                event.preventDefault();
+                alert('Physio page form submitted (this is a demo)!');
+                closeModalPhysio();
+            });
+        }
+    });
+    </script>
 </body>
 </html>
