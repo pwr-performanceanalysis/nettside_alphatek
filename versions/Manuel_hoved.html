@@ -63,8 +63,6 @@
         header .logo { display: flex; align-items: flex-end; text-decoration: none; }
         .header-logo-img { height: 55px; width: auto; transition: height 0.3s ease; display: block; }
         
-        /* Removed nav styles as nav is removed */
-
         .header-icons {
             display: flex; align-items: center; flex-basis: auto; justify-content: flex-end;
             opacity: 0; transform: translateX(30px);
@@ -76,22 +74,18 @@
         }
         .header-icon:hover { color: var(--color-brand-accent); }
         
-        /* Removed .nav-menu-wrapper and related nav ul li styles */
-        /* Removed .custom-dropdown-content styles as dropdowns are removed */
-
         @keyframes fadeInFromRight { from { transform: translateX(30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeInFromLeft { from { transform: translateX(-30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        /* Removed @keyframes slideDown as it was for nav-menu-wrapper */
         
         .floating-search-overlay {
-            display: none; /* Starter skjult */
+            display: none; 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 1040;
             opacity: 0; transition: opacity 0.3s ease-out;
             align-items: center; justify-content: center;
         }
         .floating-search-overlay.is-visible {
-            display: flex; /* Vises med flex for sentrering */
+            display: flex; 
             opacity: 1;
         }
         .floating-search-container { position: relative; width: 80%; max-width: 600px; padding: 20px; }
@@ -118,7 +112,7 @@
             color: var(--color-grey-light);
             background-color: transparent;
             padding: 0;
-            z-index: 999; /* Over video, under modals etc. */
+            z-index: 999; 
             display: flex;
             align-items: center;
         }
@@ -131,35 +125,34 @@
         .scrollable-content {
             position: relative; z-index: 1;
             background-color: rgba(13,13,13,0.3);
-            flex-grow: 1; /* Viktig for footer-plassering */
+            flex-grow: 1; 
         }
         .hero-section {
             min-height: 100vh; display: flex; flex-direction: column; align-items: flex-start;
-            justify-content: flex-end; position: relative;
-            padding-top: 120px; /* Base padding, JS will adjust. Was 190px */
-            padding-bottom: 20px; /* Reduced from 5vh */
+            justify-content: center; /* Changed from flex-end to center */
+            position: relative;
+            /* padding-top is set by JS: adjustHeroPadding() */
+            padding-bottom: 5vh; /* Adjusted from 20px */
             padding-left: 5vw; padding-right: 5vw;
             box-sizing: border-box; transition: padding-top 0.3s ease;
         }
         .hero-text-group { width: 100%; max-width: 700px; margin-left: 0; text-align: left; }
         .hero-content {
-            position: relative; /* min-height: 80px; */ /* Adjusted as only one headline now */
-            width: 100%; margin-bottom: 30px; /* Adjusted margin */
+            position: relative; 
+            width: 100%; margin-bottom: 30px; 
             text-align: left; max-width: 650px;
         }
         header.header-loaded ~ .scrollable-content .hero-section .hero-content { animation: fadeInFromLeftHeroContent 0.7s ease-out forwards 1s; }
         @keyframes fadeInFromLeftHeroContent { from { transform: translateX(-30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         
         .hero-headline {
-            font-size: clamp(1.8rem, 3.5vw, 2.5rem); /* Slightly larger for single headline */
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem); 
             color: var(--color-brand-white);
             font-weight: var(--font-weight-light);
             width: 100%;
-            margin: 0 0 20px 0; /* Added bottom margin */
+            margin: 0 0 20px 0; 
             line-height: 1.3;
-            /* opacity: 0; Will be handled by parent .hero-content animation */
         }
-        /* Removed loopText keyframes and .headline-1/2/3 styles */
 
         .animate-on-scroll {
             opacity: 0 !important;
@@ -185,11 +178,11 @@
         }
         body.page-content-loaded .intro-text-box p {
             animation: fadeInUpIntroText 0.7s ease-out forwards;
-            animation-delay: 0.2s; /* This delay is after hero content (1s) + its own animation (0.7s) = ~1.9s from load if hero content animation starts at 1s */
+            animation-delay: 0.2s; 
         }
         body.page-content-loaded .cta-button-container {
             animation: fadeInUpCTAButton 0.7s ease-out forwards;
-            animation-delay: 0.35s; /* Staggered after intro text */
+            animation-delay: 0.35s; 
         }
         @keyframes fadeInUpIntroText {
             from { opacity: 0; transform: translateY(20px); }
@@ -216,11 +209,12 @@
             margin: 0 auto 35px auto;
         }
         .categories { 
-            padding: 40px 20px 210px 20px; /* Reduced padding-top, kept padding-bottom */
+            padding: 30px 20px 210px 20px; /* Reduced padding-top from 40px */
         }
         .categories h2.section-title.animate-on-scroll {
             color: var(--color-brand-white); font-weight: var(--font-weight-light); font-size: 2.2rem;
-            text-align: center; margin-top: 1.5em; /* Reduced margin-top */ 
+            text-align: center; 
+            margin-top: 1em; /* Reduced margin-top from 1.5em */ 
             margin-bottom: 2em; padding-top: 0;
         }
         .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
@@ -309,32 +303,28 @@
         .footer-social-icons a:hover { color: var(--color-brand-accent); }
 
         @media(max-width:1024px){
-            .header-logo-img{height:80px} /* This might need adjustment if it makes header too tall for new design */
+            .header-logo-img{height:80px} 
             header .header-inner-container{padding:8px 5vw}
-            /* .hero-section{padding-top:170px} JS now controls this based on new header height */
-            /* Removed nav related media queries */
             .header-icon{font-size:1rem;margin-left:15px}
-            .hero-headline{font-size:clamp(1.6rem,3.5vw,2.2rem)} /* Kept, but might need checking with new single headline */
+            .hero-headline{font-size:clamp(1.6rem,3.5vw,2.2rem)} 
             .categories{padding-bottom:260px} 
         }
         @media(max-width:768px){
             .header-logo-img{height:60px}
-            header .header-inner-container{padding:6px 5vw;flex-direction:row;flex-wrap:nowrap} /* Removed flex-wrap as nav is gone */
-            /* .hero-section{padding-top:150px} JS controls */
+            header .header-inner-container{padding:6px 5vw;flex-direction:row;flex-wrap:nowrap} 
             header .logo-area{flex-basis:auto;margin-bottom:0;min-width:auto}
-            /* Removed nav related media queries */
-            .header-icons{order:2;flex-basis:auto;margin-left:auto;min-width:auto} /* This ensures icons are to the right */
+            .header-icons{order:2;flex-basis:auto;margin-left:auto;min-width:auto} 
             .hero-text-group{margin-left:0;text-align:left}
             .hero-content{text-align:left;margin-bottom:30px}
-            .hero-headline{font-size:1.4rem;text-align:left;} /* Removed position:absolute */
+            .hero-headline{font-size:1.4rem;text-align:left;} 
             .intro-text-box{font-size:.9rem;max-width:100%;margin-left:0;margin-right:0;margin-bottom:15px;text-align:left}
             .intro-text-box p{font-size:.9rem}
             .cta-button-container{text-align:left}
             .cta-button{font-size:.8rem;padding:8px 15px}
             .contact-modal-title{font-size:1.5rem}
             .contact-form-container{max-width:90vw;padding:30px 25px}
-            .categories{padding:30px 15px 240px 15px} /* Adjusted padding-top */
-            .categories h2.section-title{margin-top:1.5em;margin-bottom:1.5em} /* Adjusted */
+            .categories{padding:30px 15px 240px 15px} 
+            .categories h2.section-title{margin-top:1.5em;margin-bottom:1.5em} 
             .divider{margin-bottom:25px;width:50%}
             .category-grid{grid-template-columns:1fr;gap:20px}
             .category-card-icon{width:50px;height:50px;font-size:30px}
@@ -346,10 +336,8 @@
         @media(max-width:480px){
             .header-logo-img{height:50px}
             header .header-inner-container{padding:5px 5vw}
-            /* .hero-section{padding-top:130px} JS controls */
-             /* Removed nav related media queries */
             .header-icon{font-size:.9rem;margin-left:10px}
-            .hero-content{/* min-height:70px; */ margin-bottom:25px}
+            .hero-content{margin-bottom:25px}
             .hero-headline{font-size:1.2rem}
             .intro-text-box{font-size:.8rem;margin-bottom:10px}
             .intro-text-box p{font-size:.8rem}
@@ -373,15 +361,11 @@
                     <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
                 </a>
             </div>
-            <!-- Navigation menu removed -->
             <div class="header-icons">
                 <a href="#" aria-label="Search" class="header-icon" id="search-icon-trigger"><i class="fas fa-search"></i></a>
-                <!-- Login icon removed -->
             </div>
         </div>
     </header>
-
-    <!-- Dropdown content divs removed -->
 
     <div class="floating-search-overlay" id="floating-search">
         <div class="floating-search-container">
@@ -419,7 +403,7 @@
                     </a>
                     <a href="segments/physio.html" class="category-card animate-on-scroll">
                         <div class="category-card-icon"><i class="fas fa-briefcase-medical"></i></div>
-                        <h3>Clinicians</h3> <!-- Changed from Physiotherapist -->
+                        <h3>Clinicians</h3> 
                         <p>Advanced tools for patient rehabilitation.</p>
                     </a>
                     <a href="segments/sports.html" class="category-card animate-on-scroll">
@@ -476,8 +460,8 @@
                 const headerTopStyle = window.getComputedStyle(header).getPropertyValue('top');
                 const headerTopOffset = parseFloat(headerTopStyle) || 0;
                 const headerHeight = header.offsetHeight;
-                // Calculate padding needed to clear the fixed header, plus a small margin (e.g., 40px)
-                const totalPadding = headerHeight + headerTopOffset + 40; 
+                // Calculate padding needed to clear the fixed header, plus a small margin
+                const totalPadding = headerHeight + headerTopOffset + 20; // Reduced from 40 to 20
                 heroSection.style.paddingTop = `${totalPadding}px`;
             }
         }
@@ -487,66 +471,53 @@
         if (header) {
             setTimeout(() => {
                 header.classList.add('header-loaded');
-                adjustHeroPadding(); // Adjust padding after header is loaded and its height is definite
-            }, 500); // Delay for header load animation
+                adjustHeroPadding(); 
+            }, 500); 
         } else {
-            adjustHeroPadding(); // Adjust if header might not exist, though it does in this HTML
+            adjustHeroPadding(); 
         }
         
-        // Ensure initial call if header is already visible or no animation delay needed for its structure
         adjustHeroPadding();
 
 
-        // Animasjon for intro-tekst og CTA-knapp (ikke scroll-basert)
-        // Delay these animations to start after the header and hero content have had a chance to animate in
         setTimeout(() => {
             body.classList.add('page-content-loaded');
-        }, 1700); // Adjusted delay: header load (0.5s) + hero content animation (0.7s starting at 1s from load, so ends at 1.7s)
+        }, 1700); 
 
-        // SCROLL ANIMATION LOGIC (kun for .animate-on-scroll elementer)
         const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
         const observerOptions = {
             root: null,
-            rootMargin: '0px 0px -50px 0px', // Trigger when element is 50px from bottom of viewport
-            threshold: 0.1 // 10% of element visible
+            rootMargin: '0px 0px -50px 0px', 
+            threshold: 0.1 
         };
         const observerCallback = (entries, observer) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     const targetEl = entry.target;
                     targetEl.classList.add('is-visible');
-                    observer.unobserve(targetEl); // Stop observing once animated
+                    observer.unobserve(targetEl); 
                 }
             });
         };
         const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
-        // Delay attaching observer slightly to ensure layout is stable
         setTimeout(() => {
             elementsToAnimate.forEach(el => {
-                // Ensure they start hidden if they rely on this class for initial state
-                // The CSS already handles initial state with opacity: 0 !important; transform: translateY(30px) !important;
-                // el.classList.remove('is-visible'); // This might cause a flicker if CSS isn't perfectly synced. Let CSS handle initial.
                 scrollObserver.observe(el);
             });
-        }, 100); // Small delay to ensure all elements are in DOM
+        }, 100); 
 
-        // Custom Dropdown Logic Removed as nav elements are gone
-
-        // Contact Modal Logic
         const showContactFormBtn = document.getElementById('show-contact-form-btn');
-        // const navContactLink = document.getElementById('nav-contact-link'); // This element is removed
         const contactModal = document.getElementById('contact-modal');
         const modalOverlay = document.getElementById('modal-overlay');
         const closeModalBtn = document.getElementById('close-modal-btn');
 
         function openModal() {
-            closeSearch(); // Close search if open
-            // hideDropdown(true); // Dropdown logic removed
+            closeSearch(); 
             if (contactModal && modalOverlay) {
                 modalOverlay.style.display = 'block';
                 contactModal.style.display = 'block';
                 document.body.classList.add('modal-open');
-                requestAnimationFrame(() => { // Double requestAnimationFrame for smooth transition start
+                requestAnimationFrame(() => { 
                     requestAnimationFrame(() => {
                         modalOverlay.classList.add('is-visible');
                         contactModal.classList.add('is-visible');
@@ -559,43 +530,36 @@
                 modalOverlay.classList.remove('is-visible');
                 contactModal.classList.remove('is-visible');
                 document.body.classList.remove('modal-open');
-                setTimeout(() => { // Ensure display:none after transition
+                setTimeout(() => { 
                     if (!modalOverlay.classList.contains('is-visible')) modalOverlay.style.display = 'none';
                     if (!contactModal.classList.contains('is-visible')) contactModal.style.display = 'none';
-                }, 300); // Match transition duration
+                }, 300); 
             }
         }
         if (showContactFormBtn) showContactFormBtn.addEventListener('click', (e)=>{ e.preventDefault(); openModal(); });
-        // Event listener for navContactLink removed as element is gone
         if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
         if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
         if (contactModal) {
             const formContainer = contactModal.querySelector('.contact-form-container');
-            if (formContainer) formContainer.addEventListener('click', (e) => e.stopPropagation()); // Prevent modal close on form click
+            if (formContainer) formContainer.addEventListener('click', (e) => e.stopPropagation()); 
             
             const contactForm = document.getElementById('contact-actual-form');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    // alert('Contact form submitted (demo)!'); // Original alert
-                    console.log('Contact form submitted (demo)!'); // Replaced alert with console log
-                    // Here you would typically send form data via fetch or XMLHttpRequest
-                    // For demo, we just close the modal.
+                    console.log('Contact form submitted (demo)!'); 
                     closeModal();
-                    // Optionally, reset the form: this.reset();
                 });
             }
         }
 
-        // Floating Search Logic
         const searchIconTrigger = document.getElementById('search-icon-trigger');
         const floatingSearchOverlay = document.getElementById('floating-search');
         const closeSearchBtn = document.getElementById('close-search-btn');
         const searchInput = floatingSearchOverlay ? floatingSearchOverlay.querySelector('.floating-search-input') : null;
         
         function openSearch() {
-            closeModal(); // Close modal if open
-            // hideDropdown(true); // Dropdown logic removed
+            closeModal(); 
             if (floatingSearchOverlay) {
                 floatingSearchOverlay.style.display = 'flex';
                 document.body.classList.add('search-open');
@@ -619,7 +583,7 @@
         if (searchIconTrigger) searchIconTrigger.addEventListener('click', (e)=>{ e.preventDefault(); openSearch(); });
         if (closeSearchBtn) closeSearchBtn.addEventListener('click', closeSearch);
         if (floatingSearchOverlay) {
-            floatingSearchOverlay.addEventListener('click', (e) => { // Close on overlay click
+            floatingSearchOverlay.addEventListener('click', (e) => { 
                 if (e.target === floatingSearchOverlay) closeSearch();
             });
         }
@@ -627,7 +591,6 @@
             if (e.key === 'Escape') {
                 if (document.body.classList.contains('search-open')) closeSearch();
                 else if (document.body.classList.contains('modal-open')) closeModal();
-                // else if (activeDropdown) hideDropdown(true); // Dropdown logic removed
             }
         });
     });
