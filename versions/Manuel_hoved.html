@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alphatek - Layout and Padding Adjustments</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
             --color-brand-black: #0D0D0D;
@@ -62,42 +62,9 @@
         header.header-loaded .logo-area { animation: fadeInFromLeft 0.7s ease-out forwards 1s; }
         header .logo { display: flex; align-items: flex-end; text-decoration: none; }
         .header-logo-img { height: 55px; width: auto; transition: height 0.3s ease; display: block; }
-        header nav { flex-grow: 1; display: flex; justify-content: center; margin: 0 20px; }
-        .nav-menu-wrapper {
-            display: inline-block; border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 50px;
-            padding: 5px 15px; background-color: rgba(20, 20, 20, 0.1); backdrop-filter: blur(5px);
-            opacity: 0; transform: translateY(-100%);
-        }
-        header.header-loaded .nav-menu-wrapper { animation: slideDown 0.7s ease-out forwards 1.1s; }
-        header nav ul { list-style: none; display: flex; align-items: center; padding: 0; margin: 0; }
-        header nav ul li { margin: 0 15px; position: relative; }
-        header nav ul li a {
-            color: var(--color-grey-lightest); font-weight: var(--font-weight-light);
-            transition: color 0.3s ease; text-transform: capitalize; font-size: 0.9rem;
-            padding: 5px 0; display: block; white-space: nowrap;
-        }
-        header nav ul li a:hover, header nav ul li a:focus { color: var(--color-brand-accent); text-decoration: none; }
-        .custom-dropdown-content {
-            display: none; position: fixed; background-color: rgba(44, 44, 44, 0.45);
-            backdrop-filter: blur(12px); border-radius: 10px; padding: 15px; min-width: 200px;
-            box-shadow: none; z-index: 1001; opacity: 0;
-            transform: translateY(-15px) scale(0.9); transform-origin: top center;
-            transition: opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            pointer-events: none;
-        }
-        .custom-dropdown-content.is-active { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
-        .custom-dropdown-content a {
-            color: var(--color-grey-lightest); padding: 10px 12px; text-decoration: none;
-            display: block; font-size: 0.85rem; white-space: nowrap; border-radius: 5px;
-            opacity: 0; transform: translateY(8px);
-            transition: background-color 0.2s ease, color 0.2s ease, opacity 0.3s ease-out, transform 0.3s ease-out;
-        }
-        .custom-dropdown-content.is-active a { opacity: 1; transform: translateY(0); }
-        .custom-dropdown-content.is-active a:nth-child(1) { transition-delay: 0.07s; }
-        .custom-dropdown-content.is-active a:nth-child(2) { transition-delay: 0.14s; }
-        .custom-dropdown-content.is-active a:nth-child(3) { transition-delay: 0.21s; }
-        .custom-dropdown-content.is-active a:nth-child(4) { transition-delay: 0.28s; }
-        .custom-dropdown-content a:hover { background-color: rgba(47, 124, 83, 0.4); color: var(--color-brand-white); }
+        
+        /* Removed nav styles as nav is removed */
+
         .header-icons {
             display: flex; align-items: center; flex-basis: auto; justify-content: flex-end;
             opacity: 0; transform: translateX(30px);
@@ -108,10 +75,14 @@
             transition: color 0.3s ease; margin-left: 20px; padding: 5px;
         }
         .header-icon:hover { color: var(--color-brand-accent); }
-        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        /* Removed .nav-menu-wrapper and related nav ul li styles */
+        /* Removed .custom-dropdown-content styles as dropdowns are removed */
+
         @keyframes fadeInFromRight { from { transform: translateX(30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeInFromLeft { from { transform: translateX(-30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-
+        /* Removed @keyframes slideDown as it was for nav-menu-wrapper */
+        
         .floating-search-overlay {
             display: none; /* Starter skjult */
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -165,27 +136,30 @@
         .hero-section {
             min-height: 100vh; display: flex; flex-direction: column; align-items: flex-start;
             justify-content: flex-end; position: relative;
-            padding-top: 190px; padding-bottom: 5vh; padding-left: 5vw; padding-right: 5vw;
+            padding-top: 120px; /* Base padding, JS will adjust. Was 190px */
+            padding-bottom: 20px; /* Reduced from 5vh */
+            padding-left: 5vw; padding-right: 5vw;
             box-sizing: border-box; transition: padding-top 0.3s ease;
         }
         .hero-text-group { width: 100%; max-width: 700px; margin-left: 0; text-align: left; }
         .hero-content {
-            position: relative; min-height: 80px; width: 100%; margin-bottom: 40px;
+            position: relative; /* min-height: 80px; */ /* Adjusted as only one headline now */
+            width: 100%; margin-bottom: 30px; /* Adjusted margin */
             text-align: left; max-width: 650px;
         }
         header.header-loaded ~ .scrollable-content .hero-section .hero-content { animation: fadeInFromLeftHeroContent 0.7s ease-out forwards 1s; }
         @keyframes fadeInFromLeftHeroContent { from { transform: translateX(-30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        
         .hero-headline {
-            font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--color-brand-white);
-            font-weight: var(--font-weight-light); position: absolute; top: 0; left: 0;
-            transform: none; width: 100%; margin: 0; opacity: 0; line-height: 1.3;
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem); /* Slightly larger for single headline */
+            color: var(--color-brand-white);
+            font-weight: var(--font-weight-light);
+            width: 100%;
+            margin: 0 0 20px 0; /* Added bottom margin */
+            line-height: 1.3;
+            /* opacity: 0; Will be handled by parent .hero-content animation */
         }
-        .hero-headline.headline-1 { animation: loopText1 9s infinite 1.7s; }
-        .hero-headline.headline-2 { animation: loopText2 9s infinite 1.7s; }
-        .hero-headline.headline-3 { animation: loopText3 9s infinite 1.7s; }
-        @keyframes loopText1 {0%{opacity:0;transform:translate(0,0) scale(.98)}5%{opacity:1;transform:translate(0,0) scale(1)}28%{opacity:1;transform:translate(0,0) scale(1)}33%{opacity:0;transform:translate(0,0) scale(.98)}100%{opacity:0;transform:translate(0,0) scale(.98)}}
-        @keyframes loopText2 {0%,33%{opacity:0;transform:translate(0,0) scale(.98)}38%{opacity:1;transform:translate(0,0) scale(1)}61%{opacity:1;transform:translate(0,0) scale(1)}66%{opacity:0;transform:translate(0,0) scale(.98)}100%{opacity:0;transform:translate(0,0) scale(.98)}}
-        @keyframes loopText3 {0%,66%{opacity:0;transform:translate(0,0) scale(.98)}71%{opacity:1;transform:translate(0,0) scale(1)}94%{opacity:1;transform:translate(0,0) scale(1)}99%{opacity:0;transform:translate(0,0) scale(.98)}100%{opacity:0;transform:translate(0,0) scale(.98)}}
+        /* Removed loopText keyframes and .headline-1/2/3 styles */
 
         .animate-on-scroll {
             opacity: 0 !important;
@@ -211,11 +185,11 @@
         }
         body.page-content-loaded .intro-text-box p {
             animation: fadeInUpIntroText 0.7s ease-out forwards;
-            animation-delay: 0.2s;
+            animation-delay: 0.2s; /* This delay is after hero content (1s) + its own animation (0.7s) = ~1.9s from load if hero content animation starts at 1s */
         }
         body.page-content-loaded .cta-button-container {
             animation: fadeInUpCTAButton 0.7s ease-out forwards;
-            animation-delay: 0.35s;
+            animation-delay: 0.35s; /* Staggered after intro text */
         }
         @keyframes fadeInUpIntroText {
             from { opacity: 0; transform: translateY(20px); }
@@ -241,10 +215,13 @@
             width: 60%; max-width: 400px; height: 1px; background-color: var(--color-brand-white);
             margin: 0 auto 35px auto;
         }
-        .categories { padding: 80px 20px 210px 20px; } /* Oppdatert padding-bottom */
+        .categories { 
+            padding: 40px 20px 210px 20px; /* Reduced padding-top, kept padding-bottom */
+        }
         .categories h2.section-title.animate-on-scroll {
             color: var(--color-brand-white); font-weight: var(--font-weight-light); font-size: 2.2rem;
-            text-align: center; margin-top: 4em; margin-bottom: 2em; padding-top: 0;
+            text-align: center; margin-top: 1.5em; /* Reduced margin-top */ 
+            margin-bottom: 2em; padding-top: 0;
         }
         .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .category-card {
@@ -325,7 +302,6 @@
             background-color: rgba(13,13,13,0.5); backdrop-filter: blur(8px);
             color: var(--color-grey-lightest); text-align: center; padding: 1.5em 0;
             position: relative; z-index: 1;
-            /* flex-shrink: 0; /* Forhindrer footer i å krympe hvis body er flex */
         }
         footer p { font-weight: var(--font-weight-light); margin-bottom: 0; color: var(--color-grey-lightest); }
         .footer-social-icons { margin-top: 1em; }
@@ -333,41 +309,32 @@
         .footer-social-icons a:hover { color: var(--color-brand-accent); }
 
         @media(max-width:1024px){
-            .header-logo-img{height:80px}
+            .header-logo-img{height:80px} /* This might need adjustment if it makes header too tall for new design */
             header .header-inner-container{padding:8px 5vw}
-            .hero-section{padding-top:170px}
-            header nav ul li{margin:0 10px}
-            header nav ul li a{font-size:.85rem}
+            /* .hero-section{padding-top:170px} JS now controls this based on new header height */
+            /* Removed nav related media queries */
             .header-icon{font-size:1rem;margin-left:15px}
-            .nav-menu-wrapper{padding:4px 10px}
-            .hero-headline{font-size:clamp(1.6rem,3.5vw,2.2rem)}
-            .categories{padding-bottom:260px} /* Oppdatert */
+            .hero-headline{font-size:clamp(1.6rem,3.5vw,2.2rem)} /* Kept, but might need checking with new single headline */
+            .categories{padding-bottom:260px} 
         }
         @media(max-width:768px){
             .header-logo-img{height:60px}
-            header .header-inner-container{padding:6px 5vw;flex-direction:row;flex-wrap:wrap}
-            .hero-section{padding-top:150px}
+            header .header-inner-container{padding:6px 5vw;flex-direction:row;flex-wrap:nowrap} /* Removed flex-wrap as nav is gone */
+            /* .hero-section{padding-top:150px} JS controls */
             header .logo-area{flex-basis:auto;margin-bottom:0;min-width:auto}
-            header nav{order:3;width:100%;justify-content:center;margin:10px 0 0}
-            .nav-menu-wrapper{width:auto;max-width:100%;overflow-x:auto}
-            .nav-menu-wrapper::-webkit-scrollbar{display:none}
-            .nav-menu-wrapper{scrollbar-width:none}
-            header nav ul{flex-wrap:nowrap;justify-content:flex-start}
-            header nav ul li{margin:0 8px}
-            header nav ul li a{font-size:.8rem}
-            .header-icons{order:2;flex-basis:auto;margin-left:auto;min-width:auto}
-            .header-icon{font-size:1rem;margin-left:15px}
+            /* Removed nav related media queries */
+            .header-icons{order:2;flex-basis:auto;margin-left:auto;min-width:auto} /* This ensures icons are to the right */
             .hero-text-group{margin-left:0;text-align:left}
             .hero-content{text-align:left;margin-bottom:30px}
-            .hero-headline{font-size:1.4rem;text-align:left;position:absolute}
+            .hero-headline{font-size:1.4rem;text-align:left;} /* Removed position:absolute */
             .intro-text-box{font-size:.9rem;max-width:100%;margin-left:0;margin-right:0;margin-bottom:15px;text-align:left}
             .intro-text-box p{font-size:.9rem}
             .cta-button-container{text-align:left}
             .cta-button{font-size:.8rem;padding:8px 15px}
             .contact-modal-title{font-size:1.5rem}
             .contact-form-container{max-width:90vw;padding:30px 25px}
-            .categories{padding:60px 15px 240px 15px} /* Oppdatert */
-            .categories h2.section-title{margin-top:3em;margin-bottom:1.5em}
+            .categories{padding:30px 15px 240px 15px} /* Adjusted padding-top */
+            .categories h2.section-title{margin-top:1.5em;margin-bottom:1.5em} /* Adjusted */
             .divider{margin-bottom:25px;width:50%}
             .category-grid{grid-template-columns:1fr;gap:20px}
             .category-card-icon{width:50px;height:50px;font-size:30px}
@@ -379,17 +346,15 @@
         @media(max-width:480px){
             .header-logo-img{height:50px}
             header .header-inner-container{padding:5px 5vw}
-            .hero-section{padding-top:130px}
-            header nav ul li{margin:0 5px}
-            header nav ul li a{font-size:.75rem}
+            /* .hero-section{padding-top:130px} JS controls */
+             /* Removed nav related media queries */
             .header-icon{font-size:.9rem;margin-left:10px}
-            .nav-menu-wrapper{padding:3px 8px}
-            .hero-content{min-height:70px;margin-bottom:25px}
+            .hero-content{/* min-height:70px; */ margin-bottom:25px}
             .hero-headline{font-size:1.2rem}
             .intro-text-box{font-size:.8rem;margin-bottom:10px}
             .intro-text-box p{font-size:.8rem}
             .cta-button{font-size:.75rem;padding:6px 12px}
-            .categories{padding-bottom:220px} /* Oppdatert */
+            .categories{padding-bottom:220px} 
             .category-card-icon{width:45px;height:45px;font-size:26px}
         }
     </style>
@@ -408,40 +373,15 @@
                     <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
                 </a>
             </div>
-            <nav>
-                <div class="nav-menu-wrapper">
-                    <ul>
-                        <li data-dropdown-target="products-dropdown"><a href="#products">Products</a></li>
-                        <li data-dropdown-target="science-dropdown"><a href="#science">Science</a></li>
-                        <li data-dropdown-target="about-dropdown"><a href="#about">About Us</a></li>
-                        <li data-dropdown-target="reviews-dropdown"><a href="#reviews">Reviews</a></li>
-                        <li data-dropdown-target="support-dropdown"><a href="#support">Support</a></li>
-                        <li><a href="#" id="nav-contact-link">Contact</a></li>
-                    </ul>
-                </div>
-            </nav>
+            <!-- Navigation menu removed -->
             <div class="header-icons">
                 <a href="#" aria-label="Search" class="header-icon" id="search-icon-trigger"><i class="fas fa-search"></i></a>
-                <a href="#" aria-label="Login" class="header-icon"><i class="fas fa-user"></i></a>
+                <!-- Login icon removed -->
             </div>
         </div>
     </header>
 
-    <div id="products-dropdown" class="custom-dropdown-content">
-        <a href="#">Product Overview</a><a href="#">Testing Station</a><a href="#">Software Platform</a><a href="#">Accessories</a>
-    </div>
-    <div id="science-dropdown" class="custom-dropdown-content">
-        <a href="#">Research Papers</a><a href="#">Validation Studies</a><a href="#">Technology Explained</a>
-    </div>
-    <div id="about-dropdown" class="custom-dropdown-content">
-        <a href="#">Our Story</a><a href="#">Team</a><a href="#">Careers</a>
-    </div>
-    <div id="reviews-dropdown" class="custom-dropdown-content">
-        <a href="#">Customer Testimonials</a><a href="#">Case Studies</a><a href="#">Press Mentions</a>
-    </div>
-    <div id="support-dropdown" class="custom-dropdown-content">
-        <a href="#">FAQ</a><a href="#">Documentation</a><a href="#">Contact Support</a>
-    </div>
+    <!-- Dropdown content divs removed -->
 
     <div class="floating-search-overlay" id="floating-search">
         <div class="floating-search-container">
@@ -456,12 +396,10 @@
         <section class="hero-section">
             <div class="hero-text-group">
                 <div class="hero-content">
-                    <h1 class="hero-headline headline-1">Built for everyone—seniors, everyday users, and athletes.</h1>
-                    <h1 class="hero-headline headline-2">Saves time by making coaching and therapy more efficient.</h1>
-                    <h1 class="hero-headline headline-3">Easy to use, and made to keep people motivated.</h1>
+                    <h1 class="hero-headline">Connecting effort with reward.</h1>
                 </div>
                 <div class="intro-text-box">
-                    <p>Discover our advanced testing and training station. We provide the data for accurate fitness tracking and targeted rehabilitation, helping individuals reach their full potential. With real-time insights, our station enables focused recovery and performance enhancement, lifting the human body to new levels.</p>
+                    <p>Experience our advanced testing and training station — real-time data for precise fitness tracking, targeted rehab, and peak performance.</p>
                     <div class="cta-button-container">
                         <a href="#" class="cta-button" id="show-contact-form-btn">Contact Us</a>
                     </div>
@@ -481,7 +419,7 @@
                     </a>
                     <a href="segments/physio.html" class="category-card animate-on-scroll">
                         <div class="category-card-icon"><i class="fas fa-briefcase-medical"></i></div>
-                        <h3>Physiotherapist</h3>
+                        <h3>Clinicians</h3> <!-- Changed from Physiotherapist -->
                         <p>Advanced tools for patient rehabilitation.</p>
                     </a>
                     <a href="segments/sports.html" class="category-card animate-on-scroll">
@@ -538,8 +476,9 @@
                 const headerTopStyle = window.getComputedStyle(header).getPropertyValue('top');
                 const headerTopOffset = parseFloat(headerTopStyle) || 0;
                 const headerHeight = header.offsetHeight;
-                const totalPadding = headerHeight + headerTopOffset + 80;
-                heroSection.style.paddingTop = `${Math.max(80 + headerTopOffset, totalPadding)}px`;
+                // Calculate padding needed to clear the fixed header, plus a small margin (e.g., 40px)
+                const totalPadding = headerHeight + headerTopOffset + 40; 
+                heroSection.style.paddingTop = `${totalPadding}px`;
             }
         }
         let resizeTimer;
@@ -548,111 +487,66 @@
         if (header) {
             setTimeout(() => {
                 header.classList.add('header-loaded');
-                adjustHeroPadding();
-            }, 500);
+                adjustHeroPadding(); // Adjust padding after header is loaded and its height is definite
+            }, 500); // Delay for header load animation
         } else {
-            adjustHeroPadding();
+            adjustHeroPadding(); // Adjust if header might not exist, though it does in this HTML
         }
+        
+        // Ensure initial call if header is already visible or no animation delay needed for its structure
+        adjustHeroPadding();
+
 
         // Animasjon for intro-tekst og CTA-knapp (ikke scroll-basert)
+        // Delay these animations to start after the header and hero content have had a chance to animate in
         setTimeout(() => {
             body.classList.add('page-content-loaded');
-        }, 1300); // Juster denne forsinkelsen etter behov, slik at den kommer etter header
+        }, 1700); // Adjusted delay: header load (0.5s) + hero content animation (0.7s starting at 1s from load, so ends at 1.7s)
 
         // SCROLL ANIMATION LOGIC (kun for .animate-on-scroll elementer)
         const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
         const observerOptions = {
             root: null,
-            rootMargin: '0px 0px -50px 0px',
-            threshold: 0.1
+            rootMargin: '0px 0px -50px 0px', // Trigger when element is 50px from bottom of viewport
+            threshold: 0.1 // 10% of element visible
         };
         const observerCallback = (entries, observer) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     const targetEl = entry.target;
-                    // Fjernet data-delay-order logikk for enkelhet, kan legges tilbake senere
                     targetEl.classList.add('is-visible');
-                    observer.unobserve(targetEl);
+                    observer.unobserve(targetEl); // Stop observing once animated
                 }
             });
         };
         const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
+        // Delay attaching observer slightly to ensure layout is stable
         setTimeout(() => {
             elementsToAnimate.forEach(el => {
-                el.classList.remove('is-visible');
+                // Ensure they start hidden if they rely on this class for initial state
+                // The CSS already handles initial state with opacity: 0 !important; transform: translateY(30px) !important;
+                // el.classList.remove('is-visible'); // This might cause a flicker if CSS isn't perfectly synced. Let CSS handle initial.
                 scrollObserver.observe(el);
             });
-        }, 100);
+        }, 100); // Small delay to ensure all elements are in DOM
 
-
-        // Custom Dropdown Logic
-        const dropdownTriggers = document.querySelectorAll('[data-dropdown-target]');
-        let activeDropdown = null; let hideTimeout = null; const hideDropdownDelay = 150;
-        function showDropdown(triggerElement) {
-            clearTimeout(hideTimeout);
-            const targetId = triggerElement.dataset.dropdownTarget;
-            const dropdownElement = document.getElementById(targetId);
-            if (!dropdownElement) return;
-            if (activeDropdown && activeDropdown !== dropdownElement) {
-                activeDropdown.classList.remove('is-active');
-                const prevDropdown = activeDropdown;
-                setTimeout(() => { if (prevDropdown && !prevDropdown.classList.contains('is-active')) { prevDropdown.style.display = 'none'; } }, 350);
-            }
-            activeDropdown = dropdownElement;
-            const triggerRect = triggerElement.getBoundingClientRect();
-            dropdownElement.style.display = 'block';
-            const dropdownWidth = dropdownElement.offsetWidth;
-            const headerRect = header ? header.getBoundingClientRect() : { bottom: triggerRect.bottom + 12 };
-            const headerBottom = headerRect.bottom;
-            let leftPosition = triggerRect.left + (triggerRect.width / 2) - (dropdownWidth / 2);
-            leftPosition = Math.max(5, Math.min(leftPosition, window.innerWidth - dropdownWidth - 5));
-            dropdownElement.style.left = `${leftPosition}px`;
-            dropdownElement.style.top = `${headerBottom + 5}px`;
-            void dropdownElement.offsetWidth;
-            dropdownElement.classList.add('is-active');
-         }
-        function hideDropdown(immediately = false) {
-            if (!activeDropdown) return;
-            const currentActive = activeDropdown;
-            currentActive.classList.remove('is-active');
-            activeDropdown = null;
-            if (immediately) { currentActive.style.display = 'none'; }
-            else { setTimeout(() => { if (!currentActive.classList.contains('is-active')) { currentActive.style.display = 'none'; } }, 350); }
-        }
-        dropdownTriggers.forEach(trigger => {
-            const targetId = trigger.dataset.dropdownTarget;
-            const dropdownElement = document.getElementById(targetId);
-            trigger.addEventListener('mouseenter', () => showDropdown(trigger));
-            trigger.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if (activeDropdown && !activeDropdown.matches(':hover')) { hideDropdown(); } }, hideDropdownDelay); });
-            if(dropdownElement){
-                dropdownElement.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
-                dropdownElement.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => hideDropdown(), hideDropdownDelay); });
-                dropdownElement.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => hideDropdown(true)); });
-            }
-        });
-        document.addEventListener('click', (event) => {
-            if (activeDropdown && !activeDropdown.contains(event.target)) {
-                let isTrigger = false;
-                dropdownTriggers.forEach(trigger => { if (trigger.contains(event.target)) isTrigger = true; });
-                if (!isTrigger) hideDropdown(true);
-            }
-         });
+        // Custom Dropdown Logic Removed as nav elements are gone
 
         // Contact Modal Logic
         const showContactFormBtn = document.getElementById('show-contact-form-btn');
-        const navContactLink = document.getElementById('nav-contact-link');
+        // const navContactLink = document.getElementById('nav-contact-link'); // This element is removed
         const contactModal = document.getElementById('contact-modal');
         const modalOverlay = document.getElementById('modal-overlay');
         const closeModalBtn = document.getElementById('close-modal-btn');
 
         function openModal() {
-            closeSearch();
-            hideDropdown(true);
+            closeSearch(); // Close search if open
+            // hideDropdown(true); // Dropdown logic removed
             if (contactModal && modalOverlay) {
                 modalOverlay.style.display = 'block';
                 contactModal.style.display = 'block';
                 document.body.classList.add('modal-open');
-                requestAnimationFrame(() => {
+                requestAnimationFrame(() => { // Double requestAnimationFrame for smooth transition start
                     requestAnimationFrame(() => {
                         modalOverlay.classList.add('is-visible');
                         contactModal.classList.add('is-visible');
@@ -665,25 +559,30 @@
                 modalOverlay.classList.remove('is-visible');
                 contactModal.classList.remove('is-visible');
                 document.body.classList.remove('modal-open');
-                setTimeout(() => {
+                setTimeout(() => { // Ensure display:none after transition
                     if (!modalOverlay.classList.contains('is-visible')) modalOverlay.style.display = 'none';
                     if (!contactModal.classList.contains('is-visible')) contactModal.style.display = 'none';
-                }, 300);
+                }, 300); // Match transition duration
             }
         }
         if (showContactFormBtn) showContactFormBtn.addEventListener('click', (e)=>{ e.preventDefault(); openModal(); });
-        if (navContactLink) navContactLink.addEventListener('click', (e)=>{ e.preventDefault(); openModal(); });
+        // Event listener for navContactLink removed as element is gone
         if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
         if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
         if (contactModal) {
             const formContainer = contactModal.querySelector('.contact-form-container');
-            if (formContainer) formContainer.addEventListener('click', (e) => e.stopPropagation());
+            if (formContainer) formContainer.addEventListener('click', (e) => e.stopPropagation()); // Prevent modal close on form click
+            
             const contactForm = document.getElementById('contact-actual-form');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    alert('Contact form submitted (demo)!');
+                    // alert('Contact form submitted (demo)!'); // Original alert
+                    console.log('Contact form submitted (demo)!'); // Replaced alert with console log
+                    // Here you would typically send form data via fetch or XMLHttpRequest
+                    // For demo, we just close the modal.
                     closeModal();
+                    // Optionally, reset the form: this.reset();
                 });
             }
         }
@@ -693,8 +592,10 @@
         const floatingSearchOverlay = document.getElementById('floating-search');
         const closeSearchBtn = document.getElementById('close-search-btn');
         const searchInput = floatingSearchOverlay ? floatingSearchOverlay.querySelector('.floating-search-input') : null;
+        
         function openSearch() {
-            closeModal(); hideDropdown(true);
+            closeModal(); // Close modal if open
+            // hideDropdown(true); // Dropdown logic removed
             if (floatingSearchOverlay) {
                 floatingSearchOverlay.style.display = 'flex';
                 document.body.classList.add('search-open');
@@ -705,7 +606,7 @@
                     });
                 });
             }
-         }
+        }
         function closeSearch() {
             if (floatingSearchOverlay && document.body.classList.contains('search-open')) {
                 floatingSearchOverlay.classList.remove('is-visible');
@@ -714,11 +615,11 @@
                     if (!floatingSearchOverlay.classList.contains('is-visible')) floatingSearchOverlay.style.display = 'none';
                 }, 300);
             }
-         }
+        }
         if (searchIconTrigger) searchIconTrigger.addEventListener('click', (e)=>{ e.preventDefault(); openSearch(); });
         if (closeSearchBtn) closeSearchBtn.addEventListener('click', closeSearch);
         if (floatingSearchOverlay) {
-            floatingSearchOverlay.addEventListener('click', (e) => {
+            floatingSearchOverlay.addEventListener('click', (e) => { // Close on overlay click
                 if (e.target === floatingSearchOverlay) closeSearch();
             });
         }
@@ -726,9 +627,9 @@
             if (e.key === 'Escape') {
                 if (document.body.classList.contains('search-open')) closeSearch();
                 else if (document.body.classList.contains('modal-open')) closeModal();
-                else if (activeDropdown) hideDropdown(true);
+                // else if (activeDropdown) hideDropdown(true); // Dropdown logic removed
             }
-         });
+        });
     });
     </script>
 
