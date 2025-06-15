@@ -3,566 +3,1194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rehabilitation & Recovery - Alphatek</title>
-    <meta name="description" content="Alphatek's solutions for physiotherapy and rehabilitation clinics, featuring video demonstrations and specific applications like Return to Play and Senior Fitness Testing.">
+    <title>Alphatek - For Physios</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
             --color-brand-black: #0D0D0D;
-            --color-brand-accent: rgb(47, 124, 83); /* #2F7C53 */
+            --color-brand-accent: rgb(47, 124, 83);
             --color-brand-white: #FFFFFF;
-            --color-headline-green: #307C53;
             --color-grey-darkest: #1A1A1A;
             --color-grey-dark: #2C2C2C;
             --color-grey-medium: #595959;
             --color-grey-light: #A6A6A6;
             --color-grey-lightest: #D9D9D9;
-
             --font-primary: 'Roboto', sans-serif;
             --font-weight-light: 300;
             --font-weight-normal: 400;
             --font-weight-bold: 700;
-
-            --site-padding: 3vw;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 85px;
+        html, body {
+            overflow-x: hidden;
+            height: 100%;
         }
-
         body {
             font-family: var(--font-primary);
             background-color: var(--color-brand-black);
             color: var(--color-grey-lightest);
             line-height: 1.6;
             font-weight: var(--font-weight-light);
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         body.modal-open { overflow: hidden; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         a { color: var(--color-brand-accent); text-decoration: none; }
         a:hover { text-decoration: underline; }
-
-        h1, h2, h3, h4 {
-            margin-bottom: 0.8em;
-            font-weight: var(--font-weight-light);
-            color: var(--color-headline-green);
+        h2, h3, h4 { margin-bottom: 0.8em; font-weight: var(--font-weight-light); color: var(--color-brand-white); }
+        .text-accent {
+            color: var(--color-brand-accent);
         }
-        h2.section-heading {
-            font-size: 2rem;
-            text-align: left;
-            margin-bottom: 1em;
-            color: var(--color-headline-green);
-            border-bottom: 1px solid var(--color-grey-dark);
-            padding-bottom: 0.5em;
-        }
-         h3.feature-box-title {
-            color: var(--color-headline-green);
-            margin-bottom: 10px;
-            font-size: 1.4rem;
-            font-weight: var(--font-weight-light);
-        }
-        p { margin-bottom: 1.5em; color: var(--color-grey-lightest); font-weight: var(--font-weight-light); }
-        ul { list-style-position: inside; padding-left: 0; margin-bottom: 1.5em;}
-        ul li { margin-bottom: 0.5em; color: var(--color-grey-lightest); }
-
+        
+        /* Header */
         header {
-            background-color: rgba(13, 13, 13, 0.85);
-            padding: 0.8em 0;
-            position: fixed; width: 100%; top: 0; z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--color-grey-dark);
-        }
-        header .header-inner-container { display: flex; justify-content: space-between; align-items: center; padding-left: var(--site-padding); padding-right: var(--site-padding); width: 100%; max-width: none; position: relative;}
-        header .logo-area { display: flex; align-items: center; }
-        header .logo { display: flex; align-items: center; font-size: 1.3em; font-weight: var(--font-weight-light); color: var(--color-brand-white); }
-        .header-logo-img { height: 40px; width: auto; margin-right: 12px; }
-        .header-tagline { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0.75em; font-weight: var(--font-weight-light); color: var(--color-grey-light); white-space: nowrap; z-index: -1; text-shadow: 0 0 3px rgba(0,0,0,0.5); }
-        header nav ul { list-style: none; display: flex; align-items: center; }
-        header nav ul li { margin-left: 25px; }
-        header nav ul li a { color: var(--color-grey-lightest); font-weight: var(--font-weight-light); transition: color 0.3s ease; text-transform: capitalize; font-size: 0.95rem; }
-        header nav ul li a:hover { color: var(--color-brand-accent); text-decoration: none; }
-        .search-icon { color: var(--color-grey-lightest); font-size: 1.05rem; margin-left: 25px; cursor: pointer; transition: color 0.3s ease; }
-        .search-icon:hover { color: var(--color-brand-accent); }
-
-        .main-content-wrapper {
-             padding-top: 74px;
-        }
-
-        .video-banner-section {
-            position: relative;
+            position: fixed;
             width: 100%;
-            margin-bottom: 0;
-            background-color: var(--color-grey-darkest);
+            top: 20px;
+            z-index: 1000;
+            padding: 10px 5vw;
+            transition: top 0.3s ease;
         }
-        .video-banner-section .video-embed-container {
-            position: relative;
-            overflow: hidden;
+        header .header-inner-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             width: 100%;
-            padding-top: 56.25%;
-            background-color: var(--color-grey-darkest);
-            border-radius: 0;
-            box-shadow: none;
+            position: relative;
+            opacity: 0;
+            animation: fadeInHeader 0.7s ease-out forwards 1s;
         }
-        .video-banner-section .video-embed-container iframe {
-            position: absolute; top: 0; left: 0; bottom: 0; right: 0;
-            width: 100%; height: 100%; border: none;
-        }
-        .video-banner-section .video-embed-container .video-placeholder-content {
+        .logo-area {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            padding: 20px;
-            text-align: center;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .header-logo-img {
+            height: 55px;
+            width: auto;
+            display: block;
+        }
+        .main-nav {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes fadeInHeader {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .main-nav-list {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            padding: 5px;
+            background-color: rgba(13, 13, 13, 0.3);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+
+        .main-nav-item { position: relative; }
+        .main-nav-link {
+            display: block;
             color: var(--color-grey-lightest);
+            text-decoration: none;
+            padding: 8px 22px;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+        .main-nav-link:hover, .main-nav-link.is-active { color: var(--color-brand-white); }
+
+        .dropdown-menu {
+            position: absolute;
+            left: 50%;
+            top: calc(100% + 10px);
+            background-color: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+            min-width: 180px;
+            z-index: 1010;
+            padding: 8px 0;
+            visibility: hidden;
+            opacity: 0;
+            transform: translateX(-50%) translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+        }
+        .main-nav-item:hover .dropdown-menu { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
+        .dropdown-menu a {
+            color: var(--color-brand-white);
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-size: 0.95rem;
+            font-weight: var(--font-weight-light);
+            transition: background-color 0.2s ease;
+        }
+        .dropdown-menu a:hover { background-color: rgba(47, 124, 83, 0.5); text-decoration: none; }
+        
+        .mobile-nav-toggle {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1002;
+        }
+        .mobile-nav-toggle .fa-bars, .mobile-nav-toggle .fa-times {
+            color: var(--color-brand-white);
+            font-size: 1.5rem;
+        }
+        .mobile-nav-toggle .fa-times { display: none; }
+        .mobile-nav-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background-color: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 1001;
+            transition: left 0.3s ease-in-out;
+            padding: 80px 30px 30px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+        }
+        .mobile-nav-menu a {
+            color: var(--color-grey-lightest);
+            font-size: 1.2rem;
+            padding: 15px 0;
+            text-decoration: none;
+        }
+        body.mobile-nav-open .mobile-nav-menu { left: 0; }
+        body.mobile-nav-open .mobile-nav-toggle .fa-bars { display: none; }
+        body.mobile-nav-open .mobile-nav-toggle .fa-times { display: block; }
+
+        .site-tagline {
+            position: fixed; bottom: 15px; right: 20px; font-size: 0.7em;
+            font-weight: var(--font-weight-light); color: var(--color-grey-light);
+            background-color: transparent; padding: 0; z-index: 999; display: flex; align-items: center;
+        }
+        
+        .scrollable-content { position: relative; z-index: 1; background-color: var(--color-brand-black); flex-grow: 1; }
+        
+        .hero-section {
+            display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; 
+            position: relative; overflow: hidden; padding-left: 5vw; padding-right: 5vw;
+            box-sizing: border-box; 
+            height: 65vh; 
+            padding-bottom: 10vh;
+        }
+        #hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+            filter: brightness(0.85) contrast(1.0);
+        }
+        .hero-text-group { width: 100%; max-width: 800px; margin-left: 0; text-align: left; opacity: 0; transform: translateX(-30px); }
+        @keyframes fadeInFromLeftHeroContent { from { transform: translateX(-30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .hero-text-group.is-visible { animation: fadeInFromLeftHeroContent 0.7s ease-out forwards 1s; }
+        .hero-headline {
+            font-size: clamp(2.2rem, 4.2vw, 3.2rem); 
+            color: var(--color-brand-white);
+            font-weight: var(--font-weight-light); width: 100%; margin: 0; line-height: 1.3;
+            transition: opacity 0.5s ease-in-out; 
+            height: 4.5rem; 
+        }
+        .upgrade-section {
+            background-color: var(--color-brand-black); padding: 80px 20px; text-align: center;
+            display: flex;
             align-items: center;
+            justify-content: center;
+        }
+        .upgrade-title {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem); max-width: 950px; margin: 0 auto; line-height: 1.4;
+            font-weight: var(--font-weight-light); color: var(--color-brand-white);
+            display: inline-block;
+            opacity: 0;
+            min-height: 130px; 
+        }
+        .upgrade-title.is-visible {
+            opacity: 1;
+        }
+        .typing-cursor::after {
+            content: '|';
+            display: inline-block;
+            animation: blink 0.7s infinite;
+            color: var(--color-grey-light);
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .features-section {
+            padding: 80px 20px;
+            position: relative;
+            background-image: url('https://storage.googleapis.com/intro_alphatek/Timeline%201_01_04_56_06.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+        .features-section::before {
+             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+             background-color: rgba(0,0,0,0.6);
+             z-index: 1;
+        }
+        .features-section .container { position: relative; z-index: 2; }
+        
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .feature-card {
+            background-color: rgba(47, 124, 83, 0.1); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 30px;
+            text-align: center; display: flex; flex-direction: column; align-items: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .feature-card:hover { transform: translateY(-5px); background-color: rgba(47, 124, 83, 0.2); }
+        .feature-icon {
+            font-size: 2.5rem; color: var(--color-brand-accent); margin-bottom: 20px;
+            height: 50px; width: 50px; display: flex; align-items: center; justify-content: center;
+        }
+        .feature-card h3 { font-size: 1.5rem; color: var(--color-brand-white); margin-bottom: 10px; }
+        .feature-card p { color: var(--color-grey-lightest); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0; }
+        
+        .dark-parallax-wrapper {
+            position: relative;
+            background-image: url('https://storage.googleapis.com/intro_alphatek/Timeline%201_01_04_56_06.jpg');
+            background-size: cover; background-position: center center; background-attachment: fixed;
+        }
+        .dark-parallax-wrapper::before {
+             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+             background-color: rgba(13, 13, 13, 0.75); 
+             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+             z-index: 1;
+        }
+        .reports-section, .modules-section { position: relative; z-index: 2; }
+        
+        .reports-section { padding: 80px 0; overflow: hidden; }
+        .reports-section h2 {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2em;
+        }
+        .report-carousel-container {
+            max-width: 1000px; 
+            margin: 0 auto;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .report-carousel-track {
+            display: flex;
+            width: calc(220px * 8); 
+            animation: scroll-reports 40s linear infinite;
+        }
+        .report-carousel-track:hover { animation-play-state: paused; }
+        @keyframes scroll-reports {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        .report-card {
+            width: 220px;
+            flex-shrink: 0;
+            padding: 0 15px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .report-card img {
+            width: 100%;
+            height: 283px; /* Set a fixed height for all report images */
+            object-fit: cover; /* Ensure image covers the area, cropping if necessary */
+            object-position: center; /* Center the image within its frame */
+            border-radius: 0px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            margin-bottom: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .report-card:hover img { transform: scale(1.05); }
+        .report-title {
+            font-size: 1rem;
+            margin-bottom: 0.4em;
+            font-weight: var(--font-weight-normal);
+        }
+        .report-description {
+            font-size: 0.85rem;
+            color: var(--color-grey-light);
+        }
+
+        /* Report Modal */
+        .report-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .report-modal-overlay.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .report-modal-content {
+            background-color: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .report-modal-overlay.is-visible .report-modal-content {
+            transform: scale(1);
+        }
+        .report-modal-image-container img {
+            width: 100%;
+            border-radius: 0;
+        }
+        .report-modal-text-container h3 {
+            font-size: 1.8rem;
+            color: var(--color-brand-accent);
+        }
+        .report-modal-text-container h4 {
+             margin-top: 1.5em;
+             margin-bottom: 0.5em;
+             font-size: 1.2rem;
+             color: var(--color-brand-white);
+             border-bottom: 1px solid var(--color-brand-accent);
+             padding-bottom: 0.3em;
+        }
+        .report-modal-text-container p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--color-grey-lightest);
+        }
+        .report-modal-text-container ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .report-modal-text-container ul li {
+            background-color: rgba(255,255,255,0.05);
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-bottom: 8px;
             font-size: 0.9rem;
         }
-        .video-banner-section .video-overlay-title {
+        .close-report-modal {
             position: absolute;
-            bottom: 20px;
-            left: var(--site-padding);
-            z-index: 2;
-            color: var(--color-brand-white);
-            font-size: 2.8rem;
-            font-weight: var(--font-weight-light);
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.65);
-            margin: 0;
-            padding: 0;
-            text-align: left;
-            line-height: 1.2;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--color-grey-lightest);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close-report-modal:hover { color: var(--color-brand-white); }
+        
+        /* New Modules Section */
+        .modules-section {
+            padding: 100px 20px;
         }
 
-        .feature-boxes-container {
-            padding: 40px var(--site-padding);
-            margin-bottom: 40px;
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background-color: var(--color-brand-accent);
+            margin: 0 auto 2em;
+            border-radius: 2px;
         }
-        .feature-boxes-grid {
+
+        .modules-section .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2.5em;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .module-explorer {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 900px;
+            grid-template-columns: 250px 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
             margin: 0 auto;
         }
-        .feature-box-card {
-            background-color: var(--color-grey-darkest);
-            border: 1px solid var(--color-grey-dark);
-            border-radius: 15px;
-            padding: 35px;
-            text-align: center;
-            color: var(--color-grey-lightest);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+
+        .module-nav {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            min-height: 180px;
-        }
-        .feature-box-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
-            background-color: var(--color-grey-dark);
-            text-decoration: none;
-        }
-        .feature-box-card .feature-box-icon {
-            font-size: 2.5rem;
-            color: var(--color-brand-accent);
-            margin-bottom: 15px;
+            gap: 15px;
         }
 
-        .content-section {
-            padding: 0 var(--site-padding);
-            margin-bottom: 40px;
-        }
-        .content-section-inner {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 30px 0;
-        }
-
-        /* CSS for image and text layout within sections - can be simplified or removed if no longer used elsewhere */
-        .section-layout-container {
-            /* display: flex; */ /* No longer strictly needed if only one child, but harmless */
-            /* flex-wrap: wrap; */
-            /* gap: 30px; */
-            /* align-items: flex-start; */
-        }
-        /* .section-image-column and .section-image styles are no longer used here but kept in case they are used elsewhere */
-        .section-image-column {
-            /* flex: 1 1 300px; */
-            /* min-width: 280px; */
-        }
-        .section-text-column {
-            /* flex: 2 1 400px; */ /* Will naturally take full width of its parent */
-        }
-        .section-image {
-            /* width: 100%; */
-            /* height: auto; */
-            /* border-radius: 10px; */
-            /* box-shadow: 0 5px 15px rgba(0,0,0,0.25); */
-            /* display: block; */
-        }
-
-        .cta-button-container {
-            text-align: center;
-            margin-top: 30px;
-            margin-bottom: 50px;
-            padding: 0 var(--site-padding);
-        }
-        .cta-button {
-            display: inline-block;
-            background-color: var(--color-brand-accent);
-            color: var(--color-brand-white);
-            padding: 12px 25px;
+        .module-btn {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: var(--font-weight-light);
+            color: var(--color-grey-light);
+            background-color: rgba(255, 255, 255, 0.02);
             border: none;
             border-radius: 8px;
-            font-family: var(--font-primary); font-size: 1rem; font-weight: var(--font-weight-light);
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            text-decoration: none;
-        }
-        .cta-button:hover {
-            background-color: #226948;
-            color: var(--color-brand-white);
-            transform: translateY(-2px);
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); z-index: 1050; opacity: 0; transition: opacity 0.3s ease-out; }
-        .modal-overlay.is-visible { opacity: 1; }
-        .contact-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95); z-index: 1051; opacity: 0; transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
-        .contact-modal.is-visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        .contact-form-container {
-            background-color: rgba(20, 20, 20, 0.85);
-            backdrop-filter: blur(15px);
-            border-radius: 15px; padding: 35px 40px;
-            color: var(--color-grey-lightest);
-            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-            width: 90vw; max-width: 550px; text-align: left; position: relative;
-        }
-        .contact-modal-title { font-size: 1.8rem; color: var(--color-headline-green); text-align: center; margin-bottom: 1.5rem; }
-        .close-modal-btn { position: absolute; top: 15px; right: 20px; background: none; border: none; color: var(--color-grey-light); font-size: 1.8rem; cursor: pointer; transition: color 0.3s ease; }
-        .close-modal-btn:hover { color: var(--color-brand-white); }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; margin-bottom: .5rem; color: var(--color-grey-lightest); font-weight: var(--font-weight-normal); }
-        .form-group input[type="text"], .form-group input[type="email"], .form-group textarea {
-            width: 100%; padding: 12px; border-radius: 8px;
-            border: 1px solid var(--color-grey-medium);
+        .module-btn:hover {
             background-color: rgba(255, 255, 255, 0.05);
-            color: var(--color-grey-lightest);
-            font-family: var(--font-primary); font-weight: var(--font-weight-light); font-size: 1rem;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-        .form-group input[type="text"]:focus, .form-group input[type="email"]:focus, .form-group textarea:focus {
-            outline: none;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: var(--color-brand-accent);
-        }
-        .form-group textarea { min-height: 120px; resize: vertical; }
-        .submit-btn {
-            display: block; width: 100%;
-            background-color: var(--color-brand-accent);
             color: var(--color-brand-white);
-            padding: 10px 20px; border: none; border-radius: 8px;
-            font-family: var(--font-primary); font-size: 0.9rem; font-weight: var(--font-weight-light);
-            cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease;
         }
-        .submit-btn:hover {
-            background-color: #226948;
-            color: var(--color-brand-white); transform: translateY(-2px);
+
+        .module-btn.active {
+            background-color: rgba(47, 124, 83, 0.2);
+            color: var(--color-brand-white);
+            transform: translateX(10px);
+        }
+
+        .module-content {
+            position: relative;
+            min-height: 400px;
+        }
+
+        .module-content-area {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s;
+        }
+
+        .module-content-area.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .module-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .module-text h3 {
+            font-size: 1.8rem;
+            color: var(--color-brand-accent);
+            margin-bottom: 0.5em;
+        }
+        .module-text p {
+             color: var(--color-grey-lightest);
+             font-size: 1rem;
+             line-height: 1.7;
+        }
+         .module-text .learn-more {
+            font-size: 0.9rem;
+            text-decoration: underline;
+            color: var(--color-brand-accent);
+            display: inline-block;
+            margin-top: 1em;
+        }
+
+        /* Case Studies Section */
+        .case-studies-section {
+            padding: 100px 0;
+            position: relative;
+            background-image: url('https://storage.googleapis.com/intro_alphatek/Timeline%201_01_04_56_06.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+         .case-studies-section::before {
+             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+             background-color: rgba(0,0,0,0.6);
+             z-index: 1;
+        }
+        .case-studies-section .container, .case-studies-section .case-studies-container {
+            position: relative;
+            z-index: 2;
+        }
+        .case-studies-section h2 {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2em;
+        }
+        .case-studies-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px 5vw;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .case-studies-container::-webkit-scrollbar {
+            display: none;
+        }
+        .case-study-card {
+            flex: 0 0 80%;
+            max-width: 80%;
+            margin-right: 40px;
+            scroll-snap-align: center;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            align-items: center;
+            background: rgba(26, 26, 26, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 40px;
+        }
+        .case-study-card:last-child {
+            margin-right: 0;
+        }
+        .case-study-video-container, .case-study-image-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .case-study-video-container video, .case-study-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .case-study-text blockquote {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            font-style: italic;
+            border-left: 3px solid var(--color-brand-accent);
+            padding-left: 20px;
+            margin: 0 0 20px 0;
+        }
+        .case-study-text .author {
+            font-weight: var(--font-weight-bold);
+            color: var(--color-brand-white);
+        }
+        .case-study-text .role {
+            font-size: 0.9rem;
+            color: var(--color-grey-light);
         }
 
         footer {
-            background-color: rgba(13, 13, 13, 0.85);
-            backdrop-filter: blur(8px);
-            color: var(--color-grey-lightest);
-            text-align: center; padding: 2em 0;
-            position: relative; z-index: 1;
-            border-top: 1px solid var(--color-grey-dark);
+            background-color: var(--color-brand-black); 
+            color: var(--color-grey-lightest); 
+            padding: 1.5em 0;
+            position: relative; 
+            z-index: 2;
+            text-align: center;
         }
-        footer .container {
-             width: 90%; max-width: 1200px; margin: 0 auto;
-             padding-left: var(--site-padding);
-             padding-right: var(--site-padding);
-        }
+        .footer-logo-link { position: absolute; left: 5vw; bottom: 50%; transform: translateY(50%); }
+        .reddot-logo { height: 75px; width: auto; display: block; }
         footer p { font-weight: var(--font-weight-light); margin-bottom: 0; color: var(--color-grey-lightest); }
         .footer-social-icons { margin-top: 1em; }
         .footer-social-icons a { color: var(--color-grey-lightest); margin: 0 10px; font-size: 1.5rem; transition: color 0.3s ease; }
         .footer-social-icons a:hover { color: var(--color-brand-accent); }
 
-        @media (max-width: 768px) {
-            :root { --site-padding: 5vw; }
-            .video-banner-section .video-overlay-title {
-                font-size: 2.2rem;
-                bottom: 15px;
-            }
-            h2.section-heading { font-size: 1.6rem; }
-            .feature-boxes-grid { grid-template-columns: 1fr; gap: 20px; }
-            .feature-box-card { padding: 25px; min-height: 150px; }
-            h3.feature-box-title { font-size: 1.3rem; }
-
-            /* These specific layout rules are less critical now but harmless */
-            /* .section-layout-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .section-text-column { order: 1; }
-            .section-image-column { order: 2; }
-
-            .section-image-column,
-            .section-text-column {
-                flex-basis: 100%;
-            } */
-
-            header .header-inner-container { padding-left: 15px; padding-right: 15px; }
-            header .logo { font-size: 1.1em; } .header-logo-img { height: 30px; }
-            .header-tagline { display: none; }
-            header nav ul li { margin-left: 10px; } header nav ul li a { font-size: 0.85rem; }
-            .search-icon { margin-left: 15px; font-size: 0.95rem; }
-            .content-section-inner { padding: 20px 0; }
-            .contact-modal-title { font-size: 1.5rem; }
-            .contact-form-container { max-width: 90vw; padding: 30px 25px;}
+        @media(max-width:992px){
+            .main-nav { display: none; }
+            .mobile-nav-toggle { display: block; }
+            .logo-area { position: static; transform: none; }
+            .header-inner-container { justify-content: center; }
+            .module-explorer { grid-template-columns: 1fr; }
+            .module-nav { flex-direction: row; flex-wrap: wrap; justify-content: center; }
         }
-        @media (max-width: 480px) {
-             :root { --site-padding: 20px; }
-             .video-banner-section .video-overlay-title {
-                font-size: 1.8rem;
-                bottom: 10px;
-            }
-            h2.section-heading {font-size: 1.4rem;}
-            .feature-box-card { padding: 20px; }
-            h3.feature-box-title { font-size: 1.2rem; }
-
-            header .header-inner-container { padding-left: 10px; padding-right: 10px; }
-            header .logo { font-size: 1em; } .header-logo-img { height: 28px; margin-right: 8px; }
-            header nav ul li { margin-left: 8px; } header nav ul li a { font-size: 0.75rem; }
-            .search-icon { margin-left: 10px; font-size: 0.85rem; }
-            .cta-button { font-size: 0.9rem; padding: 10px 20px;}
+        @media(max-width:768px){
+            .hero-headline{font-size:1.8rem;text-align:left;} 
+            .upgrade-section, .features-section, .reports-section, .modules-section, .case-studies-section {padding: 60px 20px;}
+            .upgrade-section .upgrade-title{font-size:1.4rem; min-height: 0;}
+            .footer-logo-link { display: none; }
+            .header-inner-container { justify-content: space-between; }
+            .report-modal-content { grid-template-columns: 1fr; }
+            .module-content-area { grid-template-columns: 1fr; }
+            .module-image { order: -1; margin-bottom: 2em;}
+            .case-study-card { grid-template-columns: 1fr; flex: 0 0 90%; max-width: 90%;}
+        }
+        @media(max-width:480px){
+            .hero-headline{font-size:1.5rem; height: auto;}
         }
     </style>
 </head>
 <body>
+
     <header>
         <div class="header-inner-container">
-            <div class="logo-area">
-                <a href="../index.html" class="logo">
+             <div class="logo-area">
+                <a href="#" class="logo">
                     <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
-                    <span>Alphatek</span>
                 </a>
             </div>
-            <span class="header-tagline">Designed in Norway 🇳🇴</span>
-            <nav>
-                <ul>
-                    <li><a href="../index.html#products">Products</a></li>
-                    <li><a href="../index.html#science">Science</a></li>
-                    <li><a href="../index.html#support">Support</a></li>
-                    <li><a href="#" id="nav-contact-link-physio">Contact</a></li>
-                    <li><a href="#" aria-label="Search" class="search-icon"><i class="fas fa-search" aria-hidden="true"></i></a></li>
+            <nav class="main-nav">
+                <ul class="main-nav-list">
+                    <li class="main-nav-item"><a href="#" class="main-nav-link">Home</a></li>
+                    <li class="main-nav-item">
+                        <a href="#" class="main-nav-link">Blog</a>
+                        <div class="dropdown-menu">
+                            <a href="#">Latest Posts</a>
+                            <a href="#">Categories</a>
+                            <a href="#">Archive</a>
+                        </div>
+                    </li>
+                    <li class="main-nav-item">
+                        <a href="#" class="main-nav-link">Resources</a>
+                        <div class="dropdown-menu">
+                            <a href="#">Whitepapers</a>
+                            <a href="#">Case Studies</a>
+                            <a href="#">Webinars</a>
+                        </div>
+                    </li>
+                    <li class="main-nav-item">
+                        <a href="#" class="main-nav-link">About Us</a>
+                        <div class="dropdown-menu">
+                            <a href="#">Our Story</a>
+                            <a href="#">The Team</a>
+                            <a href="#">Careers</a>
+                        </div>
+                    </li>
+                    <li class="main-nav-item">
+                        <a href="#" class="main-nav-link">FAQ</a>
+                        <div class="dropdown-menu">
+                            <a href="#">General</a>
+                            <a href="#">Technical</a>
+                            <a href="#">Billing</a>
+                        </div>
+                    </li>
                 </ul>
             </nav>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-times"></i>
+            </button>
         </div>
     </header>
+    
+    <nav class="mobile-nav-menu">
+        <a href="#">Home</a>
+        <a href="#">Blog</a>
+        <a href="#">Resources</a>
+        <a href="#">About Us</a>
+        <a href="#">FAQ</a>
+    </nav>
+    
+    <span class="site-tagline">Designed in Norway</span>
 
-    <div class="main-content-wrapper">
-        <section class="video-banner-section">
-            <div class="video-embed-container">
-                <div class="video-placeholder-content">
-                    <p>
-                        Video
-                        <br><br>
-                        (Example iframe code - replace with your own):<br>
-                        <code><iframe src="https://alphatekas.sharepoint.com/sites/Alphatek/_layouts/15/embed.aspx?UniqueId=din_unike_id_her..." width="640" height="360" frameborder="0" scrolling="no" allowfullscreen title="Product Video"></iframe></code>
-                    </p>
-                </div>
-            </div>
-            <h1 class="video-overlay-title">Rehab</h1>
-        </section>
+    <main class="scrollable-content">
+        <section class="hero-section">
+            <video autoplay muted loop playsinline id="hero-video">
+                <source src="https://storage.googleapis.com/intro_alphatek/videoer/physio_topp.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
 
-        <section class="feature-boxes-container">
-            <div class="feature-boxes-grid">
-                <a href="#return-to-play" class="feature-box-card">
-                    <h3 class="feature-box-title">Return to Play and Baseline Testing</h3>
-                </a>
-                <a href="#senior-fitness" class="feature-box-card">
-                    <h3 class="feature-box-title">Senior Fitness Testing</h3>
-                </a>
+            <div class="hero-text-group">
+                 <h1 class="hero-headline" id="animated-headline">
+                    Objective measurements.
+                </h1>
             </div>
         </section>
 
-        <section class="content-section">
-            <div class="content-section-inner">
-                <h2 class="section-heading">Objective Data for Enhanced Recovery</h2>
-                <p>Alphatek empowers physiotherapists and rehabilitation clinics with precise, data-driven tools to measure, track, and guide patient recovery. Move beyond subjective assessments and leverage objective metrics to create tailored rehabilitation programs that accelerate healing, restore function, and enhance patient motivation.</p>
-                <p>Our intelligent testing and training station offers a comprehensive suite of assessments to quantify strength, balance, range of motion, and neuromuscular control. This provides clear benchmarks for progress, enabling clinicians to make informed decisions and demonstrate tangible results to their patients.</p>
+        <section class="upgrade-section">
+            <div class="container">
+                <h2 class="upgrade-title" id="upgrade-title">
+                    <!-- Text will be typed here by JavaScript -->
+                </h2>
             </div>
         </section>
-
-        <section class="content-section">
-            <div class="content-section-inner">
-                <h2 class="section-heading">Key Benefits for Your Clinic</h2>
-                <ul>
-                    <li><strong>Quantifiable Progress:</strong> Objectively track recovery milestones with precise, reliable data.</li>
-                    <li><strong>Personalized Therapy:</strong> Design and adapt exercise programs based on individual patient needs and performance deficits.</li>
-                    <li><strong>Increased Patient Engagement:</strong> Visually demonstrate improvements to patients, boosting motivation and adherence.</li>
-                    <li><strong>Efficient Clinical Workflow:</strong> Streamline assessment processes and save valuable clinician time.</li>
-                    <li><strong>Evidence-Based Practice:</strong> Support your clinical decisions and treatment efficacy with objective metrics.</li>
-                    <li><strong>Attract More Patients:</strong> Differentiate your clinic with cutting-edge rehabilitation technology.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="return-to-play" class="content-section">
-            <div class="content-section-inner">
-                <div class="section-layout-container"> <!-- This div is still here but now only has one child -->
-                    <div class="section-text-column">
-                        <h2 class="section-heading">Return to Play and Baseline Testing</h2>
-                        <p>Detailed content about Return to Play and Baseline Testing will go here. This section provides specific information on how Alphatek supports athletes and patients in safely returning to their activities after an injury, using objective data to establish baselines and track progress effectively.</p>
-                        <p>Key aspects include:</p>
-                        <ul>
-                            <li>Pre-season baseline assessments.</li>
-                            <li>Post-injury functional testing.</li>
-                            <li>Symmetry analysis for limb comparison.</li>
-                            <li>Data-driven clearance for return to sport.</li>
-                        </ul>
-                         <p>Our system provides quantitative data on strength imbalances, reaction times, and functional movement patterns, crucial for making informed decisions about an athlete's readiness to return to play. This minimizes re-injury risk and optimizes performance upon return.</p>
+        
+        <section class="features-section">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Progress you can prove.</h3>
+                        <p>Real-time, objective feedback keeps patients engaged, builds trust, and helps you adjust treatment for better outcomes—every session.</p>
                     </div>
-                    <!-- Image column removed -->
-                </div>
-            </div>
-        </section>
-
-        <section id="senior-fitness" class="content-section">
-            <div class="content-section-inner">
-                <div class="section-layout-container"> <!-- This div is still here but now only has one child -->
-                    <div class="section-text-column">
-                        <h2 class="section-heading">Senior Fitness Testing</h2>
-                        <p>Content related to Senior Fitness Testing will be placed here. Alphatek offers tailored assessments for the senior population, focusing on maintaining independence, mobility, and quality of life. Our system helps in identifying fall risks and tracking improvements in functional fitness.</p>
-                        <p>Common tests and applications:</p>
-                        <ul>
-                            <li>Balance and stability assessments (e.g., Single Leg Stance, Timed Up and Go).</li>
-                            <li>Strength testing (e.g., chair stand repetitions, grip strength if integrated).</li>
-                            <li>Mobility and flexibility measurements.</li>
-                            <li>Tracking changes over time to guide interventions and promote active aging.</li>
-                        </ul>
-                        <p>By regularly assessing key fitness parameters, clinicians can develop targeted exercise programs to enhance strength, balance, and confidence in older adults, ultimately improving their overall well-being and reducing the likelihood of falls.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <h3>Consistency you can trust.</h3>
+                        <p>Standardized protocol screenings make assessments faster, repeatable, and data-backed—easy for you, clear for the patient.</p>
+                        </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Up and running in seconds.</h3>
+                        <p>With Alphatek, there’s no setup hassle or complex tech—just intuitive tools that save time and let you focus on care.</p>
                     </div>
-                    <!-- Image column removed -->
                 </div>
             </div>
         </section>
 
-        <div class="cta-button-container">
-            <a href="#" class="cta-button" id="show-contact-form-btn-physio">Request a Demo or More Information</a>
+        <div class="dark-parallax-wrapper">
+            <section class="reports-section">
+                <div class="container reports-title-container">
+                    <h2>Customized protocols for precise treatment and optimal recovery.</h2>
+                </div>
+                <div class="report-carousel-container">
+                    <div class="report-carousel-track">
+                        <div class="report-card" data-report-id="senior-fitness"><img src="https://storage.googleapis.com/intro_alphatek/reports/senior%20raport.png" alt="Senior Fitness Test Report"><h4 class="report-title text-accent">Senior Fitness Test</h4><p class="report-description">Evidence-based fall risk assessment.</p></div>
+                        <div class="report-card" data-report-id="return-to-sport"><img src="https://storage.googleapis.com/intro_alphatek/reports/Return%20to%20play.png" alt="Return to Sport Report"><h4 class="report-title text-accent">Return to Sport</h4><p class="report-description">Comprehensive readiness evaluation.</p></div>
+                        <div class="report-card" data-report-id="rehab-initial"><img src="https://storage.googleapis.com/intro_alphatek/reports/PT%20basic.png" alt="Phase 1 & 2 Rehab Report"><h4 class="report-title text-accent">Phase 1 & 2 Rehab</h4><p class="report-description">Gentle, early-stage progress tracking.</p></div>
+                        <div class="report-card" data-report-id="shoulder-screening"><img src="https://storage.googleapis.com/intro_alphatek/reports/shoulder.png" alt="Shoulder Screening Report"><h4 class="report-title text-accent">Shoulder Screening</h4><p class="report-description">Assess readiness for overhead loading.</p></div>
+                        
+                        <!-- Duplicated Set -->
+                        <div class="report-card" data-report-id="senior-fitness"><img src="https://storage.googleapis.com/intro_alphatek/reports/senior%20raport.png" alt="Senior Fitness Test Report"><h4 class="report-title text-accent">Senior Fitness Test</h4><p class="report-description">Evidence-based fall risk assessment.</p></div>
+                        <div class="report-card" data-report-id="return-to-sport"><img src="https://storage.googleapis.com/intro_alphatek/reports/Return%20to%20play.png" alt="Return to Sport Report"><h4 class="report-title text-accent">Return to Sport</h4><p class="report-description">Comprehensive readiness evaluation.</p></div>
+                        <div class="report-card" data-report-id="rehab-initial"><img src="https://storage.googleapis.com/intro_alphatek/reports/PT%20basic.png" alt="Phase 1 & 2 Rehab Report"><h4 class="report-title text-accent">Phase 1 & 2 Rehab</h4><p class="report-description">Gentle, early-stage progress tracking.</p></div>
+                        <div class="report-card" data-report-id="shoulder-screening"><img src="https://storage.googleapis.com/intro_alphatek/reports/shoulder.png" alt="Shoulder Screening Report"><h4 class="report-title text-accent">Shoulder Screening</h4><p class="report-description">Assess readiness for overhead loading.</p></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="modules-section">
+                <div class="container">
+                    <div class="section-divider"></div>
+                    <h2 class="section-title">Powerful modules for every stage of recovery</h2>
+                    <div class="module-explorer">
+                        <div class="module-nav">
+                            <button class="module-btn" data-module="squat">Squat</button>
+                            <button class="module-btn" data-module="squat-analytics">Squat Analytics</button>
+                            <button class="module-btn" data-module="pull">Pull</button>
+                            <button class="module-btn" data-module="jump">Jump</button>
+                            <button class="module-btn" data-module="balance">Balance</button>
+                            <button class="module-btn" data-module="monitor">Monitor</button>
+                            <button class="module-btn" data-module="nordic-hamstrings">Nordic Hamstrings</button>
+                        </div>
+                        <div class="module-content">
+                            <div id="module-content-area" class="module-content-area">
+                                <div class="module-image">
+                                    <img id="module-img" src="" alt="Module Screenshot">
+                                </div>
+                                <div class="module-text">
+                                    <h3 id="module-title"></h3>
+                                    <p id="module-description"></p>
+                                    <a href="#" class="learn-more" id="module-learn-more" style="display: none;">Learn more...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <section class="case-studies-section">
+            <div class="container">
+                <h2>Success Stories</h2>
+            </div>
+            <div class="case-studies-container">
+                <div class="case-study-card">
+                    <div class="case-study-video-container">
+                        <video autoplay muted loop playsinline>
+                            <source src="https://storage.googleapis.com/intro_alphatek/screen%20photos/Fysio.v4.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="case-study-text">
+                        <blockquote>"Since implementing Alphatek, my client retention has skyrocketed. The data provides undeniable proof of progress, and that keeps them motivated and committed. I'm not just selling training sessions anymore; I'm selling results."</blockquote>
+                        <p class="author">Jonas L.</p>
+                        <p class="role">Personal Trainer</p>
+                    </div>
+                </div>
+                <div class="case-study-card">
+                    <div class="case-study-image-container">
+                        <img src="https://placehold.co/600x800/333/fff?text=Gym+Owner" alt="Gym Owner Maria">
+                    </div>
+                    <div class="case-study-text">
+                        <blockquote>"Adding Alphatek was the best business decision I've made. We've introduced a new revenue stream by selling advanced testing reports, and our trainers are more confident and effective than ever. It sets us apart from the competition."</blockquote>
+                        <p class="author">Maria H.</p>
+                        <p class="role">Gym Owner</p>
+                    </div>
+                </div>
+                    <div class="case-study-card">
+                    <div class="case-study-image-container">
+                        <img src="https://placehold.co/600x800/444/fff?text=Athlete" alt="Athlete Silje">
+                    </div>
+                    <div class="case-study-text">
+                        <blockquote>"The level of detail from the Running Screening module is incredible. We identified a slight imbalance that was holding me back, and now my performance has never been better. It's a game-changer for any serious athlete."</blockquote>
+                        <p class="author">Silje O.</p>
+                        <p class="role">Competitive Runner</p>
+                    </div>
+                </div>
+                    <div class="case-study-card">
+                    <div class="case-study-image-container">
+                        <img src="https://placehold.co/600x800/555/fff?text=Personal+Trainer" alt="PT Lars">
+                    </div>
+                    <div class="case-study-text">
+                        <blockquote>"I use the Balance and Senior Wellness modules with my older clients, and the results are amazing. They feel more secure and confident, and I have concrete data to show their families. It has added immense value to my services."</blockquote>
+                        <p class="author">Lars E.</p>
+                        <p class="role">Personal Trainer & Senior Specialist</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <div class="report-modal-overlay" id="report-modal-overlay">
+        <div class="report-modal-content">
+            <button class="close-report-modal" aria-label="Close report">&times;</button>
+            <div class="report-modal-image-container">
+                <img id="modal-report-image" src="" alt="Enlarged report">
+            </div>
+            <div class="report-modal-text-container">
+                <h3 id="modal-report-title"></h3>
+                <p id="modal-report-explanation"></p>
+                <h4>Test Battery</h4>
+                <ul id="modal-report-tests"></ul>
+            </div>
         </div>
     </div>
-
-    <div id="modal-overlay" class="modal-overlay"></div>
-    <div id="contact-modal" class="contact-modal">
-        <div class="contact-form-container">
-            <button id="close-modal-btn-physio" class="close-modal-btn" aria-label="Close contact form">×</button>
-            <h2 class="contact-modal-title">Contact Us</h2>
-            <form id="contact-physio-form" action="#" method="POST">
-                <div class="form-group">
-                    <label for="modal-name-physio">Name</label>
-                    <input type="text" id="modal-name-physio" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="modal-email-physio">Email</label>
-                    <input type="email" id="modal-email-physio" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="modal-message-physio">Message</label>
-                    <textarea id="modal-message-physio" name="message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </div>
-
+    
     <footer>
+        <a href="#" class="footer-logo-link" aria-label="Red Dot Design Award">
+             <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
+        </a>
         <div class="container">
             <p>© 2024 Alphatek. All rights reserved.</p>
             <div class="footer-social-icons">
-                <a href="https://www.instagram.com/alphatekofficial" target="_blank" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                <a href="https://www.youtube.com/@AlphatekOfficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/alphatekofficial" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@AlphatekOfficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </footer>
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const showContactFormBtnPhysio = document.getElementById('show-contact-form-btn-physio');
-        const navContactLinkPhysio = document.getElementById('nav-contact-link-physio');
-        const contactModalPhysio = document.getElementById('contact-modal');
-        const modalOverlayPhysio = document.getElementById('modal-overlay');
-        const closeModalBtnPhysio = document.getElementById('close-modal-btn-physio');
-        const contactFormPhysio = document.getElementById('contact-physio-form');
-        let focusedElementBeforeModalPhysio;
-
-        function openModalPhysio() {
-            if (contactModalPhysio && modalOverlayPhysio) {
-                focusedElementBeforeModalPhysio = document.activeElement;
-                modalOverlayPhysio.style.display = 'block';
-                contactModalPhysio.style.display = 'block';
-                document.body.classList.add('modal-open');
-                setTimeout(() => {
-                    modalOverlayPhysio.classList.add('is-visible');
-                    contactModalPhysio.classList.add('is-visible');
-                    const firstFocusableElement = contactModalPhysio.querySelector('input, textarea, button');
-                    if (firstFocusableElement) firstFocusableElement.focus();
-                }, 10);
+        // --- DATA FOR REPORT MODALS (UPDATED) ---
+        const reportData = {
+            'senior-fitness': {
+                title: 'Senior Fitness Test',
+                explanation: "Based on a Cochrane meta-analysis, this protocol assesses the key physical abilities proven to reduce fall risk. It measures balance, strength, and functional capacity—three critical components for maintaining physical independence and safety in older adults (Sherrington et al., 2019). Results are benchmarked against data from individuals aged 65 to 83.",
+                tests: ['Static Balance (Multiple stances)', 'Functional Reach', 'Sit-to-Stand Test', 'Isometric Mid-Thigh Pull']
+            },
+            'return-to-sport': {
+                title: 'Return to Sport',
+                explanation: 'Given high re-injury rates (~20-30%) post-rehab, this protocol provides a robust assessment of an athlete\'s readiness to return to play. It evaluates key performance markers from maximal plyometric capacity and limb stiffness to muscular endurance and stretch-shortening cycle (SSC) function. This data gives therapists objective insights to guide late-stage (Phase 3-4) training and track progression, minimizing the risk of re-injury.',
+                tests: ['Countermovement Jump (CMJ)', 'Single-Leg CMJ', 'Reactive Strength Index (RSI)', 'Drop Jump', 'Lateral Stability']
+            },
+            'rehab-initial': {
+                title: 'Phase 1 & 2 Rehab',
+                explanation: 'This protocol is designed for the early stages of rehabilitation. It utilizes gentle, low-load assessments like isometric strength and static balance tests. This allows therapists to safely monitor neuromuscular function and track progress from the very beginning of the recovery process without compromising healing tissue, providing a clear baseline for future comparison.',
+                tests: ['Isometric Strength Test (e.g., IMTP)', 'Single-Leg Balance (Eyes open/closed)', 'Weight-Bearing Symmetry']
+            },
+            'shoulder-screening': {
+                title: 'Athletic Shoulder (ASH) Test',
+                explanation: 'The ASH test is a reliable and specific method for assessing isometric shoulder strength. It is used to map strength, symmetry, and weaknesses in the scapular stabilizers and glenohumeral muscles, especially in athletes in sports like handball, swimming and volleyball. The test is ideal for injury prevention screening, monitoring rehabilitation progress, and making return-to-play decisions.',
+                tests: ['Isometric Strength in Abduction (Y-Position)', 'Isometric Strength in Horizontal Abduction (T-Position)', 'External Rotation Strength', 'Internal Rotation Strength']
             }
+        };
+
+        const moduleData = {
+            'squat': {
+                title: 'Ease progression with velocity-based training.',
+                description: 'Force is directly related to velocity — by controlling movement speed, you control the load placed on the injured limb. Alphatek tracks center of mass velocity in real time, giving therapists precise control over rehab intensity.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/1.png',
+                learnMore: true
+            },
+            'squat-analytics': {
+                title: 'Detect asymmetries in movement and force.',
+                description: 'By comparing left and right side performance, therapists gain early insight into compensation patterns and load tolerance. This guides individualized progression and reduces reinjury risk.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/2.png',
+                learnMore: false
+            },
+            'pull': {
+                title: 'Get a clear picture of strength differences.',
+                description: 'Start rehab with a clear picture of left–right strength differences in a safe, isometric setting. Ideal before introducing dynamic movements like squats. Also a great tool to motivate patients — real-time feedback makes progress visible and engaging.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/3.png',
+                learnMore: false
+            },
+            'jump': {
+                title: 'Assess readiness for return to sport.',
+                description: 'Jumping involves high, dynamic forces — making it a powerful test of strength, coordination, and limb symmetry. Objective data helps ensure your patient is truly ready before discharge or return to play.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/4.png',
+                learnMore: false
+            },
+            'balance': {
+                title: 'Support basic movement and control.',
+                description: 'Used early in rehab to support basic movement and control. Also ideal for older adults — provides clear feedback on stability and helps identify fall risk. Simple, engaging, and backed by real-time data.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/5.png',
+                learnMore: false
+            },
+            'monitor': {
+                title: 'Live force feedback for creative rehab.',
+                description: 'Use it for load monitoring or engaging tasks like the Circle Test to boost motivation early in recovery. Gives therapists full flexibility — from controlled loading to interactive movement challenges.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/6.png',
+                learnMore: false
+            },
+            'nordic-hamstrings': {
+                title: 'Training Hamstrings Has Never Been This Fun',
+                description: 'Get real-time feedback on the quality of Nordic Hamstrings training. It\'s engaging, easy to use, and proven to be highly effective in preventing injuries in fast-paced sports.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/7.png',
+                learnMore: false
+            }
+        };
+
+
+        // --- GENERAL PAGE SETUP ---
+        const heroTextGroup = document.querySelector('.hero-text-group');
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const upgradeTitle = document.getElementById('upgrade-title');
+
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    heroTextGroup.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        if (heroTextGroup) {
+            heroObserver.observe(heroTextGroup);
+        }
+        
+        // --- ANIMATED HEADLINE LOGIC (UPDATED) ---
+        const animatedHeadline = document.getElementById('animated-headline');
+        if (animatedHeadline) {
+            const phrases = [
+                "Objective measurements.",
+                "Happier patients.",
+                "Healthier business."
+            ];
+            let currentIndex = 0;
+            animatedHeadline.innerHTML = phrases[currentIndex];
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % phrases.length;
+                animatedHeadline.style.opacity = 0;
+                setTimeout(() => {
+                    animatedHeadline.innerHTML = phrases[currentIndex];
+                    animatedHeadline.style.opacity = 1;
+                }, 500); 
+            }, 3000); 
         }
 
-        function closeModalPhysio() {
-            if (contactModalPhysio && modalOverlayPhysio) {
-                modalOverlayPhysio.classList.remove('is-visible');
-                contactModalPhysio.classList.remove('is-visible');
-                document.body.classList.remove('modal-open');
-                setTimeout(() => {
-                    modalOverlayPhysio.style.display = 'none';
-                    contactModalPhysio.style.display = 'none';
-                    if (focusedElementBeforeModalPhysio) focusedElementBeforeModalPhysio.focus();
-                }, 300);
+        // --- TYPEWRITER EFFECT (WORD BY WORD) (UPDATED) ---
+        function typeWords(element, wordsArray, speed) {
+            let i = 0;
+            element.innerHTML = '';
+            element.classList.add('typing-cursor');
+
+            function type() {
+                if (i < wordsArray.length) {
+                    element.innerHTML += wordsArray[i]; 
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.remove('typing-cursor');
+                }
             }
+            type();
         }
 
-        if (showContactFormBtnPhysio) {
-            showContactFormBtnPhysio.addEventListener('click', (event) => {
-                event.preventDefault(); openModalPhysio();
+        const upgradeTitleObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    const words = [
+                        'Generate ', 'greater ', 'outcomes ', 'with ', 'a ', 'tool ', 'that ', 'helps ', 'you ', 
+                        '<span class="text-accent">target new customer groups</span>, ', 
+                        'deliver ', 
+                        '<span class="text-accent">smarter care</span> ', 
+                        'with ', 'objective ', 'data, ', 'and ', 'boost ', 
+                        '<span class="text-accent">patient compliance.</span>'
+                    ];
+                    typeWords(upgradeTitle, words, 90); 
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.8 });
+
+        if (upgradeTitle) {
+            upgradeTitleObserver.observe(upgradeTitle);
+        }
+
+        // --- MOBILE NAVIGATION TOGGLE ---
+        if (mobileNavToggle) {
+            mobileNavToggle.addEventListener('click', () => {
+                document.body.classList.toggle('mobile-nav-open');
             });
         }
-        if (navContactLinkPhysio) {
-            navContactLinkPhysio.addEventListener('click', (event) => {
-                event.preventDefault(); openModalPhysio();
+        
+        // --- REPORT MODAL LOGIC ---
+        const reportModalOverlay = document.getElementById('report-modal-overlay');
+        const reportCards = document.querySelectorAll('.report-card');
+        const modalImage = document.getElementById('modal-report-image');
+        const modalTitle = document.getElementById('modal-report-title');
+        const modalExplanation = document.getElementById('modal-report-explanation');
+        const modalTestList = document.getElementById('modal-report-tests');
+        const closeReportModalBtn = document.querySelector('.close-report-modal');
+
+        function openReportModal(reportId) {
+            const data = reportData[reportId];
+            if (!data) return;
+
+            const clickedCard = document.querySelector(`.report-card[data-report-id="${reportId}"]`);
+            const imgSrc = clickedCard.querySelector('img').src;
+
+            modalImage.src = imgSrc;
+            modalImage.alt = data.title;
+            modalTitle.textContent = data.title;
+            modalExplanation.textContent = data.explanation;
+
+            modalTestList.innerHTML = '';
+            data.tests.forEach(test => {
+                const li = document.createElement('li');
+                li.textContent = test;
+                modalTestList.appendChild(li);
+            });
+
+            document.body.classList.add('modal-open');
+            reportModalOverlay.classList.add('is-visible');
+        }
+
+        function closeReportModal() {
+            document.body.classList.remove('modal-open');
+            reportModalOverlay.classList.remove('is-visible');
+        }
+
+        reportCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const reportId = card.dataset.reportId;
+                openReportModal(reportId);
+            });
+        });
+
+        if (closeReportModalBtn) {
+            closeReportModalBtn.addEventListener('click', closeReportModal);
+        }
+        if (reportModalOverlay) {
+            reportModalOverlay.addEventListener('click', (e) => {
+                if (e.target === reportModalOverlay) {
+                    closeReportModal();
+                }
             });
         }
-        if (closeModalBtnPhysio) {
-            closeModalBtnPhysio.addEventListener('click', closeModalPhysio);
+        
+        // --- INTERACTIVE MODULES ---
+        const moduleButtons = document.querySelectorAll('.module-btn');
+        const moduleContentArea = document.getElementById('module-content-area');
+        const moduleTitleEl = document.getElementById('module-title');
+        const moduleDescriptionEl = document.getElementById('module-description');
+        const moduleImageEl = document.getElementById('module-img');
+        const moduleLearnMoreEl = document.getElementById('module-learn-more');
+        let pinnedModuleId = 'squat';
+
+        function updateModuleContent(moduleId, isPinning = false) {
+            const data = moduleData[moduleId];
+            if (!data) return;
+
+            if (isPinning) {
+                pinnedModuleId = moduleId;
+            }
+
+            moduleContentArea.classList.remove('active');
+
+            setTimeout(() => {
+                moduleTitleEl.textContent = data.title;
+                moduleDescriptionEl.textContent = data.description;
+                moduleImageEl.src = data.imageUrl;
+                moduleImageEl.alt = data.title;
+                
+                if (data.learnMore) {
+                    moduleLearnMoreEl.style.display = 'inline-block';
+                } else {
+                    moduleLearnMoreEl.style.display = 'none';
+                }
+                
+                moduleButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.dataset.module === pinnedModuleId) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                moduleContentArea.classList.add('active');
+            }, 200);
         }
-        if (modalOverlayPhysio) {
-            modalOverlayPhysio.addEventListener('click', closeModalPhysio);
+
+        moduleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const moduleId = button.dataset.module;
+                updateModuleContent(moduleId, true); 
+            });
+
+             button.addEventListener('mouseenter', () => {
+                const moduleId = button.dataset.module;
+                updateModuleContent(moduleId, false);
+            });
+        });
+
+        const moduleNav = document.querySelector('.module-nav');
+        if (moduleNav) {
+            moduleNav.addEventListener('mouseleave', () => {
+                if (pinnedModuleId) {
+                    updateModuleContent(pinnedModuleId, false);
+                }
+            });
         }
-        if (contactModalPhysio) {
-             contactModalPhysio.querySelector('.contact-form-container').addEventListener('click', (event) => event.stopPropagation());
-        }
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && contactModalPhysio && contactModalPhysio.classList.contains('is-visible')) {
-                closeModalPhysio();
+
+        updateModuleContent('squat', true);
+
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && reportModalOverlay.classList.contains('is-visible')) {
+                closeReportModal();
             }
         });
-        if(contactFormPhysio) {
-            contactFormPhysio.addEventListener('submit', (event) => {
-                event.preventDefault();
-                alert('Physio page form submitted (this is a demo)!');
-                closeModalPhysio();
-            });
-        }
     });
     </script>
+
 </body>
 </html>
