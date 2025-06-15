@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphatek Performance Pod - The Future of Training</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- 3D Model Viewer Script -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+
+    <style>
+        :root {
+            --color-brand-black: #0A0A0A;
+            --color-brand-accent: rgb(47, 124, 83);
+            --color-brand-white: #FFFFFF;
+            --color-grey-darkest: #111111;
+            --color-grey-dark: #1C1C1C;
+            --color-grey-medium: #555555;
+            --color-grey-light: #A0A0A0;
+            --font-primary: 'Inter', sans-serif;
+            --font-weight-light: 300;
+            --font-weight-medium: 500;
+            --font-weight-bold: 700;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-primary);
+            background-image: url('https://storage.googleapis.com/files_webpage/57d390d0-e942-47fa-b47b-cf7f98acc140.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--color-grey-light);
+            line-height: 1.7;
+            font-weight: var(--font-weight-light);
+            display: flex;
+            flex-direction: column;
+        }
+        body.modal-open { overflow: hidden; }
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+        a { color: var(--color-brand-accent); text-decoration: none; }
+        h1, h2, h3, h4 { font-weight: var(--font-weight-bold); color: var(--color-brand-white); margin: 0; }
+        h2.section-title { font-size: clamp(2rem, 5vw, 2.8rem); text-align: center; margin-bottom: 2em; font-weight: var(--font-weight-bold); }
+        p { margin-bottom: 1.5em; }
+
+        /* Header */
+        header { padding: 15px 0; position: fixed; width: 100%; top: 0; z-index: 1000; transition: background-color 0.3s ease, backdrop-filter 0.3s ease; }
+        header.scrolled { background-color: rgba(10, 10, 10, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        .header-inner-container { display: flex; justify-content: space-between; align-items: center; }
+        .header-logo-img { height: 45px; }
+        .header-cta-button { background-image: linear-gradient(45deg, var(--color-brand-accent), #218c54); color: var(--color-brand-white); padding: 10px 22px; border-radius: 8px; font-weight: var(--font-weight-medium); text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .header-cta-button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        
+        /* Hero */
+        .scrollable-content { position: relative; z-index: 1; background-color: rgba(10,10,10,0.7); flex-grow: 1; }
+        .hero-section { min-height: 100vh; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding-bottom: 20vh; padding-left: 5vw; padding-right: 5vw; }
+        .hero-text-group { max-width: 700px; }
+        .hero-headline { font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: var(--font-weight-bold); line-height: 1.25; margin-bottom: 25px; }
+        
+        /* Generic Sections */
+        .content-section { padding: 100px 20px; }
+        .divider { width: 80px; height: 3px; background-color: var(--color-brand-accent); margin: 0 auto 40px auto; border-radius: 2px; }
+        .blurred-section { background-color: rgba(13, 13, 13, 0.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .dark-bg-section { background-color: var(--color-brand-black); border-top: 1px solid var(--color-grey-darkest); border-bottom: 1px solid var(--color-grey-darkest); }
+        
+        /* Core Tech & Partnership */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .feature-item h3 { font-size: 1.3rem; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+        .feature-icon { color: var(--color-brand-accent); font-size: 1.5rem; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .info-card { background-color: rgba(44,44,44,0.45); backdrop-filter: blur(12px); border-radius: 12px; padding: 30px; text-align: center; display: flex; flex-direction: column; align-items: center; text-decoration: none; transition: transform 0.2s ease, background-color 0.1s ease; }
+        .info-card:hover { transform: translateY(-8px); background-color: rgba(47,124,83,0.25); }
+        .info-card .card-icon { font-size: 2.5rem; margin-bottom: 20px; color: var(--color-brand-accent); }
+        .info-card h3 { font-size: 1.3rem; }
+        .info-card p { font-size: 0.95rem; flex-grow: 1; }
+        
+        /* --- UPDATED: VISUALIZER ANIMATION --- */
+        .size-selector-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; position: relative; z-index: 3; }
+        .size-tab { background-color: var(--color-grey-dark); border: 1px solid var(--color-grey-medium); color: var(--color-grey-lightest); padding: 10px 25px; border-radius: 8px; font-family: var(--font-primary); font-size: 1rem; cursor: pointer; transition: all 0.2s; }
+        .size-tab.active { background-color: var(--color-brand-accent); border-color: var(--color-brand-accent); color: var(--color-brand-white); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(47,124,83,0.2); }
+        .size-image-viewer {
+            position: relative; width: 100%; max-width: 800px; margin: 0 auto;
+            min-height: 650px; /* Increased height for PRO version */
+            z-index: 1;
+            perspective: 2000px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .size-image {
+            position: absolute; width: 100%; height: auto;
+            opacity: 0;
+            transform: scale(0.8);
+            transform-origin: center center;
+            transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+        }
+        .size-image.active { opacity: 1; transform: scale(1.0); z-index: 2; pointer-events: auto; }
+        .size-image[data-size="pro"].active { transform: scale(1.5); }
+        .size-image.slide-out-to-left { opacity: 0; transform: translateX(-100%) scale(0.7) rotateY(60deg); }
+        .size-image.slide-out-to-right { opacity: 0; transform: translateX(100%) scale(0.7) rotateY(-60deg); }
+        .size-image.slide-in-from-left { opacity: 0; transform: translateX(-100%) scale(0.7) rotateY(-60deg); }
+        .size-image.slide-in-from-right { opacity: 0; transform: translateX(100%) scale(0.7) rotateY(60deg); }
+
+        .size-details-wrapper { text-align: center; margin-top: 40px; position: relative; z-index: 2; }
+        .size-details { display: none; }
+        .size-details.active { display: block; animation: fadeIn 0.7s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        #view-3d-btn { position: absolute; bottom: 20px; right: 20px; z-index: 2; background-color: rgba(10, 10, 10, 0.5); backdrop-filter: blur(8px); color: var(--color-brand-white); border: 1px solid var(--color-grey-medium); padding: 8px 15px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; font-weight: var(--font-weight-medium); transition: all 0.2s ease; }
+        #view-3d-btn:hover { background-color: var(--color-brand-accent); border-color: var(--color-brand-accent); }
+        #view-3d-btn .fa-cube { margin-right: 8px; }
+        .addon-card { background-color: var(--color-grey-darkest); border: 1px solid var(--color-grey-dark); border-radius: 12px; padding: 30px; text-align: center; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .addon-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .addon-image-wrapper { width: 100%; max-width: 300px; height: 200px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; }
+        .addon-image { max-width: 100%; max-height: 100%; border-radius: 8px; }
+        .addon-card h3 { font-size: 1.5rem; }
+
+        /* Software Section */
+        .software-section { display: flex; align-items: center; gap: 60px; }
+        .software-visual { flex: 1; text-align: center; }
+        .software-text { flex: 2; }
+        .software-visual img { width: 100%; max-width: 400px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .software-text h2 { font-size: 2.5rem; text-align: left; margin-bottom: 1.2em; }
+        
+        /* Specs Section */
+        .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; max-width: 900px; margin: auto; background-color: var(--color-grey-darkest); padding: 40px; border-radius: 12px; border: 1px solid var(--color-grey-dark); }
+        .spec-grid h4 { font-size: 1.5rem; margin-bottom: 1em; }
+        .spec-list { list-style: none; padding: 0; }
+        .spec-list li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--color-grey-dark); }
+        .spec-list li:last-child { border-bottom: none; }
+        
+        /* Final CTA */
+        .final-cta-section { background-image: linear-gradient(45deg, var(--color-brand-accent), #1a6d44); text-align: center; }
+        .final-cta-section h2 { font-size: 2.8rem; }
+        .final-cta-section p { max-width: 60ch; margin: 20px auto 30px auto; color: var(--color-grey-lightest); }
+        
+        /* 3D MODEL VIEWER MODAL */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 1050; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay.is-visible { opacity: 1; }
+        .viewer-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 90vw; height: 85vh; max-width: 1200px; z-index: 1051; opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; }
+        .viewer-modal.is-visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        #glb-viewer { width: 100%; height: 100%; background-color: transparent; border-radius: 12px; }
+        .close-modal-btn { position: absolute; top: 15px; right: 20px; background: none; border: none; color: var(--color-grey-light); font-size: 2rem; cursor: pointer; transition: color 0.3s ease; z-index: 1052; }
+        .close-modal-btn:hover { color: var(--color-brand-white); }
+        
+        /* Footer */
+        footer { background-color: var(--color-brand-black); color: var(--color-grey-medium); text-align: center; padding: 40px 20px; position: relative; z-index: 1; }
+        .site-tagline { position: fixed; bottom: 15px; right: 20px; font-size: 0.7em; font-weight: var(--font-weight-light); color: var(--color-grey-light); z-index: 999; }
+        @media (max-width: 768px) { .software-section, .spec-grid { flex-direction: column; grid-template-columns: 1fr; } .software-section { flex-direction: column-reverse; } }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="container header-inner-container">
+            <a href="#" class="logo"><img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img"></a>
+            <a href="#final-cta" class="cta-button header-cta-button">Get Price List</a>
+        </div>
+    </header>
+
+    <main class="scrollable-content">
+        <section class="hero-section">
+            <div class="hero-text-group">
+                <h1 class="hero-headline">Where Physical Training<br>Meets Artificial Intelligence.</h1>
+            </div>
+        </section>
+
+        <section class="content-section blurred-section">
+            <div class="container">
+                <div class="divider"></div>
+                <h2 class="section-title">An Uncompromising Technical Core</h2>
+                <div class="feature-grid">
+                    <div class="feature-item"><h3><i class="fas fa-scale-balanced feature-icon"></i>AlphaPWR Force Plate</h3><p>The core of the system is a validated force plate equipped with four high-sensitivity strain gauge sensors and a safe load capacity of 2000 kg.</p></div>
+                    <div class="feature-item"><h3><i class="fas fa-layer-group feature-icon"></i>Dampening Floor System</h3><p>An 80mm thick, dual-layer floor effectively absorbs noise and vibrations, ensuring a superior user experience.</p></div>
+                    <div class="feature-item"><h3><i class="fas fa-desktop feature-icon"></i>Immersive 50" Display</h3><p>Each unit is equipped with a crystal-clear 50-inch Samsung 4K display for virtual training, data visualization, and real-time feedback.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section dark-bg-section config-section">
+             <div class="container">
+                <div class="divider"></div>
+                <h2 class="section-title">Visualize Your Configuration</h2>
+                <div class="size-selector-tabs">
+                    <button class="size-tab active" data-size="solo" data-glb-src="https://storage.googleapis.com/files_webpage/Small.glb">SOLO</button>
+                    <button class="size-tab" data-size="team" data-glb-src="https://storage.googleapis.com/files_webpage/Medium.glb">TEAM</button>
+                    <button class="size-tab" data-size="pro" data-glb-src="https://storage.googleapis.com/files_webpage/Large.glb">PRO</button>
+                </div>
+                <div class="size-image-viewer">
+                    <img src="https://storage.googleapis.com/files_webpage/Small%20Transparent.png" alt="Alphatek SOLO model" class="size-image active" data-size="solo">
+                    <img src="https://storage.googleapis.com/files_webpage/Medium%20Transparent.png" alt="Alphatek TEAM model" class="size-image" data-size="team">
+                    <img src="https://storage.googleapis.com/files_webpage/Large%20Transparent.png" alt="Alphatek PRO model" class="size-image" data-size="pro">
+                    <button id="view-3d-btn"><i class="fas fa-cube"></i> View in 3D</button>
+                </div>
+                <div class="size-details-wrapper"><div class="size-details active" data-size="solo"><h3>SOLO</h3><p class="dimensions">110cm x 180cm | 100 kg</p></div><div class="size-details" data-size="team"><h3>TEAM</h3><p class="dimensions">310cm x 213cm | 280 kg</p></div><div class="size-details" data-size="pro"><h3>PRO</h3><p class="dimensions">610cm x 213cm | 560 kg</p></div></div>
+            </div>
+        </section>
+
+        <section class="content-section dark-bg-section">
+            <div class="container">
+               <div class="divider"></div>
+               <h2 class="section-title">Expand Your Capabilities</h2>
+               <div class="card-grid" style="grid-template-columns: 1fr 1fr; max-width: 900px; margin: auto;">
+                   <div class="addon-card">
+                       <div class="addon-image-wrapper"><img src="https://storage.googleapis.com/files_webpage/Pull.png" alt="Pull Handles" class="addon-image"></div>
+                       <h3>Pull Handles</h3><p>Alphatek’s pull handles are used for the Pull Function, featuring an adjustable design to accurately measure full-body strength during pulling movements.</p>
+                   </div>
+                   <div class="addon-card">
+                       <div class="addon-image-wrapper"><img src="https://storage.googleapis.com/files_webpage/Nordic%20Hamstring%205.png" alt="Nordic Hamstring" class="addon-image"></div>
+                       <h3>Nordic Hamstring Curl</h3><p>The Alphatek Nordic Hamstring add-on measures eccentric hamstring strength by attaching to the force plate and using its sensors for precise data.</p>
+                   </div>
+               </div>
+           </div>
+       </section>
+       
+        <section class="content-section blurred-section">
+            <div class="container software-section">
+                <div class="software-visual"><img src="https://storage.googleapis.com/files_webpage/Automatic%20sign%20in.gif" alt="GIF showing QR code sign-in"></div>
+                <div class="software-text">
+                   <h2>Revolutionary Simplicity.</h2>
+                   <div class="feature-grid" style="gap: 20px;">
+                        <div class="feature-item"><h3><i class="fas fa-qrcode feature-icon"></i>Instant Onboarding</h3><p>Scan a QR code to begin. No apps to download, no passwords to forget.</p></div>
+                        <div class="feature-item"><h3><i class="fas fa-user-clock feature-icon"></i>Automatic Profile Sync</h3><p>The system instantly recognizes the user, loading their history and personalizing the experience.</p></div>
+                        <div class="feature-item"><h3><i class="fas fa-cloud feature-icon"></i>Unlimited Cloud Data</h3><p>All performance data is automatically saved to secure user profiles. We offer unlimited accounts.</p></div>
+                   </div>
+                </div>
+            </div>
+        </section>
+        
+       <section class="content-section dark-bg-section">
+             <div class="container">
+                <div class="divider"></div>
+                <h2 class="section-title">A Partnership in Performance</h2>
+                <div class="card-grid">
+                    <div class="info-card"><div class="card-icon"><i class="fas fa-tools"></i></div><h3>Professional Installation</h3><p>Our certified technicians handle the entire installation process, from delivery to calibration, ensuring your system is perfect from day one.</p></div>
+                    <div class="info-card"><div class="card-icon"><i class="fas fa-cloud-arrow-up"></i></div><h3>Continuous Evolution</h3><p>Your AlphaPWR system is always evolving. We deliver new features, workouts, and software improvements automatically via the cloud.</p></div>
+                    <div class="info-card"><div class="card-icon"><i class="fas fa-wifi"></i></div><h3>Always Connected</h3><p>The AlphaPWR system is always connected, enabling real-time monitoring and allowing us to resolve issues before they affect you.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section blurred-section">
+            <div class="container">
+                <div class="divider"></div>
+                <h2 class="section-title">Technical Specifications</h2>
+                <div class="spec-grid">
+                    <div class="spec-column"><h4>Hardware</h4><ul class="spec-list"><li><span>Force Plate</span><span>4x Strain Gauge Sensors</span></li><li><span>Sampling Rate</span><span>434 Hz (Dynamic)</span></li><li><span>Safe Load</span><span>2000 kg</span></li><li><span>Display</span><span>50" Samsung 4K UHD</span></li><li><span>Floor System</span><span>80mm Dual-Layer Dampening</span></li></ul></div>
+                    <div class="spec-column"><h4>Software & Connectivity</h4><ul class="spec-list"><li><span>User Login</span><span>QR Code (Web-based)</span></li><li><span>Connectivity</span><span>Ethernet</span></li><li><span>Data Export</span><span>CSV, PDF Reports</span></li><li><span>User Profiles</span><span>Unlimited</span></li></ul></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section final-cta-section" id="final-cta">
+            <div class="container">
+                <h2>Get The Complete Price List</h2>
+                <p>Fill in the form below to get the price list for all configurations and add-ons delivered directly to your email.</p>
+                <a href="#" class="cta-button header-cta-button" style="font-size: 1.1rem; padding: 15px 30px;" id="show-contact-form-btn-final">Get Price List</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 3D MODEL VIEWER MODAL -->
+    <div id="model-viewer-overlay" class="modal-overlay"></div>
+    <div class="viewer-modal" id="model-viewer-modal">
+        <button class="close-modal-btn" id="close-3d-modal-btn">&times;</button>
+        <model-viewer id="glb-viewer" src="" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" shadow-intensity="1">
+        </model-viewer>
+    </div>
+    
+    <!-- Contact Modal (Placeholder) -->
+    <div id="contact-modal" class="modal-overlay"></div>
+
+
+    <footer><div class="container"><p>© 2024 Alphatek. All rights reserved.</p></div></footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const header = document.getElementById('main-header');
+        if (header) {
+            window.addEventListener('scroll', () => {
+                window.scrollY > 50 ? header.classList.add('scrolled') : header.classList.remove('scrolled');
+            });
+        }
+
+        function openModal(modal) {
+            if (modal) {
+                const overlay = modal.previousElementSibling;
+                if (overlay && overlay.classList.contains('modal-overlay')) {
+                    overlay.style.display = 'block';
+                    requestAnimationFrame(() => overlay.classList.add('is-visible'));
+                }
+                modal.style.display = 'block';
+                requestAnimationFrame(() => modal.classList.add('is-visible'));
+                document.body.classList.add('modal-open');
+            }
+        }
+
+        function closeModal(modal) {
+            if (modal) {
+                const overlay = modal.previousElementSibling;
+                if (overlay && overlay.classList.contains('modal-overlay')) {
+                    overlay.classList.remove('is-visible');
+                    setTimeout(() => { if (!overlay.classList.contains('is-visible')) overlay.style.display = 'none'; }, 300);
+                }
+                modal.classList.remove('is-visible');
+                setTimeout(() => {
+                    if (!modal.classList.contains('is-visible')) {
+                        modal.style.display = 'none';
+                        if (modal.id === 'model-viewer-modal' && glbViewer) {
+                            glbViewer.removeAttribute('src');
+                        }
+                    }
+                }, 300);
+                document.body.classList.remove('modal-open');
+            }
+        }
+        
+        const modelViewerModal = document.getElementById('model-viewer-modal');
+        const view3DBtn = document.getElementById('view-3d-btn');
+        const close3DBtn = document.getElementById('close-3d-modal-btn');
+        const glbViewer = document.getElementById('glb-viewer');
+        if (view3DBtn) {
+            view3DBtn.addEventListener('click', () => {
+                const activeTab = document.querySelector('.size-tab.active');
+                if (activeTab && glbViewer) {
+                    const glbSrc = activeTab.getAttribute('data-glb-src');
+                    glbViewer.setAttribute('src', glbSrc);
+                    openModal(modelViewerModal);
+                }
+            });
+        }
+        if(close3DBtn) close3DBtn.addEventListener('click', () => closeModal(modelViewerModal));
+        const modelViewerOverlay = document.getElementById('model-viewer-overlay');
+        if(modelViewerOverlay) modelViewerOverlay.addEventListener('click', () => closeModal(modelViewerModal));
+
+        const sizeTabs = document.querySelectorAll('.size-tab');
+        const sizeImages = document.querySelectorAll('.size-image');
+        const sizeDetails = document.querySelectorAll('.size-details');
+        const sizeOrder = ['solo', 'team', 'pro'];
+
+        if (sizeTabs.length > 0) {
+            let currentIndex = 0;
+            sizeTabs.forEach((tab, targetIndex) => {
+                tab.addEventListener('click', () => {
+                    if (targetIndex === currentIndex) return;
+
+                    const currentImage = document.querySelector('.size-image.active');
+                    const targetSize = tab.dataset.size;
+                    const targetImage = document.querySelector(`.size-image[data-size="${targetSize}"]`);
+                    
+                    if (targetIndex > currentIndex) {
+                        currentImage.classList.add('slide-out-to-left');
+                        targetImage.classList.add('slide-in-from-right');
+                    } else {
+                        currentImage.classList.add('slide-out-to-right');
+                        targetImage.classList.add('slide-in-from-left');
+                    }
+                    
+                    document.querySelector('.size-tab.active').classList.remove('active');
+                    document.querySelector('.size-details.active').classList.remove('active');
+                    
+                    tab.classList.add('active');
+                    document.querySelector(`.size-details[data-size="${targetSize}"]`).classList.add('active');
+                    
+                    requestAnimationFrame(() => {
+                        targetImage.classList.remove('slide-in-from-left', 'slide-in-from-right');
+                        targetImage.classList.add('active');
+                    });
+
+                    setTimeout(() => {
+                        currentImage.classList.remove('active', 'slide-out-to-left', 'slide-out-to-right');
+                    }, 700);
+                    
+                    currentIndex = targetIndex;
+                });
+            });
+        }
+    });
+    </script>
+</body>
+</html>
