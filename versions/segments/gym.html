@@ -254,9 +254,9 @@
             background-attachment: fixed;
         }
         .features-section::before {
-             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-             background-color: rgba(0,0,0,0.6);
-             z-index: 1;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 1;
         }
         .features-section .container { position: relative; z-index: 2; }
         
@@ -281,10 +281,10 @@
             background-size: cover; background-position: center center; background-attachment: fixed;
         }
         .dark-parallax-wrapper::before {
-             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-             background-color: rgba(13, 13, 13, 0.75); 
-             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-             z-index: 1;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(13, 13, 13, 0.75); 
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            z-index: 1;
         }
         .reports-section, .modules-section { position: relative; z-index: 2; }
         
@@ -388,12 +388,12 @@
             color: var(--color-brand-accent);
         }
         .report-modal-text-container h4 {
-             margin-top: 1.5em;
-             margin-bottom: 0.5em;
-             font-size: 1.2rem;
-             color: var(--color-brand-white);
-             border-bottom: 1px solid var(--color-brand-accent);
-             padding-bottom: 0.3em;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-size: 1.2rem;
+            color: var(--color-brand-white);
+            border-bottom: 1px solid var(--color-brand-accent);
+            padding-bottom: 0.3em;
         }
         .report-modal-text-container p {
             font-size: 1rem;
@@ -526,11 +526,11 @@
             margin-bottom: 0.5em;
         }
         .module-text p {
-             color: var(--color-grey-lightest);
-             font-size: 1rem;
-             line-height: 1.7;
+            color: var(--color-grey-lightest);
+            font-size: 1rem;
+            line-height: 1.7;
         }
-         .module-text .learn-more {
+        .module-text .learn-more {
             font-size: 0.9rem;
             text-decoration: underline;
             color: var(--color-brand-accent);
@@ -547,10 +547,10 @@
             background-position: center center;
             background-attachment: fixed;
         }
-         .case-studies-section::before {
-             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-             background-color: rgba(0,0,0,0.6);
-             z-index: 1;
+        .case-studies-section::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 1;
         }
         .case-studies-section .container, .case-studies-section .case-studies-container {
             position: relative;
@@ -618,6 +618,53 @@
             color: var(--color-grey-light);
         }
 
+        /* --- New Product Section --- */
+        .product-section {
+            padding: 100px 20px;
+            background-color: #000;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .product-section .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .product-image {
+            text-align: center;
+        }
+        .product-image img {
+            max-width: 80%;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(47, 124, 83, 0.2));
+        }
+        .product-text h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 0.5em;
+        }
+        .product-text p {
+            color: var(--color-grey-light);
+            max-width: 500px;
+            margin-bottom: 1.5em;
+            font-size: 1.1rem;
+        }
+        .btn-explore {
+            display: inline-block;
+            background-color: var(--color-brand-accent);
+            color: var(--color-brand-white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: var(--font-weight-normal);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-explore:hover {
+            background-color: rgb(57, 154, 103);
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+
         footer {
             background-color: var(--color-brand-black); 
             color: var(--color-grey-lightest); 
@@ -643,7 +690,7 @@
         }
         @media(max-width:768px){
             .hero-headline{font-size:1.8rem;text-align:left;} 
-            .upgrade-section, .features-section, .reports-section, .modules-section, .case-studies-section {padding: 60px 20px;}
+            .upgrade-section, .features-section, .reports-section, .modules-section, .case-studies-section, .product-section {padding: 60px 20px;}
             .upgrade-section .upgrade-title{font-size:1.4rem; min-height: 0;}
             .footer-logo-link { display: none; }
             .header-inner-container { justify-content: space-between; }
@@ -651,6 +698,8 @@
             .module-content-area { grid-template-columns: 1fr; }
             .module-image { order: -1; margin-bottom: 2em;}
             .case-study-card { grid-template-columns: 1fr; flex: 0 0 90%; max-width: 90%;}
+            .product-section .container { grid-template-columns: 1fr; text-align: center; }
+            .product-text p { margin-left: auto; margin-right: auto;}
         }
         @media(max-width:480px){
             .hero-headline{font-size:1.5rem; height: auto;}
@@ -661,7 +710,7 @@
 
     <header>
         <div class="header-inner-container">
-             <div class="logo-area">
+            <div class="logo-area">
                 <a href="#" class="logo">
                     <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
                 </a>
@@ -669,6 +718,7 @@
             <nav class="main-nav">
                 <ul class="main-nav-list">
                     <li class="main-nav-item"><a href="#" class="main-nav-link">Home</a></li>
+                    <li class="main-nav-item"><a href="Product/product_page.html" class="main-nav-link">Product</a></li>
                     <li class="main-nav-item">
                         <a href="#" class="main-nav-link">Blog</a>
                         <div class="dropdown-menu">
@@ -712,6 +762,7 @@
     
     <nav class="mobile-nav-menu">
         <a href="#">Home</a>
+        <a href="Product/product_page.html">Product</a>
         <a href="#">Blog</a>
         <a href="#">Resources</a>
         <a href="#">About Us</a>
@@ -728,7 +779,7 @@
             </video>
 
             <div class="hero-text-group">
-                 <h1 class="hero-headline" id="animated-headline">
+                <h1 class="hero-headline" id="animated-headline">
                     Quick progress tracking.
                 </h1>
             </div>
@@ -878,6 +929,20 @@
             </div>
         </section>
 
+        <!-- New Product Section -->
+        <section class="product-section">
+            <div class="container">
+                <div class="product-image">
+                    <img src="https://storage.googleapis.com/intro_alphatek/Medium%20Transparent.png" alt="Alphatek Product">
+                </div>
+                <div class="product-text">
+                    <h2>Explore the Alphatek Platform</h2>
+                    <p>See how our innovative technology can revolutionize the way your gym operates, improve the member experience, and create new revenue streams.</p>
+                    <a href="Product/product_page.html" class="btn-explore">Explore the Product</a>
+                </div>
+            </div>
+        </section>
+
     </main>
     
     <div class="report-modal-overlay" id="report-modal-overlay">
@@ -897,7 +962,7 @@
     
     <footer>
         <a href="#" class="footer-logo-link" aria-label="Red Dot Design Award">
-             <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
+            <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
         </a>
         <div class="container">
             <p>© 2024 Alphatek. All rights reserved.</p>
