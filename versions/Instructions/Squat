@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphatek | Squat Module Tutorial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --primary-text-color: #e0e0e0;
+            --secondary-text-color: #a0a0a0;
+            --border-color: #333333;
+            --accent-color: #2f7c53;
+            --hover-color: #3b9a69;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow: hidden; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .app-container {
+            width: 100%;
+            height: 100%;
+            max-width: 450px;
+            max-height: 950px;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 20px 10px 20px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+        }
+
+        .video-container {
+            flex-grow: 1;
+            position: relative;
+            background-color: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            min-height: 200px;
+        }
+
+        #tutorial-video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        #start-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        #start-overlay p {
+            color: var(--secondary-text-color);
+            font-size: 0.9rem;
+            margin-top: 15px;
+            max-width: 250px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        #start-btn {
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            background-color: var(--accent-color);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        #start-btn:hover { background-color: var(--hover-color); }
+
+        .control-bar {
+            flex-shrink: 0;
+            padding: 20px 0 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #step-indicator {
+            font-size: 1rem;
+            color: var(--secondary-text-color);
+            font-weight: 500;
+        }
+
+        .nav-btn {
+            /* --- UPDATED --- */
+            min-width: 90px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.2s, opacity 0.2s, transform 0.1s;
+            color: white;
+            text-align: center;
+        }
+        
+        .nav-btn:active { transform: scale(0.98); }
+        
+        #back-btn {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            visibility: hidden;
+        }
+        #back-btn.visible { visibility: visible; }
+        #back-btn:hover { background-color: #333; }
+        
+        #next-btn { background-color: var(--accent-color); }
+        #next-btn:hover { background-color: var(--hover-color); }
+        
+        .nav-btn.attention { animation: pulse 1.5s infinite; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(47, 124, 83, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(47, 124, 83, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(47, 124, 83, 0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <div class="video-container">
+            <div id="start-overlay">
+                 <button id="start-btn">Start Tutorial</button>
+                 <!-- --- UPDATED --- -->
+                 <p>Please turn on your device sound for the audio guide.</p>
+            </div>
+            <video id="tutorial-video" playsinline>
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="control-bar">
+            <button id="back-btn" class="nav-btn">Back</button>
+            <p id="step-indicator">Step 1 of 10</p>
+            <button id="next-btn" class="nav-btn">Next</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const videoUrls = [
+                "https://storage.googleapis.com/files_webpage/Educational%20movies/Squat/Alphatek%20squat%20module%201.mp4",
+                "https://storage.googleapis.com/files_webpage/Educational%20movies/Squat/Alphatek%20squat%20module%202.mp4",
+                "https://storage.googleapis.com/files_webpage/Educational%20movies/Squat/Alphatek%20squat%20module%203.mp4",
+                "https://storage.googleapis.com/files_webpage/Educational%20movies/Squat/Alphatek%20squat%20module%204.mp4",
+                "https://storage.googleapis.com/files_webpage/Educational%20movies/Squat/Alphatek%20squat%20module%205.mp4",
+                "https://storage.googleapis.com/files_webpage/Educational%20movies/Squat/Alphatek%20squat%20module%206.mp4",
+                "https://storage.googleapis.com/files_webpage/Educational%20movies/Squat/Alphatek%20squat%20module%207.mp4",
+                "https://storage.googleapis.com/files_webpage/Educational%20movies/Squat/Alphatek%20squat%20module%208.mp4",
+                "https://storage.googleapis.com/files_webpage/Educational%20movies/Squat/Alphatek%20squat%20module%209.mp4",
+                "https://storage.googleapis.com/files_webpage/Educational%20movies/Squat/Alphatek%20squat%20module%2010.mp4"
+            ];
+
+            const videoPlayer = document.getElementById('tutorial-video');
+            const stepIndicator = document.getElementById('step-indicator');
+            const nextBtn = document.getElementById('next-btn');
+            const backBtn = document.getElementById('back-btn');
+            const startOverlay = document.getElementById('start-overlay');
+            const startBtn = document.getElementById('start-btn');
+
+            let currentVideoIndex = 0;
+            videoPlayer.muted = true;
+
+            function loadVideo(index) {
+                nextBtn.classList.remove('attention'); // Remove animation on new video
+                
+                videoPlayer.src = videoUrls[index];
+                videoPlayer.load();
+
+                if (startOverlay.style.display === 'none') {
+                    videoPlayer.play().catch(e => console.warn("Playback error:", e));
+                }
+                
+                updateUI();
+            }
+
+            function updateUI() {
+                stepIndicator.textContent = `Step ${currentVideoIndex + 1} of 10`;
+
+                // Handle 'Back' button visibility
+                if (currentVideoIndex > 0) {
+                    backBtn.classList.add('visible');
+                } else {
+                    backBtn.classList.remove('visible');
+                }
+
+                nextBtn.textContent = 'Next';
+            }
+
+            startBtn.addEventListener('click', () => {
+                videoPlayer.muted = false;
+                startOverlay.style.display = 'none';
+                videoPlayer.play().catch(e => {
+                    console.error("Error starting video:", e);
+                    startOverlay.style.display = 'flex'; 
+                });
+            });
+
+            videoPlayer.addEventListener('ended', () => {
+                nextBtn.classList.add('attention'); // Add animation
+                if (currentVideoIndex === videoUrls.length - 1) {
+                    nextBtn.textContent = 'Restart';
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentVideoIndex = (currentVideoIndex < videoUrls.length - 1) ? currentVideoIndex + 1 : 0;
+                loadVideo(currentVideoIndex);
+            });
+
+            backBtn.addEventListener('click', () => {
+                if (currentVideoIndex > 0) {
+                    currentVideoIndex--;
+                    loadVideo(currentVideoIndex);
+                }
+            });
+
+            // Initial Load
+            loadVideo(currentVideoIndex);
+        });
+    </script>
+</body>
+</html>
