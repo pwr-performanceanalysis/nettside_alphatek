@@ -3,57 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GYM - AlphaTek Performance</title>
+    <title>Hovedside - Velg Versjon</title>
     <style>
         body {
             font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
             margin: 0;
             background-color: #f4f4f4;
+        }
+        h1 {
             color: #333;
+            margin-bottom: 30px;
         }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        .content {
-            padding: 2rem;
-        }
-        /* Style to create space so you can scroll down */
-        .scroll-spacer {
-            height: 50vh;
+        .button-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: #888;
+            gap: 15px; /* Mellomrom mellom knappene */
         }
-        .screen-section {
-            border: 3px solid #ccc;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 2rem auto;
-            max-width: 800px;
-            background-color: #fff;
-            text-align: center;
-        }
-        .screen-section h2 {
-            margin-top: 0;
-        }
-        .screen {
-            background-color: #000;
-            color: #0f0;
-            font-family: monospace;
-            padding: 20px;
-            border-radius: 5px;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .learn-more-button {
+        .button {
             padding: 15px 30px;
             font-size: 18px;
             color: white;
@@ -61,49 +31,24 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            text-decoration: none; /* Important for links styled as buttons */
-            display: inline-block; /* Ensures padding and margins work correctly */
+            text-decoration: none; /* Fjerner understreking fra lenker */
             transition: background-color 0.3s ease;
         }
-        .learn-more-button:hover {
+        .button:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
 <body>
+Generated code
+<h1>Velg en versjon</h1>
 
-    <header>
-        <h1>GYM Session</h1>
-    </header>
-
-    <div class="content">
-        <div class="scroll-spacer">
-            <p>Scroll down to see your exercise analysis...</p>
-        </div>
-
-        <!-- This is the section you described -->
-        <div id="exercise-screen" class="screen-section">
-            <h2>Squat Analysis</h2>
-            <div class="screen">
-                <p>> Real-time data would appear here...</p>
-            </div>
-            
-            <!-- 
-            ===========================================================
-            ==                  THIS IS THE CHANGE                   ==
-            ===========================================================
-            The button is now an <a> tag pointing to the correct file.
-            The path ../Instructions/Squat.html is used to navigate 
-            from /segments/ up to /versions/ and then down into /Instructions/.
-            -->
-            <a href="../Instructions/Squat.html" class="learn-more-button">Learn More</a>
-
-        </div>
-
-         <div class="scroll-spacer" style="height: 40vh;">
-            <p>More content would go here.</p>
-        </div>
-    </div>
-
+<div class="button-container">
+    <a href="versions/Erik_hoved.html" class="button">Erik</a>
+    <a href="versions/Manuel_hoved.html" class="button">Manuel</a>
+    <a href="versions/Marie_hoved.html" class="button">Marie</a>
+    <a href="versions/Miriam_hoved.html" class="button">Miriam</a>
+</div>
+Use code with caution.
 </body>
 </html>
