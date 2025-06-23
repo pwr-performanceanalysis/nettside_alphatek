@@ -75,65 +75,84 @@
         /* Resource Hero Section */
         .hero-section.resource-hero {
             position: relative;
-            height: 60vh;
-            min-height: 450px;
+            height: 50vh; 
+            min-height: 420px; 
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            text-align: center;
             color: white;
-            overflow: hidden;
             padding: 5vh 5vw;
-            background-image: url('https://storage.googleapis.com/files_webpage/Bod%C3%B8Glimt%20squat.png');
+            background-image: url('https://storage.googleapis.com/files_webpage/20230921_110916.jpg');
             background-size: cover;
-            background-position: center 30%;
-            background-attachment: fixed;
+            background-position: center;
         }
-        .resource-hero::before { /* Dark overlay */
+        .resource-hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(13,13,13,1) 0%, rgba(13,13,13,0.6) 50%, rgba(13,13,13,0.4) 100%);
+            background-color: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(10px) brightness(0.9);
+            -webkit-backdrop-filter: blur(10px) brightness(0.9);
             z-index: 1;
         }
-        .resource-hero .hero-content {
+        .hero-content {
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 800px;
+            max-width: 950px;
             text-align: center;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInFromBottomHeroContent 0.7s ease-out forwards 1s;
+            margin: 0 auto;
         }
         @keyframes fadeInFromBottomHeroContent { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .resource-hero .hero-headline {
+        .hero-headline {
             font-size: clamp(2.5rem, 6vw, 4rem);
             color: var(--color-brand-white);
             font-weight: var(--font-weight-normal);
             margin: 0;
             line-height: 1.3;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
-        .hero-subheadline {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+        .research-filter-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            gap: 10px 15px;
+            margin-top: 50px; /* Adjusted spacing */
+        }
+        .filter-btn {
+            background-color: transparent;
+            border: 1px solid var(--color-grey-medium);
             color: var(--color-grey-lightest);
-            margin-top: 0.75em;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: var(--font-weight-light);
-            line-height: 1.7;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .filter-btn:hover {
+            background-color: rgba(255,255,255,0.1);
+            border-color: var(--color-brand-accent);
+        }
+        .filter-btn.active {
+            background-color: var(--color-brand-accent);
+            border-color: var(--color-brand-accent);
+            color: var(--color-brand-white);
+            font-weight: var(--font-weight-normal);
         }
         
         /* Research Library Section */
         .research-library-section {
-            padding: 100px 20px 80px;
+            padding: 50px 20px 80px;
             background-color: var(--color-brand-black);
         }
+        
         .research-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
@@ -146,15 +165,11 @@
             display: flex;
             flex-direction: column;
             transition: transform 0.3s ease, background-color 0.3s ease;
+            opacity: 0;
         }
         .research-card:hover {
             transform: translateY(-5px);
             background-color: #3a3a3a;
-        }
-        .research-card-icon {
-            font-size: 2rem;
-            color: var(--color-brand-accent);
-            margin-bottom: 0.75em;
         }
         .research-card h4 {
             font-size: 1.2rem;
@@ -167,7 +182,7 @@
             font-size: 0.95rem;
             line-height: 1.7;
             color: var(--color-grey-light);
-            flex-grow: 1; 
+            flex-grow: 1;
             margin-bottom: 1.5em;
         }
         .btn-read-paper {
@@ -188,14 +203,13 @@
             color: var(--color-brand-white);
             text-decoration: none;
         }
-        .research-card.fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        
+        @keyframes toneIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
         }
-        .research-card.is-revealed {
-            opacity: 1;
-            transform: translateY(0);
+        .animate-in {
+            animation: toneIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
         /* Final CTA Section */
@@ -206,7 +220,7 @@
         .cta-button-large:hover { background-color: rgb(60, 150, 100); transform: scale(1.05); }
 
         /* Footer */
-        footer { background-color: var(--color-brand-black); color: var(--color-grey-lightest); padding: 1.5em 0; position: relative; z-index: 2; text-align: center; }
+        footer { background-color: var(--color-brand-black); color: var(--color-grey-lightest); padding: 50px 0; position: relative; z-index: 2; text-align: center; }
         .footer-logo-link { position: absolute; left: 5vw; bottom: 50%; transform: translateY(50%); }
         .reddot-logo { height: 75px; width: auto; display: block; }
         footer p { font-weight: var(--font-weight-light); margin-bottom: 0; color: var(--color-grey-lightest); }
@@ -220,13 +234,16 @@
             .mobile-nav-toggle { display: block; }
             .logo-area { position: static; transform: none; }
             .header-inner-container { justify-content: center; }
+            .research-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media(max-width:768px){
-            .hero-section.resource-hero { height: 50vh; min-height: 400px; }
-            .research-library-section, .cta-final-section { padding: 60px 20px; } 
+            .hero-section.resource-hero { height: auto; min-height: 0; padding: 120px 20px 50px; }
+            .research-library-section { padding: 40px 20px 60px; }
+            .cta-final-section { padding: 60px 20px; } 
             .footer-logo-link { display: none; }
             .header-inner-container { justify-content: space-between; }
             .research-grid { grid-template-columns: 1fr; }
+            .research-filter-nav { flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -265,7 +282,12 @@
         <section class="hero-section resource-hero">
             <div class="hero-content">
                 <h1 class="hero-headline">Alphatek Research Library</h1>
-                <p class="hero-subheadline">Explore the peer-reviewed science that underpins our technology and methodology.</p>
+                <div class="research-filter-nav">
+                    <button class="filter-btn" data-category="V">Technology Validation</button>
+                    <button class="filter-btn" data-category="C">Clinical & Practical</button>
+                    <button class="filter-btn" data-category="P">Velocity-Loss Programming</button>
+                    <button class="filter-btn" data-category="F">Feedback & Autoregulation</button>
+                </div>
             </div>
         </section>
 
@@ -273,81 +295,70 @@
             <div class="container">
                 <div class="research-grid">
                     
-                    <div class="research-card fade-in">
-                        <div class="research-card-icon"><i class="fas fa-file-alt"></i></div>
-                        <h4>Dahle et al. 2023 – Force Plate Validation</h4>
-                        <p>AlphaPWR force plate demonstrates high accuracy, with less than 1% bias compared to the AMTI gold-standard platform, confirming its suitability for precise testing and training.</p>
-                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Dahle.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
-                    </div>
-                    
-                    <div class="research-card fade-in">
-                        <div class="research-card-icon"><i class="fas fa-file-alt"></i></div>
-                        <h4>Stenrød 2023 – Physiotherapy Application</h4>
-                        <p>Physiotherapists highlight the value of AlphaPWR’s real-time, objective feedback for enhancing patient motivation, rehabilitation outcomes, and individualized treatment plans.</p>
-                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Stenr%E2%94%9C%C2%A9d%20%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
-                    </div>
-                    
-                    <div class="research-card fade-in">
-                        <div class="research-card-icon"><i class="fas fa-file-alt"></i></div>
-                        <h4>Pedersen Åreide 2023 – Objective vs. Subjective Feedback</h4>
-                        <p>Experienced lifters can accurately estimate bar velocity, yet objective feedback through AlphaPWR enhances precise training load management and performance outcomes.</p>
-                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Pedersen%20A%E2%95%A0%C3%A8reide%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
-                    </div>
-
-                    <div class="research-card fade-in">
-                        <div class="research-card-icon"><i class="fas fa-file-alt"></i></div>
-                        <h4>Alfaro & Matre 2022 – Velocity Measurement Comparisons</h4>
-                        <p>AlphaPWR’s center-of-mass (COM) velocity measures slightly lower than traditional barbell velocity methods; thus, training load prescriptions should be device-specific for optimal accuracy.</p>
+                    <div class="research-card" data-tags="V P">
+                        <h4>Alfaro & Matre 2022 – COM vs. barbell velocity</h4>
+                        <p>COM speeds slightly lower than bar-velocity; load zones must be device-specific.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Alfaro%20%26%20Matre%202022%20.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
                     
-                    <div class="research-card fade-in">
-                        <div class="research-card-icon"><i class="fas fa-file-alt"></i></div>
-                        <h4>Kaspersen 2024 – Velocity Loss Comparison</h4>
-                        <p>AlphaPWR identifies higher velocity loss between repetitions compared to barbell encoders, reaching prescribed velocity-loss thresholds approximately 2-3 repetitions earlier.</p>
+                    <div class="research-card" data-tags="F P">
+                        <h4>Bjelland 2024 – Readiness & autoregulation</h4>
+                        <p>Subjective readiness + rep speed best predict daily volume; 30 % VL autoregulates better than 20 %.</p>
+                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Bjelland%202024.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
+                    </div>
+                    
+                    <div class="research-card" data-tags="F P">
+                        <h4>Bjørnsen 2024 – In-season traffic-light</h4>
+                        <p>Maintained higher rep speeds all season, enhancing strength/power gains.</p>
+                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Bj%E2%94%9C%C2%A9rnsen%202024.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
+                    </div>
+                    
+                    <div class="research-card" data-tags="V">
+                        <h4>Dahle 2023 – Force-plate validation</h4>
+                        <p>AlphaPWR V2.0 < 1 % bias vs. AMTI; lab-grade accuracy confirmed.</p>
+                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Dahle.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
+                    </div>
+
+                    <div class="research-card" data-tags="V P F">
+                        <h4>Kaspersen 2024 – Device VL comparison</h4>
+                        <p>Force-plate reaches VL thresholds 2-3 reps sooner than encoder due to higher rep variability.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Kaspersen%202024.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
                     
-                    <div class="research-card fade-in">
-                        <div class="research-card-icon"><i class="fas fa-file-alt"></i></div>
-                        <h4>Nyquist 2023 – Velocity Loss Thresholds in Hockey</h4>
-                        <p>In-season hockey athletes training to 40% velocity loss demonstrated greater leg-press strength gains compared to 20%, although muscle size increases remained similar.</p>
+                    <div class="research-card" data-tags="F">
+                        <h4>Liverød 2023 – Feedback carry-over</h4>
+                        <p>Velocity gains from visual feedback persist into later no-feedback sets.</p>
+                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Liver%E2%94%9C%C2%A9d%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
+                    </div>
+                    
+                    <div class="research-card" data-tags="P">
+                        <h4>Nyquist 2023 – 20 % vs. 40 % VL (hockey)</h4>
+                        <p>40 % VL produced larger leg-press strength gains; hypertrophy unchanged.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Nyquist%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
 
-                    <div class="research-card fade-in">
-                        <div class="research-card-icon"><i class="fas fa-file-alt"></i></div>
-                        <h4>Remme 2023 – Power Development & Velocity Loss</h4>
-                        <p>Training to 40% velocity loss led to increased lower-limb maximal power output; however, jump and sprint performances were unaffected compared to 20% velocity loss.</p>
-                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Remme%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
+                    <div class="research-card" data-tags="C F">
+                        <h4>Pedersen Åreide 2023 – Objective vs. subjective cues</h4>
+                        <p>Lifters sense bar speed well, but AlphaPWR data tighten load control.</p>
+                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Pedersen%20A%E2%95%A0%C3%A8reide%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
                     
-                    <div class="research-card fade-in">
-                        <div class="research-card-icon"><i class="fas fa-file-alt"></i></div>
-                        <h4>Vormeland Paulsen 2024 – Feedback Modes</h4>
-                        <p>Color-coded velocity-loss feedback ("traffic-light" system) enabled higher lifting velocity, about 20% more repetitions per set, and significant improvements in squat strength and jump height compared to velocity-only feedback.</p>
+                    <div class="research-card" data-tags="P">
+                        <h4>Remme 2023 – VL & maximal power</h4>
+                        <p>40 % VL raised lower-limb power; sprint/jump unchanged vs. 20 % VL.</p>
+                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Remme%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
+                    </div>
+
+                    <div class="research-card" data-tags="C">
+                        <h4>Stenrød 2023 – Physiotherapy interviews</h4>
+                        <p>Real-time force-plate feedback boosts motivation and individualises rehab.</p>
+                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Stenr%E2%94%9C%C2%A9d%20%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
+                    </div>
+
+                    <div class="research-card" data-tags="F P">
+                        <h4>Vormeland Paulsen 2024 – Traffic-light feedback</h4>
+                        <p>Color-coded VL kept speed higher, + 20 % reps, and boosted squat 1 RM + CMJ.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Vormeland%20Paulsen%202024.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
-                    </div>
-
-                    <div class="research-card fade-in">
-                        <div class="research-card-icon"><i class="fas fa-file-alt"></i></div>
-                        <h4>Bjørnsen 2024 – Color-coded Feedback in-Season</h4>
-                        <p>Using the traffic-light velocity-loss system helped athletes maintain higher lifting velocities across repetitions, resulting in enhanced season-long strength and power gains.</p>
-                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Bj%E2%94%9C%C2%A9rnsen%202024.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
-                    </div>
-
-                    <div class="research-card fade-in">
-                        <div class="research-card-icon"><i class="fas fa-file-alt"></i></div>
-                        <h4>Bjelland 2024 – Readiness and Autoregulation</h4>
-                        <p>Combining subjective readiness assessments with velocity metrics best predicted daily training performance; notably, training autoregulation was more effective at 30% velocity loss than at 20%.</p>
-                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Bjelland%202024.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
-                    </div>
-
-                    <div class="research-card fade-in">
-                        <div class="research-card-icon"><i class="fas fa-file-alt"></i></div>
-                        <h4>Liverød 2023 – Feedback Effect Persistence</h4>
-                        <p>Performance improvements gained through visual feedback persisted even when feedback was subsequently removed, demonstrating a lasting impact on movement velocity.</p>
-                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Liver%E2%94%9C%C2%A9d%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
                     
                 </div>
@@ -388,20 +399,55 @@
                 });
             }
             
-            // Intersection Observer for fade-in animation on scroll
-            const animatedCards = document.querySelectorAll('.research-card.fade-in');
-            const cardObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-revealed');
-                        observer.unobserve(entry.target);
+            // Research Filter Logic with Animation
+            const filterContainer = document.querySelector('.research-filter-nav');
+            const researchCards = document.querySelectorAll('.research-card');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            const filterCardsByCategory = (category) => {
+                // Remove animation class and hide all cards initially
+                researchCards.forEach(card => {
+                    card.classList.remove('animate-in');
+                    card.style.display = 'none'; 
+                });
+
+                // Find the cards that should be shown for the selected category
+                const cardsToShow = [];
+                researchCards.forEach(card => {
+                    if (card.dataset.tags.includes(category)) {
+                        cardsToShow.push(card);
                     }
                 });
-            }, { threshold: 0.1 }); // Trigger when 10% of the card is visible
 
-            animatedCards.forEach(card => {
-                cardObserver.observe(card);
-            });
+                // Animate them in sequentially
+                cardsToShow.forEach((card, index) => {
+                    // Use a timeout to apply the animation with a delay
+                    setTimeout(() => {
+                        card.style.display = ''; // Make the card visible in the layout
+                        card.classList.add('animate-in');
+                    }, index * 100); // 0.1s delay between each card's animation start
+                });
+            };
+
+            if (filterContainer && researchCards.length > 0 && filterButtons.length > 0) {
+                const firstButton = filterButtons[0];
+                firstButton.classList.add('active');
+                
+                // Initial load animation
+                filterCardsByCategory(firstButton.dataset.category);
+
+                filterContainer.addEventListener('click', (e) => {
+                    const clickedButton = e.target.closest('.filter-btn');
+                    if (!clickedButton || clickedButton.classList.contains('active')) {
+                        return;
+                    }
+
+                    filterContainer.querySelector('.active').classList.remove('active');
+                    clickedButton.classList.add('active');
+                    
+                    filterCardsByCategory(clickedButton.dataset.category);
+                });
+            }
         });
     </script>
 </body>
