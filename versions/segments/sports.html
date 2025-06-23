@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alphatek - For Gyms</title>
+    <title>Alphatek - For Sports Teams</title> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
             --color-brand-black: #0D0D0D;
@@ -22,9 +22,8 @@
             --font-weight-bold: 700;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body {
-            overflow-x: hidden;
-            height: 100%;
+        html {
+            scroll-behavior: smooth;
         }
         body {
             font-family: var(--font-primary);
@@ -36,78 +35,28 @@
             display: flex;
             flex-direction: column;
         }
-        body.modal-open { overflow: hidden; }
+        body.mobile-nav-open { overflow: hidden; } 
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         a { color: var(--color-brand-accent); text-decoration: none; }
         a:hover { text-decoration: underline; }
         h2, h3, h4 { margin-bottom: 0.8em; font-weight: var(--font-weight-light); color: var(--color-brand-white); }
-        .text-accent {
-            color: var(--color-brand-accent);
-        }
-        
-        /* Header */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 20px;
-            z-index: 1000;
-            padding: 10px 5vw;
-            transition: top 0.3s ease;
-        }
-        header .header-inner-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            position: relative;
-            opacity: 0;
-            animation: fadeInHeader 0.7s ease-out forwards 1s;
-        }
-        .logo-area {
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        .header-logo-img {
-            height: 55px;
-            width: auto;
-            display: block;
-        }
-        .main-nav {
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .text-accent { color: var(--color-brand-accent); }
 
-        @keyframes fadeInHeader {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .main-nav-list {
-            display: flex;
-            align-items: center;
-            list-style: none;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50px;
-            padding: 5px;
-            background-color: rgba(13, 13, 13, 0.3);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-        }
-
+        /* Header & Navigation */
+        header { position: fixed; width: 100%; top: 20px; z-index: 1000; padding: 10px 5vw; transition: top 0.3s ease; }
+        header .header-inner-container { display: flex; justify-content: space-between; align-items: center; width: 100%; position: relative; opacity: 0; animation: fadeInHeader 0.7s ease-out forwards 1s; }
+        @keyframes fadeInHeader { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .logo-area { position: absolute; left: 0; top: 50%; transform: translateY(-50%); }
+        .header-logo-img { height: 55px; width: auto; display: block; }
+        .main-nav { margin-left: auto; margin-right: auto; }
+        .main-nav-list { display: flex; align-items: center; list-style: none; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 50px; padding: 5px; background-color: rgba(13, 13, 13, 0.3); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); }
         .main-nav-item { position: relative; }
-        .main-nav-link {
-            display: block;
-            color: var(--color-grey-lightest);
-            text-decoration: none;
-            padding: 8px 22px;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-            white-space: nowrap;
-        }
-        .main-nav-link:hover, .main-nav-link.is-active { color: var(--color-brand-white); }
+        .main-nav-link { display: block; color: var(--color-grey-lightest); text-decoration: none; padding: 8px 22px; font-size: 0.9rem; transition: color 0.3s ease; white-space: nowrap; }
+        .main-nav-link:hover { color: var(--color-brand-white); }
+        .main-nav-link.cta-button { background-color: var(--color-brand-accent); color: var(--color-brand-white); border-radius: 50px; padding: 8px 25px; margin-left: 10px; transition: background-color 0.3s ease; }
+        .main-nav-link.cta-button:hover { background-color: rgb(60, 150, 100); text-decoration: none; color: var(--color-brand-white); }
 
+        /* Dropdown Menu Styles (Transferred from old file) */
         .dropdown-menu {
             position: absolute;
             left: 50%;
@@ -117,7 +66,7 @@
             -webkit-backdrop-filter: blur(25px);
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-            min-width: 180px;
+            min-width: 160px;
             z-index: 1010;
             padding: 8px 0;
             visibility: hidden;
@@ -137,495 +86,279 @@
             transition: background-color 0.2s ease;
         }
         .dropdown-menu a:hover { background-color: rgba(47, 124, 83, 0.5); text-decoration: none; }
-        
-        .mobile-nav-toggle {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 1002;
-        }
-        .mobile-nav-toggle .fa-bars, .mobile-nav-toggle .fa-times {
-            color: var(--color-brand-white);
-            font-size: 1.5rem;
-        }
+        .main-nav-link .fa-chevron-down { font-size: 0.7em; margin-left: 6px; transition: transform 0.3s ease; }
+        .main-nav-item:hover .main-nav-link .fa-chevron-down { transform: rotate(180deg); }
+
+
+        /* Mobile Navigation */
+        .mobile-nav-toggle { display: none; position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; z-index: 1002; }
+        .mobile-nav-toggle .fa-bars, .mobile-nav-toggle .fa-times { color: var(--color-brand-white); font-size: 1.5rem; }
         .mobile-nav-toggle .fa-times { display: none; }
-        .mobile-nav-menu {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100%;
-            background-color: rgba(13, 13, 13, 0.8);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            z-index: 1001;
-            transition: left 0.3s ease-in-out;
-            padding: 80px 30px 30px;
-            display: flex;
-            flex-direction: column;
-        }
-        .mobile-nav-menu a {
-            color: var(--color-grey-lightest);
-            font-size: 1.2rem;
-            padding: 15px 0;
-            text-decoration: none;
-        }
+        .mobile-nav-menu { position: fixed; top: 0; left: -100%; width: 80%; max-width: 300px; height: 100%; background-color: rgba(13, 13, 13, 0.8); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); z-index: 1001; transition: left 0.3s ease-in-out; padding: 80px 30px 30px; display: flex; flex-direction: column; }
+        .mobile-nav-menu a { color: var(--color-grey-lightest); font-size: 1.2rem; padding: 15px 0; text-decoration: none; }
+        .mobile-nav-menu .mobile-divider { border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0; }
         body.mobile-nav-open .mobile-nav-menu { left: 0; }
         body.mobile-nav-open .mobile-nav-toggle .fa-bars { display: none; }
         body.mobile-nav-open .mobile-nav-toggle .fa-times { display: block; }
 
-        .site-tagline {
-            position: fixed; bottom: 15px; right: 20px; font-size: 0.7em;
-            font-weight: var(--font-weight-light); color: var(--color-grey-light);
-            background-color: transparent; padding: 0; z-index: 999; display: flex; align-items: center;
-        }
-        
+        .site-tagline { position: fixed; bottom: 15px; right: 20px; font-size: 0.7em; font-weight: var(--font-weight-light); color: var(--color-grey-light); z-index: 999; }
+
+        /* General Sections */
         .scrollable-content { position: relative; z-index: 1; background-color: var(--color-brand-black); flex-grow: 1; }
-        
         .hero-section {
-            display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; 
-            position: relative; overflow: hidden; padding-left: 5vw; padding-right: 5vw;
-            box-sizing: border-box; 
-            height: 65vh; 
-            padding-bottom: 10vh;
-        }
-        #hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1;
-            transform: translateX(-50%) translateY(-50%);
-            object-fit: cover;
-            filter: brightness(0.85) contrast(1.0);
-        }
-        .hero-text-group { width: 100%; max-width: 800px; margin-left: 0; text-align: left; opacity: 0; transform: translateX(-30px); }
-        @keyframes fadeInFromLeftHeroContent { from { transform: translateX(-30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        .hero-text-group.is-visible { animation: fadeInFromLeftHeroContent 0.7s ease-out forwards 1s; }
-        .hero-headline {
-            font-size: clamp(2.2rem, 4.2vw, 3.2rem); 
-            color: var(--color-brand-white);
-            font-weight: var(--font-weight-light); width: 100%; margin: 0; line-height: 1.3;
-            transition: opacity 0.5s ease-in-out; 
-            height: 4.5rem; 
-        }
-        .upgrade-section {
-            background-color: var(--color-brand-black); padding: 80px 20px; text-align: center;
+            position: relative;
+            height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .upgrade-title {
-            font-size: clamp(1.6rem, 3.5vw, 2.4rem); max-width: 850px; margin: 0 auto; line-height: 1.4;
-            font-weight: var(--font-weight-light); color: var(--color-brand-white);
-            display: inline-block;
-            opacity: 0;
-            min-height: 130px; 
-        }
-        .upgrade-title.is-visible {
-            opacity: 1;
-        }
-        .typing-cursor::after {
-            content: '|';
-            display: inline-block;
-            animation: blink 0.7s infinite;
-            color: var(--color-grey-light);
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .features-section {
-            padding: 80px 20px;
-            position: relative;
-            background-image: url('https://storage.googleapis.com/intro_alphatek/Alphatek-6.jpg');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-        }
-        .features-section::before {
-             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-             background-color: rgba(0,0,0,0.6);
-             z-index: 1;
-        }
-        .features-section .container { position: relative; z-index: 2; }
-        
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .feature-card {
-            background-color: rgba(47, 124, 83, 0.1); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 30px;
-            text-align: center; display: flex; flex-direction: column; align-items: center;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        .feature-card:hover { transform: translateY(-5px); background-color: rgba(47, 124, 83, 0.2); }
-        .feature-icon {
-            font-size: 2.5rem; color: var(--color-brand-accent); margin-bottom: 20px;
-            height: 50px; width: 50px; display: flex; align-items: center; justify-content: center;
-        }
-        .feature-card h3 { font-size: 1.5rem; color: var(--color-brand-white); margin-bottom: 10px; }
-        .feature-card p { color: var(--color-grey-lightest); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0; }
-        
-        .dark-parallax-wrapper {
-            position: relative;
-            background-image: url('https://storage.googleapis.com/intro_alphatek/Alphatek-6.jpg');
-            background-size: cover; background-position: center center; background-attachment: fixed;
-        }
-        .dark-parallax-wrapper::before {
-             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-             background-color: rgba(13, 13, 13, 0.75); 
-             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-             z-index: 1;
-        }
-        .reports-section, .modules-section { position: relative; z-index: 2; }
-        
-        .reports-section { padding: 80px 0; overflow: hidden; }
-        .reports-section h2 {
-            text-align: center;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 2em;
-        }
-        .report-carousel-container {
-            max-width: 1000px; 
-            margin: 0 auto;
+            align-items: flex-end;
+            justify-content: flex-start;
+            color: white;
             overflow: hidden;
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            padding: 5vh 5vw;
         }
-        .report-carousel-track {
-            display: flex;
-            width: calc(220px * 12);
-            animation: scroll-reports 60s linear infinite;
-        }
-        .report-carousel-track:hover { animation-play-state: paused; }
-        @keyframes scroll-reports {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-        .report-card {
-            width: 220px;
-            flex-shrink: 0;
-            padding: 0 15px;
-            text-align: center;
-            cursor: pointer;
-        }
-        .report-card img {
-            width: 100%;
-            border-radius: 0px; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-            margin-bottom: 1.5em;
-            transition: transform 0.3s ease;
-        }
-        .report-card:hover img { transform: scale(1.05); }
-        .report-title {
-            font-size: 1rem;
-            margin-bottom: 0.4em;
-            font-weight: var(--font-weight-normal);
-        }
-        .report-description {
-            font-size: 0.85rem;
-            color: var(--color-grey-light);
-        }
-
-        /* Report Modal */
-        .report-modal-overlay {
-            position: fixed;
+        .hero-video-bg {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: -1; 
+            overflow: hidden;
         }
-        .report-modal-overlay.is-visible {
-            opacity: 1;
-            visibility: visible;
+        #hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
         }
-        .report-modal-content {
-            background-color: rgba(26, 26, 26, 0.7);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 12px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            width: 90%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
+        .hero-content {
             position: relative;
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-        }
-        .report-modal-overlay.is-visible .report-modal-content {
-            transform: scale(1);
-        }
-        .report-modal-image-container img {
+            z-index: 2;
             width: 100%;
-            border-radius: 0;
-        }
-        .report-modal-text-container h3 {
-            font-size: 1.8rem;
-            color: var(--color-brand-accent);
-        }
-        .report-modal-text-container h4 {
-             margin-top: 1.5em;
-             margin-bottom: 0.5em;
-             font-size: 1.2rem;
-             color: var(--color-brand-white);
-             border-bottom: 1px solid var(--color-brand-accent);
-             padding-bottom: 0.3em;
-        }
-        .report-modal-text-container p {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: var(--color-grey-lightest);
-        }
-        .report-modal-text-container ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .report-modal-text-container ul li {
-            background-color: rgba(255,255,255,0.05);
-            padding: 8px 12px;
-            border-radius: 4px;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-        .close-report-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: var(--color-grey-lightest);
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .close-report-modal:hover { color: var(--color-brand-white); }
-        
-        /* New Modules Section */
-        .modules-section {
-            padding: 100px 20px;
-        }
-
-        .section-divider {
-            width: 80px;
-            height: 3px;
-            background-color: var(--color-brand-accent);
-            margin: 0 auto 2em;
-            border-radius: 2px;
-        }
-
-        .modules-section .section-title {
-            text-align: center;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 2.5em;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .module-explorer {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 80px;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .module-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .module-btn {
-            width: 100%;
-            padding: 12px 20px;
-            font-size: 1rem;
-            font-weight: var(--font-weight-light);
-            color: var(--color-grey-light);
-            background-color: rgba(255, 255, 255, 0.02);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
+            max-width: 1000px;
             text-align: left;
-            transition: all 0.3s ease;
-            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInFromBottomHeroContent 0.7s ease-out forwards 1s;
         }
-
-        .module-btn:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+        @keyframes fadeInFromBottomHeroContent { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .hero-headline {
+            font-size: clamp(2.8rem, 5.5vw, 4rem);
             color: var(--color-brand-white);
+            font-weight: var(--font-weight-normal);
+            margin: 0;
+            line-height: 1.3;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .hero-headline .static-text { display: inline; }
+        .word-rotator-wrapper {
+            display: inline-block;
+            height: 1.3em; 
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+        .word-rotator {
+            animation: spin-words 6s infinite ease-in-out;
+        }
+        .word-rotator span {
+            display: block;
+            height: 1.3em;
+            color: var(--color-brand-accent);
+            font-weight: var(--font-weight-bold);
+        }
+        @keyframes spin-words {
+            0%, 28% { transform: translateY(0); }
+            33.3%, 61.3% { transform: translateY(-1.3em); }
+            66.6%, 94.6% { transform: translateY(-2.6em); }
+            100% { transform: translateY(-3.9em); }
         }
 
-        .module-btn.active {
-            background-color: rgba(47, 124, 83, 0.2);
-            color: var(--color-brand-white);
-            transform: translateX(10px);
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            opacity: 0;
+            animation: fadeInHeader 1s ease-out forwards 2s;
+        }
+        .scroll-indicator span {
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-bottom: 2px solid var(--color-brand-white);
+            border-right: 2px solid var(--color-brand-white);
+            transform: rotate(45deg);
+            margin: -5px;
+            animation: pulse-arrow 2.5s infinite;
+        }
+        .scroll-indicator span:nth-child(2) {
+            animation-delay: -0.4s;
+        }
+        @keyframes pulse-arrow {
+            0% { opacity: 0; transform: rotate(45deg) translate(-10px, -10px); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: rotate(45deg) translate(10px, 10px); }
         }
 
-        .module-content {
-            position: relative;
-            min-height: 400px;
-        }
+        .upgrade-section { background-color: var(--color-brand-black); padding: 80px 20px; text-align: center; display: flex; align-items: center; justify-content: center; }
+        .upgrade-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); max-width: 950px; margin: 0 auto; line-height: 1.4; font-weight: var(--font-weight-light); color: var(--color-brand-white); display: inline-block; opacity: 0; min-height: 130px; }
+        .upgrade-title.is-visible { opacity: 1; }
+        .typing-cursor::after { content: '|'; display: inline-block; animation: blink 0.7s infinite; color: var(--color-grey-light); }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .module-content-area {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 40px;
-            align-items: center;
+        /* Advantage Features Section */
+        .features-section { padding: 80px 20px; position: relative; background-color: var(--color-grey-darkest); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .feature-card { background-color: var(--color-grey-dark); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; transition: transform 0.3s ease, background-color 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); background-color: var(--color-grey-dark); }
+        .feature-image-container { width: 100%; height: 220px; overflow: hidden; position: relative; }
+        .feature-image-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .feature-card:hover .feature-image-container img { transform: scale(1.05); }
+        .feature-image-container::after {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s;
+            height: 100%;
+            background-color: rgba(13, 13, 13, 0.3);
+            z-index: 1;
+            transition: background-color 0.4s ease;
         }
+        .feature-card:hover .feature-image-container::after {
+            background-color: rgba(13, 13, 13, 0.5);
+        }
+        .feature-text-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+        .feature-text-content h3 { font-size: 1.5rem; color: var(--color-brand-white); margin-bottom: 10px; }
+        .feature-text-content p { color: var(--color-grey-lightest); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0; }
+        
+        /* Sports Teams Section */
+        .sports-teams-section { padding: 80px 20px; background-color: var(--color-brand-black); text-align: center; }
+        .sports-teams-section h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 2em; }
+        .teams-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .team-card { background-color: rgba(26, 26, 26, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 30px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.3s ease, background-color 0.3s ease; }
+        .team-card:hover { transform: translateY(-5px); background-color: rgba(26, 26, 26, 0.7); }
+        .team-logo-container { height: 80px; margin-bottom: 1.5em; display: flex; align-items: center; justify-content: center; }
+        .team-logo { max-height: 100%; max-width: 180px; object-fit: contain; }
+        .team-card h3 { font-size: 1.5rem; color: var(--color-brand-white); margin-bottom: 0.2em; font-weight: var(--font-weight-normal); }
+        .team-card .sport { font-size: 1rem; color: var(--color-brand-accent); margin-bottom: 1em; font-weight: bold; }
+        .team-card .description { font-size: 0.95rem; color: var(--color-grey-lightest); line-height: 1.6; flex-grow: 1; }
 
-        .module-content-area.active {
+        /* Parallax Wrapper */
+        .dark-parallax-wrapper { position: relative; background-image: url('https://storage.googleapis.com/files_webpage/Bod%C3%B8Glimt%20squat.png'); background-size: cover; background-position: center center; background-attachment: fixed; }
+        .dark-parallax-wrapper::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(13, 13, 13, 0.75); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 1; }
+        .modules-section, .floor-benefits-section, .research-section { position: relative; z-index: 2; }
+        .section-divider { width: 80px; height: 3px; background-color: var(--color-brand-accent); margin: 0 auto 2em; border-radius: 2px; }
+
+        /* Modules Section */
+        .modules-section { padding: 100px 20px; }
+        .modules-section .section-title { text-align: center; font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 2.5em; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .module-explorer { display: grid; grid-template-columns: 250px 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .module-nav { display: flex; flex-direction: column; gap: 15px; }
+        .module-btn { width: 100%; padding: 12px 20px; font-size: 1rem; font-weight: var(--font-weight-light); color: var(--color-grey-light); background-color: rgba(255, 255, 255, 0.02); border: none; border-radius: 8px; cursor: pointer; text-align: left; transition: all 0.3s ease; position: relative; }
+        .module-btn:hover { background-color: rgba(255, 255, 255, 0.05); color: var(--color-brand-white); }
+        .module-btn.active { background-color: rgba(47, 124, 83, 0.2); color: var(--color-brand-white); transform: translateX(10px); }
+        .module-content { position: relative; min-height: 400px; }
+        .module-content-area { display: grid; grid-template-columns: 250px 1fr; gap: 40px; align-items: center; position: absolute; top: 0; left: 0; width: 100%; opacity: 0; visibility: hidden; transform: translateY(20px); transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s; z-index: 10; }
+        .module-content-area.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .module-image img { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .module-text h3 { font-size: 1.8rem; color: var(--color-brand-accent); margin-bottom: 0.5em; }
+        .module-text p { color: var(--color-grey-lightest); font-size: 1rem; line-height: 1.7; }
+        .module-text .learn-more { font-size: 0.9rem; text-decoration: underline; color: var(--color-brand-accent); display: inline-block; margin-top: 1em; }
+
+        /* Research Section */
+        .research-section { padding: 80px 20px; background-color: var(--color-brand-black); text-align: center; }
+        .research-table-container { max-width: 900px; margin: 2em auto 0; overflow-x: auto; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; }
+        .research-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .research-table th, .research-table td { padding: 15px 20px; border-bottom: 1px solid var(--color-grey-dark); }
+        .research-table th { background-color: var(--color-grey-darkest); color: var(--color-brand-white); font-weight: var(--font-weight-normal); }
+        .research-table tr:last-child td { border-bottom: none; }
+        .research-table td:first-child { font-weight: var(--font-weight-normal); color: var(--color-brand-white); }
+
+        /* Floor Benefits Section - NEW GRID LAYOUT */
+        .floor-benefits-section { padding: 100px 20px; }
+        .floor-benefits-section h2 { text-align: center; font-size: clamp(1.8rem, 4vw, 2.5rem); }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 4em auto 0;
+        }
+        .benefit-card {
+            background-color: var(--color-grey-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 35px 30px;
+            text-align: left;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            background-color: #3a3a3a;
+        }
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--color-brand-accent);
+            margin-bottom: 0.75em;
+        }
+        .benefit-card h4 {
+            font-size: 1.3rem;
+            font-weight: var(--font-weight-normal);
+            color: var(--color-brand-white);
+            margin-bottom: 0.5em;
+        }
+        .benefit-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--color-grey-light);
+        }
+        .benefit-card.fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .benefit-card.is-revealed {
             opacity: 1;
-            visibility: visible;
             transform: translateY(0);
         }
         
-        .module-image img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
+        /* Product Section */
+        .product-section { padding: 100px 20px; background-color: #000; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .product-section .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .product-image { text-align: center; }
+        .product-image img { max-width: 80%; height: auto; filter: drop-shadow(0 10px 30px rgba(47, 124, 83, 0.2)); }
+        .product-text h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 0.5em; }
+        .product-text p { color: var(--color-grey-light); max-width: 500px; margin-bottom: 1.5em; font-size: 1.1rem; }
+        .btn-explore { display: inline-block; background-color: var(--color-brand-accent); color: var(--color-brand-white); padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: var(--font-weight-normal); transition: background-color 0.3s ease, transform 0.3s ease; }
+        .btn-explore:hover { background-color: rgb(57, 154, 103); transform: translateY(-2px); text-decoration: none; }
 
-        .module-text h3 {
-            font-size: 1.8rem;
-            color: var(--color-brand-accent);
-            margin-bottom: 0.5em;
-        }
-        .module-text p {
-             color: var(--color-grey-lightest);
-             font-size: 1rem;
-             line-height: 1.7;
-        }
-         .module-text .learn-more {
-            font-size: 0.9rem;
-            text-decoration: underline;
-            color: var(--color-brand-accent);
-            display: inline-block;
-            margin-top: 1em;
-        }
+        /* Success Stories Section */
+        .case-studies-section { padding: 100px 0; position: relative; background-image: url('https://storage.googleapis.com/files_webpage/Bod%C3%B8Glimt%20squat.png'); background-size: cover; background-position: center center; background-attachment: fixed; }
+        .case-studies-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 1; }
+        .case-studies-section .container, .case-studies-section .case-studies-container { position: relative; z-index: 2; }
+        .case-studies-section h2 { text-align: center; font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 2em; }
+        .case-studies-container { display: flex; overflow-x: auto; padding: 20px 5vw; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
+        .case-studies-container::-webkit-scrollbar { display: none; }
+        .case-study-card { flex: 0 0 80%; max-width: 80%; margin-right: 40px; scroll-snap-align: center; display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; align-items: center; background: rgba(26, 26, 26, 0.4); backdrop-filter: blur(10px); border-radius: 12px; padding: 40px; }
+        .case-study-card:last-child { margin-right: 0; }
+        .case-study-image-container { width: 100%; height: 400px; border-radius: 8px; overflow: hidden; position: relative; background-color: var(--color-grey-dark); }
+        .case-study-image-container img { width: 100%; height: 100%; object-fit: cover; }
+        .case-study-text blockquote { font-size: 1.4rem; line-height: 1.6; font-style: italic; border-left: 3px solid var(--color-brand-accent); padding-left: 20px; margin: 0 0 20px 0; }
+        .case-study-text .author { font-weight: var(--font-weight-bold); color: var(--color-brand-white); }
+        .case-study-text .role { font-size: 0.9rem; color: var(--color-grey-light); }
 
-        /* Case Studies Section */
-        .case-studies-section {
-            padding: 100px 0;
-            position: relative;
-            background-image: url('https://storage.googleapis.com/intro_alphatek/Alphatek-6.jpg');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-        }
-         .case-studies-section::before {
-             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-             background-color: rgba(0,0,0,0.6);
-             z-index: 1;
-        }
-        .case-studies-section .container, .case-studies-section .case-studies-container {
-            position: relative;
-            z-index: 2;
-        }
-        .case-studies-section h2 {
-            text-align: center;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 2em;
-        }
-        .case-studies-container {
-            display: flex;
-            overflow-x: auto;
-            padding: 20px 5vw;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        .case-studies-container::-webkit-scrollbar {
-            display: none;
-        }
-        .case-study-card {
-            flex: 0 0 80%;
-            max-width: 80%;
-            margin-right: 40px;
-            scroll-snap-align: center;
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
-            align-items: center;
-            background: rgba(26, 26, 26, 0.4);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 40px;
-        }
-        .case-study-card:last-child {
-            margin-right: 0;
-        }
-        .case-study-video-container, .case-study-image-container {
-            width: 100%;
-            height: 400px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-        }
-        .case-study-video-container video, .case-study-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .case-study-text blockquote {
-            font-size: 1.4rem;
-            line-height: 1.6;
-            font-style: italic;
-            border-left: 3px solid var(--color-brand-accent);
-            padding-left: 20px;
-            margin: 0 0 20px 0;
-        }
-        .case-study-text .author {
-            font-weight: var(--font-weight-bold);
-            color: var(--color-brand-white);
-        }
-        .case-study-text .role {
-            font-size: 0.9rem;
-            color: var(--color-grey-light);
-        }
+        /* Final CTA Section */
+        .cta-final-section { padding: 80px 20px; background-color: var(--color-grey-darkest); text-align: center; }
+        .cta-final-section h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+        .cta-final-section p { max-width: 600px; margin: 0 auto 1em; color: var(--color-grey-lightest); }
+        .cta-final-section .bottom-line { max-width: 700px; margin: 1em auto 2em; font-style: italic; color: var(--color-grey-lightest); }
+        .cta-button-large { display: inline-block; background-color: var(--color-brand-accent); color: var(--color-brand-white); border-radius: 8px; padding: 15px 35px; font-size: 1.1rem; font-weight: var(--font-weight-normal); text-decoration: none; transition: transform 0.2s ease, background-color 0.2s ease; }
+        .cta-button-large:hover { background-color: rgb(60, 150, 100); transform: scale(1.05); }
 
-        footer {
-            background-color: var(--color-brand-black); 
-            color: var(--color-grey-lightest); 
-            padding: 1.5em 0;
-            position: relative; 
-            z-index: 2;
-            text-align: center;
-        }
+        /* Footer */
+        footer { background-color: var(--color-brand-black); color: var(--color-grey-lightest); padding: 1.5em 0; position: relative; z-index: 2; text-align: center; }
         .footer-logo-link { position: absolute; left: 5vw; bottom: 50%; transform: translateY(50%); }
         .reddot-logo { height: 75px; width: auto; display: block; }
         footer p { font-weight: var(--font-weight-light); margin-bottom: 0; color: var(--color-grey-lightest); }
@@ -633,6 +366,7 @@
         .footer-social-icons a { color: var(--color-grey-lightest); margin: 0 10px; font-size: 1.5rem; transition: color 0.3s ease; }
         .footer-social-icons a:hover { color: var(--color-brand-accent); }
 
+        /* Media Queries */
         @media(max-width:992px){
             .main-nav { display: none; }
             .mobile-nav-toggle { display: block; }
@@ -640,20 +374,24 @@
             .header-inner-container { justify-content: center; }
             .module-explorer { grid-template-columns: 1fr; }
             .module-nav { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+            .case-study-card { grid-template-columns: 1fr; flex: 0 0 90%; max-width: 90%;} 
         }
         @media(max-width:768px){
             .hero-headline{font-size:1.8rem;text-align:left;} 
-            .upgrade-section, .features-section, .reports-section, .modules-section, .case-studies-section {padding: 60px 20px;}
+            .features-section, .research-section, .floor-benefits-section, .upgrade-section, .modules-section, .case-studies-section, .sports-teams-section, .cta-final-section, .product-section { padding: 60px 20px; } 
             .upgrade-section .upgrade-title{font-size:1.4rem; min-height: 0;}
             .footer-logo-link { display: none; }
             .header-inner-container { justify-content: space-between; }
-            .report-modal-content { grid-template-columns: 1fr; }
             .module-content-area { grid-template-columns: 1fr; }
             .module-image { order: -1; margin-bottom: 2em;}
-            .case-study-card { grid-template-columns: 1fr; flex: 0 0 90%; max-width: 90%;}
+            .teams-grid { grid-template-columns: 1fr; }
+            .product-section .container { grid-template-columns: 1fr; text-align: center; }
+            .product-text p { margin-left: auto; margin-right: auto;}
+            .benefits-grid { grid-template-columns: 1fr; }
         }
         @media(max-width:480px){
             .hero-headline{font-size:1.5rem; height: auto;}
+            .benefit-card p { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -668,39 +406,19 @@
             </div>
             <nav class="main-nav">
                 <ul class="main-nav-list">
-                    <li class="main-nav-item"><a href="#" class="main-nav-link">Home</a></li>
+                    <li class="main-nav-item"><a href="#features" class="main-nav-link">Advantages</a></li>
+                    <li class="main-nav-item"><a href="#modules" class="main-nav-link">Modules</a></li>
+                    <li class="main-nav-item"><a href="#product" class="main-nav-link">Product</a></li>
+                    <li class="main-nav-item"><a href="#success-stories" class="main-nav-link">Success Stories</a></li>
                     <li class="main-nav-item">
-                        <a href="#" class="main-nav-link">Blog</a>
+                        <a href="#" class="main-nav-link">Company <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
-                            <a href="#">Latest Posts</a>
-                            <a href="#">Categories</a>
-                            <a href="#">Archive</a>
+                            <a href="#">Blog</a>
+                            <a href="#">About Us</a>
+                            <a href="#">FAQ</a>
                         </div>
                     </li>
-                    <li class="main-nav-item">
-                        <a href="#" class="main-nav-link">Resources</a>
-                        <div class="dropdown-menu">
-                            <a href="#">Whitepapers</a>
-                            <a href="#">Case Studies</a>
-                            <a href="#">Webinars</a>
-                        </div>
-                    </li>
-                    <li class="main-nav-item">
-                        <a href="#" class="main-nav-link">About Us</a>
-                        <div class="dropdown-menu">
-                            <a href="#">Our Story</a>
-                            <a href="#">The Team</a>
-                            <a href="#">Careers</a>
-                        </div>
-                    </li>
-                    <li class="main-nav-item">
-                        <a href="#" class="main-nav-link">FAQ</a>
-                        <div class="dropdown-menu">
-                            <a href="#">General</a>
-                            <a href="#">Technical</a>
-                            <a href="#">Billing</a>
-                        </div>
-                    </li>
+                    <li class="main-nav-item"><a href="#book-demo" class="main-nav-link cta-button">Book a Demo</a></li>
                 </ul>
             </nav>
             <button class="mobile-nav-toggle" aria-label="Toggle navigation">
@@ -711,102 +429,129 @@
     </header>
     
     <nav class="mobile-nav-menu">
-        <a href="#">Home</a>
+        <a href="#features">Advantages</a>
+        <a href="#modules">Modules</a>
+        <a href="#product">Product</a>
+        <a href="#success-stories">Success Stories</a>
+        <div class="mobile-divider"></div>
         <a href="#">Blog</a>
-        <a href="#">Resources</a>
         <a href="#">About Us</a>
         <a href="#">FAQ</a>
+        <div class="mobile-divider"></div>
+        <a href="#book-demo">Book a Demo</a>
     </nav>
     
     <span class="site-tagline">Designed in Norway</span>
 
     <main class="scrollable-content">
         <section class="hero-section">
-            <video autoplay muted loop playsinline id="hero-video">
-                <!-- VIDEO CHANGED HERE -->
-                <source src="https://storage.googleapis.com/intro_alphatek/sports_intro.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-
-            <div class="hero-text-group">
-                 <h1 class="hero-headline" id="animated-headline">
-                    <!-- This text will be changed by JavaScript -->
+            <div class="hero-video-bg">
+                <video autoplay muted loop playsinline id="hero-video">
+                    <source src="https://storage.googleapis.com/files_webpage/Alphatek_30s_TOPPIDRETT_OILERS.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-headline" id="animated-headline">
+                    <span class="static-text">Real time feedback that drives </span>
+                    <div class="word-rotator-wrapper">
+                        <div class="word-rotator">
+                            <span>Performance</span>
+                            <span>Resilience</span>
+                            <span>Engagement</span>
+                            <span>Performance</span>
+                        </div>
+                    </div>
                 </h1>
+            </div>
+            <div class="scroll-indicator">
+                <span></span>
+                <span></span>
             </div>
         </section>
 
         <section class="upgrade-section">
             <div class="container">
-                <h2 class="upgrade-title" id="upgrade-title">
-                    <!-- Text will be typed here by JavaScript -->
-                </h2>
+                <h2 class="upgrade-title" id="upgrade-title"></h2>
             </div>
         </section>
         
-        <section class="features-section">
+        <section id="features" class="features-section">
             <div class="container">
                 <div class="features-grid">
-                    <!-- ICONS UPDATED HERE -->
                     <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-rocket"></i>
+                        <div class="feature-image-container">
+                            <img src="https://storage.googleapis.com/files_webpage/Nordic%20Sander.png" alt="Athlete using Alphatek for Nordic Hamstring exercise">
                         </div>
-                        <h3>Boost physical performance</h3>
-                        <p>Real-time, objective feedback keeps athletes engaged, builds trust, and helps you adjust trainings programs for better outcomes—every session.</p>
+                        <div class="feature-text-content">
+                            <h3>The All-In-One Toolkit for Athlete Development</h3>
+                            <p>Empower a complete training journey from one central point. Alphatek delivers comprehensive VBT, Jump, Nordic Hamstring, and Isometric assessments, expertly paired with adaptable rehabilitation programs, all from a single, versatile device.</p>
+                        </div>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-clipboard-check"></i>
+                        <div class="feature-image-container">
+                            <img src="https://storage.googleapis.com/files_webpage/Oilers%20squat%20(2).png" alt="Athlete performing a squat on the Alphatek platform">
                         </div>
-                        <h3>Results you can trust.</h3>
-                        <p>A study conducted at the University of Stavanger with the Stavanger Oilers showed that, in just 8 weeks of in-season using the VBT module with real-time feedback, athletes became 10% stronger and 5% faster on ice.</p>
+                        <div class="feature-text-content">
+                            <h3>Simplicity that Drives Optimal Results</h3> 
+                            <p>No more complex setups. Alphatek empowers athletes with effortless testing and training, providing instant feedback that sharpens focus and ignites motivation. This saves valuable staff time and boosts consistent athlete engagement.</p>
                         </div>
+                    </div>
                     <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-stopwatch"></i>
+                        <div class="feature-image-container">
+                             <img src="https://storage.googleapis.com/files_webpage/Start%20jump%20(3).png" alt="Athlete performing a jump test on the Alphatek platform">
                         </div>
-                        <h3>Up and running in seconds.</h3>
-                        <p>With Alphatek, there’s no setup hassle or complex tech—just intuitive tools that save time and let you focus on care.</p>
+                        <div class="feature-text-content">
+                            <h3>Smarter Load Management, Safer Progress</h3> 
+                            <p>Alphatek offers precise, science-backed guidance to master training load. It's the perfect tool to boost performance while proactively protecting athletes from injury, enabling continuous, healthy athletic development.</p> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sports-teams-section">
+            <div class="container">
+                <h2>Trusted by leading teams and organisations</h2>
+                <div class="teams-grid">
+                    <div class="team-card">
+                        <div class="team-logo-container">
+                            <img src="https://storage.googleapis.com/files_webpage/Customer%20logos/Olympiatoppen.png" alt="Olympiatoppen Logo" class="team-logo">
+                        </div>
+                        <h3>Olympiatoppen</h3>
+                        <p class="sport">Olympic Sports</p>
+                        <p class="description">Olympiatoppen (OLT) is Norway's elite sports center and is internationally recognized as a leading institution in sports development.</p>
+                    </div>
+                     <div class="team-card">
+                        <div class="team-logo-container">
+                            <img src="https://storage.googleapis.com/files_webpage/Customer%20logos/Bod%C3%B8-Glimt.png" alt="Bodø/Glimt Logo" class="team-logo">
+                        </div>
+                        <h3>Bodø / Glimt</h3>
+                        <p class="sport">Football</p>
+                        <p class="description">Bodø/Glimt has rapidly established itself as one of Norway's most successful football clubs, consistently achieving domestic titles and reaching European group stages.</p>
+                    </div>
+                     <div class="team-card">
+                        <div class="team-logo-container">
+                            <img src="https://storage.googleapis.com/files_webpage/Customer%20logos/F%C3%A4rjestad%20BK.png" alt="Färjestad BK Logo" class="team-logo">
+                        </div>
+                        <h3>Färjestad BK</h3>
+                        <p class="sport">Ice Hockey</p>
+                        <p class="description">Färjestad BK has firmly established itself as one of Sweden's most successful ice hockey clubs, boasting numerous Swedish Championship titles.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <div class="dark-parallax-wrapper">
-            <section class="reports-section">
-                <div class="container reports-title-container">
-                    <h2>Customized Reports for Maximum Results</h2>
-                </div>
-                <div class="report-carousel-container">
-                    <div class="report-carousel-track">
-                        <!-- Data attributes added for modal content -->
-                        <div class="report-card" data-report-id="performance"><img src="https://storage.googleapis.com/intro_alphatek/reports/Handball.png" alt="Performance Report"><h4 class="report-title text-accent">Performance Report</h4><p class="report-description">For any athlete in any sport.</p></div>
-                        <div class="report-card" data-report-id="advanced-pt"><img src="https://storage.googleapis.com/intro_alphatek/reports/PT%20advanced.png" alt="Advanced PT Report"><h4 class="report-title text-accent">Advanced PT</h4><p class="report-description">For the experienced strength enthusiast.</p></div>
-                        <div class="report-card" data-report-id="basic-pt"><img src="https://storage.googleapis.com/intro_alphatek/reports/PT%20basic.png" alt="Basic PT Report"><h4 class="report-title text-accent">Basic PT</h4><p class="report-description">For the fitness newcomer.</p></div>
-                        <div class="report-card" data-report-id="intermediate-pt"><img src="https://storage.googleapis.com/intro_alphatek/reports/PT%20inter.png" alt="Intermediate PT Report"><h4 class="report-title text-accent">Intermediate PT</h4><p class="report-description">For the regular gym member.</p></div>
-                        <div class="report-card" data-report-id="running-screening"><img src="https://storage.googleapis.com/intro_alphatek/reports/Return%20to%20play.png" alt="Running Screening Report"><h4 class="report-title text-accent">Running Screening</h4><p class="report-description">For the dedicated runner.</p></div>
-                        <div class="report-card" data-report-id="senior-wellness"><img src="https://storage.googleapis.com/intro_alphatek/reports/senior%20raport.png" alt="Senior Wellness Report"><h4 class="report-title text-accent">Senior Wellness</h4><p class="report-description">For the active senior.</p></div>
-                        
-                        <!-- Duplicated Set -->
-                        <div class="report-card" data-report-id="performance"><img src="https://storage.googleapis.com/intro_alphatek/reports/Handball.png" alt="Performance Report"><h4 class="report-title text-accent">Performance Report</h4><p class="report-description">For any athlete in any sport.</p></div>
-                        <div class="report-card" data-report-id="advanced-pt"><img src="https://storage.googleapis.com/intro_alphatek/reports/PT%20advanced.png" alt="Advanced PT Report"><h4 class="report-title text-accent">Advanced PT</h4><p class="report-description">For the experienced strength enthusiast.</p></div>
-                        <div class="report-card" data-report-id="basic-pt"><img src="https://storage.googleapis.com/intro_alphatek/reports/PT%20basic.png" alt="Basic PT Report"><h4 class="report-title text-accent">Basic PT</h4><p class="report-description">For the fitness newcomer.</p></div>
-                        <div class="report-card" data-report-id="intermediate-pt"><img src="https://storage.googleapis.com/intro_alphatek/reports/PT%20inter.png" alt="Intermediate PT Report"><h4 class="report-title text-accent">Intermediate PT</h4><p class="report-description">For the regular gym member.</p></div>
-                        <div class="report-card" data-report-id="running-screening"><img src="https://storage.googleapis.com/intro_alphatek/reports/Return%20to%20play.png" alt="Running Screening Report"><h4 class="report-title text-accent">Running Screening</h4><p class="report-description">For the dedicated runner.</p></div>
-                        <div class="report-card" data-report-id="senior-wellness"><img src="https://storage.googleapis.com/intro_alphatek/reports/senior%20raport.png" alt="Senior Wellness Report"><h4 class="report-title text-accent">Senior Wellness</h4><p class="report-description">For the active senior.</p></div>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="modules-section">
+            <section id="modules" class="modules-section">
                 <div class="container">
                     <div class="section-divider"></div>
-                    <h2 class="section-title">Powerful training modules to boost personal trainers' expertise</h2>
+                    <h2 class="section-title">Powerful modules to improve performance</h2> 
                     <div class="module-explorer">
                         <div class="module-nav">
                             <button class="module-btn" data-module="squat">Squat</button>
                             <button class="module-btn" data-module="squat-analytics">Squat Analytics</button>
-                            <button class="module-btn" data-module="pull">Pull</button>
+                            <button class="module-btn" data-module="pull">Isometric Mid-thigh Pull</button>
                             <button class="module-btn" data-module="jump">Jump</button>
                             <button class="module-btn" data-module="balance">Balance</button>
                             <button class="module-btn" data-module="monitor">Monitor</button>
@@ -814,9 +559,7 @@
                         </div>
                         <div class="module-content">
                             <div id="module-content-area" class="module-content-area">
-                                <div class="module-image">
-                                    <img id="module-img" src="" alt="Module Screenshot">
-                                </div>
+                                <div class="module-image"><img id="module-img" src="" alt="Screenshot of Alphatek module"></div>
                                 <div class="module-text">
                                     <h3 id="module-title"></h3>
                                     <p id="module-description"></p>
@@ -827,76 +570,125 @@
                     </div>
                 </div>
             </section>
+
+             <section id="research" class="research-section">
+                <div class="container">
+                    <div class="section-divider"></div>
+                    <h2>What the research says about performance</h2>
+                    <div class="research-table-container">
+                        <table class="research-table">
+                            <thead>
+                                <tr>
+                                    <th>Study</th>
+                                    <th>Key finding for teams</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>10-week squat intervention – Traffic-Light feedback (TL) vs. plain velocity feedback (VF)</td>
+                                    <td>TL athletes completed <strong>29% more reps</strong> per session, gained <strong>+5.9% 1RM</strong> (vs. +3.1%) and jumped <strong>+11% CMJ height</strong> (vs. +5%).</td>
+                                </tr>
+                                 <tr>
+                                    <td>Force-plate validity study</td>
+                                    <td>Mass-normalised metrics (jump height, acceleration) showed <strong>bias < 0.3%</strong> vs. gold-standard platform – confidence that numbers reflect true changes, not noise.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="why-it-matters" class="floor-benefits-section">
+                <div class="container">
+                    <div class="section-divider"></div>
+                    <h2>Why It Matters on the Floor</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-card fade-in">
+                            <div class="benefit-icon"><i class="fas fa-chart-bar"></i></div>
+                            <h4>Instant, Objective Insights</h4>
+                            <p>Alphatek turns every exercise into clear, actionable data—measuring force, velocity, strength, power, and biomechanics. Eliminate guesswork and confidently guide training decisions, rehabilitation plans, and talent evaluation.</p>
+                        </div>
+                        <div class="benefit-card fade-in">
+                            <div class="benefit-icon"><i class="fas fa-toolbox"></i></div>
+                            <h4>All-in-One Performance Solution</h4>
+                            <p>From isometric strength and velocity-based training to Nordic hamstring assessments, Alphatek delivers multiple training and testing methods seamlessly in one integrated system—simplifying your workflow and enhancing athlete oversight.</p>
+                        </div>
+                        <div class="benefit-card fade-in">
+                            <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                            <h4>Proactive Injury Prevention & Rehabilitation</h4>
+                            <p>Identify vulnerabilities early with targeted assessments for injury-prone areas. Track rehabilitation objectively, monitor recovery progress precisely, and confirm return-to-play readiness, significantly reducing the risk of re-injury.</p>
+                        </div>
+                        <div class="benefit-card fade-in">
+                            <div class="benefit-icon"><i class="fas fa-users-cog"></i></div>
+                            <h4>Tailored, Effective Training</h4>
+                            <p>Pinpoint individual strengths and weaknesses across speed, strength, agility, and power metrics. Customise your programming to maximise athlete potential, accurately monitor improvements, and continuously optimise training loads.</p>
+                        </div>
+                        <div class="benefit-card fade-in">
+                            <div class="benefit-icon"><i class="fas fa-stopwatch"></i></div>
+                            <h4>Quick Setup, Reliable Results</h4>
+                            <p>Designed for ease and efficiency—rapid setup, instant feedback, and consistent, trustworthy data. Save valuable time, improve training efficiency, and enable meaningful, athlete-to-athlete comparisons season after season.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
         
-        <section class="case-studies-section">
+        <section id="success-stories" class="case-studies-section">
             <div class="container">
-                <h2>Success Stories</h2>
+                <h2>Success Stories from the Field</h2>
             </div>
             <div class="case-studies-container">
                 <div class="case-study-card">
-                    <div class="case-study-video-container">
-                        <video autoplay muted loop playsinline>
-                            <source src="https://storage.googleapis.com/intro_alphatek/screen%20photos/Fysio.v4.mov" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
+                    <div class="case-study-image-container"><img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="Photo of a head coach"></div>
                     <div class="case-study-text">
-                        <blockquote>"Since implementing Alphatek, my client retention has skyrocketed. The data provides undeniable proof of progress, and that keeps them motivated and committed. I'm not just selling training sessions anymore; I'm selling results."</blockquote>
-                        <p class="author">Jonas L.</p>
-                        <p class="role">Personal Trainer</p>
+                        <blockquote>"With Alphatek, we can finally manage intensity in the weight room objectively. The players are more engaged, and we see a clear transfer to on-field performance. It's an invaluable tool in a hectic season."</blockquote>
+                        <p class="author">Anders H.</p>
+                        <p class="role">Head Coach, Elite Series</p>
                     </div>
                 </div>
                 <div class="case-study-card">
-                    <div class="case-study-image-container">
-                        <img src="https://placehold.co/600x800/333/fff?text=Gym+Owner" alt="Gym Owner Maria">
-                    </div>
+                    <div class="case-study-image-container"><img src="https://images.unsplash.com/photo-1579493933751-c4b699a7a195?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="Photo of a performance coach"></div>
                     <div class="case-study-text">
-                        <blockquote>"Adding Alphatek was the best business decision I've made. We've introduced a new revenue stream by selling advanced testing reports, and our trainers are more confident and effective than ever. It sets us apart from the competition."</blockquote>
-                        <p class="author">Maria H.</p>
-                        <p class="role">Gym Owner</p>
+                        <blockquote>"The ability to quickly test jump height and reactive strength on the entire squad gives me the data I need to individualize programs and prevent injuries. We catch fatigue much earlier than before."</blockquote>
+                        <p class="author">Maria L.</p>
+                        <p class="role">Performance Coach, Sports Academy</p>
                     </div>
                 </div>
-                    <div class="case-study-card">
-                    <div class="case-study-image-container">
-                        <img src="https://placehold.co/600x800/444/fff?text=Athlete" alt="Athlete Silje">
-                    </div>
+                <div class="case-study-card">
+                    <div class="case-study-image-container"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Photo of an athlete training"></div>
                     <div class="case-study-text">
-                        <blockquote>"The level of detail from the Running Screening module is incredible. We identified a slight imbalance that was holding me back, and now my performance has never been better. It's a game-changer for any serious athlete."</blockquote>
-                        <p class="author">Silje O.</p>
-                        <p class="role">Competitive Runner</p>
-                    </div>
-                </div>
-                    <div class="case-study-card">
-                    <div class="case-study-image-container">
-                        <img src="https://placehold.co/600x800/555/fff?text=Personal+Trainer" alt="PT Lars">
-                    </div>
-                    <div class="case-study-text">
-                        <blockquote>"I use the Balance and Senior Wellness modules with my older clients, and the results are amazing. They feel more secure and confident, and I have concrete data to show their families. It has added immense value to my services."</blockquote>
-                        <p class="author">Lars E.</p>
-                        <p class="role">Personal Trainer & Senior Specialist</p>
+                        <blockquote>"Getting instant feedback on every single rep is a game-changer. I know exactly where I'm at, and it motivates me to push a little extra every single session."</blockquote>
+                        <p class="author">Kristoffer N.</p>
+                        <p class="role">Professional Athlete</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section id="product" class="product-section">
+            <div class="container">
+                <div class="product-image">
+                    <img src="https://storage.googleapis.com/intro_alphatek/Medium%20Transparent.png" alt="Alphatek Product">
+                </div>
+                <div class="product-text">
+                    <h2>Explore the AlphaPWR Platform</h2>
+                    <p>Get a closer look at the hardware that powers your results. Explore the AlphaPWR force plate and its core features in detail.</p>
+                    <a href="#" class="btn-explore">Explore the Product</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="book-demo" class="cta-final-section">
+            <div class="container">
+                <h2>Ready to elevate your team's performance?</h2>
+                <p class="bottom-line">AlphaPWR delivers the complete force-velocity-power picture in real time, wrapped in a UI athletes actually use. For high-performance environments seeking objective monitoring and motivation in the same device, it turns the floor itself into a coach—and backs the feedback with lab-level accuracy.</p>
+                <p>See for yourself how Alphatek can transform training for your team. Book a no-obligation demo with one of our experts today.</p>
+                <a href="#" class="cta-button-large">Book a Demo Now</a>
+            </div>
+        </section>
+
     </main>
-    
-    <div class="report-modal-overlay" id="report-modal-overlay">
-        <div class="report-modal-content">
-            <button class="close-report-modal" aria-label="Close report">&times;</button>
-            <div class="report-modal-image-container">
-                <img id="modal-report-image" src="" alt="Enlarged report">
-            </div>
-            <div class="report-modal-text-container">
-                <h3 id="modal-report-title"></h3>
-                <p id="modal-report-explanation"></p>
-                <h4>Test Battery</h4>
-                <ul id="modal-report-tests"></ul>
-            </div>
-        </div>
-    </div>
-    
+        
     <footer>
         <a href="#" class="footer-logo-link" aria-label="Red Dot Design Award">
              <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
@@ -911,298 +703,123 @@
     </footer>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // --- DATA FOR REPORT MODALS ---
-        const reportData = {
-            'performance': {
-                title: 'Performance Report',
-                explanation: "This battery is designed to measure explosive power, reactivity, and maximal strength, crucial metrics for improving on-court performance, jump height, and sprint speed. It's intended for any athlete in any sport.",
-                tests: ['IMTP', 'Countermovement Jump', 'Reactive Strength Index', 'Repetitive CMJ', 'Lateral Stability']
-            },
-            'advanced-pt': {
-                title: 'Advanced PT Report',
-                explanation: 'Similar to Basic and Intermediate PT, but for people with considerable training experience, this report complements the Intermediate PT. It provides more specific strength and function testing, as well as 1-RM estimation.',
-                tests: ['Double Leg CMJ', 'Single Leg CMJ (Left/Right)', 'Force-Velocity Profile', 'IMTP']
-            },
-            'basic-pt': {
-                title: 'Basic PT Report',
-                explanation: 'For beginners, a fun and easy way to provide motivation with simple tests meant to track progress at the start of their training period. The test is designed to work with any strength training program, which will show progression in these tests.',
-                tests: ['Isometric Mid-thigh Pull', 'Jump for lower body strength and function', 'Balance test (right and left leg)']
-            },
-            'intermediate-pt': {
-                title: 'Intermediate PT Report',
-                explanation: 'Aimed at people who have been training at the gym for a while. This report measures strength in the lower and upper body more thoroughly.',
-                tests: ['Balance for muscular endurance', 'Isopull', 'Static Pushups Row', 'Squat with 70% of bodyweight']
-            },
-            'running-screening': {
-                title: 'Running Screening',
-                explanation: 'Meant for overall performance and injury prevention for runners who want to stay strong and healthy and see their strength progression. This also works to see progress after a lower-body injury since it compares right and left, helping to determine when it is safe to return to any sport.',
-                tests: ['Maximal CMJ', 'Repetitive CMJ', 'Reactive Strength Index (RSI)', 'Side to side test']
-            },
-            'senior-wellness': {
-                title: 'Senior Wellness Report',
-                explanation: 'Intended for people over 60, its main focus is to test key characteristics to assess fall risk. This test measures balance, strength, and function, three crucial abilities to stay safe and avoid falls. Training these abilities has been shown to help the elderly maintain their physical independence. Your result is compared with others aged 65 to 83.',
-                tests: ['4 Balance Tests (Feet together, One foot, etc.)', '3 Function Tests (Jump, Squat Depth/Speed)', '4 Strength Tests (Pushups, IMTP, etc.)']
-            }
-        };
+        document.addEventListener('DOMContentLoaded', () => {
+    
+            const moduleData = {
+                'squat': { title: 'VBT That Scales', description: "Forget traditional RMs and RIR. Alphatek's VBT provides dynamic load management and objective velocity drop, ensuring optimal effort and quality in every squat. This instant feedback keeps training fun and highly engaging for athletes, scientifically balancing impressive performance boosts with long-term resilience.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/1.png', learnMore: true },
+                'squat-analytics': { title: 'Precision Squat Biomechanics', description: "Go beyond basic observation. Alphatek's advanced analytics offers unparalleled insights into squat technique: monitor right-left and front-to-back balance to eliminate inefficiencies, expose sticking points that hinder progress, and confirm accurate squat depth. This data-driven clarity empowers you to optimize performance gains and proactively fortify athlete resilience, ensuring every movement contributes to sustainable success.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/2.png', learnMore: false },
+                'pull': { title: 'Isometric Mid-thigh Pull', description: "Gain precise insights into your athletes' pulling strength with Alphatek's module. Its design ensures a controlled, low-risk assessment environment, allowing for maximal effort with minimal strain. The immediate feedback captivates athletes, making testing both fun and powerfully engaging, which translates to enhanced performance and robust resilience without compromise.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/3.png', learnMore: false },
+                'jump': { title: 'Precision Power Insights', description: "Dive deep into vertical performance. Alphatek offers a variety of precise jump tests, integrating advanced metrics like TIA and TOV algorithms for precise calculations, RSI for the stretch-shortening cycle, and ground contact time for reactivity. This provides all the essential data you'd expect from a forceplate. Leverage these insights to optimize explosive performance and build lasting athlete resilience with real time feedback.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/4.png', learnMore: false },
+                'balance': { title: 'Balance', description: 'Balance is a key physical attribute that is often overlooked. This module helps with daily function and can be used for both engaging testing and training.', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/5.png', learnMore: false },
+                'monitor': { title: 'Monitor', description: 'Use this open module for creative tests like push-ups to get an immediate measure of strength. Make balance training more fun with real-time feedback of the center of pressure (COP).', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/6.png', learnMore: false },
+                'nordic-hamstrings': { title: 'Nordic Hamstrings', description: 'Get real-time feedback on the quality of Nordic Hamstrings training. Engaging, easy to use, and proven highly effective for preventing injuries in high-speed sports.', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/7.png', learnMore: false }
+            };
+            
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+            const upgradeTitle = document.getElementById('upgrade-title');
+            
+            function typeWords(element, wordsArray, speed) {
+                let i = 0;
+                element.innerHTML = '';
+                element.classList.add('typing-cursor');
 
-        const moduleData = {
-            'squat': {
-                title: 'Become a Squat Expert',
-                description: 'Our AI-driven module helps you guide clients to perfection. Choose the ideal load for strength gains, adjust intensity based on daily readiness, and provide real-time feedback to push them to better results.',
-                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/1.png',
-                learnMore: true
-            },
-            'squat-analytics': {
-                title: 'Become an Expert in Squat Technique',
-                description: 'It has never been easier to give clients a quick analysis of their squat technique. AI-powered movement recognition provides the instant, professional feedback clients love, helping to detect imbalances under load.',
-                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/2.png',
-                learnMore: false
-            },
-            'pull': {
-                title: 'Test Your Strength, Quick and Easy',
-                description: 'One of our most engaging modules. With gamification inspired by viral trends, it motivates clients of all levels to test their strength by comparing it to an animal. A fun and powerful tool for everyone.',
-                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/3.png',
-                learnMore: false
-            },
-            'jump': {
-                title: 'Functional Strength Test and Training',
-                description: 'Get real-time feedback on jump height to optimize functional training for seniors or power training for athletes. A perfect, motivating, and easy-to-use test for lower body strength.',
-                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/4.png',
-                learnMore: false
-            },
-            'balance': {
-                title: 'Check Your Balance, Made for Everyone',
-                description: 'From seniors to young athletes, balance is a key physical feature that is often forgotten. This module helps with daily function and can be used for both engaging testing and training.',
-                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/5.png',
-                learnMore: false
-            },
-            'monitor': {
-                title: 'Explore Your Creativity',
-                description: 'Use this open-ended module for tests like push-ups to get an immediate measure of strength. Make balance training more fun with real-time feedback of the center of pressure (COP), including a built-in circle test.',
-                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/6.png',
-                learnMore: false
-            },
-            'nordic-hamstrings': {
-                title: 'Training Hamstrings Has Never Been This Fun',
-                description: 'Get real-time feedback on the quality of Nordic Hamstrings training. It\'s engaging, easy to use, and proven to be highly effective in preventing injuries in fast-paced sports.',
-                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/7.png',
-                learnMore: false
-            }
-        };
-
-
-        // --- GENERAL PAGE SETUP ---
-        const heroTextGroup = document.querySelector('.hero-text-group');
-        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-        const upgradeTitle = document.getElementById('upgrade-title');
-
-        const heroObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    heroTextGroup.classList.add('is-visible');
+                function type() {
+                    if (i < wordsArray.length) {
+                        if (wordsArray[i].startsWith('<')) {
+                            element.innerHTML += wordsArray[i];
+                        } else {
+                            element.innerHTML += wordsArray[i] + ' ';
+                        }
+                        i++;
+                        setTimeout(type, speed);
+                    } else {
+                        element.classList.remove('typing-cursor');
+                    }
                 }
-            });
-        }, { threshold: 0.1 });
-
-        if (heroTextGroup) {
-            heroObserver.observe(heroTextGroup);
-        }
-        
-        // --- ANIMATED HEADLINE LOGIC (UPDATED) ---
-        const animatedHeadline = document.getElementById('animated-headline');
-        if (animatedHeadline) {
-            const phrases = [
-                "Faster insights",
-                "Feedback that motivates",
-                "Better decisions"
-            ];
-            let currentIndex = 0;
-            animatedHeadline.innerHTML = phrases[currentIndex];
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % phrases.length;
-                animatedHeadline.style.opacity = 0;
-                setTimeout(() => {
-                    animatedHeadline.innerHTML = phrases[currentIndex];
-                    animatedHeadline.style.opacity = 1;
-                }, 500); 
-            }, 3000); 
-        }
-
-        // --- TYPEWRITER EFFECT (WORD BY WORD) ---
-        function typeWords(element, wordsArray, speed) {
-            let i = 0;
-            element.innerHTML = '';
-            element.classList.add('typing-cursor');
-
-            function type() {
-                if (i < wordsArray.length) {
-                    element.innerHTML += wordsArray[i];
-                    i++;
-                    setTimeout(type, speed);
-                } else {
-                    element.classList.remove('typing-cursor');
-                }
-            }
-            type();
-        }
-
-        const upgradeTitleObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    // TYPEWRITER TEXT UPDATED HERE
-                    const words = [
-                        'Test ', 'the ', 'whole ', 'team ', 'quickly ', 'and ', 'get ', '<span class="text-accent">direct feedback</span> ', 'that ', 'improves ', 'results. ',
-                        ' <span class="text-accent">Save money</span> ', 'with ', 'one ', 'tool ', 'that ', 'combines: ', 'velocity-based ', 'training, ', 'force ', 'plate ', 'testing, ', 'and ', 'Nordic ', 'hamstring&nbsp;testing—',
-                        '<br>',
-                        '<span class="text-accent">science-backed</span> ', 'and ', 'built ', 'for ', 'serious ', 'performance.'
-                    ];
-                    typeWords(upgradeTitle, words, 100); 
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.8 });
-
-        if (upgradeTitle) {
-            upgradeTitleObserver.observe(upgradeTitle);
-        }
-
-        // --- MOBILE NAVIGATION TOGGLE ---
-        if (mobileNavToggle) {
-            mobileNavToggle.addEventListener('click', () => {
-                document.body.classList.toggle('mobile-nav-open');
-            });
-        }
-        
-        // --- REPORT MODAL LOGIC ---
-        const reportModalOverlay = document.getElementById('report-modal-overlay');
-        const reportCards = document.querySelectorAll('.report-card');
-        const modalImage = document.getElementById('modal-report-image');
-        const modalTitle = document.getElementById('modal-report-title');
-        const modalExplanation = document.getElementById('modal-report-explanation');
-        const modalTestList = document.getElementById('modal-report-tests');
-        const closeReportModalBtn = document.querySelector('.close-report-modal');
-
-        function openReportModal(reportId) {
-            const data = reportData[reportId];
-            if (!data) return;
-
-            const clickedCard = document.querySelector(`.report-card[data-report-id="${reportId}"]`);
-            const imgSrc = clickedCard.querySelector('img').src;
-
-            modalImage.src = imgSrc;
-            modalImage.alt = data.title;
-            modalTitle.textContent = data.title;
-            modalExplanation.textContent = data.explanation;
-
-            modalTestList.innerHTML = '';
-            data.tests.forEach(test => {
-                const li = document.createElement('li');
-                li.textContent = test;
-                modalTestList.appendChild(li);
-            });
-
-            document.body.classList.add('modal-open');
-            reportModalOverlay.classList.add('is-visible');
-        }
-
-        function closeReportModal() {
-            document.body.classList.remove('modal-open');
-            reportModalOverlay.classList.remove('is-visible');
-        }
-
-        reportCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const reportId = card.dataset.reportId;
-                openReportModal(reportId);
-            });
-        });
-
-        if (closeReportModalBtn) {
-            closeReportModalBtn.addEventListener('click', closeReportModal);
-        }
-        if (reportModalOverlay) {
-            reportModalOverlay.addEventListener('click', (e) => {
-                if (e.target === reportModalOverlay) {
-                    closeReportModal();
-                }
-            });
-        }
-        
-        // --- INTERACTIVE MODULES ---
-        const moduleButtons = document.querySelectorAll('.module-btn');
-        const moduleContentArea = document.getElementById('module-content-area');
-        const moduleTitleEl = document.getElementById('module-title');
-        const moduleDescriptionEl = document.getElementById('module-description');
-        const moduleImageEl = document.getElementById('module-img');
-        const moduleLearnMoreEl = document.getElementById('module-learn-more');
-        let pinnedModuleId = 'squat';
-
-        function updateModuleContent(moduleId, isPinning = false) {
-            const data = moduleData[moduleId];
-            if (!data) return;
-
-            if (isPinning) {
-                pinnedModuleId = moduleId;
+                type();
             }
 
-            moduleContentArea.classList.remove('active');
-
-            setTimeout(() => {
-                moduleTitleEl.textContent = data.title;
-                moduleDescriptionEl.textContent = data.description;
-                moduleImageEl.src = data.imageUrl;
-                moduleImageEl.alt = data.title;
-                
-                if (data.learnMore) {
-                    moduleLearnMoreEl.style.display = 'inline-block';
-                } else {
-                    moduleLearnMoreEl.style.display = 'none';
-                }
-                
-                moduleButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    if(btn.dataset.module === pinnedModuleId) {
-                        btn.classList.add('active');
+            const upgradeTitleObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        const words = [
+                            'Science-backed ', 'testing ', 'and ', 'training ', 'that ', 'boosts ', 'performance,', '<br>', 'prevents ', 'injuries, ', 'and ', 'ignites ', 'athlete ', 'engagement.'
+                        ];
+                        typeWords(upgradeTitle, words, 60); 
+                        observer.unobserve(entry.target); 
                     }
                 });
+            }, { threshold: 0.8 });
 
-                moduleContentArea.classList.add('active');
-            }, 200);
-        }
-
-        moduleButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const moduleId = button.dataset.module;
-                updateModuleContent(moduleId, true); 
-            });
-
-             button.addEventListener('mouseenter', () => {
-                const moduleId = button.dataset.module;
-                updateModuleContent(moduleId, false);
-            });
-        });
-
-        const moduleNav = document.querySelector('.module-nav');
-        if (moduleNav) {
-            moduleNav.addEventListener('mouseleave', () => {
-                if (pinnedModuleId) {
-                    updateModuleContent(pinnedModuleId, false);
-                }
-            });
-        }
-
-        updateModuleContent('squat', true);
-
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape" && reportModalOverlay.classList.contains('is-visible')) {
-                closeReportModal();
+            if (upgradeTitle) {
+                upgradeTitleObserver.observe(upgradeTitle);
             }
-        });
-    });
-    </script>
+            
+            if (mobileNavToggle) {
+                mobileNavToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('mobile-nav-open');
+                });
+            }
+            
+            const moduleButtons = document.querySelectorAll('.module-btn');
+            const moduleContentArea = document.getElementById('module-content-area');
+            const moduleTitleEl = document.getElementById('module-title');
+            const moduleDescriptionEl = document.getElementById('module-description');
+            const moduleImageEl = document.getElementById('module-img');
+            const moduleLearnMoreEl = document.getElementById('module-learn-more');
+            let pinnedModuleId = 'squat';
 
+            function updateModuleContent(moduleId) {
+                const data = moduleData[moduleId];
+                if (!data) return;
+
+                moduleContentArea.classList.remove('active');
+
+                setTimeout(() => {
+                    moduleTitleEl.textContent = data.title;
+                    moduleDescriptionEl.textContent = data.description;
+                    moduleImageEl.src = data.imageUrl;
+                    moduleImageEl.alt = `Screenshot of the ${data.title} module`;
+                    
+                    if (data.learnMore) {
+                        moduleLearnMoreEl.style.display = 'inline-block';
+                    } else {
+                        moduleLearnMoreEl.style.display = 'none';
+                    }
+                    moduleContentArea.classList.add('active');
+                }, 200);
+            }
+
+            moduleButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const moduleId = button.dataset.module;
+                    pinnedModuleId = moduleId;
+
+                    moduleButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    updateModuleContent(moduleId);
+                });
+            });
+
+            updateModuleContent(pinnedModuleId);
+            document.querySelector(`.module-btn[data-module="${pinnedModuleId}"]`).classList.add('active');
+            
+            const benefitCards = document.querySelectorAll('.benefit-card.fade-in');
+            const benefitObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-revealed');
+                        benefitObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            benefitCards.forEach(card => {
+                benefitObserver.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>
