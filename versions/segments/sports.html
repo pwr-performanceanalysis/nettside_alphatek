@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alphatek - For Sports Teams</title> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
             --color-brand-black: #0D0D0D;
@@ -56,7 +56,7 @@
         .main-nav-link.cta-button { background-color: var(--color-brand-accent); color: var(--color-brand-white); border-radius: 50px; padding: 8px 25px; margin-left: 10px; transition: background-color 0.3s ease; }
         .main-nav-link.cta-button:hover { background-color: rgb(60, 150, 100); text-decoration: none; color: var(--color-brand-white); }
 
-        /* Dropdown Menu Styles (Transferred from old file) */
+        /* Dropdown Menu Styles */
         .dropdown-menu {
             position: absolute;
             left: 50%;
@@ -66,7 +66,7 @@
             -webkit-backdrop-filter: blur(25px);
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-            min-width: 160px;
+            min-width: 180px;
             z-index: 1010;
             padding: 8px 0;
             visibility: hidden;
@@ -399,7 +399,7 @@
 
     <header>
         <div class="header-inner-container">
-             <div class="logo-area">
+            <div class="logo-area">
                 <a href="#" class="logo">
                     <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
                 </a>
@@ -408,8 +408,20 @@
                 <ul class="main-nav-list">
                     <li class="main-nav-item"><a href="#features" class="main-nav-link">Advantages</a></li>
                     <li class="main-nav-item"><a href="#modules" class="main-nav-link">Modules</a></li>
-                    <li class="main-nav-item"><a href="#product" class="main-nav-link">Product</a></li>
+                    <li class="main-nav-item">
+                        <a href="#" class="main-nav-link">Product <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="product-page.html">Product Page</a>
+                            <a href="instructions.html">Instructions</a>
+                        </div>
+                    </li>
                     <li class="main-nav-item"><a href="#success-stories" class="main-nav-link">Success Stories</a></li>
+                    <li class="main-nav-item">
+                        <a href="#" class="main-nav-link">Resources <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="../research/library.html">Alphatek Research Library</a>
+                        </div>
+                    </li>
                     <li class="main-nav-item">
                         <a href="#" class="main-nav-link">Company <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
@@ -431,8 +443,11 @@
     <nav class="mobile-nav-menu">
         <a href="#features">Advantages</a>
         <a href="#modules">Modules</a>
-        <a href="#product">Product</a>
+        <a href="product-page.html">Product Page</a>
+        <a href="instructions.html">Instructions</a>
         <a href="#success-stories">Success Stories</a>
+        <div class="mobile-divider"></div>
+        <a href="../research/library.html">Alphatek Research Library</a>
         <div class="mobile-divider"></div>
         <a href="#">Blog</a>
         <a href="#">About Us</a>
@@ -673,7 +688,7 @@
                 <div class="product-text">
                     <h2>Explore the AlphaPWR Platform</h2>
                     <p>Get a closer look at the hardware that powers your results. Explore the AlphaPWR force plate and its core features in detail.</p>
-                    <a href="#" class="btn-explore">Explore the Product</a>
+                    <a href="product-page.html" class="btn-explore">Explore the Product</a>
                 </div>
             </div>
         </section>
