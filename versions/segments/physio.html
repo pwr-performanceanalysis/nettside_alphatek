@@ -105,7 +105,7 @@
 
         /* General Sections */
         .scrollable-content { position: relative; z-index: 1; background-color: var(--color-brand-black); flex-grow: 1; }
-        
+       
         /* UPDATED HERO */
         .hero-section {
             position: relative;
@@ -143,7 +143,7 @@
             animation: fadeInFromBottomHeroContent 0.7s ease-out forwards 1s;
         }
         @keyframes fadeInFromBottomHeroContent { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        
+       
         .hero-headline {
             font-size: clamp(2.8rem, 5.5vw, 4rem);
             color: var(--color-brand-white);
@@ -206,10 +206,14 @@
         .upgrade-section { background-color: var(--color-brand-black); padding: 80px 20px; text-align: center; display: flex; align-items: center; justify-content: center; }
         .upgrade-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); max-width: 950px; margin: 0 auto; line-height: 1.4; font-weight: var(--font-weight-light); color: var(--color-brand-white); display: inline-block; opacity: 0; min-height: 130px; }
         .upgrade-title.is-visible { opacity: 1; }
+        .upgrade-title b {
+            font-weight: var(--font-weight-bold);
+            color: var(--color-brand-white);
+        }
         .typing-cursor::after { content: '|'; display: inline-block; animation: blink 0.7s infinite; color: var(--color-grey-light); }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        
+       
         /* ===== START: NEW FEATURES SECTION (V2 STYLE) ===== */
         .features-section { 
             padding: 100px 20px; 
@@ -484,7 +488,7 @@
             transition: color 0.3s ease;
         }
         .close-report-modal:hover { color: var(--color-brand-white); }
-        
+       
         /* New Modules Section */
         .modules-section .section-title {
             text-align: center;
@@ -775,6 +779,18 @@
         }
         /* ======== END: NEW RESEARCH CAROUSEL SECTION ======== */
 
+        /* ======== START: NEW FINAL CTA SECTION ======== */
+        .final-cta-section {
+            background-color: var(--color-grey-darkest);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .final-cta-section h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            margin-bottom: 1.5em;
+        }
+        /* ======== END: NEW FINAL CTA SECTION ======== */
+
         @media(max-width:992px){
             .main-nav { display: none; }
             .mobile-nav-toggle { display: block; }
@@ -785,7 +801,7 @@
         }
         @media(max-width:768px){
             .hero-headline{font-size:1.8rem;text-align:left;} 
-            .upgrade-section, .features-section, .reports-section, .modules-section, .case-studies-section, .product-section, .research-carousel-section {padding: 60px 20px;}
+            .upgrade-section, .features-section, .reports-section, .modules-section, .case-studies-section, .product-section, .research-carousel-section, .final-cta-section {padding: 60px 20px;}
             .upgrade-section .upgrade-title{font-size:1.4rem; min-height: 0;}
             .footer-logo-link { display: none; }
             .header-inner-container { justify-content: space-between; }
@@ -835,10 +851,10 @@
                     <li class="main-nav-item">
                         <a href="#" class="main-nav-link">Company <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
-                            <a href="#">About Us</a>
+                            <a href="../About us/about_us.html">About Us</a>
                         </div>
                     </li>
-                    <li class="main-nav-item"><a href="#book-demo" class="main-nav-link cta-button">Book a Demo</a></li>
+                    <li class="main-nav-item"><a href="#contact" class="main-nav-link cta-button">Contact Us</a></li>
                 </ul>
             </nav>
             <button class="mobile-nav-toggle" aria-label="Toggle navigation">
@@ -847,7 +863,7 @@
             </button>
         </div>
     </header>
-    
+   
     <nav class="mobile-nav-menu">
         <!-- This mobile nav is now identical to the sports-team page -->
         <a href="#features">Advantages</a>
@@ -860,11 +876,11 @@
         <a href="#">Blog</a>
         <a href="#success-stories">Case Studies</a>
         <div class="mobile-divider"></div>
-        <a href="#">About Us</a>
+        <a href="../About us/about_us.html">About Us</a>
         <div class="mobile-divider"></div>
-        <a href="#book-demo">Book a Demo</a>
+        <a href="#contact">Contact Us</a>
     </nav>
-    
+   
     <span class="site-tagline">Designed in Norway</span>
 
     <main class="scrollable-content">
@@ -879,10 +895,10 @@
                 <h1 class="hero-headline">
                     <div class="word-rotator-wrapper">
                         <div class="word-rotator">
-                           <span>Objective measurements.</span>
-                           <span>Happier patients.</span>
-                           <span>Healthier business.</span>
-                           <span>Objective measurements.</span>
+                            <span>Objective measurements.</span>
+                            <span>Happier patients.</span>
+                            <span>Healthier business.</span>
+                            <span>Objective measurements.</span>
                         </div>
                     </div>
                 </h1>
@@ -899,13 +915,13 @@
                 </h2>
             </div>
         </section>
-        
+       
         <section id="features" class="features-section">
             <div class="container">
                 <div class="features-grid">
                     <div class="feature-card-v2">
                         <div class="card-background">
-                            <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop" alt="Trainer with client">
+                            <img src="https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.37.png" alt="Trainer with client">
                         </div>
                         <div class="feature-overlay"></div>
                         <div class="feature-content-v2">
@@ -920,7 +936,7 @@
                     </div>
                     <div class="feature-card-v2">
                         <div class="card-background">
-                            <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?q=80&w=1988&auto=format&fit=crop" alt="Person feeling confident in a gym">
+                            <img src="https://storage.googleapis.com/files_webpage/GYM%20page%20pictures/Monika%20josefine.png" alt="Person feeling confident in a gym">
                         </div>
                         <div class="feature-overlay"></div>
                         <div class="feature-content-v2">
@@ -935,7 +951,7 @@
                     </div>
                     <div class="feature-card-v2">
                         <div class="card-background">
-                            <img src="https://images.unsplash.com/photo-1549476464-373922144545?q=80&w=1964&auto=format&fit=crop" alt="Data on a screen">
+                            <img src="https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.18.png" alt="Data on a screen">
                         </div>
                         <div class="feature-overlay"></div>
                         <div class="feature-content-v2">
@@ -963,7 +979,7 @@
                         <div class="report-card" data-report-id="return-to-sport"><img src="https://storage.googleapis.com/intro_alphatek/reports/Return%20to%20play.png" alt="Return to Sport Report"><h4 class="report-title text-accent">Return to Sport</h4><p class="report-description">Comprehensive readiness evaluation.</p></div>
                         <div class="report-card" data-report-id="rehab-initial"><img src="https://storage.googleapis.com/intro_alphatek/reports/PT%20basic.png" alt="Phase 1 & 2 Rehab Report"><h4 class="report-title text-accent">Phase 1 & 2 Rehab</h4><p class="report-description">Gentle, early-stage progress tracking.</p></div>
                         <div class="report-card" data-report-id="shoulder-screening"><img src="https://storage.googleapis.com/intro_alphatek/reports/shoulder.png" alt="Shoulder Screening Report"><h4 class="report-title text-accent">Shoulder Screening</h4><p class="report-description">Assess readiness for overhead loading.</p></div>
-                        
+                       
                         <div class="report-card" data-report-id="senior-fitness"><img src="https://storage.googleapis.com/intro_alphatek/reports/senior%20raport.png" alt="Senior Fitness Test Report"><h4 class="report-title text-accent">Senior Fitness Test</h4><p class="report-description">Evidence-based fall risk assessment.</p></div>
                         <div class="report-card" data-report-id="return-to-sport"><img src="https://storage.googleapis.com/intro_alphatek/reports/Return%20to%20play.png" alt="Return to Sport Report"><h4 class="report-title text-accent">Return to Sport</h4><p class="report-description">Comprehensive readiness evaluation.</p></div>
                         <div class="report-card" data-report-id="rehab-initial"><img src="https://storage.googleapis.com/intro_alphatek/reports/PT%20basic.png" alt="Phase 1 & 2 Rehab Report"><h4 class="report-title text-accent">Phase 1 & 2 Rehab</h4><p class="report-description">Gentle, early-stage progress tracking.</p></div>
@@ -971,7 +987,7 @@
                     </div>
                 </div>
             </section>
-            
+           
             <section class="modules-section">
                 <div class="container">
                     <div class="section-divider"></div>
@@ -1002,7 +1018,7 @@
                 </div>
             </section>
         </div>
-        
+       
         <section id="research" class="research-carousel-section">
             <div class="container">
                 <div class="section-divider"></div>
@@ -1033,7 +1049,7 @@
                             <p class="research-quote">“Personalized, real-time feedback creates a <strong>more engaging and competitive environment</strong>. When athletes see their performance, <strong>motivation and focus increase</strong>, directly leading to better results.”</p>
                             <p class="research-ref">- Gjertsen, 2025</p>
                         </div>
-                         <!-- Duplicated for infinite scroll -->
+                          <!-- Duplicated for infinite scroll -->
                          <div class="research-card">
                             <p class="research-quote">“<strong>Measure the body, not just the bar.</strong> AlphaPWR’s center of mass tracking detects fatigue <strong>earlier and more accurately</strong> than traditional bar-mounted encoders, leading to smarter, safer training adjustments.”</p>
                             <p class="research-ref">- Kaspersen, 2024</p>
@@ -1046,7 +1062,7 @@
                 </div>
             </div>
         </section>
-        
+       
         <div class="dark-parallax-wrapper">
              <section id="success-stories" class="case-studies-section">
                  <div class="container">
@@ -1094,11 +1110,18 @@
             </div>
         </section>
 
+        <section id="contact" class="final-cta-section">
+            <div class="container">
+                <h2>Ready to elevate your practice?</h2>
+                <a href="#" class="btn-explore">Contact Us</a>
+            </div>
+        </section>
+
     </main>
-    
+   
     <div class="report-modal-overlay" id="report-modal-overlay">
         <div class="report-modal-content">
-            <button class="close-report-modal" aria-label="Close report">&times;</button>
+            <button class="close-report-modal" aria-label="Close report">×</button>
             <div class="report-modal-image-container">
                 <img id="modal-report-image" src="" alt="Enlarged report">
             </div>
@@ -1110,7 +1133,7 @@
             </div>
         </div>
     </div>
-    
+   
     <footer>
         <a href="#" class="footer-logo-link" aria-label="Red Dot Design Award">
             <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
@@ -1200,7 +1223,7 @@
         const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
         const upgradeTitle = document.getElementById('upgrade-title');
 
-        
+       
         // --- HERO WORD ROTATOR ---
         const animatedHeadline = document.querySelector('.hero-headline .word-rotator');
         if (animatedHeadline) {
@@ -1215,11 +1238,7 @@
 
             function type() {
                 if (i < wordsArray.length) {
-                    if (wordsArray[i].startsWith('<')) {
-                        element.innerHTML += wordsArray[i];
-                    } else {
-                        element.innerHTML += wordsArray[i] + ' ';
-                    }
+                    element.innerHTML += wordsArray[i];
                     i++;
                     setTimeout(type, speed);
                 } else {
@@ -1235,11 +1254,11 @@
                     entry.target.classList.add('is-visible');
                      const words = [
                         'Generate ', 'greater ', 'outcomes ', 'with ', 'a ', 'tool ', 'that ', 'helps ', 'you ', 
-                        '<span class="text-accent">target new customer groups</span>, ', 
+                        '<b>target new customer groups</b>, ', 
                         'deliver ', 
-                        '<span class="text-accent">smarter care</span> ', 
+                        '<b>smarter care</b> ', 
                         'with ', 'objective ', 'data, ', 'and ', 'boost ', 
-                        '<span class="text-accent">patient compliance.</span>'
+                        '<b>patient compliance.</b>'
                     ];
                     typeWords(upgradeTitle, words, 90); 
                     observer.unobserve(entry.target);
@@ -1257,7 +1276,7 @@
                 document.body.classList.toggle('mobile-nav-open');
             });
         }
-        
+       
         // --- REPORT MODAL LOGIC ---
         const reportModalOverlay = document.getElementById('report-modal-overlay');
         const reportCards = document.querySelectorAll('.report-card');
@@ -1312,7 +1331,7 @@
                 }
             });
         }
-        
+       
         // --- INTERACTIVE MODULES ---
         const moduleButtons = document.querySelectorAll('.module-btn');
         const moduleContentArea = document.getElementById('module-content-area');
@@ -1337,13 +1356,13 @@
                 moduleDescriptionEl.textContent = data.description;
                 moduleImageEl.src = data.imageUrl;
                 moduleImageEl.alt = data.title;
-                
+               
                 if (data.learnMore) {
                     moduleLearnMoreEl.style.display = 'inline-block';
                 } else {
                     moduleLearnMoreEl.style.display = 'none';
                 }
-                
+               
                 moduleButtons.forEach(btn => {
                     btn.classList.remove('active');
                     if(btn.dataset.module === pinnedModuleId) {
@@ -1361,7 +1380,7 @@
                 updateModuleContent(moduleId, true); 
             });
         });
-        
+       
         // Initial load
         updateModuleContent('squat', true);
 
