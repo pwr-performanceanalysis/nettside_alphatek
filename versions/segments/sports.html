@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alphatek - For Sports Teams</title> 
+    <title>Alphatek - For Sports Teams</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -35,7 +35,7 @@
             display: flex;
             flex-direction: column;
         }
-        body.modal-open { overflow: hidden; } 
+        body.modal-open { overflow: hidden; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         a { color: var(--color-brand-accent); text-decoration: none; }
         a:hover { text-decoration: underline; }
@@ -121,7 +121,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; 
+            z-index: -1;
             overflow: hidden;
         }
         #hero-video {
@@ -152,7 +152,7 @@
         .hero-headline .static-text { display: inline; }
         .word-rotator-wrapper {
             display: inline-block;
-            height: 1.3em; 
+            height: 1.3em;
             overflow: hidden;
             vertical-align: bottom;
         }
@@ -208,15 +208,15 @@
 
         
         /* ===== START: 'ADVANTAGES' SECTION STYLES ===== */
-        .features-section { 
-            padding: 100px 20px; 
-            position: relative; 
-            background-color: var(--color-grey-darkest); 
+        .features-section {
+            padding: 100px 20px;
+            position: relative;
+            background-color: var(--color-grey-darkest);
         }
-        .features-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 40px; 
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
         }
         .feature-card-v2 {
             position: relative;
@@ -316,7 +316,7 @@
         .feature-content-v2 ul li {
             font-size: 0.95rem;
             color: var(--color-grey-lightest);
-            margin-bottom: 0.8em;
+            margin-bottom: 1.2em; /* Changed from 0.8em to 1.2em */
             display: flex;
             align-items: flex-start;
             line-height: 1.5;
@@ -365,12 +365,63 @@
         .device-feature-card {
             text-align: center;
         }
-        .device-feature-card video {
+
+        /* Custom video player styles */
+        .device-feature-card .video-wrapper {
+            position: relative;
             width: 100%;
             border-radius: 12px;
-            margin-bottom: 1em;
+            overflow: hidden; /* To keep the button within the rounded corners */
             border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1em;
+            cursor: pointer;
         }
+
+        .device-feature-card .video-wrapper video {
+            width: 100%;
+            display: block; /* remove extra space below video */
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+            z-index: 5;
+            opacity: 1;
+        }
+
+        .play-button:hover {
+            background-color: rgba(47, 124, 83, 0.8);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-wrapper video:not(.is-playing) + .play-button {
+            opacity: 1;
+        }
+        
+        .video-wrapper video.is-playing + .play-button {
+            opacity: 0;
+        }
+
+
+        .play-button .fa-play {
+            margin-left: 5px; /* Adjust the play icon's position slightly for better visual centering */
+        }
+        /* End custom video player styles */
+
         .device-feature-card h3 {
             font-size: 1.5rem;
             color: var(--color-brand-accent);
@@ -414,99 +465,103 @@
             transform: scale(1.05);
         }
         
-        .module-explorer { 
+        .module-explorer {
             display: none; /* Hidden by default, shown by JS */
-            grid-template-columns: 250px 1fr; 
-            gap: 80px; 
-            align-items: flex-start; 
-            max-width: 1200px; 
-            margin: 0 auto; 
+            grid-template-columns: 250px 1fr;
+            gap: 80px;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .module-explorer.visible {
             display: grid;
         }
-        .module-nav { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
+        .module-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
-        .module-btn { 
-            width: 100%; 
-            padding: 12px 20px; 
-            font-size: 1rem; 
-            font-weight: var(--font-weight-light); 
-            color: var(--color-grey-light); 
-            background-color: rgba(255, 255, 255, 0.02); 
-            border: none; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            text-align: left; 
-            transition: all 0.3s ease; 
-            position: relative; 
+        .module-btn {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: var(--font-weight-light);
+            color: var(--color-grey-light);
+            background-color: rgba(255, 255, 255, 0.02);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
             display: none; /* Hide all buttons by default */
         }
         .module-btn.visible {
             display: block; /* Show filtered buttons */
         }
-        .module-btn:hover { 
-            background-color: rgba(255, 255, 255, 0.05); 
-            color: var(--color-brand-white); 
+        .module-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--color-brand-white);
         }
-        .module-btn.active { 
-            background-color: rgba(47, 124, 83, 0.2); 
-            color: var(--color-brand-white); 
-            transform: translateX(10px); 
+        .module-btn.active {
+            background-color: rgba(47, 124, 83, 0.2);
+            color: var(--color-brand-white);
+            transform: translateX(10px);
         }
-        .module-content { 
-            position: relative; 
-            min-height: 400px; 
+        .module-content {
+            position: relative;
+            min-height: 400px;
         }
-        .module-content-area { 
-            display: grid; 
-            grid-template-columns: 250px 1fr; 
-            gap: 40px; 
-            align-items: center; 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            opacity: 0; 
-            visibility: hidden; 
-            transform: translateY(20px); 
-            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s; 
-            z-index: 10; 
+        .module-content-area {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s;
+            z-index: 10;
         }
-        .module-content-area.active { 
-            opacity: 1; 
-            visibility: visible; 
-            transform: translateY(0); 
+        .module-content-area.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
-        .module-image img { 
-            width: 100%; 
-            border-radius: 8px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+        .module-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        .module-text h3 { 
-            font-size: 1.8rem; 
-            color: var(--color-brand-accent); 
-            margin-bottom: 0.5em; 
+        .module-text h3 {
+            font-size: 1.8rem;
+            color: var(--color-brand-accent);
+            margin-bottom: 0.5em;
         }
-        .module-text p { 
-            color: var(--color-grey-lightest); 
-            font-size: 1rem; 
-            line-height: 1.7; 
+        .module-text p {
+            color: var(--color-grey-lightest);
+            font-size: 1rem;
+            line-height: 1.7;
         }
-        .module-text .learn-more { 
-            font-size: 0.9rem; 
-            text-decoration: underline; 
-            color: var(--color-brand-accent); 
-            display: inline-block; 
-            margin-top: 1em; 
+        .module-text .learn-more {
+            font-size: 0.9rem;
+            text-decoration: underline;
+            color: var(--color-brand-accent);
+            display: inline-block;
+            margin-top: 1em;
         }
         /* ======== END: FINAL MODULES SECTION ======== */
 
         /* Reports Section */
-        .reports-section { padding: 80px 0; overflow: hidden; }
+        .reports-section {
+            padding: 80px 0;
+            overflow: hidden;
+            background-color: var(--color-brand-black); /* Added black background */
+        }
         .reports-section h2 {
             text-align: center;
             font-size: clamp(1.8rem, 4vw, 2.5rem);
@@ -517,7 +572,7 @@
             line-height: 1.3;
         }
         .report-carousel-container {
-            max-width: 1000px; 
+            max-width: 1000px;
             margin: 0 auto;
             overflow: hidden;
             -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -525,7 +580,7 @@
         }
         .report-carousel-track {
             display: flex;
-            width: calc(220px * 8); 
+            width: calc(220px * 8);
             animation: scroll-reports 40s linear infinite;
         }
         .report-carousel-track:hover { animation-play-state: paused; }
@@ -545,7 +600,7 @@
             height: 283px;
             object-fit: cover;
             object-position: center;
-            border-radius: 8px; 
+            border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.4);
             margin-bottom: 1.5em;
             transition: transform 0.3s ease;
@@ -690,7 +745,16 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            transition: transform 0.3s ease;
         }
+        a.research-card {
+            text-decoration: none;
+            color: inherit;
+        }
+        a.research-card:hover {
+            transform: translateY(-5px);
+        }
+
         .research-quote {
             font-size: 1.2rem;
             line-height: 1.6;
@@ -715,7 +779,10 @@
         /* ======== END: NEW RESEARCH CAROUSEL SECTION ======== */
 
         /* ======== START: UPDATED FLOOR BENEFITS SECTION ======== */
-        .floor-benefits-section { padding: 100px 20px; }
+        .floor-benefits-section { 
+            padding: 100px 20px; 
+            background-color: var(--color-brand-black);
+        }
         .floor-benefits-section h2 { text-align: center; font-size: clamp(1.8rem, 4vw, 2.5rem); }
         .benefits-grid {
             display: grid;
@@ -784,9 +851,7 @@
 
         /* Final CTA Section */
         .cta-final-section { padding: 80px 20px; background-color: var(--color-grey-darkest); text-align: center; }
-        .cta-final-section h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
-        .cta-final-section p { max-width: 600px; margin: 0 auto 1em; color: var(--color-grey-lightest); }
-        .cta-final-section .bottom-line { max-width: 700px; margin: 1em auto 2em; font-style: italic; color: var(--color-grey-lightest); }
+        .cta-final-section h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1em; }
         .cta-button-large { display: inline-block; background-color: var(--color-brand-accent); color: var(--color-brand-white); border-radius: 8px; padding: 15px 35px; font-size: 1.1rem; font-weight: var(--font-weight-normal); text-decoration: none; transition: transform 0.2s ease, background-color 0.2s ease; }
         .cta-button-large:hover { background-color: rgb(60, 150, 100); transform: scale(1.05); }
 
@@ -807,11 +872,11 @@
             .header-inner-container { justify-content: center; }
             .module-explorer { grid-template-columns: 1fr; }
             .module-nav { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-            .case-study-card { grid-template-columns: 1fr; flex: 0 0 90%; max-width: 90%;} 
+            .case-study-card { grid-template-columns: 1fr; flex: 0 0 90%; max-width: 90%;}
         }
         @media(max-width:768px){
-            .hero-headline{font-size:1.8rem;text-align:left;} 
-            .features-section, .research-carousel-section, .floor-benefits-section, .upgrade-section, .modules-section, .case-studies-section, .sports-teams-section, .cta-final-section, .product-section, .reports-section { padding: 60px 20px; } 
+            .hero-headline{font-size:1.8rem;text-align:left;}
+            .features-section, .research-carousel-section, .floor-benefits-section, .upgrade-section, .modules-section, .case-studies-section, .sports-teams-section, .cta-final-section, .product-section, .reports-section { padding: 60px 20px; }
             .upgrade-section .upgrade-title{font-size:1.4rem; min-height: 0;}
             .footer-logo-link { display: none; }
             .header-inner-container { justify-content: space-between; }
@@ -869,7 +934,7 @@
                             <a href="#">About Us</a>
                         </div>
                     </li>
-                    <li class="main-nav-item"><a href="#book-demo" class="main-nav-link cta-button">Book a Demo</a></li>
+                    <li class="main-nav-item"><a href="#contact" class="main-nav-link cta-button">Contact Us</a></li>
                 </ul>
             </nav>
             <button class="mobile-nav-toggle" aria-label="Toggle navigation">
@@ -892,7 +957,7 @@
         <div class="mobile-divider"></div>
         <a href="#">About Us</a>
         <div class="mobile-divider"></div>
-        <a href="#book-demo">Book a Demo</a>
+        <a href="#contact">Contact Us</a>
     </nav>
     
     <span class="site-tagline">Designed in Norway</span>
@@ -1021,26 +1086,35 @@
 
                     <div class="three-in-one-grid">
                         <div class="device-feature-card">
-                            <video autoplay muted loop playsinline>
-                                <source src="https://storage.googleapis.com/intro_alphatek/videoer/Force%20Plate.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
+                            <div class="video-wrapper">
+                                <video loop playsinline>
+                                    <source src="https://storage.googleapis.com/intro_alphatek/videoer/Force%20Plate.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <button class="play-button" aria-label="Play video"><i class="fas fa-play"></i></button>
+                            </div>
                             <h3>Force Plate</h3>
                             <p>All jump features including TOV/TIA algorithms, jump analytics (force, time, velocity, displacement, and power metrics), plus isometrics.</p>
                         </div>
                         <div class="device-feature-card">
-                             <video autoplay muted loop playsinline>
-                                <source src="https://storage.googleapis.com/intro_alphatek/videoer/VBT.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
+                             <div class="video-wrapper">
+                                <video loop playsinline>
+                                    <source src="https://storage.googleapis.com/intro_alphatek/videoer/VBT.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <button class="play-button" aria-label="Play video"><i class="fas fa-play"></i></button>
+                            </div>
                             <h3>Velocity Based Training</h3>
                             <p>No need for accelerometer and wired encoder. Wireless VBT with COM-tracking for instant feedback, along with a full suite of Velocity-Based Training features.</p>
                         </div>
                         <div class="device-feature-card">
-                            <video autoplay muted loop playsinline>
-                                <source src="https://storage.googleapis.com/intro_alphatek/videoer/NH.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
+                             <div class="video-wrapper">
+                                <video loop playsinline>
+                                    <source src="https://storage.googleapis.com/intro_alphatek/videoer/NH.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <button class="play-button" aria-label="Play video"><i class="fas fa-play"></i></button>
+                            </div>
                             <h3>Nordic Hamstrings</h3>
                             <p>Real-time feedback of key metrics during the Nordic Hamstrings exercise for both effective training and precise testing.</p>
                         </div>
@@ -1101,40 +1175,43 @@
                     <h2 class="section-title">What the Research Says</h2>
                     <div class="research-carousel-wrapper">
                         <div class="research-carousel-track">
-                            <div class="research-card">
+                             <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Kaspersen%202024.pdf" target="_blank" class="research-card">
                                 <p class="research-quote">“<strong>Measure the body, not just the bar.</strong> AlphaPWR’s center of mass tracking detects fatigue <strong>earlier and more accurately</strong> than traditional bar-mounted encoders, leading to smarter, safer training adjustments.”</p>
                                 <p class="research-ref">- Kaspersen, 2024</p>
-                            </div>
-                            <div class="research-card">
+                            </a>
+                            <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Vormeland%20Paulsen%202024.pdf" target="_blank" class="research-card">
                                 <p class="research-quote">“Gamified feedback works. Elite ice hockey players using simple color-coded velocity targets completed <strong>29% more high-quality reps</strong> and achieved significantly <strong>greater strength gains</strong>.”</p>
                                 <p class="research-ref">- Vormelamd, Paulsen & Bjørnsen, 2024</p>
-                            </div>
-                            <div class="research-card">
+                            </a>
+                            <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Bjelland%202024.pdf" target="_blank" class="research-card">
                                 <p class="research-quote">“An athlete's feeling isn't always fact. A pre-session velocity test provides an <strong>instant, objective measure of daily readiness</strong>, allowing coaches to adjust loads to <strong>maximize progress and reduce injury risk</strong>.”</p>
                                 <p class="research-ref">- Bjelland et al., 2023</p>
-                            </div>
-                            <div class="research-card">
+                            </a>
+                             <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Remme%202023.pdf" target="_blank" class="research-card">
                                 <p class="research-quote">“In-season strength training with AlphaPWR led to <strong>significant improvements in strength and power</strong> for elite ice hockey players, helping them <strong>stay dominant throughout a long season</strong>.”</p>
                                 <p class="research-ref">- Remme, 2023</p>
-                            </div>
-                             <div class="research-card">
+                            </a>
+                             <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Dahle.pdf" target="_blank" class="research-card">
                                 <p class="research-quote">“AlphaPWR delivers <strong>lab-grade accurate force data</strong>, validated against gold-standard systems. It’s a reliable tool for making critical decisions based on <strong>numbers you can trust</strong>.”</p>
                                 <p class="research-ref">- Dahle, 2024</p>
-                            </div>
+                            </a>
                             <div class="research-card">
                                 <p class="research-quote">“Personalized, real-time feedback creates a <strong>more engaging and competitive environment</strong>. When athletes see their performance, <strong>motivation and focus increase</strong>, directly leading to better results.”</p>
                                 <p class="research-ref">- Gjertsen, 2025</p>
                             </div>
                              <!-- Duplicated for infinite scroll -->
-                             <div class="research-card">
+                             <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Kaspersen%202024.pdf" target="_blank" class="research-card">
                                 <p class="research-quote">“<strong>Measure the body, not just the bar.</strong> AlphaPWR’s center of mass tracking detects fatigue <strong>earlier and more accurately</strong> than traditional bar-mounted encoders, leading to smarter, safer training adjustments.”</p>
                                 <p class="research-ref">- Kaspersen, 2024</p>
-                            </div>
-                            <div class="research-card">
+                            </a>
+                            <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Vormeland%20Paulsen%202024.pdf" target="_blank" class="research-card">
                                 <p class="research-quote">“Gamified feedback works. Elite ice hockey players using simple color-coded velocity targets completed <strong>29% more high-quality reps</strong> and achieved significantly <strong>greater strength gains</strong>.”</p>
                                 <p class="research-ref">- Vormelamd, Paulsen & Bjørnsen, 2024</p>
-                            </div>
+                            </a>
                         </div>
+                    </div>
+                     <div style="text-align: center; margin-top: 40px;">
+                        <a href="../Rescources/Alphatek Research Library.html" class="cta-button-large">Explore Our Research Library</a>
                     </div>
                 </div>
             </section>
@@ -1209,12 +1286,10 @@
             </div>
         </section>
 
-        <section id="book-demo" class="cta-final-section">
+        <section id="contact" class="cta-final-section">
             <div class="container">
                 <h2>Ready to elevate your team's performance?</h2>
-                <p class="bottom-line">AlphaPWR delivers the complete force-velocity-power picture in real time, wrapped in a UI athletes actually use. For high-performance environments seeking objective monitoring and motivation in the same device, it turns the floor itself into a coach—and backs the feedback with lab-level accuracy.</p>
-                <p>See for yourself how Alphatek can transform training for your team. Book a no-obligation demo with one of our experts today.</p>
-                <a href="#" class="cta-button-large">Book a Demo Now</a>
+                <a href="#" class="cta-button-large">Contact Us</a>
             </div>
         </section>
 
@@ -1240,7 +1315,7 @@
              <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
         </a>
         <div class="container">
-            <p>© 2024 Alphatek. All rights reserved.</p>
+            <p>© 2025 Alphatek. All rights reserved.</p>
             <div class="footer-social-icons">
                 <a href="https://www.instagram.com/alphatekofficial" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.youtube.com/@AlphatekOfficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
@@ -1315,8 +1390,8 @@
                         const words = [
                             'Science-backed ', 'testing ', 'and ', 'training ', 'that ', 'boosts ', 'performance,', '<br>', 'prevents ', 'injuries, ', 'and ', 'ignites ', 'athlete ', 'engagement.'
                         ];
-                        typeWords(upgradeTitle, words, 60); 
-                        observer.unobserve(entry.target); 
+                        typeWords(upgradeTitle, words, 60);
+                        observer.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.8 });
@@ -1428,7 +1503,7 @@
             // Initial state: select the first main button
              const initialMainButton = document.querySelector('.module-main-btn');
              if(initialMainButton) {
-                initialMainButton.click();
+                 initialMainButton.click();
              }
             // ======== END: FINAL MODULES SCRIPT ========
 
@@ -1488,20 +1563,53 @@
                 });
             }
              document.addEventListener('keydown', (e) => {
-                if (e.key === "Escape" && reportModalOverlay && reportModalOverlay.classList.contains('is-visible')) {
-                    closeReportModal();
-                }
+                 if (e.key === "Escape" && reportModalOverlay && reportModalOverlay.classList.contains('is-visible')) {
+                     closeReportModal();
+                 }
             });
 
             // --- Research Carousel Logic ---
             const researchTrack = document.querySelector('.research-carousel-track');
             if (researchTrack) {
                 const researchCards = Array.from(researchTrack.children);
-                researchCards.forEach(card => {
-                    const clone = card.cloneNode(true);
-                    researchTrack.appendChild(clone);
-                });
+                // The track now contains A and DIV elements.
+                // We only need to clone the original set of cards.
+                const originalCardCount = researchCards.length / 2; // Since we duplicated them before for infinite scroll
+                for(let i=0; i < originalCardCount; i++) {
+                    const clone = researchCards[i].cloneNode(true);
+                     researchTrack.appendChild(clone);
+                }
             }
+            
+            // --- Custom Video Player Logic ---
+            const videoWrappers = document.querySelectorAll('.video-wrapper');
+
+            videoWrappers.forEach(wrapper => {
+                const video = wrapper.querySelector('video');
+                const playButton = wrapper.querySelector('.play-button');
+
+                if (playButton && video) {
+                    // Function to toggle play/pause
+                    function togglePlay() {
+                        if (video.paused || video.ended) {
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    }
+
+                    // Click on the whole wrapper to play/pause
+                    wrapper.addEventListener('click', togglePlay);
+
+                    video.addEventListener('play', () => {
+                        playButton.style.display = 'none';
+                    });
+
+                    video.addEventListener('pause', () => {
+                        playButton.style.display = 'flex';
+                    });
+                }
+            });
 
         });
     </script>
