@@ -58,7 +58,7 @@
             opacity: 0.6;
         }
 
-        /* --- Unchanged styles from previous version (header, modals, hero, etc.) --- */
+        /* --- Header & Navigation --- */
         header { background-color: transparent; padding: 0; position: fixed; width: 100%; top: 10px; z-index: 1000; backdrop-filter: none; transition: background-color 0.3s ease, backdrop-filter 0.3s ease, top 0.3s ease; }
         header .header-inner-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 5vw; width: 100%; max-width: none; min-height: 60px; }
         header .logo-area { flex-basis: auto; flex-shrink: 0; opacity: 0; transform: translateX(-30px); display: flex; align-items: center; }
@@ -72,6 +72,32 @@
         @keyframes fadeInFromRight { from { transform: translateX(30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeInFromLeft { from { transform: translateX(-30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         .frosted-glass { background-color: rgba(20, 20, 20, 0.45); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: none; }
+        
+        /* --- Dropdown Menu (UPDATED FOR SIMPLICITY) --- */
+        .menu-container { position: relative; display: inline-block; }
+        .dropdown-menu { position: absolute; right: 0; top: calc(100% + 10px); border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.25); min-width: 260px; z-index: 1010; padding: 8px 0; visibility: hidden; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; overflow: hidden; }
+        .dropdown-menu.frosted-glass { background-color: rgba(20, 20, 20, 0.6); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+        .menu-container:hover .dropdown-menu { visibility: visible; opacity: 1; transform: translateY(0); }
+        
+        .dropdown-menu a { color: var(--color-brand-white); padding: 10px 20px; text-decoration: none; display: block; text-align: left; font-size: 0.95rem; font-weight: var(--font-weight-light); transition: background-color 0.2s ease; }
+        .dropdown-menu a:hover { background-color: rgba(47, 124, 83, 0.5); text-decoration: none; }
+
+        .dropdown-header {
+            padding: 10px 20px 4px 20px;
+            font-size: 0.75rem;
+            font-weight: var(--font-weight-normal);
+            color: var(--color-grey-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            margin: 8px 20px;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* --- Search --- */
         .floating-search-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(15px); z-index: 1040; opacity: 0; transition: opacity 0.3s ease-out; align-items: center; justify-content: center; }
         .floating-search-overlay.is-visible { display: flex; opacity: 1; }
         .floating-search-container { position: relative; width: 80%; max-width: 600px; padding: 20px; }
@@ -80,13 +106,9 @@
         .floating-search-input::placeholder { color: var(--color-grey-medium); }
         .close-search-btn { position: absolute; top: -10px; right: 0; background: none; border: none; color: var(--color-grey-light); font-size: 2rem; cursor: pointer; transition: color 0.3s ease; padding: 5px; }
         .close-search-btn:hover { color: var(--color-brand-white); }
-        .menu-container { position: relative; display: inline-block; }
-        .dropdown-menu { position: absolute; right: 0; top: calc(100% + 10px); border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.25); min-width: 160px; z-index: 1010; padding: 8px 0; visibility: hidden; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; overflow: hidden; }
-        .dropdown-menu.frosted-glass { background-color: rgba(20, 20, 20, 0.6); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
-        .menu-container:hover .dropdown-menu { visibility: visible; opacity: 1; transform: translateY(0); }
-        .dropdown-menu a { color: var(--color-brand-white); padding: 10px 20px; text-decoration: none; display: block; text-align: left; font-size: 0.95rem; font-weight: var(--font-weight-light); transition: background-color 0.2s ease; }
-        .dropdown-menu a:hover { background-color: rgba(47, 124, 83, 0.5); text-decoration: none; }
         .site-tagline { position: fixed; bottom: 15px; right: 20px; font-size: 0.7em; font-weight: var(--font-weight-light); color: var(--color-grey-light); background-color: transparent; padding: 0; z-index: 999; display: flex; align-items: center; }
+       
+        /* --- Modal --- */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 1050; opacity: 0; transition: opacity 0.3s ease-out; }
         .modal-overlay.is-visible { display: block; opacity: 1; }
         .contact-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(0.95); z-index: 1051; opacity: 0; transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
@@ -103,6 +125,8 @@
         .submit-btn { display: block; width: 100%; color: var(--color-brand-white); padding: 10px 20px; border: none; border-radius: 8px; font-family: var(--font-primary); font-size: 0.9rem; font-weight: var(--font-weight-light); cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease; }
         .submit-btn.frosted-glass { background-color: rgba(47,124,83,0.25); }
         .submit-btn:hover { background-color: rgba(47,124,83,0.65); color: var(--color-brand-white); transform: translateY(-2px); }
+        
+        /* --- Content & Layout --- */
         .scrollable-content { position: relative; z-index: 1; background-color: transparent; margin-bottom: 5vh; }
         .hero-section { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; position: relative; padding-left: 0; padding-right: 0; box-sizing: border-box; min-height: 100vh; transition: padding-top 0.3s ease; }
         .hero-text-group { width: 100%; max-width: 700px; margin-left: 0; text-align: left; padding-left: 5vw; padding-right: 5vw; margin-bottom: 0; }
@@ -145,7 +169,7 @@
         .footer-social-icons a { color: var(--color-grey-lightest); margin: 0 10px; font-size: 1.5rem; transition: color 0.3s ease; }
         .footer-social-icons a:hover { color: var(--color-brand-accent); }
         
-        /* --- LOGO CAROUSEL STYLES (UPDATED) --- */
+        /* --- LOGO CAROUSEL STYLES --- */
         .customer-logos-section {
             padding: 80px 0;
             position: relative;
@@ -277,11 +301,59 @@
         Your browser does not support the video tag.
     </video>
 
-    <!-- Header, Modals, Hero Section etc. (HTML is unchanged) -->
-    <header><div class="header-inner-container"><div class="logo-area"><a href="#" class="logo"><img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img"></a></div><div class="header-icons"><a href="#" aria-label="Search" class="header-icon" id="search-icon-trigger"><i class="fas fa-search"></i></a><div class="menu-container"><a href="#" aria-label="Menu" class="header-icon"><i class="fas fa-bars"></i></a><div class="dropdown-menu frosted-glass"><a href="Product/product_page.html">Products</a><a href="About us/about_us.html">About Us</a></div></div></div></div></header>
+    <!-- Header -->
+    <header>
+        <div class="header-inner-container">
+            <div class="logo-area">
+                <a href="#" class="logo">
+                    <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
+                </a>
+            </div>
+            <div class="header-icons">
+                <a href="#" aria-label="Search" class="header-icon" id="search-icon-trigger"><i class="fas fa-search"></i></a>
+                <div class="menu-container">
+                    <a href="#" aria-label="Menu" class="header-icon"><i class="fas fa-bars"></i></a>
+                    <!-- UPDATED DROPDOWN MENU -->
+                    <div class="dropdown-menu frosted-glass">
+                        <a href="About us/about_us.html">About Us</a>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-header">Resources</div>
+                        <a href="#">Alphatek Research Library</a>
+                        <a href="#">Blogpost</a>
+                        <a href="#">Alphatek Academy</a>
+                        <a href="#">Case Studies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <div class="floating-search-overlay" id="floating-search"><div class="floating-search-container"><button class="close-search-btn" id="close-search-btn" aria-label="Close search">×</button><input type="search" class="floating-search-input" placeholder="Search Alphatek..."></div></div>
     <span class="site-tagline">Designed in Norway</span>
-    <main class="scrollable-content"><section class="hero-section"><div class="hero-text-group"><div class="hero-content"><h1 class="hero-headline">Training and testing with AI.</h1></div><div class="intro-text-box"><p>Experience our advanced testing and training station — real-time data for precise fitness tracking, targeted rehab, and peak performance.</p><div class="cta-button-container"><a href="#" class="cta-button frosted-glass" id="show-contact-form-btn">Contact Us</a></div></div></div><section class="categories"><div class="container"><div class="category-grid"><a href="segments/gym.html" class="category-card animate-on-scroll" id="gym-card"><div class="card-background"></div><div class="card-content-wrapper"><h3>GYM</h3><p>Solutions for modern fitness centers.</p></div></a><a href="segments/physio.html" class="category-card animate-on-scroll" id="clinics-card"><div class="card-background"></div><div class="card-content-wrapper"><h3>Clinicians</h3> <p>Advanced tools for patient rehabilitation.</p></div></a><a href="segments/sports.html" class="category-card animate-on-scroll" id="sport-card"><div class="card-background"></div><div class="card-content-wrapper"><h3>Sports Team</h3><p>Optimize athlete performance and recovery.</p></div></a></div></div></section></section>
+    
+    <main class="scrollable-content">
+        <section class="hero-section">
+            <div class="hero-text-group">
+                <div class="hero-content">
+                    <h1 class="hero-headline">Training and testing with AI.</h1>
+                </div>
+                <div class="intro-text-box">
+                    <p>Experience our advanced testing and training station — real-time data for precise fitness tracking, targeted rehab, and peak performance.</p>
+                    <div class="cta-button-container">
+                        <a href="#" class="cta-button frosted-glass" id="show-contact-form-btn">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            <section class="categories">
+                <div class="container">
+                    <div class="category-grid">
+                        <a href="segments/gym.html" class="category-card animate-on-scroll" id="gym-card"><div class="card-background"></div><div class="card-content-wrapper"><h3>GYM</h3><p>Solutions for modern fitness centers.</p></div></a>
+                        <a href="segments/physio.html" class="category-card animate-on-scroll" id="clinics-card"><div class="card-background"></div><div class="card-content-wrapper"><h3>Clinicians</h3> <p>Advanced tools for patient rehabilitation.</p></div></a>
+                        <a href="segments/sports.html" class="category-card animate-on-scroll" id="sport-card"><div class="card-background"></div><div class="card-content-wrapper"><h3>Sports Team</h3><p>Optimize athlete performance and recovery.</p></div></a>
+                    </div>
+                </div>
+            </section>
+        </section>
 
         <section class="customer-logos-section animate-on-scroll">
             <div class="container">
@@ -310,7 +382,19 @@
     </main>
     <div id="modal-overlay" class="modal-overlay"></div>
     <div id="contact-modal" class="contact-modal"><div class="contact-form-container frosted-glass"><button id="close-modal-btn" class="close-modal-btn" aria-label="Close contact form">×</button><h2 class="contact-modal-title">Contact Us</h2><form action="#" method="POST" id="contact-actual-form"><div class="form-group"><label for="modal-name">Name</label><input type="text" id="modal-name" name="name" required></div><div class="form-group"><label for="modal-email">Email</label><input type="email" id="modal-email" name="email" required></div><div class="form-group"><label for="modal-message">Message</label><textarea id="modal-message" name="message" required></textarea></div><button type="submit" class="submit-btn frosted-glass">Send Message</button></form></div></div>
-    <footer class="frosted-glass"><a href="#" class="footer-logo-link" aria-label="Red Dot Design Award"><img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo"></a><div class="container"><p>© 2024 Alphatek. All rights reserved.</p><div class="footer-social-icons"><a href="https://www.instagram.com/alphatekofficial" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.youtube.com/@AlphatekOfficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a></div></div></footer>
+    
+    <footer class="frosted-glass">
+        <a href="https://www.red-dot.org/project/alphatek-60479" target="_blank" rel="noopener noreferrer" class="footer-logo-link" aria-label="Red Dot Design Award">
+            <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
+        </a>
+        <div class="container">
+            <p>© 2025 Alphatek. All rights reserved.</p>
+            <div class="footer-social-icons">
+                <a href="https://www.instagram.com/alphatekofficial" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@AlphatekOfficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
