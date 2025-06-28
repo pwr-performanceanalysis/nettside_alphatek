@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alphatek - Research Resources</title> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
             --color-brand-black: #0D0D0D;
@@ -56,6 +56,39 @@
         .main-nav-link.active-link { color: var(--color-brand-white); font-weight: var(--font-weight-normal); }
         .main-nav-link.cta-button { background-color: var(--color-brand-accent); color: var(--color-brand-white); border-radius: 50px; padding: 8px 25px; margin-left: 10px; transition: background-color 0.3s ease; }
         .main-nav-link.cta-button:hover { background-color: rgb(60, 150, 100); text-decoration: none; color: var(--color-brand-white); }
+        
+        /* Dropdown Menu Styles */
+        .dropdown-menu {
+            position: absolute;
+            left: 50%;
+            top: calc(100% + 10px);
+            background-color: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+            min-width: 180px;
+            z-index: 1010;
+            padding: 8px 0;
+            visibility: hidden;
+            opacity: 0;
+            transform: translateX(-50%) translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+        }
+        .main-nav-item:hover .dropdown-menu { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
+        .dropdown-menu a {
+            color: var(--color-brand-white);
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-size: 0.95rem;
+            font-weight: var(--font-weight-light);
+            transition: background-color 0.2s ease;
+        }
+        .dropdown-menu a:hover { background-color: rgba(47, 124, 83, 0.5); text-decoration: none; }
+        .main-nav-link .fa-chevron-down { font-size: 0.7em; margin-left: 6px; transition: transform 0.3s ease; }
+        .main-nav-item:hover .main-nav-link .fa-chevron-down { transform: rotate(180deg); }
 
         /* Mobile Navigation */
         .mobile-nav-toggle { display: none; position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; z-index: 1002; }
@@ -63,6 +96,7 @@
         .mobile-nav-toggle .fa-times { display: none; }
         .mobile-nav-menu { position: fixed; top: 0; left: -100%; width: 80%; max-width: 300px; height: 100%; background-color: rgba(13, 13, 13, 0.8); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); z-index: 1001; transition: left 0.3s ease-in-out; padding: 80px 30px 30px; display: flex; flex-direction: column; }
         .mobile-nav-menu a { color: var(--color-grey-lightest); font-size: 1.2rem; padding: 15px 0; text-decoration: none; }
+        .mobile-nav-menu .mobile-divider { border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0; }
         body.mobile-nav-open .mobile-nav-menu { left: 0; }
         body.mobile-nav-open .mobile-nav-toggle .fa-bars { display: none; }
         body.mobile-nav-open .mobile-nav-toggle .fa-times { display: block; }
@@ -71,7 +105,7 @@
 
         /* General Sections */
         .scrollable-content { position: relative; z-index: 1; background-color: var(--color-brand-black); flex-grow: 1; }
-        
+       
         /* Resource Hero Section */
         .hero-section.resource-hero {
             position: relative;
@@ -143,13 +177,13 @@
             color: var(--color-brand-white);
             font-weight: var(--font-weight-normal);
         }
-        
+       
         /* Research Library Section */
         .research-library-section {
             padding: 50px 20px 80px;
             background-color: var(--color-brand-black);
         }
-        
+       
         .research-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -203,7 +237,7 @@
             color: var(--color-brand-white);
             text-decoration: none;
         }
-        
+       
         @keyframes toneIn {
             from { opacity: 0; }
             to   { opacity: 1; }
@@ -252,30 +286,55 @@
     <header>
         <div class="header-inner-container">
              <div class="logo-area">
-                <a href="code - 2025-06-23T201012.390.html" class="logo">
-                    <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
-                </a>
-            </div>
-            <nav class="main-nav">
-                <ul class="main-nav-list">
-                    <li class="main-nav-item"><a href="code - 2025-06-23T201012.390.html" class="main-nav-link">For Teams</a></li>
-                    <li class="main-nav-item"><a href="#" class="main-nav-link active-link">Resources</a></li>
-                    <li class="main-nav-item"><a href="#book-demo" class="main-nav-link cta-button">Book a Demo</a></li>
-                </ul>
-            </nav>
-            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-times"></i>
-            </button>
+                 <a href="code - 2025-06-23T201012.390.html" class="logo">
+                     <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
+                 </a>
+             </div>
+             <nav class="main-nav">
+                 <ul class="main-nav-list">
+                     <li class="main-nav-item"><a href="../segments/sports.html" class="main-nav-link">For Teams</a></li>
+                     <li class="main-nav-item"><a href="../segments/gym.html" class="main-nav-link">For Gyms</a></li>
+                     <li class="main-nav-item"><a href="../segments/physio.html" class="main-nav-link">For Clinicians</a></li>
+                     <li class="main-nav-item">
+                         <a href="#" class="main-nav-link active-link">Resources <i class="fas fa-chevron-down"></i></a>
+                         <div class="dropdown-menu">
+                             <a href="#">Alphatek Research Library</a>
+                             <a href="#">Alphatek Academy</a>
+                             <a href="#">Blog</a>
+                             <a href="#">Case Studies</a>
+                         </div>
+                     </li>
+                     <li class="main-nav-item">
+                        <a href="#" class="main-nav-link">Company <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="#">About Us</a>
+                        </div>
+                    </li>
+                     <li class="main-nav-item"><a href="#contact" class="main-nav-link cta-button">Contact Us</a></li>
+                 </ul>
+             </nav>
+             <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                 <i class="fas fa-bars"></i>
+                 <i class="fas fa-times"></i>
+             </button>
         </div>
     </header>
-    
+   
     <nav class="mobile-nav-menu">
-        <a href="code - 2025-06-23T201012.390.html">For Teams</a>
-        <a href="#">Resources</a>
-        <a href="#book-demo">Book a Demo</a>
+        <a href="../segments/sports.html">For Teams</a>
+        <a href="../segments/gym.html">For Gyms</a>
+        <a href="../segments/physio.html">For Clinicians</a>
+        <div class="mobile-divider"></div>
+        <a href="#">Alphatek Research Library</a>
+        <a href="#">Alphatek Academy</a>
+        <a href="#">Blog</a>
+        <a href="#">Case Studies</a>
+        <div class="mobile-divider"></div>
+        <a href="#">About Us</a>
+        <div class="mobile-divider"></div>
+        <a href="#contact">Contact Us</a>
     </nav>
-    
+   
     <span class="site-tagline">Designed in Norway</span>
 
     <main class="scrollable-content">
@@ -294,87 +353,87 @@
         <section id="research-library" class="research-library-section">
             <div class="container">
                 <div class="research-grid">
-                    
+                   
                     <div class="research-card" data-tags="V P">
-                        <h4>Alfaro & Matre 2022 – COM vs. barbell velocity</h4>
+                        <h4>Back Squat Velocity: Comparing Barbell and Center of Mass Measures Reveals Key Differences in Velocity-Based Training with AlphaPWR (Alfaro & Matre, 2022)</h4>
                         <p>COM speeds slightly lower than bar-velocity; load zones must be device-specific.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Alfaro%20%26%20Matre%202022%20.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
-                    
+                   
                     <div class="research-card" data-tags="F P">
-                        <h4>Bjelland 2024 – Readiness & autoregulation</h4>
+                        <h4>Barbell Velocity with AlphaPWR as a Practical Readiness Tool in Elite Ice Hockey Players (Bjelland)</h4>
                         <p>Subjective readiness + rep speed best predict daily volume; 30 % VL autoregulates better than 20 %.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Bjelland%202024.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
-                    
+                   
                     <div class="research-card" data-tags="F P">
-                        <h4>Bjørnsen 2024 – In-season traffic-light</h4>
-                        <p>Maintained higher rep speeds all season, enhancing strength/power gains.</p>
-                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Bj%E2%94%9C%C2%A9rnsen%202024.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
+                        <h4>AlphaPWR Enhances Motivation and Performance Through Personalized Feedback (Gjertsen, 2025)</h4>
+                        <p>Customized real-time feedback leads to greater user motivation and better results.</p>
+                        <a href="#" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
-                    
+                   
                     <div class="research-card" data-tags="V">
-                        <h4>Dahle 2023 – Force-plate validation</h4>
+                        <h4>AlphaPWR Validated Against AMTI: A Reliable and Cost-Effective Tool for Measuring Force–Time Metrics in Sports Performance (Dahle, 2024)</h4>
                         <p>AlphaPWR V2.0 < 1 % bias vs. AMTI; lab-grade accuracy confirmed.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Dahle.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
 
                     <div class="research-card" data-tags="V P F">
-                        <h4>Kaspersen 2024 – Device VL comparison</h4>
+                        <h4>Velocity Loss in Back Squats: AlphaPWR Captures Earlier Thresholds and Offers Greater Sensitivity Than Barbell Encoders (Kaspersen 2024)</h4>
                         <p>Force-plate reaches VL thresholds 2-3 reps sooner than encoder due to higher rep variability.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Kaspersen%202024.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
-                    
+                   
                     <div class="research-card" data-tags="F">
-                        <h4>Liverød 2023 – Feedback carry-over</h4>
+                        <h4>Visual Feedback Boosts Velocity—Even After Removal (Liverød, 2023)</h4>
                         <p>Velocity gains from visual feedback persist into later no-feedback sets.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Liver%E2%94%9C%C2%A9d%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
-                    
+                   
                     <div class="research-card" data-tags="P">
-                        <h4>Nyquist 2023 – 20 % vs. 40 % VL (hockey)</h4>
-                        <p>40 % VL produced larger leg-press strength gains; hypertrophy unchanged.</p>
-                        <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Nyquist%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
+                         <h4>AlphaPWR Use Strongly Linked to Gym Training Frequency (Østborg, 2025)</h4>
+                        <p>Usage patterns are closely tied to how often individuals train in the gym.</p>
+                        <a href="#" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
 
                     <div class="research-card" data-tags="C F">
-                        <h4>Pedersen Åreide 2023 – Objective vs. subjective cues</h4>
+                        <h4>Lifting Less Than You Think: AlphaPWR Uncovers the Gap Between Perceived and Actual Effort in Back Squats (Pedersen Åreide 2023)</h4>
                         <p>Lifters sense bar speed well, but AlphaPWR data tighten load control.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Pedersen%20A%E2%95%A0%C3%A8reide%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
-                    
+                   
                     <div class="research-card" data-tags="P">
-                        <h4>Remme 2023 – VL & maximal power</h4>
+                        <h4>High Velocity Loss Training with AlphaPWR Enhances In-Season Strength and Power Adaptations in Ice Hockey Athletes (Remme 2023)</h4>
                         <p>40 % VL raised lower-limb power; sprint/jump unchanged vs. 20 % VL.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Remme%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
 
                     <div class="research-card" data-tags="C">
-                        <h4>Stenrød 2023 – Physiotherapy interviews</h4>
+                        <h4>Physiotherapists Report High Satisfaction Using AlphaPWR: A Valuable Tool for Motivation, Assessment, and Individualized Treatment (Stenrød, 2023)</h4>
                         <p>Real-time force-plate feedback boosts motivation and individualises rehab.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Stenr%E2%94%9C%C2%A9d%20%202023.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
 
                     <div class="research-card" data-tags="F P">
-                        <h4>Vormeland Paulsen 2024 – Traffic-light feedback</h4>
+                        <h4>Gamified vs. Objective Feedback in Back Squats: Color-Coded Velocity Feedback Enhances Performance in Elite Ice Hockey Players Vormelamd, Paulsen & Bjørnsen, 2024)</h4>
                         <p>Color-coded VL kept speed higher, + 20 % reps, and boosted squat 1 RM + CMJ.</p>
                         <a href="https://storage.googleapis.com/files_webpage/Research%20papers/Vormeland%20Paulsen%202024.pdf" target="_blank" class="btn-read-paper">Read Full Paper</a>
                     </div>
-                    
+                   
                 </div>
             </div>
         </section>
 
-        <section id="book-demo" class="cta-final-section">
+        <section id="contact" class="cta-final-section">
             <div class="container">
                 <h2>Ready to bring objective data to your practice?</h2>
                 <p>See for yourself how Alphatek can transform training and rehabilitation for your organisation. Book a no-obligation demo with one of our experts today.</p>
-                <a href="#" class="cta-button-large">Book a Demo Now</a>
+                <a href="#contact" class="cta-button-large">Contact Us</a>
             </div>
         </section>
 
     </main>
-        
+       
     <footer>
         <a href="#" class="footer-logo-link" aria-label="Red Dot Design Award">
              <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
@@ -390,7 +449,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-    
+   
             // Mobile Navigation Toggle
             const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
             if (mobileNavToggle) {
@@ -398,12 +457,12 @@
                     document.body.classList.toggle('mobile-nav-open');
                 });
             }
-            
+           
             // Research Filter Logic with Animation
             const filterContainer = document.querySelector('.research-filter-nav');
             const researchCards = document.querySelectorAll('.research-card');
             const filterButtons = document.querySelectorAll('.filter-btn');
-            
+           
             const filterCardsByCategory = (category) => {
                 // Remove animation class and hide all cards initially
                 researchCards.forEach(card => {
@@ -432,7 +491,7 @@
             if (filterContainer && researchCards.length > 0 && filterButtons.length > 0) {
                 const firstButton = filterButtons[0];
                 firstButton.classList.add('active');
-                
+               
                 // Initial load animation
                 filterCardsByCategory(firstButton.dataset.category);
 
@@ -444,7 +503,7 @@
 
                     filterContainer.querySelector('.active').classList.remove('active');
                     clickedButton.classList.add('active');
-                    
+                   
                     filterCardsByCategory(clickedButton.dataset.category);
                 });
             }
