@@ -22,9 +22,8 @@
             --font-weight-bold: 700;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body {
-            overflow-x: hidden;
-            height: 100%;
+        html {
+            scroll-behavior: smooth;
         }
         body {
             font-family: var(--font-primary);
@@ -36,78 +35,28 @@
             display: flex;
             flex-direction: column;
         }
-        body.modal-open { overflow: hidden; }
+        body.modal-open { overflow: hidden; } 
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         a { color: var(--color-brand-accent); text-decoration: none; }
         a:hover { text-decoration: underline; }
         h2, h3, h4 { margin-bottom: 0.8em; font-weight: var(--font-weight-light); color: var(--color-brand-white); }
-        .text-accent {
-            color: var(--color-brand-accent);
-        }
-        
-        /* Header */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 20px;
-            z-index: 1000;
-            padding: 10px 5vw;
-            transition: top 0.3s ease;
-        }
-        header .header-inner-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            position: relative;
-            opacity: 0;
-            animation: fadeInHeader 0.7s ease-out forwards 1s;
-        }
-        .logo-area {
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        .header-logo-img {
-            height: 55px;
-            width: auto;
-            display: block;
-        }
-        .main-nav {
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .text-accent { color: var(--color-brand-accent); }
 
-        @keyframes fadeInHeader {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .main-nav-list {
-            display: flex;
-            align-items: center;
-            list-style: none;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50px;
-            padding: 5px;
-            background-color: rgba(13, 13, 13, 0.3);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-        }
-
+        /* Header & Navigation */
+        header { position: fixed; width: 100%; top: 20px; z-index: 1000; padding: 10px 5vw; transition: top 0.3s ease; }
+        header .header-inner-container { display: flex; justify-content: space-between; align-items: center; width: 100%; position: relative; opacity: 0; animation: fadeInHeader 0.7s ease-out forwards 1s; }
+        @keyframes fadeInHeader { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .logo-area { position: absolute; left: 0; top: 50%; transform: translateY(-50%); }
+        .header-logo-img { height: 55px; width: auto; display: block; }
+        .main-nav { margin-left: auto; margin-right: auto; }
+        .main-nav-list { display: flex; align-items: center; list-style: none; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 50px; padding: 5px; background-color: rgba(13, 13, 13, 0.3); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); }
         .main-nav-item { position: relative; }
-        .main-nav-link {
-            display: block;
-            color: var(--color-grey-lightest);
-            text-decoration: none;
-            padding: 8px 22px;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-            white-space: nowrap;
-        }
-        .main-nav-link:hover, .main-nav-link.is-active { color: var(--color-brand-white); }
+        .main-nav-link { display: block; color: var(--color-grey-lightest); text-decoration: none; padding: 8px 22px; font-size: 0.9rem; transition: color 0.3s ease; white-space: nowrap; }
+        .main-nav-link:hover { color: var(--color-brand-white); }
+        .main-nav-link.cta-button { background-color: var(--color-brand-accent); color: var(--color-brand-white); border-radius: 50px; padding: 8px 25px; margin-left: 10px; transition: background-color 0.3s ease; }
+        .main-nav-link.cta-button:hover { background-color: rgb(60, 150, 100); text-decoration: none; color: var(--color-brand-white); }
 
+        /* Dropdown Menu Styles */
         .dropdown-menu {
             position: absolute;
             left: 50%;
@@ -137,157 +86,266 @@
             transition: background-color 0.2s ease;
         }
         .dropdown-menu a:hover { background-color: rgba(47, 124, 83, 0.5); text-decoration: none; }
-        
-        .mobile-nav-toggle {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 1002;
-        }
-        .mobile-nav-toggle .fa-bars, .mobile-nav-toggle .fa-times {
-            color: var(--color-brand-white);
-            font-size: 1.5rem;
-        }
+        .main-nav-link .fa-chevron-down { font-size: 0.7em; margin-left: 6px; transition: transform 0.3s ease; }
+        .main-nav-item:hover .main-nav-link .fa-chevron-down { transform: rotate(180deg); }
+
+
+        /* Mobile Navigation */
+        .mobile-nav-toggle { display: none; position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; z-index: 1002; }
+        .mobile-nav-toggle .fa-bars, .mobile-nav-toggle .fa-times { color: var(--color-brand-white); font-size: 1.5rem; }
         .mobile-nav-toggle .fa-times { display: none; }
-        .mobile-nav-menu {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100%;
-            background-color: rgba(13, 13, 13, 0.8);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            z-index: 1001;
-            transition: left 0.3s ease-in-out;
-            padding: 80px 30px 30px;
-            display: flex;
-            flex-direction: column;
-        }
-        .mobile-nav-menu a {
-            color: var(--color-grey-lightest);
-            font-size: 1.2rem;
-            padding: 15px 0;
-            text-decoration: none;
-        }
+        .mobile-nav-menu { position: fixed; top: 0; left: -100%; width: 80%; max-width: 300px; height: 100%; background-color: rgba(13, 13, 13, 0.8); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); z-index: 1001; transition: left 0.3s ease-in-out; padding: 80px 30px 30px; display: flex; flex-direction: column; }
+        .mobile-nav-menu a { color: var(--color-grey-lightest); font-size: 1.2rem; padding: 15px 0; text-decoration: none; }
+        .mobile-nav-menu .mobile-divider { border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0; }
         body.mobile-nav-open .mobile-nav-menu { left: 0; }
         body.mobile-nav-open .mobile-nav-toggle .fa-bars { display: none; }
         body.mobile-nav-open .mobile-nav-toggle .fa-times { display: block; }
 
-        .site-tagline {
-            position: fixed; bottom: 15px; right: 20px; font-size: 0.7em;
-            font-weight: var(--font-weight-light); color: var(--color-grey-light);
-            background-color: transparent; padding: 0; z-index: 999; display: flex; align-items: center;
-        }
-        
+        .site-tagline { position: fixed; bottom: 15px; right: 20px; font-size: 0.7em; font-weight: var(--font-weight-light); color: var(--color-grey-light); z-index: 999; }
+
+        /* General Sections */
         .scrollable-content { position: relative; z-index: 1; background-color: var(--color-brand-black); flex-grow: 1; }
         
+        /* UPDATED HERO */
         .hero-section {
-            display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; 
-            position: relative; overflow: hidden; padding-left: 5vw; padding-right: 5vw;
-            box-sizing: border-box; 
-            height: 65vh; 
-            padding-bottom: 10vh;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            color: white;
+            overflow: hidden;
+            padding: 5vh 5vw;
+        }
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+            overflow: hidden;
         }
         #hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1;
-            transform: translateX(-50%) translateY(-50%);
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            filter: brightness(0.85) contrast(1.0);
+            filter: brightness(0.7);
         }
-        .hero-text-group { width: 100%; max-width: 800px; margin-left: 0; text-align: left; opacity: 0; transform: translateX(-30px); }
-        @keyframes fadeInFromLeftHeroContent { from { transform: translateX(-30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        .hero-text-group.is-visible { animation: fadeInFromLeftHeroContent 0.7s ease-out forwards 1s; }
-        .hero-headline {
-            font-size: clamp(2.2rem, 4.2vw, 3.2rem); 
-            color: var(--color-brand-white);
-            font-weight: var(--font-weight-light); width: 100%; margin: 0; line-height: 1.3;
-            transition: opacity 0.5s ease-in-out; 
-            height: 4.5rem; 
-        }
-        .upgrade-section {
-            background-color: var(--color-brand-black); padding: 80px 20px; text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .upgrade-title {
-            font-size: clamp(1.6rem, 3.5vw, 2.4rem); max-width: 950px; margin: 0 auto; line-height: 1.4;
-            font-weight: var(--font-weight-light); color: var(--color-brand-white);
-            display: inline-block;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1000px;
+            text-align: left;
             opacity: 0;
-            min-height: 130px; 
+            transform: translateY(30px);
+            animation: fadeInFromBottomHeroContent 0.7s ease-out forwards 1s;
         }
-        .upgrade-title.is-visible {
-            opacity: 1;
+        @keyframes fadeInFromBottomHeroContent { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .hero-headline {
+            font-size: clamp(2.8rem, 5.5vw, 4rem);
+            color: var(--color-brand-white);
+            font-weight: var(--font-weight-normal);
+            margin: 0;
+            line-height: 1.3;
         }
-        .typing-cursor::after {
-            content: '|';
+        .hero-headline .static-text { display: inline; }
+        .word-rotator-wrapper {
             display: inline-block;
-            animation: blink 0.7s infinite;
-            color: var(--color-grey-light);
+            height: 1.3em; 
+            overflow: hidden;
+            vertical-align: bottom;
         }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .word-rotator {
+            animation: spin-words 6s infinite ease-in-out;
+        }
+        .word-rotator span {
+            display: block;
+            height: 1.3em;
+            color: var(--color-brand-white);
+            font-weight: var(--font-weight-bold);
+        }
+        @keyframes spin-words {
+            0%, 28% { transform: translateY(0); }
+            33.3%, 61.3% { transform: translateY(-1.3em); }
+            66.6%, 94.6% { transform: translateY(-2.6em); }
+            100% { transform: translateY(-3.9em); }
         }
 
-        .features-section {
-            padding: 80px 20px;
-            position: relative;
-            background-image: url('https://storage.googleapis.com/intro_alphatek/Timeline%201_01_04_56_06.jpg');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            opacity: 0;
+            animation: fadeInHeader 1s ease-out forwards 2s;
         }
-        .features-section::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.6);
+        .scroll-indicator span {
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-bottom: 2px solid var(--color-brand-white);
+            border-right: 2px solid var(--color-brand-white);
+            transform: rotate(45deg);
+            margin: -5px;
+            animation: pulse-arrow 2.5s infinite;
+        }
+        .scroll-indicator span:nth-child(2) {
+            animation-delay: -0.4s;
+        }
+        @keyframes pulse-arrow {
+            0% { opacity: 0; transform: rotate(45deg) translate(-10px, -10px); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: rotate(45deg) translate(10px, 10px); }
+        }
+
+
+        .upgrade-section { background-color: var(--color-brand-black); padding: 80px 20px; text-align: center; display: flex; align-items: center; justify-content: center; }
+        .upgrade-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); max-width: 950px; margin: 0 auto; line-height: 1.4; font-weight: var(--font-weight-light); color: var(--color-brand-white); display: inline-block; opacity: 0; min-height: 130px; }
+        .upgrade-title.is-visible { opacity: 1; }
+        .typing-cursor::after { content: '|'; display: inline-block; animation: blink 0.7s infinite; color: var(--color-grey-light); }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        
+        /* ===== START: NEW FEATURES SECTION (V2 STYLE) ===== */
+        .features-section { 
+            padding: 100px 20px; 
+            position: relative; 
+            background-color: var(--color-grey-darkest); 
+        }
+        .features-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 40px; 
+        }
+        .feature-card-v2 {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .feature-card-v2:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
         }
-        .features-section .container { position: relative; z-index: 2; }
-        
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .feature-card {
-            background-color: rgba(47, 124, 83, 0.1); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 30px;
-            text-align: center; display: flex; flex-direction: column; align-items: center;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+        .card-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-        .feature-card:hover { transform: translateY(-5px); background-color: rgba(47, 124, 83, 0.2); }
-        .feature-icon {
-            font-size: 2.5rem; color: var(--color-brand-accent); margin-bottom: 20px;
-            height: 50px; width: 50px; display: flex; align-items: center; justify-content: center;
+        .feature-card-v2:hover .card-background img {
+            transform: scale(1.08);
         }
-        .feature-card h3 { font-size: 1.5rem; color: var(--color-brand-white); margin-bottom: 10px; }
-        .feature-card p { color: var(--color-grey-lightest); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0; }
-        
-        .dark-parallax-wrapper {
+        .card-background::after { /* Black gradient for the bottom part */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, var(--color-brand-black) 20%, transparent 100%);
+        }
+
+        .feature-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 13, 13, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 2;
+            transition: background 0.4s ease, backdrop-filter 0.4s ease;
+        }
+        .feature-card-v2:hover .feature-overlay {
+            background: rgba(47, 124, 83, 0.5);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+
+        .feature-content-v2 {
             position: relative;
-            background-image: url('https://storage.googleapis.com/intro_alphatek/Timeline%201_01_04_56_06.jpg');
-            background-size: cover; background-position: center center; background-attachment: fixed;
+            z-index: 3;
+            color: var(--color-brand-white);
+            padding: 30px 35px;
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
         }
-        .dark-parallax-wrapper::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(13, 13, 13, 0.75); 
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            z-index: 1;
+        .feature-icon-top {
+            font-size: 2.5rem;
+            color: var(--color-brand-accent);
+            text-align: center;
+            width: 100%;
+            margin-bottom: 1em;
+            transition: color 0.4s ease, transform 0.4s ease;
         }
-        .reports-section, .modules-section { position: relative; z-index: 2; }
-        
+        .feature-card-v2:hover .feature-icon-top {
+            transform: scale(1.1);
+            color: var(--color-brand-white);
+        }
+        .feature-content-v2 h3 {
+            font-size: 1.8rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-brand-white);
+            margin-bottom: 0.8em;
+            line-height: 1.2;
+            text-align: center;
+        }
+        .feature-content-v2 ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .feature-content-v2 ul li {
+            font-size: 0.95rem;
+            color: var(--color-grey-lightest);
+            margin-bottom: 0.8em;
+            display: flex;
+            align-items: flex-start;
+            line-height: 1.5;
+        }
+        .feature-content-v2 ul li i {
+            color: var(--color-brand-accent);
+            margin-right: 12px;
+            font-size: 1.1rem;
+            margin-top: 4px; /* Aligns icon with text */
+            transition: color 0.4s ease, transform 0.3s ease;
+        }
+        .feature-card-v2:hover .feature-content-v2 ul li i {
+             color: var(--color-brand-white);
+             transform: scale(1.2);
+        }
+        /* ===== END: NEW FEATURES SECTION ===== */
+
+        /* Parallax Wrapper */
+        .dark-parallax-wrapper { position: relative; background-image: url('https://storage.googleapis.com/intro_alphatek/Timeline%201_01_04_56_06.jpg'); background-size: cover; background-position: center center; background-attachment: fixed; }
+        .dark-parallax-wrapper::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(13, 13, 13, 0.75); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 1; }
+        .reports-section, .modules-section, .case-studies-section { position: relative; z-index: 2; }
+        .section-divider { width: 80px; height: 3px; background-color: var(--color-brand-accent); margin: 0 auto 2em; border-radius: 2px; }
+
+        .reports-section, .modules-section, .case-studies-section, .product-section { padding: 100px 20px; }
+
+        /* Reports Section */
         .reports-section { padding: 80px 0; overflow: hidden; }
         .reports-section h2 {
             text-align: center;
@@ -320,15 +378,14 @@
         }
         .report-card img {
             width: 100%;
-            height: 283px; /* Set a fixed height for all report images */
-            object-fit: cover; /* Ensure image covers the area, cropping if necessary */
-            object-position: center; /* Center the image within its frame */
-            border-radius: 0px; 
+            height: 283px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 8px; 
             box-shadow: 0 5px 20px rgba(0,0,0,0.4);
             margin-bottom: 1.5em;
             transition: transform 0.3s ease;
         }
-
         .report-card:hover img { transform: scale(1.05); }
         .report-title {
             font-size: 1rem;
@@ -339,7 +396,6 @@
             font-size: 0.85rem;
             color: var(--color-grey-light);
         }
-
         /* Report Modal */
         .report-modal-overlay {
             position: fixed;
@@ -385,7 +441,7 @@
         }
         .report-modal-image-container img {
             width: 100%;
-            border-radius: 0;
+            border-radius: 8px;
         }
         .report-modal-text-container h3 {
             font-size: 1.8rem;
@@ -430,18 +486,6 @@
         .close-report-modal:hover { color: var(--color-brand-white); }
         
         /* New Modules Section */
-        .modules-section {
-            padding: 100px 20px;
-        }
-
-        .section-divider {
-            width: 80px;
-            height: 3px;
-            background-color: var(--color-brand-accent);
-            margin: 0 auto 2em;
-            border-radius: 2px;
-        }
-
         .modules-section .section-title {
             text-align: center;
             font-size: clamp(1.8rem, 4vw, 2.5rem);
@@ -450,7 +494,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         .module-explorer {
             display: grid;
             grid-template-columns: 250px 1fr;
@@ -459,13 +502,11 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .module-nav {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-
         .module-btn {
             width: 100%;
             padding: 12px 20px;
@@ -480,23 +521,19 @@
             transition: all 0.3s ease;
             position: relative;
         }
-
         .module-btn:hover {
             background-color: rgba(255, 255, 255, 0.05);
             color: var(--color-brand-white);
         }
-
         .module-btn.active {
             background-color: rgba(47, 124, 83, 0.2);
             color: var(--color-brand-white);
             transform: translateX(10px);
         }
-
         .module-content {
             position: relative;
             min-height: 400px;
         }
-
         .module-content-area {
             display: grid;
             grid-template-columns: 250px 1fr;
@@ -511,19 +548,16 @@
             transform: translateY(20px);
             transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s;
         }
-
         .module-content-area.active {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-        
         .module-image img {
             width: 100%;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-
         .module-text h3 {
             font-size: 1.8rem;
             color: var(--color-brand-accent);
@@ -546,15 +580,6 @@
         .case-studies-section {
             padding: 100px 0;
             position: relative;
-            background-image: url('https://storage.googleapis.com/intro_alphatek/Timeline%201_01_04_56_06.jpg');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-        }
-        .case-studies-section::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            z-index: 1;
         }
         .case-studies-section .container, .case-studies-section .case-studies-container {
             position: relative;
@@ -668,6 +693,7 @@
             text-decoration: none;
         }
 
+
         footer {
             background-color: var(--color-brand-black); 
             color: var(--color-grey-lightest); 
@@ -683,6 +709,72 @@
         .footer-social-icons a { color: var(--color-grey-lightest); margin: 0 10px; font-size: 1.5rem; transition: color 0.3s ease; }
         .footer-social-icons a:hover { color: var(--color-brand-accent); }
 
+        /* ======== START: NEW RESEARCH CAROUSEL SECTION ======== */
+        .research-carousel-section {
+            padding: 100px 0;
+            overflow: hidden;
+            background-color: var(--color-brand-black); /* Added solid black background */
+        }
+        .research-carousel-section .section-title {
+             text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2em;
+        }
+        .research-carousel-wrapper {
+            overflow-x: auto;
+            padding-bottom: 20px;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .research-carousel-wrapper::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Opera */
+        }
+        .research-carousel-track {
+            display: flex;
+            gap: 40px;
+            width: fit-content;
+            animation: scroll-research 45s linear infinite;
+        }
+        .research-carousel-wrapper:hover .research-carousel-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-research {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .research-card {
+            flex: 0 0 420px;
+            background-color: transparent;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .research-quote {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            font-style: italic;
+            color: var(--color-grey-lightest);
+            margin-bottom: 1.5em;
+        }
+        .research-quote::before {
+            content: '“';
+            font-size: 3.5rem;
+            color: var(--color-brand-accent);
+            line-height: 0;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .research-ref {
+            font-size: 0.9rem;
+            color: var(--color-grey-light);
+            text-align: right;
+            font-style: normal;
+        }
+        /* ======== END: NEW RESEARCH CAROUSEL SECTION ======== */
+
         @media(max-width:992px){
             .main-nav { display: none; }
             .mobile-nav-toggle { display: block; }
@@ -693,7 +785,7 @@
         }
         @media(max-width:768px){
             .hero-headline{font-size:1.8rem;text-align:left;} 
-            .upgrade-section, .features-section, .reports-section, .modules-section, .case-studies-section, .product-section {padding: 60px 20px;}
+            .upgrade-section, .features-section, .reports-section, .modules-section, .case-studies-section, .product-section, .research-carousel-section {padding: 60px 20px;}
             .upgrade-section .upgrade-title{font-size:1.4rem; min-height: 0;}
             .footer-logo-link { display: none; }
             .header-inner-container { justify-content: space-between; }
@@ -706,12 +798,14 @@
         }
         @media(max-width:480px){
             .hero-headline{font-size:1.5rem; height: auto;}
+            .research-card { flex: 0 0 300px; }
         }
     </style>
 </head>
 <body>
 
     <header>
+        <!-- This header is now identical to the sports-team page -->
         <div class="header-inner-container">
             <div class="logo-area">
                 <a href="#" class="logo">
@@ -720,40 +814,31 @@
             </div>
             <nav class="main-nav">
                 <ul class="main-nav-list">
-                    <li class="main-nav-item"><a href="#" class="main-nav-link">Home</a></li>
-                    <li class="main-nav-item"><a href="../Product/product_page.html" class="main-nav-link">Product</a></li>
+                    <li class="main-nav-item"><a href="#features" class="main-nav-link">Advantages</a></li>
+                    <li class="main-nav-item"><a href="#modules" class="main-nav-link">Modules</a></li>
                     <li class="main-nav-item">
-                        <a href="#" class="main-nav-link">Blog</a>
+                        <a href="#" class="main-nav-link">Product <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
-                            <a href="#">Latest Posts</a>
-                            <a href="#">Categories</a>
-                            <a href="#">Archive</a>
+                            <a href="../Product/product_page.html">Product Page</a>
+                            <a href="../Instructions/Squat.html">How to use</a>
                         </div>
                     </li>
                     <li class="main-nav-item">
-                        <a href="#" class="main-nav-link">Resources</a>
+                        <a href="#" class="main-nav-link">Resources <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
-                            <a href="#">Whitepapers</a>
-                            <a href="#">Case Studies</a>
-                            <a href="#">Webinars</a>
+                            <a href="../Rescources/Alphatek Research Library.html">Alphatek Research Library</a>
+                            <a href="#">Alphatek Academy</a>
+                            <a href="#">Blog</a>
+                            <a href="#success-stories">Case Studies</a>
                         </div>
                     </li>
                     <li class="main-nav-item">
-                        <a href="#" class="main-nav-link">About Us</a>
+                        <a href="#" class="main-nav-link">Company <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
-                            <a href="#">Our Story</a>
-                            <a href="#">The Team</a>
-                            <a href="#">Careers</a>
+                            <a href="#">About Us</a>
                         </div>
                     </li>
-                    <li class="main-nav-item">
-                        <a href="#" class="main-nav-link">FAQ</a>
-                        <div class="dropdown-menu">
-                            <a href="#">General</a>
-                            <a href="#">Technical</a>
-                            <a href="#">Billing</a>
-                        </div>
-                    </li>
+                    <li class="main-nav-item"><a href="#book-demo" class="main-nav-link cta-button">Book a Demo</a></li>
                 </ul>
             </nav>
             <button class="mobile-nav-toggle" aria-label="Toggle navigation">
@@ -764,61 +849,104 @@
     </header>
     
     <nav class="mobile-nav-menu">
-        <a href="#">Home</a>
-        <a href="../Product/product_page.html">Product</a>
+        <!-- This mobile nav is now identical to the sports-team page -->
+        <a href="#features">Advantages</a>
+        <a href="#modules">Modules</a>
+        <a href="../Product/product_page.html">Product Page</a>
+        <a href="../Instructions/Squat.html">How to use</a>
+        <div class="mobile-divider"></div>
+        <a href="../Rescources/Alphatek Research Library.html">Alphatek Research Library</a>
+        <a href="#">Alphatek Academy</a>
         <a href="#">Blog</a>
-        <a href="#">Resources</a>
+        <a href="#success-stories">Case Studies</a>
+        <div class="mobile-divider"></div>
         <a href="#">About Us</a>
-        <a href="#">FAQ</a>
+        <div class="mobile-divider"></div>
+        <a href="#book-demo">Book a Demo</a>
     </nav>
     
     <span class="site-tagline">Designed in Norway</span>
 
     <main class="scrollable-content">
         <section class="hero-section">
-            <video autoplay muted loop playsinline id="hero-video">
-                <source src="https://storage.googleapis.com/intro_alphatek/videoer/physio_topp.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-
-            <div class="hero-text-group">
-                <h1 class="hero-headline" id="animated-headline">
-                    Objective measurements.
+            <div class="hero-video-bg">
+                <video autoplay muted loop playsinline id="hero-video">
+                    <source src="https://storage.googleapis.com/intro_alphatek/videoer/physio_topp.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-headline">
+                    <div class="word-rotator-wrapper">
+                        <div class="word-rotator">
+                           <span>Objective measurements.</span>
+                           <span>Happier patients.</span>
+                           <span>Healthier business.</span>
+                           <span>Objective measurements.</span>
+                        </div>
+                    </div>
                 </h1>
+            </div>
+             <div class="scroll-indicator">
+                <span></span>
+                <span></span>
             </div>
         </section>
 
         <section class="upgrade-section">
             <div class="container">
                 <h2 class="upgrade-title" id="upgrade-title">
-                    <!-- Text will be typed here by JavaScript -->
                 </h2>
             </div>
         </section>
         
-        <section class="features-section">
+        <section id="features" class="features-section">
             <div class="container">
                 <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-line"></i>
+                    <div class="feature-card-v2">
+                        <div class="card-background">
+                            <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop" alt="Trainer with client">
                         </div>
-                        <h3>Progress you can prove.</h3>
-                        <p>Real-time, objective feedback keeps patients engaged, builds trust, and helps you adjust treatment for better outcomes—every session.</p>
+                        <div class="feature-overlay"></div>
+                        <div class="feature-content-v2">
+                            <div class="feature-icon-top"><i class="fas fa-chart-line"></i></div>
+                            <h3>Progress you can prove.</h3>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i>Real-time, objective feedback keeps patients engaged.</li>
+                                <li><i class="fas fa-check-circle"></i>Builds trust and helps you adjust treatment for better outcomes.</li>
+                                <li><i class="fas fa-check-circle"></i>Provides clear, visual evidence of progress.</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-clipboard-check"></i>
+                    <div class="feature-card-v2">
+                        <div class="card-background">
+                            <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?q=80&w=1988&auto=format&fit=crop" alt="Person feeling confident in a gym">
                         </div>
-                        <h3>Consistency you can trust.</h3>
-                        <p>Standardized protocol screenings make assessments faster, repeatable, and data-backed—easy for you, clear for the patient.</p>
+                        <div class="feature-overlay"></div>
+                        <div class="feature-content-v2">
+                            <div class="feature-icon-top"><i class="fas fa-clipboard-check"></i></div>
+                            <h3>Consistency you can trust.</h3>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i>Standardized protocols make assessments faster and repeatable.</li>
+                                <li><i class="fas fa-check-circle"></i>Data-backed insights for clear communication.</li>
+                                <li><i class="fas fa-check-circle"></i>Easy for you, clear for the patient.</li>
+                            </ul>
                         </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="feature-card-v2">
+                        <div class="card-background">
+                            <img src="https://images.unsplash.com/photo-1549476464-373922144545?q=80&w=1964&auto=format&fit=crop" alt="Data on a screen">
                         </div>
-                        <h3>Up and running in seconds.</h3>
-                        <p>With Alphatek, there’s no setup hassle or complex tech—just intuitive tools that save time and let you focus on care.</p>
+                        <div class="feature-overlay"></div>
+                        <div class="feature-content-v2">
+                            <div class="feature-icon-top"><i class="fas fa-bolt"></i></div>
+                            <h3>Up and running in seconds.</h3>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i>No setup hassle or complex technology.</li>
+                                <li><i class="fas fa-check-circle"></i>Intuitive tools that save valuable time.</li>
+                                <li><i class="fas fa-check-circle"></i>Lets you focus entirely on patient care.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -836,7 +964,6 @@
                         <div class="report-card" data-report-id="rehab-initial"><img src="https://storage.googleapis.com/intro_alphatek/reports/PT%20basic.png" alt="Phase 1 & 2 Rehab Report"><h4 class="report-title text-accent">Phase 1 & 2 Rehab</h4><p class="report-description">Gentle, early-stage progress tracking.</p></div>
                         <div class="report-card" data-report-id="shoulder-screening"><img src="https://storage.googleapis.com/intro_alphatek/reports/shoulder.png" alt="Shoulder Screening Report"><h4 class="report-title text-accent">Shoulder Screening</h4><p class="report-description">Assess readiness for overhead loading.</p></div>
                         
-                        <!-- Duplicated Set -->
                         <div class="report-card" data-report-id="senior-fitness"><img src="https://storage.googleapis.com/intro_alphatek/reports/senior%20raport.png" alt="Senior Fitness Test Report"><h4 class="report-title text-accent">Senior Fitness Test</h4><p class="report-description">Evidence-based fall risk assessment.</p></div>
                         <div class="report-card" data-report-id="return-to-sport"><img src="https://storage.googleapis.com/intro_alphatek/reports/Return%20to%20play.png" alt="Return to Sport Report"><h4 class="report-title text-accent">Return to Sport</h4><p class="report-description">Comprehensive readiness evaluation.</p></div>
                         <div class="report-card" data-report-id="rehab-initial"><img src="https://storage.googleapis.com/intro_alphatek/reports/PT%20basic.png" alt="Phase 1 & 2 Rehab Report"><h4 class="report-title text-accent">Phase 1 & 2 Rehab</h4><p class="report-description">Gentle, early-stage progress tracking.</p></div>
@@ -876,58 +1003,84 @@
             </section>
         </div>
         
-        <section class="case-studies-section">
+        <section id="research" class="research-carousel-section">
             <div class="container">
-                <h2>Success Stories</h2>
-            </div>
-            <div class="case-studies-container">
-                <div class="case-study-card">
-                    <div class="case-study-video-container">
-                        <video autoplay muted loop playsinline>
-                            <source src="https://storage.googleapis.com/intro_alphatek/screen%20photos/Fysio.v4.mov" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="case-study-text">
-                        <blockquote>"The objective data from Alphatek has transformed my practice. Patients are more engaged when they can see their progress in black and white. It builds trust and makes it easier to justify the treatment plan, leading to better compliance and outcomes."</blockquote>
-                        <p class="author">Hanne K.</p>
-                        <p class="role">Fysioterapeut</p>
-                    </div>
-                </div>
-                <div class="case-study-card">
-                    <div class="case-study-image-container">
-                        <img src="https://placehold.co/600x800/333/fff?text=Klinikkeier" alt="Clinic Owner Anders">
-                    </div>
-                    <div class="case-study-text">
-                        <blockquote>"Integrating Alphatek has professionalized our clinic and set us apart. We now offer specialized testing protocols as a new service, which has created a significant revenue stream. Our therapists are more confident, and our clinic is seen as a leader in evidence-based practice."</blockquote>
-                        <p class="author">Anders S.</p>
-                        <p class="role">Klinikkeier</p>
-                    </div>
-                </div>
-                    <div class="case-study-card">
-                    <div class="case-study-image-container">
-                        <img src="https://placehold.co/600x800/444/fff?text=Idrettsfysio" alt="Sports Physiotherapist Martin">
-                    </div>
-                    <div class="case-study-text">
-                        <blockquote>"Making objective return-to-play decisions is critical. With the 'Return to Sport' protocol, I have concrete data to assess an athlete's readiness, identify lingering deficits, and minimize re-injury risk. It's an indispensable tool for any sports physiotherapist."</blockquote>
-                        <p class="author">Martin G.</p>
-                        <p class="role">Idrettsfysioterapeut</p>
-                    </div>
-                </div>
-                    <div class="case-study-card">
-                    <div class="case-study-image-container">
-                        <img src="https://placehold.co/600x800/555/fff?text=Fysioterapeut" alt="Physiotherapist Ingrid">
-                    </div>
-                    <div class="case-study-text">
-                        <blockquote>"The Senior Fitness Test gives me objective data on fall risk that I can share with patients and their families. Tracking improvements in balance and strength has been incredibly motivating for my elderly clients and provides clear evidence of the value of our therapy."</blockquote>
-                        <p class="author">Ingrid B.</p>
-                        <p class="role">Fysioterapeut & Geriatri-spesialist</p>
+                <div class="section-divider"></div>
+                <h2 class="section-title">What the Research Says</h2>
+                <div class="research-carousel-wrapper">
+                    <div class="research-carousel-track">
+                        <div class="research-card">
+                            <p class="research-quote">“<strong>Measure the body, not just the bar.</strong> AlphaPWR’s center of mass tracking detects fatigue <strong>earlier and more accurately</strong> than traditional bar-mounted encoders, leading to smarter, safer training adjustments.”</p>
+                            <p class="research-ref">- Kaspersen, 2024</p>
+                        </div>
+                        <div class="research-card">
+                            <p class="research-quote">“Gamified feedback works. Elite ice hockey players using simple color-coded velocity targets completed <strong>29% more high-quality reps</strong> and achieved significantly <strong>greater strength gains</strong>.”</p>
+                            <p class="research-ref">- Vormelamd, Paulsen & Bjørnsen, 2024</p>
+                        </div>
+                        <div class="research-card">
+                            <p class="research-quote">“An athlete's feeling isn't always fact. A pre-session velocity test provides an <strong>instant, objective measure of daily readiness</strong>, allowing coaches to adjust loads to <strong>maximize progress and reduce injury risk</strong>.”</p>
+                            <p class="research-ref">- Bjelland et al., 2023</p>
+                        </div>
+                        <div class="research-card">
+                            <p class="research-quote">“In-season strength training with AlphaPWR led to <strong>significant improvements in strength and power</strong> for elite ice hockey players, helping them <strong>stay dominant throughout a long season</strong>.”</p>
+                            <p class="research-ref">- Remme, 2023</p>
+                        </div>
+                         <div class="research-card">
+                            <p class="research-quote">“AlphaPWR delivers <strong>lab-grade accurate force data</strong>, validated against gold-standard systems. It’s a reliable tool for making critical decisions based on <strong>numbers you can trust</strong>.”</p>
+                            <p class="research-ref">- Dahle, 2024</p>
+                        </div>
+                        <div class="research-card">
+                            <p class="research-quote">“Personalized, real-time feedback creates a <strong>more engaging and competitive environment</strong>. When athletes see their performance, <strong>motivation and focus increase</strong>, directly leading to better results.”</p>
+                            <p class="research-ref">- Gjertsen, 2025</p>
+                        </div>
+                         <!-- Duplicated for infinite scroll -->
+                         <div class="research-card">
+                            <p class="research-quote">“<strong>Measure the body, not just the bar.</strong> AlphaPWR’s center of mass tracking detects fatigue <strong>earlier and more accurately</strong> than traditional bar-mounted encoders, leading to smarter, safer training adjustments.”</p>
+                            <p class="research-ref">- Kaspersen, 2024</p>
+                        </div>
+                        <div class="research-card">
+                            <p class="research-quote">“Gamified feedback works. Elite ice hockey players using simple color-coded velocity targets completed <strong>29% more high-quality reps</strong> and achieved significantly <strong>greater strength gains</strong>.”</p>
+                            <p class="research-ref">- Vormelamd, Paulsen & Bjørnsen, 2024</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+        
+        <div class="dark-parallax-wrapper">
+             <section id="success-stories" class="case-studies-section">
+                 <div class="container">
+                    <div class="section-divider"></div>
+                    <h2>Success Stories</h2>
+                </div>
+                <div class="case-studies-container">
+                    <div class="case-study-card">
+                        <div class="case-study-video-container">
+                            <video autoplay muted loop playsinline>
+                                <source src="https://storage.googleapis.com/intro_alphatek/screen%20photos/Fysio.v4.mov" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="case-study-text">
+                            <blockquote>"Since implementing Alphatek, my client retention has skyrocketed. The data provides undeniable proof of progress, and that keeps them motivated and committed. I'm not just selling training sessions anymore; I'm selling results."</blockquote>
+                            <p class="author">Jonas L.</p>
+                            <p class="role">Personal Trainer</p>
+                        </div>
+                    </div>
+                    <div class="case-study-card">
+                        <div class="case-study-image-container">
+                            <img src="https://placehold.co/600x800/333/fff?text=Gym+Owner" alt="Gym Owner Maria">
+                        </div>
+                        <div class="case-study-text">
+                            <blockquote>"Adding Alphatek was the best business decision I've made. We've introduced a new revenue stream by selling advanced testing reports, and our trainers are more confident and effective than ever. It sets us apart from the competition."</blockquote>
+                            <p class="author">Maria H.</p>
+                            <p class="role">Gym Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
-        <!-- New Product Section -->
         <section class="product-section">
             <div class="container">
                 <div class="product-image">
@@ -1044,43 +1197,17 @@
 
 
         // --- GENERAL PAGE SETUP ---
-        const heroTextGroup = document.querySelector('.hero-text-group');
         const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
         const upgradeTitle = document.getElementById('upgrade-title');
 
-        const heroObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    heroTextGroup.classList.add('is-visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        if (heroTextGroup) {
-            heroObserver.observe(heroTextGroup);
-        }
         
-        // --- ANIMATED HEADLINE LOGIC (UPDATED) ---
-        const animatedHeadline = document.getElementById('animated-headline');
+        // --- HERO WORD ROTATOR ---
+        const animatedHeadline = document.querySelector('.hero-headline .word-rotator');
         if (animatedHeadline) {
-            const phrases = [
-                "Objective measurements.",
-                "Happier patients.",
-                "Healthier business."
-            ];
-            let currentIndex = 0;
-            animatedHeadline.innerHTML = phrases[currentIndex];
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % phrases.length;
-                animatedHeadline.style.opacity = 0;
-                setTimeout(() => {
-                    animatedHeadline.innerHTML = phrases[currentIndex];
-                    animatedHeadline.style.opacity = 1;
-                }, 500); 
-            }, 3000); 
+            // This part is handled by CSS animation, no extra JS needed for the rotation itself
         }
 
-        // --- TYPEWRITER EFFECT (WORD BY WORD) (UPDATED) ---
+        // --- TYPEWRITER EFFECT ---
         function typeWords(element, wordsArray, speed) {
             let i = 0;
             element.innerHTML = '';
@@ -1088,7 +1215,11 @@
 
             function type() {
                 if (i < wordsArray.length) {
-                    element.innerHTML += wordsArray[i]; 
+                    if (wordsArray[i].startsWith('<')) {
+                        element.innerHTML += wordsArray[i];
+                    } else {
+                        element.innerHTML += wordsArray[i] + ' ';
+                    }
                     i++;
                     setTimeout(type, speed);
                 } else {
@@ -1102,7 +1233,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    const words = [
+                     const words = [
                         'Generate ', 'greater ', 'outcomes ', 'with ', 'a ', 'tool ', 'that ', 'helps ', 'you ', 
                         '<span class="text-accent">target new customer groups</span>, ', 
                         'deliver ', 
@@ -1229,22 +1360,9 @@
                 const moduleId = button.dataset.module;
                 updateModuleContent(moduleId, true); 
             });
-
-             button.addEventListener('mouseenter', () => {
-                const moduleId = button.dataset.module;
-                updateModuleContent(moduleId, false);
-            });
         });
-
-        const moduleNav = document.querySelector('.module-nav');
-        if (moduleNav) {
-            moduleNav.addEventListener('mouseleave', () => {
-                if (pinnedModuleId) {
-                    updateModuleContent(pinnedModuleId, false);
-                }
-            });
-        }
-
+        
+        // Initial load
         updateModuleContent('squat', true);
 
 
@@ -1253,6 +1371,16 @@
                 closeReportModal();
             }
         });
+
+        // --- Research Carousel Logic ---
+        const researchTrack = document.querySelector('.research-carousel-track');
+        if (researchTrack) {
+            const researchCards = Array.from(researchTrack.children);
+            researchCards.forEach(card => {
+                const clone = card.cloneNode(true);
+                researchTrack.appendChild(clone);
+            });
+        }
     });
     </script>
 
