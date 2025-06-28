@@ -148,7 +148,6 @@
             font-weight: var(--font-weight-normal);
             margin: 0;
             line-height: 1.3;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         .hero-headline .static-text { display: inline; }
         .word-rotator-wrapper {
@@ -207,32 +206,134 @@
         .typing-cursor::after { content: '|'; display: inline-block; animation: blink 0.7s infinite; color: var(--color-grey-light); }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* Advantage Features Section */
-        .features-section { padding: 80px 20px; position: relative; background-color: var(--color-grey-darkest); }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .feature-card { background-color: var(--color-grey-dark); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; transition: transform 0.3s ease, background-color 0.3s ease; }
-        .feature-card:hover { transform: translateY(-5px); background-color: var(--color-grey-dark); }
-        .feature-image-container { width: 100%; height: 220px; overflow: hidden; position: relative; }
-        .feature-image-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-        .feature-card:hover .feature-image-container img { transform: scale(1.05); }
-        .feature-image-container::after {
-            content: '';
+        
+        /* ===== START: UPDATED 'ADVANTAGES' SECTION STYLES ===== */
+        .features-section { 
+            padding: 100px 20px; 
+            position: relative; 
+            background-color: var(--color-grey-darkest); 
+        }
+        .features-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 40px; 
+        }
+        .feature-card-v2 {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .feature-card-v2:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(13, 13, 13, 0.3);
             z-index: 1;
-            transition: background-color 0.4s ease;
         }
-        .feature-card:hover .feature-image-container::after {
-            background-color: rgba(13, 13, 13, 0.5);
+        .card-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-        .feature-text-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
-        .feature-text-content h3 { font-size: 1.5rem; color: var(--color-brand-white); margin-bottom: 10px; }
-        .feature-text-content p { color: var(--color-grey-lightest); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0; }
-        
+        .feature-card-v2:hover .card-background img {
+            transform: scale(1.08);
+        }
+        .card-background::after { /* Black gradient for the bottom part */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, var(--color-brand-black) 20%, transparent 100%);
+        }
+
+        .feature-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 13, 13, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 2;
+            transition: background 0.4s ease, backdrop-filter 0.4s ease;
+        }
+        .feature-card-v2:hover .feature-overlay {
+            background: rgba(47, 124, 83, 0.5);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+
+        .feature-content-v2 {
+            position: relative;
+            z-index: 3;
+            color: var(--color-brand-white);
+            padding: 30px 35px;
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .feature-icon-top {
+            font-size: 2.5rem;
+            color: var(--color-brand-accent);
+            text-align: center;
+            width: 100%;
+            margin-bottom: 1em;
+            transition: color 0.4s ease, transform 0.4s ease;
+        }
+        .feature-card-v2:hover .feature-icon-top {
+            transform: scale(1.1);
+            color: var(--color-brand-white);
+        }
+        .feature-content-v2 h3 {
+            font-size: 1.8rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-brand-white);
+            margin-bottom: 0.8em;
+            line-height: 1.2;
+            text-align: center;
+        }
+        .feature-content-v2 ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .feature-content-v2 ul li {
+            font-size: 0.95rem;
+            color: var(--color-grey-lightest);
+            margin-bottom: 0.8em;
+            display: flex;
+            align-items: flex-start;
+            line-height: 1.5;
+        }
+        .feature-content-v2 ul li i {
+            color: var(--color-brand-accent);
+            margin-right: 12px;
+            font-size: 1.1rem;
+            margin-top: 4px; /* Aligns icon with text */
+            transition: color 0.4s ease, transform 0.3s ease;
+        }
+        .feature-card-v2:hover .feature-content-v2 ul li i {
+             color: var(--color-brand-white);
+             transform: scale(1.2);
+        }
+        /* ===== END: UPDATED 'ADVANTAGES' SECTION STYLES ===== */
+
         /* Sports Teams Section */
         .sports-teams-section { padding: 80px 20px; background-color: var(--color-brand-black); text-align: center; }
         .sports-teams-section h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 2em; }
@@ -392,6 +493,8 @@
         @media(max-width:480px){
             .hero-headline{font-size:1.5rem; height: auto;}
             .benefit-card p { font-size: 0.9rem; }
+            .feature-card-v2 { min-height: 420px; } /* Adjust height for smaller screens */
+            .feature-content-v2 h3 { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -493,35 +596,55 @@
         
         <section id="features" class="features-section">
             <div class="container">
+                <!-- ===== START: UPDATED HTML STRUCTURE FOR 'ADVANTAGES' ===== -->
                 <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-image-container">
+                    <div class="feature-card-v2">
+                        <div class="card-background">
                             <img src="https://storage.googleapis.com/files_webpage/Nordic%20Sander.png" alt="Athlete using Alphatek for Nordic Hamstring exercise">
                         </div>
-                        <div class="feature-text-content">
-                            <h3>The All-In-One Toolkit for Athlete Development</h3>
-                            <p>Empower a complete training journey from one central point. Alphatek delivers comprehensive VBT, Jump, Nordic Hamstring, and Isometric assessments, expertly paired with adaptable rehabilitation programs, all from a single, versatile device.</p>
+                        <div class="feature-overlay"></div>
+                        <div class="feature-content-v2">
+                            <div class="feature-icon-top"><i class="fas fa-cubes"></i></div>
+                            <h3>The Ultimate 3-in-1 Device</h3>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i>Lab-grade Force Plate measurements.</li>
+                                <li><i class="fas fa-check-circle"></i>Advanced Velocity-Based Training (VBT).</li>
+                                <li><i class="fas fa-check-circle"></i>Integrated Nordic Hamstrings solution.</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-image-container">
+                    <div class="feature-card-v2">
+                        <div class="card-background">
                             <img src="https://storage.googleapis.com/files_webpage/Oilers%20squat%20(2).png" alt="Athlete performing a squat on the Alphatek platform">
                         </div>
-                        <div class="feature-text-content">
-                            <h3>Simplicity that Drives Optimal Results</h3> 
-                            <p>No more complex setups. Alphatek empowers athletes with effortless testing and training, providing instant feedback that sharpens focus and ignites motivation. This saves valuable staff time and boosts consistent athlete engagement.</p>
+                        <div class="feature-overlay"></div>
+                        <div class="feature-content-v2">
+                            <div class="feature-icon-top"><i class="fas fa-wand-magic-sparkles"></i></div>
+                            <h3>Easy to Use & Engaging</h3>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i>Eliminates complex, time-consuming setups.</li>
+                                <li><i class="fas fa-check-circle"></i>Instant feedback sharpens focus and motivation.</li>
+                                <li><i class="fas fa-check-circle"></i>Saves valuable staff time and boosts engagement.</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-image-container">
+                    <div class="feature-card-v2">
+                        <div class="card-background">
                              <img src="https://storage.googleapis.com/files_webpage/Start%20jump%20(3).png" alt="Athlete performing a jump test on the Alphatek platform">
                         </div>
-                        <div class="feature-text-content">
-                            <h3>Smarter Load Management, Safer Progress</h3> 
-                            <p>Alphatek offers precise, science-backed guidance to master training load. It's the perfect tool to boost performance while proactively protecting athletes from injury, enabling continuous, healthy athletic development.</p> 
+                        <div class="feature-overlay"></div>
+                        <div class="feature-content-v2">
+                            <div class="feature-icon-top"><i class="fas fa-hand-holding-medical"></i></div>
+                            <h3>Smarter Training, Safer Athletes</h3>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i>Precise, science-backed load management.</li>
+                                <li><i class="fas fa-check-circle"></i>Boost performance while reducing injury risk.</li>
+                                <li><i class="fas fa-check-circle"></i>Enables continuous and healthy development.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+                <!-- ===== END: UPDATED HTML STRUCTURE ===== -->
             </div>
         </section>
 
