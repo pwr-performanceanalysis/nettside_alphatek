@@ -202,40 +202,24 @@
             100% { opacity: 0; transform: rotate(45deg) translate(10px, 10px); }
         }
 
-        /* REINSTATED: Upgrade Section for title */
-        .upgrade-section { 
-            background-color: var(--color-brand-black); 
-            padding: 80px 20px; 
-            text-align: center; 
-        }
-        .upgrade-title { 
-            font-size: clamp(1.6rem, 3.5vw, 2.4rem); 
-            max-width: 950px; 
-            margin: 0 auto; 
-            line-height: 1.4; 
-            font-weight: var(--font-weight-light); 
-            color: var(--color-brand-white);
-            min-height: 100px;
-        }
-        .upgrade-title b {
-            font-weight: var(--font-weight-bold);
-            color: var(--color-brand-white);
-        }
-        /* REINSTATED: Typing cursor animation */
+        /* Upgrade Section */
+        .upgrade-section { background-color: var(--color-brand-black); padding: 80px 20px; text-align: center; display: flex; align-items: center; justify-content: center; }
+        .upgrade-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); max-width: 950px; margin: 0 auto; line-height: 1.4; font-weight: var(--font-weight-light); color: var(--color-brand-white); display: inline-block; opacity: 0; min-height: 130px; }
+        .upgrade-title.is-visible { opacity: 1; }
+        .upgrade-title strong { font-weight: var(--font-weight-bold); }
         .typing-cursor::after { content: '|'; display: inline-block; animation: blink 0.7s infinite; color: var(--color-grey-light); }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* ===== START: NEW FEATURES SECTION (V2 STYLE) ===== */
-        .features-section { 
-            padding: 100px 20px; 
-            position: relative; 
+        /* ===== START: 'ADVANTAGES' SECTION STYLES (CORRECTED) ===== */
+        .features-section {
+            padding: 100px 20px;
+            position: relative;
             background-color: var(--color-grey-darkest);
-            padding-top: 40px; 
         }
-        .features-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 40px; 
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
         }
         .feature-card-v2 {
             position: relative;
@@ -339,16 +323,14 @@
         .feature-content-v2 ul li {
             font-size: 0.95rem;
             color: var(--color-grey-lightest);
+            margin-bottom: 1.5em; 
             display: flex;
             align-items: flex-start;
             line-height: 1.5;
-            margin-bottom: 1.5em; 
         }
-        
         .feature-content-v2 ul li:last-child {
-            margin-bottom: 0;
+             margin-bottom: 0;
         }
-        
         .feature-content-v2 ul li i {
             color: var(--color-brand-accent);
             margin-right: 12px;
@@ -360,7 +342,7 @@
              color: var(--color-brand-white);
              transform: scale(1.2);
         }
-        /* ===== END: NEW FEATURES SECTION ===== */
+        /* ===== END: 'ADVANTAGES' SECTION STYLES ===== */
 
         /* Parallax Wrapper */
         .dark-parallax-wrapper { position: relative; background-image: url('https://storage.googleapis.com/intro_alphatek/Alphatek-6.jpg'); background-size: cover; background-position: center center; background-attachment: fixed; }
@@ -719,6 +701,27 @@
             text-decoration: none;
         }
 
+        /* Final CTA Section & Category Cards - NEWLY ADDED FROM SPORTS PAGE */
+        .cta-final-section { padding: 80px 20px; background-color: var(--color-grey-darkest); text-align: center; }
+        .cta-final-section h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1em; }
+        .cta-button-large { display: inline-block; background-color: var(--color-brand-accent); color: var(--color-brand-white); border-radius: 8px; padding: 15px 35px; font-size: 1.1rem; font-weight: var(--font-weight-normal); text-decoration: none; transition: transform 0.2s ease, background-color 0.2s ease; }
+        .cta-button-large:hover { background-color: rgb(60, 150, 100); transform: scale(1.05); }
+        
+        .category-grid-section { padding: 100px 20px; background-color: var(--color-brand-black); }
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: auto; }
+        .category-card { border-radius: 12px; padding: 20px; min-height: 250px; text-align: center; display: flex; flex-direction: column; align-items: center; text-decoration: none; justify-content: center; position: relative; overflow: hidden; background-color: transparent; transition: transform 0.3s ease-out; }
+        .category-card:hover { text-decoration: none; }
+        .card-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 1; filter: grayscale(100%) blur(8px); transition: filter 0.4s ease; }
+        .category-card:hover .card-background { filter: grayscale(100%) blur(0px); }
+        #gym-card .card-background { background-image: url('https://storage.googleapis.com/intro_alphatek/gym.jpg'); }
+        #clinics-card .card-background { background-image: url('https://storage.googleapis.com/intro_alphatek/clinics.jpg'); }
+        #sport-card .card-background { background-image: url('https://storage.googleapis.com/intro_alphatek/sport.jpg'); }
+        .card-background::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
+        .card-content-wrapper { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .category-card h3, .category-card p { color: var(--color-brand-white); transition: color 0.3s ease; }
+        .category-card h3 { margin-bottom: 8px; font-size: 1.6rem; font-weight: var(--font-weight-light); }
+        .category-card p { font-size: 0.85rem; line-height: 1.4; font-weight: var(--font-weight-light); margin-bottom: 0; }
+        /* End of new styles */
 
         footer {
             background-color: var(--color-brand-black); 
@@ -727,6 +730,7 @@
             position: relative; 
             z-index: 2;
             text-align: center;
+            border-top: 1px solid var(--color-grey-darkest);
         }
         .footer-logo-link { position: absolute; left: 5vw; bottom: 50%; transform: translateY(50%); }
         .reddot-logo { height: 75px; width: auto; display: block; }
@@ -745,8 +749,8 @@
         }
         @media(max-width:768px){
             .hero-headline{font-size:1.8rem;text-align:left;} 
-            .upgrade-section, .features-section, .reports-section, .modules-section, .case-studies-section, .product-section {padding: 60px 20px;}
-            .upgrade-title {font-size:1.4rem;}
+            .upgrade-section, .features-section, .reports-section, .modules-section, .case-studies-section, .product-section, .cta-final-section, .category-grid-section {padding: 60px 20px;}
+            .upgrade-title {font-size:1.4rem; min-height: 0;}
             .footer-logo-link { display: none; }
             .header-inner-container { justify-content: space-between; }
             .report-modal-content { grid-template-columns: 1fr; }
@@ -758,13 +762,15 @@
         }
         @media(max-width:480px){
             .hero-headline{font-size:1.5rem; height: auto;}
+            .feature-card-v2 { min-height: 420px; } /* Adjust height for smaller screens */
+            .feature-content-v2 h3 { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <!-- This header is now identical to the sports-team page -->
+        <!-- NAVIGATION UPDATED FOR SCROLLING -->
         <div class="header-inner-container">
             <div class="logo-area">
                 <a href="#" class="logo">
@@ -773,15 +779,10 @@
             </div>
             <nav class="main-nav">
                 <ul class="main-nav-list">
-                    <li class="main-nav-item"><a href="#features" class="main-nav-link">Advantages</a></li>
-                    <li class="main-nav-item"><a href="#modules" class="main-nav-link">Modules</a></li>
-                    <li class="main-nav-item">
-                        <a href="#" class="main-nav-link">Product <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-menu">
-                            <a href="../Product/product_page.html">Product Page</a>
-                            <a href="../Instructions/Squat.html">How to use</a>
-                        </div>
-                    </li>
+                    <li class="main-nav-item"><a href="../segments/sports.html" class="main-nav-link">For Teams</a></li>
+                    <li class="main-nav-item"><a href="../segments/gym.html" class="main-nav-link">For Gyms</a></li>
+                    <li class="main-nav-item"><a href="../segments/physio.html" class="main-nav-link">For Clinicians</a></li>
+                    <li class="main-nav-item"><a href="#product-section" class="main-nav-link">Product</a></li>
                     <li class="main-nav-item">
                         <a href="#" class="main-nav-link">Resources <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
@@ -794,7 +795,7 @@
                     <li class="main-nav-item">
                         <a href="#" class="main-nav-link">Company <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
-                            <a href="#">About Us</a>
+                            <a href="../About us/about_us.html">About Us</a>
                         </div>
                     </li>
                     <li class="main-nav-item"><a href="#contact" class="main-nav-link cta-button">Contact Us</a></li>
@@ -808,18 +809,19 @@
     </header>
     
     <nav class="mobile-nav-menu">
-        <!-- This mobile nav is now identical to the sports-team page -->
-        <a href="#features">Advantages</a>
-        <a href="#modules">Modules</a>
-        <a href="../Product/product_page.html">Product Page</a>
-        <a href="../Instructions/Squat.html">How to use</a>
+        <!-- MOBILE NAVIGATION UPDATED FOR SCROLLING -->
+        <a href="../segments/sports.html">For Teams</a>
+        <a href="../segments/gym.html">For Gyms</a>
+        <a href="../segments/physio.html">For Clinicians</a>
+        <div class="mobile-divider"></div>
+        <a href="#product-section">Product</a>
         <div class="mobile-divider"></div>
         <a href="../Rescources/Alphatek Research Library.html">Alphatek Research Library</a>
         <a href="#">Alphatek Academy</a>
         <a href="#">Blog</a>
         <a href="#success-stories">Case Studies</a>
         <div class="mobile-divider"></div>
-        <a href="#">About Us</a>
+        <a href="../About us/about_us.html">About Us</a>
         <div class="mobile-divider"></div>
         <a href="#contact">Contact Us</a>
     </nav>
@@ -854,14 +856,14 @@
 
         <section class="upgrade-section">
             <div class="container">
-                <h2 class="upgrade-title" id="upgrade-title">
-                </h2>
+                <h2 class="upgrade-title" id="upgrade-title"></h2>
             </div>
         </section>
 
         <section id="features" class="features-section">
             <div class="container">
                 <div class="features-grid">
+                     <!-- CARD CONTENT UPDATED TO MATCH EXAMPLE -->
                     <div class="feature-card-v2">
                         <div class="card-background">
                             <img src="https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.37.png" alt="Trainer with client">
@@ -877,6 +879,7 @@
                             </ul>
                         </div>
                     </div>
+                     <!-- CARD CONTENT UPDATED TO MATCH EXAMPLE -->
                     <div class="feature-card-v2">
                         <div class="card-background">
                             <img src="https://storage.googleapis.com/files_webpage/GYM%20page%20pictures/Monika%20josefine.png" alt="Person feeling confident in a gym">
@@ -892,9 +895,10 @@
                             </ul>
                         </div>
                     </div>
+                     <!-- CARD CONTENT UPDATED TO MATCH EXAMPLE -->
                     <div class="feature-card-v2">
                         <div class="card-background">
-                            <img src="https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.18.png" alt="Data on a screen">
+                             <img src="https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.18.png" alt="Data on a screen">
                         </div>
                         <div class="feature-overlay"></div>
                         <div class="feature-content-v2">
@@ -967,9 +971,9 @@
         
         <div class="dark-parallax-wrapper">
              <section id="success-stories" class="case-studies-section">
-                 <div class="container">
-                    <div class="section-divider"></div>
-                    <h2>Success Stories</h2>
+                   <div class="container">
+                        <div class="section-divider"></div>
+                        <h2>Success Stories</h2>
                 </div>
                 <div class="case-studies-container">
                     <div class="case-study-card">
@@ -999,7 +1003,8 @@
             </section>
         </div>
 
-        <section class="product-section">
+        <!-- ADDED ID FOR SCROLLING -->
+        <section class="product-section" id="product-section">
             <div class="container">
                 <div class="product-image">
                     <img src="https://storage.googleapis.com/intro_alphatek/Medium%20Transparent.png" alt="Alphatek Product">
@@ -1009,6 +1014,42 @@
                     <p>Get a closer look at the hardware that powers your results. Explore the Alphatek force plate and its core features in detail.</p>
                     <a href="../Product/product_page.html" class="btn-explore">Explore the Product</a>
                 </div>
+            </div>
+        </section>
+
+        <!-- NEWLY ADDED SECTIONS FROM SPORTS PAGE -->
+        <section id="contact" class="cta-final-section">
+            <div class="container">
+                <h2>Ready to elevate your gym's performance?</h2>
+                <a href="#" class="cta-button-large">Contact Us</a>
+            </div>
+        </section>
+        
+        <section class="category-grid-section">
+            <div class="container">
+                 <div class="category-grid">
+                     <a href="../segments/gym.html" class="category-card" id="gym-card">
+                         <div class="card-background"></div>
+                         <div class="card-content-wrapper">
+                             <h3>GYM</h3>
+                             <p>Solutions for modern fitness centers.</p>
+                         </div>
+                     </a>
+                     <a href="../segments/physio.html" class="category-card" id="clinics-card">
+                         <div class="card-background"></div>
+                         <div class="card-content-wrapper">
+                             <h3>Clinicians</h3> 
+                             <p>Advanced tools for patient rehabilitation.</p>
+                         </div>
+                     </a>
+                     <a href="../segments/sports.html" class="category-card" id="sport-card">
+                         <div class="card-background"></div>
+                         <div class="card-content-wrapper">
+                             <h3>Sports Teams</h3>
+                             <p>Optimize athlete performance and recovery.</p>
+                         </div>
+                     </a>
+                 </div>
             </div>
         </section>
 
@@ -1029,12 +1070,12 @@
         </div>
     </div>
     
-    <footer id="contact">
+    <footer>
         <a href="#" class="footer-logo-link" aria-label="Red Dot Design Award">
             <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
         </a>
         <div class="container">
-            <p>© 2024 Alphatek. All rights reserved.</p>
+            <p>© 2025 Alphatek. All rights reserved.</p>
             <div class="footer-social-icons">
                 <a href="https://www.instagram.com/alphatekofficial" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.youtube.com/@AlphatekOfficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
@@ -1128,22 +1169,16 @@
         const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
         const upgradeTitle = document.getElementById('upgrade-title');
         
-        // --- HERO WORD ROTATOR ---
-        const animatedHeadline = document.querySelector('.hero-headline .word-rotator-wrapper');
-        if (animatedHeadline) {
-            // This part is handled by CSS animation, no extra JS needed for the rotation itself
-        }
-        
-        // --- TYPEWRITER EFFECT (WORD BY WORD) ---
+        // --- TYPEWRITER EFFECT (Corrected) ---
         function typeWords(element, wordsArray, speed) {
-            let wordIndex = 0;
+            let i = 0;
             element.innerHTML = '';
             element.classList.add('typing-cursor');
 
             function type() {
-                if (wordIndex < wordsArray.length) {
-                    element.innerHTML += wordsArray[wordIndex] + ' ';
-                    wordIndex++;
+                if (i < wordsArray.length) {
+                    element.innerHTML += wordsArray[i];
+                    i++;
                     setTimeout(type, speed);
                 } else {
                     element.classList.remove('typing-cursor');
@@ -1155,14 +1190,17 @@
         const upgradeTitleObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                     const words = [
-                        'Alphatek', 'gives', 'personal', 'trainers', 'the', 'tools', 'needed', 'to', '<b>boost sales</b>', 'and', '<b>keep the members</b>', 'at', 'the', 'gym'
+                    entry.target.classList.add('is-visible');
+                    // --- CORRECTED TYPING TEXT WITH BOLD TAGS ---
+                    const words = [
+                        'Alphatek', 'gives', 'personal', 'trainers', 'the', 'tools', 'needed', 'to', ' <strong>boost sales</strong>', ' and', ' <strong>keep the members</strong>', ' at', ' the', ' gym'
                     ];
-                    typeWords(upgradeTitle, words, 100); 
+                    typeWords(upgradeTitle, words, 60);
                     observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.8 });
+
 
         if (upgradeTitle) {
             upgradeTitleObserver.observe(upgradeTitle);
@@ -1287,6 +1325,26 @@
             if (e.key === "Escape" && reportModalOverlay.classList.contains('is-visible')) {
                 closeReportModal();
             }
+        });
+
+        // --- SMOOTH SCROLL FOR NAV LINKS ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                
+                // Close mobile nav if it's open and a link is clicked
+                if (document.body.classList.contains('mobile-nav-open') && targetId !== '#') {
+                    document.body.classList.remove('mobile-nav-open');
+                }
+
+                // If it's a real anchor, prevent default and scroll
+                if (targetId !== '#' && document.querySelector(targetId)) {
+                    e.preventDefault();
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
 
     });
