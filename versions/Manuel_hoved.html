@@ -73,29 +73,25 @@
         @keyframes fadeInFromLeft { from { transform: translateX(-30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         .frosted-glass { background-color: rgba(20, 20, 20, 0.45); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: none; }
         
-        /* --- Dropdown Menu (UPDATED FOR SIMPLICITY) --- */
+        /* --- Dropdown Menu & Submenu (Side Menu Version) --- */
         .menu-container { position: relative; display: inline-block; }
-        .dropdown-menu { position: absolute; right: 0; top: calc(100% + 10px); border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.25); min-width: 260px; z-index: 1010; padding: 8px 0; visibility: hidden; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; overflow: hidden; }
+        .dropdown-menu { position: absolute; right: 0; top: calc(100% + 10px); border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.25); min-width: 240px; z-index: 1010; padding: 8px 0; visibility: hidden; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; overflow: visible; }
         .dropdown-menu.frosted-glass { background-color: rgba(20, 20, 20, 0.6); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
         .menu-container:hover .dropdown-menu { visibility: visible; opacity: 1; transform: translateY(0); }
         
-        .dropdown-menu a { color: var(--color-brand-white); padding: 10px 20px; text-decoration: none; display: block; text-align: left; font-size: 0.95rem; font-weight: var(--font-weight-light); transition: background-color 0.2s ease; }
+        .dropdown-menu a { color: var(--color-brand-white); text-decoration: none; display: block; text-align: left; font-size: 0.95rem; font-weight: var(--font-weight-light); transition: background-color 0.2s ease; }
+        .dropdown-menu > a { padding: 12px 20px; } /* Main items */
+        
+        .dropdown-submenu-container { position: relative; }
+        .dropdown-submenu-container > a { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
         .dropdown-menu a:hover { background-color: rgba(47, 124, 83, 0.5); text-decoration: none; }
-
-        .dropdown-header {
-            padding: 10px 20px 4px 20px;
-            font-size: 0.75rem;
-            font-weight: var(--font-weight-normal);
-            color: var(--color-grey-light);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .dropdown-divider {
-            height: 1px;
-            margin: 8px 20px;
-            background-color: rgba(255, 255, 255, 0.15);
-        }
+        
+        .submenu-arrow { font-size: 0.7rem; margin-left: 10px; transition: transform 0.3s ease; }
+        
+        .submenu { position: absolute; right: 100%; top: -8px; min-width: 240px; z-index: 1011; border-radius: 8px; box-shadow: -5px 5px 20px rgba(0,0,0,0.25); padding: 8px 0; visibility: hidden; opacity: 0; transform: translateX(10px); transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; }
+        
+        .dropdown-submenu-container:hover > .submenu { visibility: visible; opacity: 1; transform: translateX(0); }
+        .submenu a { padding: 10px 20px; }
 
         /* --- Search --- */
         .floating-search-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(15px); z-index: 1040; opacity: 0; transition: opacity 0.3s ease-out; align-items: center; justify-content: center; }
@@ -133,7 +129,7 @@
         .hero-content { position: relative; width: 100%; margin-bottom: 20px; text-align: left; max-width: 650px; }
         header.header-loaded ~ .scrollable-content .hero-section .hero-content { animation: fadeInFromLeftHeroContent 0.7s ease-out forwards 1s; }
         @keyframes fadeInFromLeftHeroContent { from { transform: translateX(-30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        .hero-headline { font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: var(--color-brand-white); font-weight: var(--font-weight-light); width: 100%; margin: 0 0 20px 0; line-height: 1.3; }
+        .hero-headline { font-size: clamp(1.8rem, 3.2vw, 2.5rem); color: var(--color-brand-white); font-weight: var(--font-weight-light); width: 100%; margin: 0 0 20px 0; line-height: 1.3; }
         .animate-on-scroll { opacity: 0 !important; transform: translateY(30px) !important; transition-property: opacity, transform; transition-duration: 0.8s; transition-timing-function: ease-out; }
         .animate-on-scroll.is-visible { opacity: 1 !important; transform: translateY(0) !important; }
         .intro-text-box { max-width: 600px; text-align: left; margin-left: 0; margin-bottom: 35px; }
@@ -313,15 +309,18 @@
                 <a href="#" aria-label="Search" class="header-icon" id="search-icon-trigger"><i class="fas fa-search"></i></a>
                 <div class="menu-container">
                     <a href="#" aria-label="Menu" class="header-icon"><i class="fas fa-bars"></i></a>
-                    <!-- UPDATED DROPDOWN MENU -->
+                    <!-- UPDATED DROPDOWN MENU WITH SUBMENU -->
                     <div class="dropdown-menu frosted-glass">
                         <a href="About us/about_us.html">About Us</a>
-                        <div class="dropdown-divider"></div>
-                        <div class="dropdown-header">Resources</div>
-                        <a href="#">Alphatek Research Library</a>
-                        <a href="#">Blogpost</a>
-                        <a href="#">Alphatek Academy</a>
-                        <a href="#">Case Studies</a>
+                        <div class="dropdown-submenu-container">
+                            <a href="#">Resources <i class="fas fa-chevron-left submenu-arrow"></i></a>
+                            <div class="submenu frosted-glass">
+                                <a href="#">Alphatek Research Library</a>
+                                <a href="#">Blogpost</a>
+                                <a href="#">Alphatek Academy</a>
+                                <a href="#">Case Studies</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -338,7 +337,7 @@
                     <h1 class="hero-headline">Training and testing with AI.</h1>
                 </div>
                 <div class="intro-text-box">
-                    <p>Experience our advanced testing and training station — real-time data for precise fitness tracking, targeted rehab, and peak performance.</p>
+                    <p>Experience our advanced testing and training station. Real-time data for precise tracking, targeted rehab, and peak performance.</p>
                     <div class="cta-button-container">
                         <a href="#" class="cta-button frosted-glass" id="show-contact-form-btn">Contact Us</a>
                     </div>
