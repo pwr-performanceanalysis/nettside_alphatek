@@ -55,7 +55,7 @@
         .main-nav-link:hover { color: var(--color-brand-white); }
         .main-nav-link.cta-button { background-color: var(--color-brand-accent); color: var(--color-brand-white); border-radius: 50px; padding: 8px 25px; margin-left: 10px; transition: background-color 0.3s ease; }
         .main-nav-link.cta-button:hover { background-color: rgb(60, 150, 100); text-decoration: none; color: var(--color-brand-white); }
-
+        
         /* Dropdown Menu Styles */
         .dropdown-menu {
             position: absolute;
@@ -66,7 +66,7 @@
             -webkit-backdrop-filter: blur(25px);
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-            min-width: 180px;
+            min-width: 240px;
             z-index: 1010;
             padding: 8px 0;
             visibility: hidden;
@@ -88,7 +88,6 @@
         .dropdown-menu a:hover { background-color: rgba(47, 124, 83, 0.5); text-decoration: none; }
         .main-nav-link .fa-chevron-down { font-size: 0.7em; margin-left: 6px; transition: transform 0.3s ease; }
         .main-nav-item:hover .main-nav-link .fa-chevron-down { transform: rotate(180deg); }
-
 
         /* Mobile Navigation */
         .mobile-nav-toggle { display: none; position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; z-index: 1002; }
@@ -697,89 +696,7 @@
             text-decoration: none;
         }
 
-
-        footer {
-            background-color: var(--color-brand-black); 
-            color: var(--color-grey-lightest); 
-            padding: 1.5em 0;
-            position: relative; 
-            z-index: 2;
-            text-align: center;
-        }
-        .footer-logo-link { position: absolute; left: 5vw; bottom: 50%; transform: translateY(50%); }
-        .reddot-logo { height: 75px; width: auto; display: block; }
-        footer p { font-weight: var(--font-weight-light); margin-bottom: 0; color: var(--color-grey-lightest); }
-        .footer-social-icons { margin-top: 1em; }
-        .footer-social-icons a { color: var(--color-grey-lightest); margin: 0 10px; font-size: 1.5rem; transition: color 0.3s ease; }
-        .footer-social-icons a:hover { color: var(--color-brand-accent); }
-
-        /* ======== START: NEW RESEARCH CAROUSEL SECTION ======== */
-        .research-carousel-section {
-            padding: 100px 0;
-            overflow: hidden;
-            background-color: var(--color-brand-black); /* Added solid black background */
-        }
-        .research-carousel-section .section-title {
-             text-align: center;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 2em;
-        }
-        .research-carousel-wrapper {
-            overflow-x: auto;
-            padding-bottom: 20px;
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-        .research-carousel-wrapper::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, and Opera */
-        }
-        .research-carousel-track {
-            display: flex;
-            gap: 40px;
-            width: fit-content;
-            animation: scroll-research 45s linear infinite;
-        }
-        .research-carousel-wrapper:hover .research-carousel-track {
-            animation-play-state: paused;
-        }
-
-        @keyframes scroll-research {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        .research-card {
-            flex: 0 0 420px;
-            background-color: transparent;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .research-quote {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            font-style: italic;
-            color: var(--color-grey-lightest);
-            margin-bottom: 1.5em;
-        }
-        .research-quote::before {
-            content: '“';
-            font-size: 3.5rem;
-            color: var(--color-brand-accent);
-            line-height: 0;
-            display: block;
-            margin-bottom: 15px;
-        }
-        .research-ref {
-            font-size: 0.9rem;
-            color: var(--color-grey-light);
-            text-align: right;
-            font-style: normal;
-        }
-        /* ======== END: NEW RESEARCH CAROUSEL SECTION ======== */
-
-        /* Final CTA Section & Category Cards - NEWLY ADDED */
+        /* Final CTA Section & Category Cards - NEWLY ADDED FROM SPORTS PAGE */
         .cta-final-section { padding: 80px 20px; background-color: var(--color-grey-darkest); text-align: center; }
         .cta-final-section h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1em; }
         .cta-button-large { display: inline-block; background-color: var(--color-brand-accent); color: var(--color-brand-white); border-radius: 8px; padding: 15px 35px; font-size: 1.1rem; font-weight: var(--font-weight-normal); text-decoration: none; transition: transform 0.2s ease, background-color 0.2s ease; }
@@ -790,17 +707,33 @@
         .category-card { border-radius: 12px; padding: 20px; min-height: 250px; text-align: center; display: flex; flex-direction: column; align-items: center; text-decoration: none; justify-content: center; position: relative; overflow: hidden; background-color: transparent; transition: transform 0.3s ease-out; }
         .category-card:hover { text-decoration: none; }
         .category-card .card-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 1; filter: grayscale(100%) blur(8px); transition: filter 0.4s ease; }
-        .category-card:hover .card-background { filter: grayscale(100%) blur(0px); }
+        .category-card:hover .card-background { filter: grayscale(0%) blur(0px); }
         #gym-card .card-background { background-image: url('https://storage.googleapis.com/intro_alphatek/gym.jpg'); }
         #clinics-card .card-background { background-image: url('https://storage.googleapis.com/intro_alphatek/clinics.jpg'); }
         #sport-card .card-background { background-image: url('https://storage.googleapis.com/intro_alphatek/sport.jpg'); }
         .category-card .card-background::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
-        .category-card .card-content-wrapper { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .card-content-wrapper { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .category-card h3, .category-card p { color: var(--color-brand-white); transition: color 0.3s ease; }
         .category-card h3 { margin-bottom: 8px; font-size: 1.6rem; font-weight: var(--font-weight-light); }
         .category-card p { font-size: 0.85rem; line-height: 1.4; font-weight: var(--font-weight-light); margin-bottom: 0; }
         /* End of new styles */
 
+        footer {
+            background-color: var(--color-brand-black); 
+            color: var(--color-grey-lightest); 
+            padding: 1.5em 0;
+            position: relative; 
+            z-index: 2;
+            text-align: center;
+            border-top: 1px solid var(--color-grey-darkest);
+        }
+        .footer-logo-link { position: absolute; left: 5vw; bottom: 50%; transform: translateY(50%); }
+        .reddot-logo { height: 75px; width: auto; display: block; }
+        footer p { font-weight: var(--font-weight-light); margin-bottom: 0; color: var(--color-grey-lightest); }
+        .footer-social-icons { margin-top: 1em; }
+        .footer-social-icons a { color: var(--color-grey-lightest); margin: 0 10px; font-size: 1.5rem; transition: color 0.3s ease; }
+        .footer-social-icons a:hover { color: var(--color-brand-accent); }
+        
         @media(max-width:992px){
             .main-nav { display: none; }
             .mobile-nav-toggle { display: block; }
@@ -834,7 +767,7 @@
         <!-- NAVIGATION UPDATED -->
         <div class="header-inner-container">
             <div class="logo-area">
-                <a href="#" class="logo">
+                <a href="../index.html" class="logo">
                     <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
                 </a>
             </div>
@@ -849,7 +782,7 @@
                         <div class="dropdown-menu">
                             <a href="../Rescources/Alphatek Research Library.html">Alphatek Research Library</a>
                             <a href="#">Alphatek Academy</a>
-                            <a href="#">Blog</a>
+                            <a href="../Blog/blog recovery.html">Blogpost</a>
                             <a href="#success-stories">Case Studies</a>
                         </div>
                     </li>
@@ -879,7 +812,7 @@
         <div class="mobile-divider"></div>
         <a href="../Rescources/Alphatek Research Library.html">Alphatek Research Library</a>
         <a href="#">Alphatek Academy</a>
-        <a href="#">Blog</a>
+        <a href="../Blog/blog recovery.html">Blogpost</a>
         <a href="#success-stories">Case Studies</a>
         <div class="mobile-divider"></div>
         <a href="../About us/about_us.html">About Us</a>
@@ -993,76 +926,32 @@
                     </div>
                 </div>
             </section>
-            
-            <section id="modules" class="modules-section">
-                <div class="container">
-                    <div class="section-divider"></div>
-                    <h2 class="section-title">Powerful modules for every stage of recovery</h2>
-                    <div class="module-explorer">
-                        <div class="module-nav">
-                            <button class="module-btn" data-module="squat">Squat</button>
-                            <button class="module-btn" data-module="squat-analytics">Squat Analytics</button>
-                            <button class="module-btn" data-module="pull">Pull</button>
-                            <button class="module-btn" data-module="jump">Jump</button>
-                            <button class="module-btn" data-module="balance">Balance</button>
-                            <button class="module-btn" data-module="monitor">Monitor</button>
-                            <button class="module-btn" data-module="nordic-hamstrings">Nordic Hamstrings</button>
-                        </div>
-                        <div class="module-content">
-                            <div id="module-content-area" class="module-content-area">
-                                <div class="module-image">
-                                    <img id="module-img" src="" alt="Module Screenshot">
-                                </div>
-                                <div class="module-text">
-                                    <h3 id="module-title"></h3>
-                                    <p id="module-description"></p>
-                                    <a href="#" class="learn-more" id="module-learn-more" style="display: none;">Learn more...</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
         
-        <section id="research" class="research-carousel-section">
+        <section id="modules" class="modules-section">
             <div class="container">
                 <div class="section-divider"></div>
-                <h2 class="section-title">What the Research Says</h2>
-                <div class="research-carousel-wrapper">
-                    <div class="research-carousel-track">
-                        <div class="research-card">
-                            <p class="research-quote">“<strong>Measure the body, not just the bar.</strong> AlphaPWR’s center of mass tracking detects fatigue <strong>earlier and more accurately</strong> than traditional bar-mounted encoders, leading to smarter, safer training adjustments.”</p>
-                            <p class="research-ref">- Kaspersen, 2024</p>
-                        </div>
-                        <div class="research-card">
-                            <p class="research-quote">“Gamified feedback works. Elite ice hockey players using simple color-coded velocity targets completed <strong>29% more high-quality reps</strong> and achieved significantly <strong>greater strength gains</strong>.”</p>
-                            <p class="research-ref">- Vormelamd, Paulsen & Bjørnsen, 2024</p>
-                        </div>
-                        <div class="research-card">
-                            <p class="research-quote">“An athlete's feeling isn't always fact. A pre-session velocity test provides an <strong>instant, objective measure of daily readiness</strong>, allowing coaches to adjust loads to <strong>maximize progress and reduce injury risk</strong>.”</p>
-                            <p class="research-ref">- Bjelland et al., 2023</p>
-                        </div>
-                        <div class="research-card">
-                            <p class="research-quote">“In-season strength training with AlphaPWR led to <strong>significant improvements in strength and power</strong> for elite ice hockey players, helping them <strong>stay dominant throughout a long season</strong>.”</p>
-                            <p class="research-ref">- Remme, 2023</p>
-                        </div>
-                         <div class="research-card">
-                            <p class="research-quote">“AlphaPWR delivers <strong>lab-grade accurate force data</strong>, validated against gold-standard systems. It’s a reliable tool for making critical decisions based on <strong>numbers you can trust</strong>.”</p>
-                            <p class="research-ref">- Dahle, 2024</p>
-                        </div>
-                        <div class="research-card">
-                            <p class="research-quote">“Personalized, real-time feedback creates a <strong>more engaging and competitive environment</strong>. When athletes see their performance, <strong>motivation and focus increase</strong>, directly leading to better results.”</p>
-                            <p class="research-ref">- Gjertsen, 2025</p>
-                        </div>
-                         <!-- Duplicated for infinite scroll -->
-                         <div class="research-card">
-                            <p class="research-quote">“<strong>Measure the body, not just the bar.</strong> AlphaPWR’s center of mass tracking detects fatigue <strong>earlier and more accurately</strong> than traditional bar-mounted encoders, leading to smarter, safer training adjustments.”</p>
-                            <p class="research-ref">- Kaspersen, 2024</p>
-                        </div>
-                        <div class="research-card">
-                            <p class="research-quote">“Gamified feedback works. Elite ice hockey players using simple color-coded velocity targets completed <strong>29% more high-quality reps</strong> and achieved significantly <strong>greater strength gains</strong>.”</p>
-                            <p class="research-ref">- Vormelamd, Paulsen & Bjørnsen, 2024</p>
+                <h2 class="section-title">Powerful modules for every stage of recovery</h2>
+                <div class="module-explorer">
+                    <div class="module-nav">
+                        <button class="module-btn" data-module="squat">Squat</button>
+                        <button class="module-btn" data-module="squat-analytics">Squat Analytics</button>
+                        <button class="module-btn" data-module="pull">Pull</button>
+                        <button class="module-btn" data-module="jump">Jump</button>
+                        <button class="module-btn" data-module="balance">Balance</button>
+                        <button class="module-btn" data-module="monitor">Monitor</button>
+                        <button class="module-btn" data-module="nordic-hamstrings">Nordic Hamstrings</button>
+                    </div>
+                    <div class="module-content">
+                        <div id="module-content-area" class="module-content-area">
+                            <div class="module-image">
+                                <img id="module-img" src="" alt="Module Screenshot">
+                            </div>
+                            <div class="module-text">
+                                <h3 id="module-title"></h3>
+                                <p id="module-description"></p>
+                                <a href="#" class="learn-more" id="module-learn-more" style="display: none;">Learn more...</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1071,9 +960,9 @@
         
         <div class="dark-parallax-wrapper">
              <section id="success-stories" class="case-studies-section">
-                   <div class="container">
-                        <div class="section-divider"></div>
-                        <h2>Success Stories</h2>
+                 <div class="container">
+                     <div class="section-divider"></div>
+                     <h2>Success Stories</h2>
                 </div>
                 <div class="case-studies-container">
                     <div class="case-study-card">
@@ -1126,27 +1015,27 @@
         <section class="category-grid-section">
             <div class="container">
                  <div class="category-grid">
-                     <a href="../segments/gym.html" class="category-card" id="gym-card">
-                         <div class="card-background"></div>
-                         <div class="card-content-wrapper">
-                             <h3>GYM</h3>
-                             <p>Solutions for modern fitness centers.</p>
-                         </div>
-                     </a>
-                     <a href="../segments/physio.html" class="category-card" id="clinics-card">
-                         <div class="card-background"></div>
-                         <div class="card-content-wrapper">
-                             <h3>Clinicians</h3> 
-                             <p>Advanced tools for patient rehabilitation.</p>
-                         </div>
-                     </a>
-                     <a href="../segments/sports.html" class="category-card" id="sport-card">
-                         <div class="card-background"></div>
-                         <div class="card-content-wrapper">
-                             <h3>Sports Teams</h3>
-                             <p>Optimize athlete performance and recovery.</p>
-                         </div>
-                     </a>
+                      <a href="../segments/gym.html" class="category-card" id="gym-card">
+                           <div class="card-background"></div>
+                           <div class="card-content-wrapper">
+                                <h3>GYM</h3>
+                                <p>Solutions for modern fitness centers.</p>
+                           </div>
+                      </a>
+                      <a href="../segments/physio.html" class="category-card" id="clinics-card">
+                           <div class="card-background"></div>
+                           <div class="card-content-wrapper">
+                                <h3>Clinicians</h3> 
+                                <p>Advanced tools for patient rehabilitation.</p>
+                           </div>
+                      </a>
+                      <a href="../segments/sports.html" class="category-card" id="sport-card">
+                           <div class="card-background"></div>
+                           <div class="card-content-wrapper">
+                                <h3>Sports Teams</h3>
+                                <p>Optimize athlete performance and recovery.</p>
+                           </div>
+                      </a>
                  </div>
             </div>
         </section>
@@ -1170,10 +1059,10 @@
     
     <footer>
         <a href="#" class="footer-logo-link" aria-label="Red Dot Design Award">
-            <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
+             <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
         </a>
         <div class="container">
-            <p>&copy; 2024 Alphatek. All rights reserved.</p>
+            <p>© 2025 Alphatek. All rights reserved.</p>
             <div class="footer-social-icons">
                 <a href="https://www.instagram.com/alphatekofficial" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.youtube.com/@AlphatekOfficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
@@ -1479,6 +1368,7 @@
                 }
             });
         });
+
     });
     </script>
 
