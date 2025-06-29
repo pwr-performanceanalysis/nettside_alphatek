@@ -83,7 +83,7 @@
             -webkit-backdrop-filter: blur(25px);
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-            min-width: 180px;
+            min-width: 240px;
             z-index: 1010;
             padding: 8px 0;
             visibility: hidden;
@@ -249,38 +249,38 @@
 
     <header id="main-header">
         <div class="header-inner-container">
-             <div class="logo-area">
-                 <a href="#" class="logo">
-                     <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
-                 </a>
-             </div>
-             <nav class="main-nav">
-                 <ul class="main-nav-list">
-                     <li class="main-nav-item"><a href="../segments/sports.html" class="main-nav-link">For Teams</a></li>
-                     <li class="main-nav-item"><a href="../segments/gym.html" class="main-nav-link">For Gyms</a></li>
-                     <li class="main-nav-item"><a href="../segments/physio.html" class="main-nav-link">For Clinicians</a></li>
-                     <li class="main-nav-item">
-                         <a href="#" class="main-nav-link">Resources <i class="fas fa-chevron-down"></i></a>
-                         <div class="dropdown-menu">
-                             <a href="../Resources/Alphatek Research Library.html">Alphatek Research Library</a>
-                             <a href="#">Alphatek Academy</a>
-                             <a href="#">Blog</a>
-                             <a href="#">Case Studies</a>
-                         </div>
-                     </li>
-                     <li class="main-nav-item">
-                        <a href="#" class="main-nav-link">Company <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-menu">
-                            <a href="../About us/about_us.html">About Us</a>
-                        </div>
-                    </li>
-                     <li class="main-nav-item"><a href="#contact" class="main-nav-link cta-button">Contact Us</a></li>
-                 </ul>
-             </nav>
-             <button class="mobile-nav-toggle" aria-label="Toggle navigation">
-                 <i class="fas fa-bars"></i>
-                 <i class="fas fa-times"></i>
-             </button>
+                 <div class="logo-area">
+                      <a href="../index.html" class="logo">
+                           <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
+                      </a>
+                 </div>
+                 <nav class="main-nav">
+                      <ul class="main-nav-list">
+                           <li class="main-nav-item"><a href="../segments/sports.html" class="main-nav-link">For Teams</a></li>
+                           <li class="main-nav-item"><a href="../segments/gym.html" class="main-nav-link">For Gyms</a></li>
+                           <li class="main-nav-item"><a href="../segments/physio.html" class="main-nav-link">For Clinicians</a></li>
+                           <li class="main-nav-item">
+                                <a href="#" class="main-nav-link">Resources <i class="fas fa-chevron-down"></i></a>
+                                <div class="dropdown-menu">
+                                     <a href="../Rescources/Alphatek Research Library.html">Alphatek Research Library</a>
+                                     <a href="#">Alphatek Academy</a>
+                                     <a href="../Blog/blog recovery.html">Blogpost</a>
+                                     <a href="#">Case Studies</a>
+                                </div>
+                           </li>
+                           <li class="main-nav-item">
+                               <a href="#" class="main-nav-link">Company <i class="fas fa-chevron-down"></i></a>
+                               <div class="dropdown-menu">
+                                   <a href="../About us/about_us.html">About Us</a>
+                               </div>
+                           </li>
+                           <li class="main-nav-item"><a href="#contact" class="main-nav-link cta-button">Contact Us</a></li>
+                      </ul>
+                 </nav>
+                 <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                      <i class="fas fa-bars"></i>
+                      <i class="fas fa-times"></i>
+                 </button>
         </div>
     </header>
 
@@ -289,9 +289,9 @@
         <a href="../segments/gym.html">For Gyms</a>
         <a href="../segments/physio.html">For Clinicians</a>
         <div class="mobile-divider"></div>
-        <a href="../Resources/Alphatek Research Library.html">Alphatek Research Library</a>
+        <a href="../Rescources/Alphatek Research Library.html">Alphatek Research Library</a>
         <a href="#">Alphatek Academy</a>
-        <a href="#">Blog</a>
+        <a href="../Blog/blog recovery.html">Blogpost</a>
         <a href="#">Case Studies</a>
         <div class="mobile-divider"></div>
         <a href="../About us/about_us.html">About Us</a>
@@ -321,20 +321,20 @@
         
         <section class="content-section dark-bg-section config-section">
              <div class="container">
-                <div class="divider"></div>
-                <h2 class="section-title">Visualize Your Configuration</h2>
-                <div class="size-selector-tabs">
-                    <button class="size-tab active" data-size="solo" data-glb-src="https://storage.googleapis.com/files_webpage/Small.glb">SOLO</button>
-                    <button class="size-tab" data-size="team" data-glb-src="https://storage.googleapis.com/files_webpage/Medium.glb">TEAM</button>
-                    <button class="size-tab" data-size="pro" data-glb-src="https://storage.googleapis.com/files_webpage/Large.glb">PRO</button>
-                </div>
-                <div class="size-image-viewer">
-                    <img src="https://storage.googleapis.com/files_webpage/Small%20Transparent.png" alt="Alphatek SOLO model" class="size-image active" data-size="solo">
-                    <img src="https://storage.googleapis.com/files_webpage/Medium%20Transparent.png" alt="Alphatek TEAM model" class="size-image" data-size="team">
-                    <img src="https://storage.googleapis.com/files_webpage/Large%20Transparent.png" alt="Alphatek PRO model" class="size-image" data-size="pro">
-                    <button id="view-3d-btn"><i class="fas fa-cube"></i> View in 3D</button>
-                </div>
-                <div class="size-details-wrapper"><div class="size-details active" data-size="solo"><h3>SOLO</h3><p class="dimensions">110cm x 180cm | 100 kg</p></div><div class="size-details" data-size="team"><h3>TEAM</h3><p class="dimensions">310cm x 213cm | 280 kg</p></div><div class="size-details" data-size="pro"><h3>PRO</h3><p class="dimensions">610cm x 213cm | 560 kg</p></div></div>
+                 <div class="divider"></div>
+                 <h2 class="section-title">Visualize Your Configuration</h2>
+                 <div class="size-selector-tabs">
+                      <button class="size-tab active" data-size="solo" data-glb-src="https://storage.googleapis.com/files_webpage/Small.glb">SOLO</button>
+                      <button class="size-tab" data-size="team" data-glb-src="https://storage.googleapis.com/files_webpage/Medium.glb">TEAM</button>
+                      <button class="size-tab" data-size="pro" data-glb-src="https://storage.googleapis.com/files_webpage/Large.glb">PRO</button>
+                 </div>
+                 <div class="size-image-viewer">
+                      <img src="https://storage.googleapis.com/files_webpage/Small%20Transparent.png" alt="Alphatek SOLO model" class="size-image active" data-size="solo">
+                      <img src="https://storage.googleapis.com/files_webpage/Medium%20Transparent.png" alt="Alphatek TEAM model" class="size-image" data-size="team">
+                      <img src="https://storage.googleapis.com/files_webpage/Large%20Transparent.png" alt="Alphatek PRO model" class="size-image" data-size="pro">
+                      <button id="view-3d-btn"><i class="fas fa-cube"></i> View in 3D</button>
+                 </div>
+                 <div class="size-details-wrapper"><div class="size-details active" data-size="solo"><h3>SOLO</h3><p class="dimensions">110cm x 180cm | 100 kg</p></div><div class="size-details" data-size="team"><h3>TEAM</h3><p class="dimensions">310cm x 213cm | 280 kg</p></div><div class="size-details" data-size="pro"><h3>PRO</h3><p class="dimensions">610cm x 213cm | 560 kg</p></div></div>
             </div>
         </section>
 
@@ -371,13 +371,13 @@
         
        <section class="content-section dark-bg-section">
              <div class="container">
-                <div class="divider"></div>
-                <h2 class="section-title">A Partnership in Performance</h2>
-                <div class="card-grid">
-                    <div class="info-card"><div class="card-icon"><i class="fas fa-tools"></i></div><h3>Professional Installation</h3><p>Our certified technicians handle the entire installation process, from delivery to calibration, ensuring your system is perfect from day one.</p></div>
-                    <div class="info-card"><div class="card-icon"><i class="fas fa-cloud-arrow-up"></i></div><h3>Continuous Evolution</h3><p>Your AlphaPWR system is always evolving. We deliver new features, workouts, and software improvements automatically via the cloud.</p></div>
-                    <div class="info-card"><div class="card-icon"><i class="fas fa-wifi"></i></div><h3>Always Connected</h3><p>The AlphaPWR system is always connected, enabling real-time monitoring and allowing us to resolve issues before they affect you.</p></div>
-                </div>
+                 <div class="divider"></div>
+                 <h2 class="section-title">A Partnership in Performance</h2>
+                 <div class="card-grid">
+                      <div class="info-card"><div class="card-icon"><i class="fas fa-tools"></i></div><h3>Professional Installation</h3><p>Our certified technicians handle the entire installation process, from delivery to calibration, ensuring your system is perfect from day one.</p></div>
+                      <div class="info-card"><div class="card-icon"><i class="fas fa-cloud-arrow-up"></i></div><h3>Continuous Evolution</h3><p>Your AlphaPWR system is always evolving. We deliver new features, workouts, and software improvements automatically via the cloud.</p></div>
+                      <div class="info-card"><div class="card-icon"><i class="fas fa-wifi"></i></div><h3>Always Connected</h3><p>The AlphaPWR system is always connected, enabling real-time monitoring and allowing us to resolve issues before they affect you.</p></div>
+                 </div>
             </div>
         </section>
         
@@ -529,4 +529,4 @@
     });
     </script>
 </body>
-</html>
+</ht
