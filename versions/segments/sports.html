@@ -23,7 +23,7 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html {
-            scroll-behavior: smooth;
+            /* scroll-behavior: smooth; REMOVED FOR CUSTOM JS SCROLLING */
         }
         body {
             font-family: var(--font-primary);
@@ -203,11 +203,12 @@
         .upgrade-section { background-color: var(--color-brand-black); padding: 80px 20px; text-align: center; display: flex; align-items: center; justify-content: center; }
         .upgrade-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); max-width: 950px; margin: 0 auto; line-height: 1.4; font-weight: var(--font-weight-light); color: var(--color-brand-white); display: inline-block; opacity: 0; min-height: 130px; }
         .upgrade-title.is-visible { opacity: 1; }
+        .upgrade-title strong { font-weight: var(--font-weight-bold); }
         .typing-cursor::after { content: '|'; display: inline-block; animation: blink 0.7s infinite; color: var(--color-grey-light); }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         
-        /* ===== START: 'ADVANTAGES' SECTION STYLES ===== */
+        /* ===== START: 'ADVANTAGES' SECTION STYLES - COPIED FROM PHYSIO PAGE ===== */
         .features-section {
             padding: 100px 20px;
             position: relative;
@@ -316,7 +317,7 @@
         .feature-content-v2 ul li {
             font-size: 0.95rem;
             color: var(--color-grey-lightest);
-            margin-bottom: 1.2em; /* Changed from 0.8em to 1.2em */
+            margin-bottom: 1.2em;
             display: flex;
             align-items: flex-start;
             line-height: 1.5;
@@ -387,33 +388,31 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(47, 124, 83, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: white;
+            background-color: transparent;
+            color: var(--color-brand-white);
             border: none;
-            border-radius: 10px;
-            width: 60px;
-            height: 60px;
-            font-size: 1.8rem;
+            width: 70px;
+            height: 70px;
+            font-size: 3rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+            transition: transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
             z-index: 5;
             opacity: 1;
+            text-shadow: 0 0 15px rgba(0,0,0,0.5);
         }
 
         .play-button:hover {
-            background-color: rgba(47, 124, 83, 0.8);
-            transform: translate(-50%, -50%) scale(1.1);
+            color: var(--color-brand-accent);
+            transform: translate(-50%, -50%) scale(1.15);
         }
 
         .video-wrapper video.is-playing + .play-button {
             opacity: 0;
+            pointer-events: none;
         }
-
 
         .play-button .fa-play {
             margin-left: 5px; 
@@ -857,12 +856,19 @@
         .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: auto; }
         .category-card { border-radius: 12px; padding: 20px; min-height: 250px; text-align: center; display: flex; flex-direction: column; align-items: center; text-decoration: none; justify-content: center; position: relative; overflow: hidden; background-color: transparent; transition: transform 0.3s ease-out; }
         .category-card:hover { text-decoration: none; }
-        .card-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 1; filter: grayscale(100%) blur(8px); transition: filter 0.4s ease; }
-        .category-card:hover .card-background { filter: grayscale(100%) blur(0px); }
+        .category-grid .card-background { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background-size: cover; background-position: center; z-index: 1; 
+            filter: grayscale(100%) blur(8px);
+            transition: filter 0.4s ease; 
+        }
+        .category-card:hover .card-background { 
+            filter: grayscale(100%) blur(0px);
+        }
         #gym-card .card-background { background-image: url('https://storage.googleapis.com/intro_alphatek/gym.jpg'); }
         #clinics-card .card-background { background-image: url('https://storage.googleapis.com/intro_alphatek/clinics.jpg'); }
         #sport-card .card-background { background-image: url('https://storage.googleapis.com/intro_alphatek/sport.jpg'); }
-        .card-background::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
+        .category-grid .card-background::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
         .card-content-wrapper { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .category-card h3, .category-card p { color: var(--color-brand-white); transition: color 0.3s ease; }
         .category-card h3 { margin-bottom: 8px; font-size: 1.6rem; font-weight: var(--font-weight-light); }
@@ -926,12 +932,7 @@
                     <li class="main-nav-item"><a href="../segments/sports.html" class="main-nav-link">For Teams</a></li>
                     <li class="main-nav-item"><a href="../segments/gym.html" class="main-nav-link">For Gyms</a></li>
                     <li class="main-nav-item"><a href="../segments/physio.html" class="main-nav-link">For Clinicians</a></li>
-                    <li class="main-nav-item">
-                        <a href="#" class="main-nav-link">Product <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-menu">
-                            <a href="../Product/product_page.html">Product Page</a>
-                        </div>
-                    </li>
+                    <li class="main-nav-item"><a href="#product" class="main-nav-link">Product</a></li>
                     <li class="main-nav-item">
                         <a href="#" class="main-nav-link">Resources <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
@@ -962,7 +963,7 @@
         <a href="../segments/gym.html">For Gyms</a>
         <a href="../segments/physio.html">For Clinicians</a>
         <div class="mobile-divider"></div>
-        <a href="../Product/product_page.html">Product Page</a>
+        <a href="#product">Product</a>
         <div class="mobile-divider"></div>
         <a href="../Rescources/Alphatek Research Library.html">Alphatek Research Library</a>
         <a href="#">Alphatek Academy</a>
@@ -1546,7 +1547,7 @@
             // Initial state: select the first main button
              const initialMainButton = document.querySelector('.module-main-btn');
              if(initialMainButton) {
-                  initialMainButton.click();
+                 initialMainButton.click();
              }
             // ======== END: FINAL MODULES SCRIPT ========
 
@@ -1606,10 +1607,10 @@
                 });
             }
              document.addEventListener('keydown', (e) => {
-                  if (e.key === "Escape" && reportModalOverlay && reportModalOverlay.classList.contains('is-visible')) {
-                       closeReportModal();
-                  }
-             });
+                 if (e.key === "Escape" && reportModalOverlay && reportModalOverlay.classList.contains('is-visible')) {
+                     closeReportModal();
+                 }
+            });
 
             // --- Research Carousel Logic ---
             const researchTrack = document.querySelector('.research-carousel-track');
@@ -1650,6 +1651,51 @@
                         playButton.style.opacity = '1';
                     });
                 }
+            });
+
+            // --- CUSTOM SLOW SCROLL FUNCTION ---
+            function slowScrollTo(targetSelector, duration) {
+                const target = document.querySelector(targetSelector);
+                if (!target) return;
+
+                const targetPosition = target.getBoundingClientRect().top;
+                const startPosition = window.pageYOffset;
+                let startTime = null;
+
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const run = ease(timeElapsed, startPosition, targetPosition, duration);
+                    window.scrollTo(0, run);
+                    if (timeElapsed < duration) requestAnimationFrame(animation);
+                }
+
+                function ease(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                };
+
+                requestAnimationFrame(animation);
+            }
+
+            // --- SMOOTH SCROLL FOR NAV LINKS ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    
+                    // Close mobile nav if it's open and a link is clicked
+                    if (document.body.classList.contains('mobile-nav-open') && targetId !== '#') {
+                        document.body.classList.remove('mobile-nav-open');
+                    }
+
+                    // If it's a real anchor, prevent default and scroll
+                    if (targetId !== '#' && document.querySelector(targetId)) {
+                        e.preventDefault();
+                        slowScrollTo(targetId, 1500); // Set duration to 1500ms for a slower scroll
+                    }
+                });
             });
 
         });
