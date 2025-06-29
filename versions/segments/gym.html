@@ -55,7 +55,7 @@
         .main-nav-link:hover { color: var(--color-brand-white); }
         .main-nav-link.cta-button { background-color: var(--color-brand-accent); color: var(--color-brand-white); border-radius: 50px; padding: 8px 25px; margin-left: 10px; transition: background-color 0.3s ease; }
         .main-nav-link.cta-button:hover { background-color: rgb(60, 150, 100); text-decoration: none; color: var(--color-brand-white); }
-
+        
         /* Dropdown Menu Styles */
         .dropdown-menu {
             position: absolute;
@@ -66,7 +66,7 @@
             -webkit-backdrop-filter: blur(25px);
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-            min-width: 180px;
+            min-width: 240px;
             z-index: 1010;
             padding: 8px 0;
             visibility: hidden;
@@ -88,7 +88,6 @@
         .dropdown-menu a:hover { background-color: rgba(47, 124, 83, 0.5); text-decoration: none; }
         .main-nav-link .fa-chevron-down { font-size: 0.7em; margin-left: 6px; transition: transform 0.3s ease; }
         .main-nav-item:hover .main-nav-link .fa-chevron-down { transform: rotate(180deg); }
-
 
         /* Mobile Navigation */
         .mobile-nav-toggle { display: none; position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; z-index: 1002; }
@@ -320,7 +319,7 @@
         .feature-content-v2 ul li {
             font-size: 0.95rem;
             color: var(--color-grey-lightest);
-            margin-bottom: 1.2em; /* Changed from 0.8em to 1.2em */
+            margin-bottom: 1.2em;
             display: flex;
             align-items: flex-start;
             line-height: 1.5;
@@ -329,7 +328,7 @@
             color: var(--color-brand-accent);
             margin-right: 12px;
             font-size: 1.1rem;
-            margin-top: 4px; /* Aligns icon with text */
+            margin-top: 4px; 
             transition: color 0.4s ease, transform 0.3s ease;
         }
         .feature-card-v2:hover .feature-content-v2 ul li i {
@@ -768,7 +767,7 @@
         <!-- NAVIGATION UPDATED FOR SCROLLING -->
         <div class="header-inner-container">
             <div class="logo-area">
-                <a href="#" class="logo">
+                <a href="../index.html" class="logo">
                     <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
                 </a>
             </div>
@@ -783,7 +782,7 @@
                         <div class="dropdown-menu">
                             <a href="../Rescources/Alphatek Research Library.html">Alphatek Research Library</a>
                             <a href="#">Alphatek Academy</a>
-                            <a href="#">Blog</a>
+                            <a href="../Blog/blog recovery.html">Blogpost</a>
                             <a href="#success-stories">Case Studies</a>
                         </div>
                     </li>
@@ -813,7 +812,7 @@
         <div class="mobile-divider"></div>
         <a href="../Rescources/Alphatek Research Library.html">Alphatek Research Library</a>
         <a href="#">Alphatek Academy</a>
-        <a href="#">Blog</a>
+        <a href="../Blog/blog recovery.html">Blogpost</a>
         <a href="#success-stories">Case Studies</a>
         <div class="mobile-divider"></div>
         <a href="../About us/about_us.html">About Us</a>
@@ -835,10 +834,10 @@
                 <h1 class="hero-headline">
                     <div class="word-rotator-wrapper">
                         <div class="word-rotator">
-                           <span>Quick progress tracking.</span>
-                           <span>Happier personal trainers.</span>
-                           <span>Healthier business.</span>
-                           <span>Quick progress tracking.</span>
+                            <span>Quick progress tracking.</span>
+                            <span>Happier personal trainers.</span>
+                            <span>Healthier business.</span>
+                            <span>Quick progress tracking.</span>
                         </div>
                     </div>
                 </h1>
@@ -966,9 +965,9 @@
         
         <div class="dark-parallax-wrapper">
              <section id="success-stories" class="case-studies-section">
-                   <div class="container">
-                        <div class="section-divider"></div>
-                        <h2>Success Stories</h2>
+                 <div class="container">
+                     <div class="section-divider"></div>
+                     <h2>Success Stories</h2>
                 </div>
                 <div class="case-studies-container">
                     <div class="case-study-card">
@@ -1023,27 +1022,27 @@
         <section class="category-grid-section">
             <div class="container">
                  <div class="category-grid">
-                     <a href="../segments/gym.html" class="category-card" id="gym-card">
-                         <div class="card-background"></div>
-                         <div class="card-content-wrapper">
-                             <h3>GYM</h3>
-                             <p>Solutions for modern fitness centers.</p>
-                         </div>
-                     </a>
-                     <a href="../segments/physio.html" class="category-card" id="clinics-card">
-                         <div class="card-background"></div>
-                         <div class="card-content-wrapper">
-                             <h3>Clinicians</h3> 
-                             <p>Advanced tools for patient rehabilitation.</p>
-                         </div>
-                     </a>
-                     <a href="../segments/sports.html" class="category-card" id="sport-card">
-                         <div class="card-background"></div>
-                         <div class="card-content-wrapper">
-                             <h3>Sports Teams</h3>
-                             <p>Optimize athlete performance and recovery.</p>
-                         </div>
-                     </a>
+                      <a href="../segments/gym.html" class="category-card" id="gym-card">
+                           <div class="card-background"></div>
+                           <div class="card-content-wrapper">
+                                <h3>GYM</h3>
+                                <p>Solutions for modern fitness centers.</p>
+                           </div>
+                      </a>
+                      <a href="../segments/physio.html" class="category-card" id="clinics-card">
+                           <div class="card-background"></div>
+                           <div class="card-content-wrapper">
+                                <h3>Clinicians</h3> 
+                                <p>Advanced tools for patient rehabilitation.</p>
+                           </div>
+                      </a>
+                      <a href="../segments/sports.html" class="category-card" id="sport-card">
+                           <div class="card-background"></div>
+                           <div class="card-content-wrapper">
+                                <h3>Sports Teams</h3>
+                                <p>Optimize athlete performance and recovery.</p>
+                           </div>
+                      </a>
                  </div>
             </div>
         </section>
@@ -1067,7 +1066,7 @@
     
     <footer>
         <a href="#" class="footer-logo-link" aria-label="Red Dot Design Award">
-            <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
+             <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddot-logo">
         </a>
         <div class="container">
             <p>© 2025 Alphatek. All rights reserved.</p>
