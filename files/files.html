@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Asset Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" xintegrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Chosen Palette: Dark Theme with Brand Accent -->
+    <!-- Application Structure Plan: The application maintains a single-view, tabbed interface for clarity. The key change is adding a descriptive title to each asset card, sourced from a new data structure. This directly addresses the user's need for better context beyond filenames, making the tool more intuitive and informative. The language switcher now also translates these new titles. -->
+    <!-- Visualization & Content Choices: Report Info: Categorized asset URLs with descriptive titles. -> Goal: Provide a clear, titled, focused, and multilingual way to explore assets. -> Viz/Presentation Method: Interactive cards now prominently display a human-readable title above the URL/filename. -> Interaction: Same as before (Category tabs, language switcher, preview, get link, copy URL), but the experience is enhanced by the contextual titles. -> Justification: Adding titles is a critical UX improvement that makes the content instantly understandable without needing to decode URLs, fulfilling the user's core request for more clarity. -> Library/Method: Vanilla JS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+        }
+        .asset-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .modal-content-area video,
+        .modal-content-area img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 0.5rem;
+        }
+        .nav-btn {
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        .nav-btn.active {
+            background-color: #16a34a; /* bg-green-600 */
+            color: #ffffff;
+            border-color: #16a34a;
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="relative text-center mb-8 border-b border-gray-700 pb-8">
+            <h1 id="main-title" class="text-4xl md:text-5xl font-bold text-white mb-2">Website Asset Explorer</h1>
+            <p id="main-subtitle" class="text-lg text-gray-400">An interactive viewer for all image and video assets.</p>
+            <div class="absolute top-0 right-0">
+                <button id="lang-switcher" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-md text-sm transition-colors duration-200">
+                    <i class="fas fa-language mr-2"></i><span id="lang-text">Українська</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation / Filters -->
+        <nav id="category-nav" class="mb-12 flex flex-wrap justify-center gap-4">
+            <!-- Category buttons will be populated by JavaScript -->
+        </nav>
+
+        <!-- Main Content Grid -->
+        <main id="asset-container">
+            <!-- Asset cards will be populated here -->
+        </main>
+    </div>
+
+    <!-- Modal for Asset Preview -->
+    <div id="preview-modal" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden" aria-modal="true" role="dialog">
+        <div class="bg-gray-800 rounded-lg shadow-2xl w-full max-w-6xl max-h-[90vh] flex flex-col border border-gray-700">
+            <header class="p-4 border-b border-gray-700 flex justify-between items-center flex-shrink-0">
+                <h3 id="modal-title" class="text-xl font-bold text-white"></h3>
+                <button id="close-modal" class="text-gray-400 hover:text-white text-3xl leading-none" aria-label="Close modal">&times;</button>
+            </header>
+            <div id="modal-content" class="p-4 md:p-6 flex-grow overflow-auto flex items-center justify-center">
+            </div>
+        </div>
+    </div>
+
+    <textarea id="copy-helper" style="position: absolute; left: -9999px;"></textarea>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const translations = {
+            en: {
+                mainTitle: "Website Asset Explorer",
+                mainSubtitle: "An interactive viewer for all image and video assets.",
+                switchTo: "Українська",
+                videos: "Videos",
+                images: "Images",
+                preview: "Preview",
+                getLink: "Get Link",
+                copyUrl: "Copy URL",
+                copied: "Copied!",
+                assetPreview: "Asset Preview"
+            },
+            uk: {
+                mainTitle: "Провідник Ресурсів Веб-сайту",
+                mainSubtitle: "Інтерактивний переглядач для всіх зображень та відео.",
+                switchTo: "English",
+                videos: "Відео",
+                images: "Зображення",
+                preview: "Перегляд",
+                getLink: "Отримати посилання",
+                copyUrl: "Копіювати URL",
+                copied: "Скопійовано!",
+                assetPreview: "Перегляд Ресурсу"
+            }
+        };
+
+        const assetData = {
+            "For Gyms": {
+                Videos: [
+                    { url: "https://storage.googleapis.com/intro_alphatek/Min%20film%202.mp4", title: "Hero Video", title_uk: "Головне відео" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/screen%20photos/Fysio.v4.mov", title: "Success Story Video", title_uk: "Відео: Історія успіху" }
+                ],
+                Images: [
+                    { url: "https://storage.googleapis.com/intro_alphatek/logo.png", title: "Alphatek Logo", title_uk: "Логотип Alphatek" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.37.png", title: "Feature: Builds Trust", title_uk: "Функція: Будує довіру" },
+                    { url: "https://storage.googleapis.com/files_webpage/GYM%20page%20pictures/Monika%20josefine.png", title: "Feature: Inspires Confidence", title_uk: "Функція: Надихає на впевненість" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.18.png", title: "Feature: Show Progress", title_uk: "Функція: Показує прогрес" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/Alphatek-6.jpg", title: "Parallax Background", title_uk: "Паралакс фон" },
+                    { url: "https://placehold.co/600x800/333/fff?text=Gym+Owner", title: "Success Story Placeholder", title_uk: "Заповнювач для історії успіху" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/Medium%20Transparent.png", title: "Product Image", title_uk: "Зображення продукту" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/gym.jpg", title: "Category: Gym", title_uk: "Категорія: Тренажерний зал" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/clinics.jpg", title: "Category: Clinics", title_uk: "Категорія: Клініки" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/sport.jpg", title: "Category: Sport", title_uk: "Категорія: Спорт" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png", title: "Red Dot Award Logo", title_uk: "Логотип Red Dot Award" }
+                ]
+            },
+            "For Clinicians": {
+                Videos: [
+                    { url: "https://storage.googleapis.com/intro_alphatek/videoer/physio_topp.mp4", title: "Hero Video", title_uk: "Головне відео" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/screen%20photos/Fysio.v4.mov", title: "Success Story Video", title_uk: "Відео: Історія успіху" }
+                ],
+                Images: [
+                    { url: "https://storage.googleapis.com/intro_alphatek/logo.png", title: "Alphatek Logo", title_uk: "Логотип Alphatek" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.37.png", title: "Feature: Provable Progress", title_uk: "Функція: Доказовий прогрес" },
+                    { url: "https://storage.googleapis.com/files_webpage/GYM%20page%20pictures/Monika%20josefine.png", title: "Feature: Trusted Consistency", title_uk: "Функція: Надійна послідовність" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.18.png", title: "Feature: Quick Setup", title_uk: "Функція: Швидке налаштування" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/Timeline%201_01_04_56_06.jpg", title: "Parallax Background", title_uk: "Паралакс фон" },
+                    { url: "https://placehold.co/600x800/333/fff?text=Gym+Owner", title: "Success Story Placeholder", title_uk: "Заповнювач для історії успіху" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/Medium%20Transparent.png", title: "Product Image", title_uk: "Зображення продукту" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png", title: "Red Dot Award Logo", title_uk: "Логотип Red Dot Award" }
+                ]
+            },
+            "For Sports Teams": {
+                Videos: [
+                    { url: "https://storage.googleapis.com/files_webpage/Alphatek_30s_TOPPIDRETT_OILERS.mp4", title: "Hero Video", title_uk: "Головне відео" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/videoer/Force%20Plate.mp4", title: "Module: Force Plate", title_uk: "Модуль: Силова платформа" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/videoer/VBT.mp4", title: "Module: VBT", title_uk: "Модуль: VBT" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/videoer/NH.mp4", title: "Module: Nordic Hamstrings", title_uk: "Модуль: Скандинавські згинання" }
+                ],
+                Images: [
+                    { url: "https://storage.googleapis.com/intro_alphatek/logo.png", title: "Alphatek Logo", title_uk: "Логотип Alphatek" },
+                    { url: "https://storage.googleapis.com/files_webpage/Nordic%20Sander.png", title: "Feature: 3-in-1 Device", title_uk: "Функція: Пристрій 3-в-1" },
+                    { url: "https://storage.googleapis.com/files_webpage/Oilers%20squat%20(2).png", title: "Feature: Easy & Engaging", title_uk: "Функція: Легко та захоплююче" },
+                    { url: "https://storage.googleapis.com/files_webpage/Start%20jump%20(3).png", title: "Feature: Smarter & Safer", title_uk: "Функція: Розумніше та безпечніше" },
+                    { url: "https://storage.googleapis.com/files_webpage/Customer%20logos/Olympiatoppen.png", title: "Team Logo: Olympiatoppen", title_uk: "Логотип команди: Olympiatoppen" },
+                    { url: "https://storage.googleapis.com/files_webpage/Customer%20logos/Bod%C3%B8-Glimt.png", title: "Team Logo: Bodø/Glimt", title_uk: "Логотип команди: Bodø/Glimt" },
+                    { url: "https://storage.googleapis.com/files_webpage/Customer%20logos/F%C3%A4rjestad%20BK.png", title: "Team Logo: Färjestad BK", title_uk: "Логотип команди: Färjestad BK" },
+                    { url: "https://storage.googleapis.com/files_webpage/Bod%C3%B8Glimt%20squat.png", title: "Parallax Background", title_uk: "Паралакс фон" },
+                    { url: "https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80", title: "Success Story: Head Coach", title_uk: "Історія успіху: Головний тренер" },
+                    { url: "https://images.unsplash.com/photo-1579493933751-c4b699a7a195?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80", title: "Success Story: Performance Coach", title_uk: "Історія успіху: Тренер з продуктивності" },
+                    { url: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80", title: "Success Story: Athlete", title_uk: "Історія успіху: Спортсмен" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/Medium%20Transparent.png", title: "Product Image", title_uk: "Зображення продукту" },
+                    { url: "https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png", title: "Red Dot Award Logo", title_uk: "Логотип Red Dot Award" }
+                ]
+            }
+        };
+        const categoryOrder = ["For Gyms", "For Clinicians", "For Sports Teams"];
+
+        let currentLang = 'en';
+        let currentCategory = categoryOrder[0];
+
+        const assetContainer = document.getElementById('asset-container');
+        const categoryNav = document.getElementById('category-nav');
+        const modal = document.getElementById('preview-modal');
+        const modalContent = document.getElementById('modal-content');
+        const modalTitle = document.getElementById('modal-title');
+        const closeModalBtn = document.getElementById('close-modal');
+        const copyHelper = document.getElementById('copy-helper');
+        const langSwitcher = document.getElementById('lang-switcher');
+
+        function createAssetCard(asset, type, lang) {
+            const t = translations[lang];
+            const title = lang === 'uk' ? asset.title_uk : asset.title;
+            const assetType = type === 'Video' ? t.videos.slice(0,-1) : t.images.slice(0,-1);
+            
+            return `
+                <div class="bg-gray-800 rounded-lg p-4 shadow-lg border border-gray-700 flex flex-col justify-between hover:border-green-600/50 hover:shadow-green-500/10 transition-all duration-300">
+                    <div>
+                        <p class="text-sm font-bold ${type === 'Video' ? 'text-blue-400' : 'text-purple-400'} uppercase tracking-wider">${assetType}</p>
+                        <p class="text-lg text-white font-semibold my-2">${title}</p>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-4">
+                        <button class="preview-btn bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-3 rounded-md text-sm transition-colors duration-200" data-url="${asset.url}" data-type="${type}" data-title="${title}">
+                            <i class="fas fa-eye mr-2"></i><span class="btn-text">${t.preview}</span>
+                        </button>
+                        <a href="${asset.url}" target="_blank" class="download-btn bg-blue-700 hover:bg-blue-600 text-white font-medium py-2 px-3 rounded-md text-sm transition-colors duration-200 text-center inline-flex items-center justify-center">
+                            <i class="fas fa-link mr-2"></i><span class="btn-text">${t.getLink}</span>
+                        </a>
+                        <button class="copy-btn sm:col-span-1 col-span-2 bg-green-700 hover:bg-green-600 text-white font-medium py-2 px-3 rounded-md text-sm transition-colors duration-200" data-url="${asset.url}">
+                            <i class="fas fa-copy mr-2"></i><span class="btn-text">${t.copyUrl}</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAssets(category, lang) {
+            const t = translations[lang];
+            let assetsHtml = '';
+            const data = assetData[category];
+
+            if (data.Videos && data.Videos.length > 0) {
+                assetsHtml += `<h3 class="text-2xl font-bold text-gray-300 border-b-2 border-green-600 pb-2 mb-6">${t.videos}</h3><div class="asset-card-grid">`;
+                data.Videos.forEach(asset => assetsHtml += createAssetCard(asset, 'Video', lang));
+                assetsHtml += '</div>';
+            }
+
+            if (data.Images && data.Images.length > 0) {
+                assetsHtml += `<h3 class="text-2xl font-bold text-gray-300 border-b-2 border-green-600 pb-2 mt-12 mb-6">${t.images}</h3><div class="asset-card-grid">`;
+                data.Images.forEach(asset => assetsHtml += createAssetCard(asset, 'Image', lang));
+                assetsHtml += '</div>';
+            }
+
+            assetContainer.innerHTML = assetsHtml;
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            categoryNav.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.dataset.category === currentCategory) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        function translateUI(lang) {
+            const t = translations[lang];
+            document.getElementById('main-title').textContent = t.mainTitle;
+            document.getElementById('main-subtitle').textContent = t.mainSubtitle;
+            document.getElementById('lang-text').textContent = t.switchTo;
+            document.documentElement.lang = lang;
+            renderAssets(currentCategory, lang);
+        }
+
+        function setupNav() {
+            categoryOrder.forEach(category => {
+                const button = document.createElement('button');
+                button.className = 'nav-btn bg-gray-800 border border-gray-600 text-gray-300 font-semibold py-2 px-6 rounded-full';
+                button.textContent = category.replace(' (Physio)', '');
+                button.dataset.category = category;
+                categoryNav.appendChild(button);
+            });
+            updateNavButtons();
+        }
+
+        categoryNav.addEventListener('click', (e) => {
+            const target = e.target.closest('button');
+            if (target && target.classList.contains('nav-btn')) {
+                currentCategory = target.dataset.category;
+                renderAssets(currentCategory, currentLang);
+            }
+        });
+
+        assetContainer.addEventListener('click', (e) => {
+            const target = e.target.closest('button.preview-btn') || e.target.closest('button.copy-btn');
+            if (!target) return;
+
+            if (target.classList.contains('preview-btn')) {
+                const { url, type, title } = target.dataset;
+                modalTitle.textContent = title;
+                modalContent.innerHTML = (type === 'Video') 
+                    ? `<video src="${url}" controls autoplay loop class="modal-content-area"></video>`
+                    : `<img src="${url}" alt="${title}" class="modal-content-area">`;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            if (target.classList.contains('copy-btn')) {
+                const urlToCopy = target.dataset.url;
+                copyHelper.value = urlToCopy;
+                copyHelper.select();
+                document.execCommand('copy');
+                
+                const btnText = target.querySelector('.btn-text');
+                const icon = target.querySelector('i');
+                const originalText = btnText.textContent;
+                
+                btnText.textContent = translations[currentLang].copied;
+                icon.className = 'fas fa-check mr-2';
+                target.classList.replace('bg-green-700', 'bg-green-500');
+                
+                setTimeout(() => {
+                    btnText.textContent = originalText;
+                    icon.className = 'fas fa-copy mr-2';
+                    target.classList.replace('bg-green-500', 'bg-green-700');
+                }, 2000);
+            }
+        });
+
+        langSwitcher.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'uk' : 'en';
+            translateUI(currentLang);
+        });
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            const video = modalContent.querySelector('video');
+            if(video) video.pause();
+            modalContent.innerHTML = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+        });
+        
+        // Initial setup
+        setupNav();
+        renderAssets(currentCategory, currentLang);
+    });
+    </script>
+
+</body>
+</html>
