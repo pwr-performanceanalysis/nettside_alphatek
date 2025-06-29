@@ -66,7 +66,7 @@
             -webkit-backdrop-filter: blur(25px);
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-            min-width: 180px;
+            min-width: 240px;
             z-index: 1010;
             padding: 8px 0;
             visibility: hidden;
@@ -105,6 +105,8 @@
 
         /* General Sections */
         .scrollable-content { position: relative; z-index: 1; background-color: var(--color-brand-black); flex-grow: 1; }
+        
+        /* UPDATED HERO */
         .hero-section {
             position: relative;
             height: 100vh;
@@ -121,7 +123,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: -1; 
             overflow: hidden;
         }
         #hero-video {
@@ -152,7 +154,7 @@
         .hero-headline .static-text { display: inline; }
         .word-rotator-wrapper {
             display: inline-block;
-            height: 1.3em;
+            height: 1.3em; 
             overflow: hidden;
             vertical-align: bottom;
         }
@@ -831,22 +833,7 @@
         .btn-explore { display: inline-block; background-color: var(--color-brand-accent); color: var(--color-brand-white); padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: var(--font-weight-normal); transition: background-color 0.3s ease, transform 0.3s ease; }
         .btn-explore:hover { background-color: rgb(57, 154, 103); transform: translateY(-2px); text-decoration: none; }
 
-        /* Success Stories Section */
-        .case-studies-section { padding: 100px 0; position: relative; background-image: url('https://storage.googleapis.com/files_webpage/Bod%C3%B8Glimt%20squat.png'); background-size: cover; background-position: center center; background-attachment: fixed; }
-        .case-studies-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 1; }
-        .case-studies-section .container, .case-studies-section .case-studies-container { position: relative; z-index: 2; }
-        .case-studies-section h2 { text-align: center; font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 2em; }
-        .case-studies-container { display: flex; overflow-x: auto; padding: 20px 5vw; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
-        .case-studies-container::-webkit-scrollbar { display: none; }
-        .case-study-card { flex: 0 0 80%; max-width: 80%; margin-right: 40px; scroll-snap-align: center; display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; align-items: center; background: rgba(26, 26, 26, 0.4); backdrop-filter: blur(10px); border-radius: 12px; padding: 40px; }
-        .case-study-card:last-child { margin-right: 0; }
-        .case-study-image-container { width: 100%; height: 400px; border-radius: 8px; overflow: hidden; position: relative; background-color: var(--color-grey-dark); }
-        .case-study-image-container img { width: 100%; height: 100%; object-fit: cover; }
-        .case-study-text blockquote { font-size: 1.4rem; line-height: 1.6; font-style: italic; border-left: 3px solid var(--color-brand-accent); padding-left: 20px; margin: 0 0 20px 0; }
-        .case-study-text .author { font-weight: var(--font-weight-bold); color: var(--color-brand-white); }
-        .case-study-text .role { font-size: 0.9rem; color: var(--color-grey-light); }
-
-        /* Final CTA Section & Category Cards */
+        /* Final CTA Section & Category Cards - NEWLY ADDED FROM SPORTS PAGE */
         .cta-final-section { padding: 80px 20px; background-color: var(--color-grey-darkest); text-align: center; }
         .cta-final-section h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1em; }
         .cta-button-large { display: inline-block; background-color: var(--color-brand-accent); color: var(--color-brand-white); border-radius: 8px; padding: 15px 35px; font-size: 1.1rem; font-weight: var(--font-weight-normal); text-decoration: none; transition: transform 0.2s ease, background-color 0.2s ease; }
@@ -873,17 +860,24 @@
         .category-card h3, .category-card p { color: var(--color-brand-white); transition: color 0.3s ease; }
         .category-card h3 { margin-bottom: 8px; font-size: 1.6rem; font-weight: var(--font-weight-light); }
         .category-card p { font-size: 0.85rem; line-height: 1.4; font-weight: var(--font-weight-light); margin-bottom: 0; }
+        /* End of new styles */
 
-        /* Footer */
-        footer { background-color: var(--color-brand-black); color: var(--color-grey-lightest); padding: 1.5em 0; position: relative; z-index: 2; text-align: center; border-top: 1px solid var(--color-grey-darkest); }
+        footer {
+            background-color: var(--color-brand-black); 
+            color: var(--color-grey-lightest); 
+            padding: 1.5em 0;
+            position: relative; 
+            z-index: 2;
+            text-align: center;
+            border-top: 1px solid var(--color-grey-darkest);
+        }
         .footer-logo-link { position: absolute; left: 5vw; bottom: 50%; transform: translateY(50%); }
         .reddot-logo { height: 75px; width: auto; display: block; }
         footer p { font-weight: var(--font-weight-light); margin-bottom: 0; color: var(--color-grey-lightest); }
         .footer-social-icons { margin-top: 1em; }
         .footer-social-icons a { color: var(--color-grey-lightest); margin: 0 10px; font-size: 1.5rem; transition: color 0.3s ease; }
         .footer-social-icons a:hover { color: var(--color-brand-accent); }
-
-        /* Media Queries */
+        
         @media(max-width:992px){
             .main-nav { display: none; }
             .mobile-nav-toggle { display: block; }
@@ -899,6 +893,7 @@
             .upgrade-section .upgrade-title{font-size:1.4rem; min-height: 0;}
             .footer-logo-link { display: none; }
             .header-inner-container { justify-content: space-between; }
+            .report-modal-content { grid-template-columns: 1fr; }
             .module-content-area { grid-template-columns: 1fr; }
             .module-image { order: -1; margin-bottom: 2em;}
             .teams-grid { grid-template-columns: 1fr; }
@@ -921,9 +916,10 @@
 <body>
 
     <header>
+        <!-- NAVIGATION UPDATED -->
         <div class="header-inner-container">
             <div class="logo-area">
-                <a href="#" class="logo">
+                <a href="../index.html" class="logo">
                     <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="header-logo-img">
                 </a>
             </div>
@@ -932,13 +928,13 @@
                     <li class="main-nav-item"><a href="../segments/sports.html" class="main-nav-link">For Teams</a></li>
                     <li class="main-nav-item"><a href="../segments/gym.html" class="main-nav-link">For Gyms</a></li>
                     <li class="main-nav-item"><a href="../segments/physio.html" class="main-nav-link">For Clinicians</a></li>
-                    <li class="main-nav-item"><a href="#product" class="main-nav-link">Product</a></li>
+                    <li class="main-nav-item"><a href="#product-section" class="main-nav-link">Product</a></li>
                     <li class="main-nav-item">
                         <a href="#" class="main-nav-link">Resources <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
                             <a href="../Rescources/Alphatek Research Library.html">Alphatek Research Library</a>
                             <a href="#">Alphatek Academy</a>
-                            <a href="#">Blog</a>
+                            <a href="../Blog/blog recovery.html">Blogpost</a>
                             <a href="#success-stories">Case Studies</a>
                         </div>
                     </li>
@@ -959,15 +955,16 @@
     </header>
     
     <nav class="mobile-nav-menu">
+        <!-- MOBILE NAVIGATION UPDATED -->
         <a href="../segments/sports.html">For Teams</a>
         <a href="../segments/gym.html">For Gyms</a>
         <a href="../segments/physio.html">For Clinicians</a>
         <div class="mobile-divider"></div>
-        <a href="#product">Product</a>
+        <a href="#product-section">Product</a>
         <div class="mobile-divider"></div>
         <a href="../Rescources/Alphatek Research Library.html">Alphatek Research Library</a>
         <a href="#">Alphatek Academy</a>
-        <a href="#">Blog</a>
+        <a href="../Blog/blog recovery.html">Blogpost</a>
         <a href="#success-stories">Case Studies</a>
         <div class="mobile-divider"></div>
         <a href="../About us/about_us.html">About Us</a>
@@ -1045,7 +1042,7 @@
                     </div>
                     <div class="feature-card-v2">
                         <div class="card-background">
-                             <img src="https://storage.googleapis.com/files_webpage/Start%20jump%20(3).png" alt="Athlete performing a jump test on the Alphatek platform">
+                            <img src="https://storage.googleapis.com/files_webpage/Start%20jump%20(3).png" alt="Athlete performing a jump test on the Alphatek platform">
                         </div>
                         <div class="feature-overlay"></div>
                         <div class="feature-content-v2">
@@ -1230,11 +1227,11 @@
                     </div>
                 </div>
             </section>
-
-            <section id="why-it-matters" class="floor-benefits-section">
+            
+            <section id="floor-benefits" class="floor-benefits-section">
                 <div class="container">
                     <div class="section-divider"></div>
-                    <h2 class="section-title">From the Lab to the Field</h2>
+                    <h2 class="section-title">The Complete System for Elite Teams</h2>
                     <div class="benefits-grid">
                         <div class="benefit-card">
                             <div class="benefit-icon"><i class="fas fa-vial"></i></div>
@@ -1244,7 +1241,7 @@
                         <div class="benefit-card">
                             <div class="benefit-icon"><i class="fas fa-cogs"></i></div>
                             <h4>Seamless Integration</h4>
-                             <p>Designed for permanent installation in your performance center, providing a reliable and consistent testing station day after day.</p>
+                            <p>Designed for permanent installation in your performance center, providing a reliable and consistent testing station day after day.</p>
                         </div>
                         <div class="benefit-card">
                             <div class="benefit-icon"><i class="fas fa-lightbulb"></i></div>
@@ -1256,38 +1253,6 @@
             </section>
         </div>
         
-        <section id="success-stories" class="case-studies-section">
-            <div class="container">
-                <h2>Success Stories from the Field</h2>
-            </div>
-            <div class="case-studies-container">
-                <div class="case-study-card">
-                    <div class="case-study-image-container"><img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="Photo of a head coach"></div>
-                    <div class="case-study-text">
-                        <blockquote>"With Alphatek, we can finally manage intensity in the weight room objectively. The players are more engaged, and we see a clear transfer to on-field performance. It's an invaluable tool in a hectic season."</blockquote>
-                        <p class="author">Anders H.</p>
-                        <p class="role">Head Coach, Elite Series</p>
-                    </div>
-                </div>
-                <div class="case-study-card">
-                    <div class="case-study-image-container"><img src="https://images.unsplash.com/photo-1579493933751-c4b699a7a195?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="Photo of a performance coach"></div>
-                    <div class="case-study-text">
-                        <blockquote>"The ability to quickly test jump height and reactive strength on the entire squad gives me the data I need to individualize programs and prevent injuries. We catch fatigue much earlier than before."</blockquote>
-                        <p class="author">Maria L.</p>
-                        <p class="role">Performance Coach, Sports Academy</p>
-                    </div>
-                </div>
-                <div class="case-study-card">
-                    <div class="case-study-image-container"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Athlete training"></div>
-                    <div class="case-study-text">
-                        <blockquote>"Getting instant feedback on every single rep is a game-changer. I know exactly where I'm at, and it motivates me to push a little extra every single session."</blockquote>
-                        <p class="author">Kristoffer N.</p>
-                        <p class="role">Professional Athlete</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="product" class="product-section">
             <div class="container">
                 <div class="product-image">
@@ -1311,28 +1276,28 @@
         <section class="category-grid-section">
             <div class="container">
                  <div class="category-grid">
-                    <a href="../segments/gym.html" class="category-card" id="gym-card">
-                        <div class="card-background"></div>
-                        <div class="card-content-wrapper">
-                            <h3>GYM</h3>
-                            <p>Solutions for modern fitness centers.</p>
-                        </div>
-                    </a>
-                    <a href="../segments/physio.html" class="category-card" id="clinics-card">
-                        <div class="card-background"></div>
-                        <div class="card-content-wrapper">
-                            <h3>Clinicians</h3> 
-                            <p>Advanced tools for patient rehabilitation.</p>
-                        </div>
-                    </a>
-                    <a href="../segments/sports.html" class="category-card" id="sport-card">
-                        <div class="card-background"></div>
-                        <div class="card-content-wrapper">
-                            <h3>Sports Teams</h3>
-                            <p>Optimize athlete performance and recovery.</p>
-                        </div>
-                    </a>
-                </div>
+                      <a href="../segments/gym.html" class="category-card" id="gym-card">
+                           <div class="card-background"></div>
+                           <div class="card-content-wrapper">
+                                <h3>GYM</h3>
+                                <p>Solutions for modern fitness centers.</p>
+                           </div>
+                      </a>
+                      <a href="../segments/physio.html" class="category-card" id="clinics-card">
+                           <div class="card-background"></div>
+                           <div class="card-content-wrapper">
+                                <h3>Clinicians</h3> 
+                                <p>Advanced tools for patient rehabilitation.</p>
+                           </div>
+                      </a>
+                      <a href="../segments/sports.html" class="category-card" id="sport-card">
+                           <div class="card-background"></div>
+                           <div class="card-content-wrapper">
+                                <h3>Sports Teams</h3>
+                                <p>Optimize athlete performance and recovery.</p>
+                           </div>
+                      </a>
+                 </div>
             </div>
         </section>
 
@@ -1367,338 +1332,337 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
     
-            const moduleData = {
-                'squat': { title: 'VBT That Scales', description: "Forget traditional RMs and RIR. Alphatek's VBT provides dynamic load management and objective velocity drop, ensuring optimal effort and quality in every squat. This instant feedback keeps training fun and highly engaging for athletes, scientifically balancing impressive performance boosts with long-term resilience.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/1.png', learnMore: true },
-                'squat-analytics': { title: 'Precision Squat Biomechanics', description: "Go beyond basic observation. Alphatek's advanced analytics offers unparalleled insights into squat technique: monitor right-left and front-to-back balance to eliminate inefficiencies, expose sticking points that hinder progress, and confirm accurate squat depth. This data-driven clarity empowers you to optimize performance gains and proactively fortify athlete resilience, ensuring every movement contributes to sustainable success.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/2.png', learnMore: false },
-                'pull': { title: 'Isometric Mid-thigh Pull', description: "Gain precise insights into your athletes' pulling strength with Alphatek's module. Its design ensures a controlled, low-risk assessment environment, allowing for maximal effort with minimal strain. The immediate feedback captivates athletes, making testing both fun and powerfully engaging, which translates to enhanced performance and robust resilience without compromise.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/3.png', learnMore: false },
-                'jump': { title: 'Precision Power Insights', description: "Dive deep into vertical performance. Alphatek offers a variety of precise jump tests, integrating advanced metrics like TIA and TOV algorithms for precise calculations, RSI for the stretch-shortening cycle, and ground contact time for reactivity. This provides all the essential data you'd expect from a forceplate. Leverage these insights to optimize explosive performance and build lasting athlete resilience with real time feedback.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/4.png', learnMore: false },
-                'balance': { title: 'Balance', description: 'Balance is a key physical attribute that is often overlooked. This module helps with daily function and can be used for both engaging testing and training.', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/5.png', learnMore: false },
-                'monitor': { title: 'Monitor', description: 'Use this open module for creative tests like push-ups to get an immediate measure of strength. Make balance training more fun with real-time feedback of the center of pressure (COP).', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/6.png', learnMore: false },
-                'nordic-hamstrings': { title: 'Nordic Hamstrings', description: 'Get real-time feedback on the quality of Nordic Hamstrings training. Engaging, easy to use, and proven highly effective for preventing injuries in high-speed sports.', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/7.png', learnMore: false }
-            };
-            
-            const reportData = {
-                'return-to-sport': {
-                    title: 'Return to Sport',
-                    explanation: 'Given high re-injury rates (~20-30%) post-rehab, this protocol provides a robust assessment of an athlete\'s readiness to return to play. It evaluates key performance markers from maximal plyometric capacity and limb stiffness to muscular endurance and stretch-shortening cycle (SSC) function. This data gives therapists objective insights to guide late-stage (Phase 3-4) training and track progression, minimizing the risk of re-injury.',
-                    tests: ['Countermovement Jump (CMJ)', 'Single-Leg CMJ', 'Reactive Strength Index (RSI)', 'Drop Jump', 'Lateral Stability']
-                },
-                'performance': {
-                    title: 'Performance Report',
-                    explanation: "This battery is designed to measure explosive power, reactivity, and maximal strength, crucial metrics for improving on-court performance, jump height, and sprint speed. It's intended for any athlete in any sport.",
-                    tests: ['IMTP', 'Countermovement Jump', 'Reactive Strength Index', 'Repetitive CMJ', 'Lateral Stability']
-                },
-                 'shoulder-screening': {
-                    title: 'Athletic Shoulder (ASH) Test',
-                    explanation: 'The ASH test is a reliable and specific method for assessing isometric shoulder strength. It is used to map strength, symmetry, and weaknesses in the scapular stabilizers and glenohumeral muscles, especially in athletes in sports like handball, swimming and volleyball. The test is ideal for injury prevention screening, monitoring rehabilitation progress, and making return-to-play decisions.',
-                    tests: ['Isometric Strength in Abduction (Y-Position)', 'Isometric Strength in Horizontal Abduction (T-Position)', 'External Rotation Strength', 'Internal Rotation Strength']
-                },
-                'rehab-initial': {
-                    title: 'Phase 1 & 2 Rehab',
-                    explanation: 'This protocol is designed for the early stages of rehabilitation. It utilizes gentle, low-load assessments like isometric strength and static balance tests. This allows therapists to safely monitor neuromuscular function and track progress from the very beginning of the recovery process without compromising healing tissue, providing a clear baseline for future comparison.',
-                    tests: ['Isometric Strength Test (e.g., IMTP)', 'Single-Leg Balance (Eyes open/closed)', 'Weight-Bearing Symmetry']
-                }
-            };
-            
-            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-            const upgradeTitle = document.getElementById('upgrade-title');
-            
-            function typeWords(element, wordsArray, speed) {
-                let i = 0;
-                element.innerHTML = '';
-                element.classList.add('typing-cursor');
-
-                function type() {
-                    if (i < wordsArray.length) {
-                        element.innerHTML += wordsArray[i];
-                        i++;
-                        setTimeout(type, speed);
-                    } else {
-                        element.classList.remove('typing-cursor');
-                    }
-                }
-                type();
+        const moduleData = {
+            'squat': { title: 'VBT That Scales', description: "Forget traditional RMs and RIR. Alphatek's VBT provides dynamic load management and objective velocity drop, ensuring optimal effort and quality in every squat. This instant feedback keeps training fun and highly engaging for athletes, scientifically balancing impressive performance boosts with long-term resilience.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/1.png', learnMore: true },
+            'squat-analytics': { title: 'Precision Squat Biomechanics', description: "Go beyond basic observation. Alphatek's advanced analytics offers unparalleled insights into squat technique: monitor right-left and front-to-back balance to eliminate inefficiencies, expose sticking points that hinder progress, and confirm accurate squat depth. This data-driven clarity empowers you to optimize performance gains and proactively fortify athlete resilience, ensuring every movement contributes to sustainable success.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/2.png', learnMore: false },
+            'pull': { title: 'Isometric Mid-thigh Pull', description: "Gain precise insights into your athletes' pulling strength with Alphatek's module. Its design ensures a controlled, low-risk assessment environment, allowing for maximal effort with minimal strain. The immediate feedback captivates athletes, making testing both fun and powerfully engaging, which translates to enhanced performance and robust resilience without compromise.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/3.png', learnMore: false },
+            'jump': { title: 'Precision Power Insights', description: "Dive deep into vertical performance. Alphatek offers a variety of precise jump tests, integrating advanced metrics like TIA and TOV algorithms for precise calculations, RSI for the stretch-shortening cycle, and ground contact time for reactivity. This provides all the essential data you'd expect from a forceplate. Leverage these insights to optimize explosive performance and build lasting athlete resilience with real time feedback.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/4.png', learnMore: false },
+            'balance': { title: 'Balance', description: 'Balance is a key physical attribute that is often overlooked. This module helps with daily function and can be used for both engaging testing and training.', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/5.png', learnMore: false },
+            'monitor': { title: 'Monitor', description: 'Use this open module for creative tests like push-ups to get an immediate measure of strength. Make balance training more fun with real-time feedback of the center of pressure (COP).', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/6.png', learnMore: false },
+            'nordic-hamstrings': { title: 'Nordic Hamstrings', description: 'Get real-time feedback on the quality of Nordic Hamstrings training. Engaging, easy to use, and proven highly effective for preventing injuries in high-speed sports.', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/7.png', learnMore: false }
+        };
+        
+        const reportData = {
+            'return-to-sport': {
+                title: 'Return to Sport',
+                explanation: 'Given high re-injury rates (~20-30%) post-rehab, this protocol provides a robust assessment of an athlete\'s readiness to return to play. It evaluates key performance markers from maximal plyometric capacity and limb stiffness to muscular endurance and stretch-shortening cycle (SSC) function. This data gives therapists objective insights to guide late-stage (Phase 3-4) training and track progression, minimizing the risk of re-injury.',
+                tests: ['Countermovement Jump (CMJ)', 'Single-Leg CMJ', 'Reactive Strength Index (RSI)', 'Drop Jump', 'Lateral Stability']
+            },
+            'performance': {
+                title: 'Performance Report',
+                explanation: "This battery is designed to measure explosive power, reactivity, and maximal strength, crucial metrics for improving on-court performance, jump height, and sprint speed. It's intended for any athlete in any sport.",
+                tests: ['IMTP', 'Countermovement Jump', 'Reactive Strength Index', 'Repetitive CMJ', 'Lateral Stability']
+            },
+             'shoulder-screening': {
+                title: 'Athletic Shoulder (ASH) Test',
+                explanation: 'The ASH test is a reliable and specific method for assessing isometric shoulder strength. It is used to map strength, symmetry, and weaknesses in the scapular stabilizers and glenohumeral muscles, especially in athletes in sports like handball, swimming and volleyball. The test is ideal for injury prevention screening, monitoring rehabilitation progress, and making return-to-play decisions.',
+                tests: ['Isometric Strength in Abduction (Y-Position)', 'Isometric Strength in Horizontal Abduction (T-Position)', 'External Rotation Strength', 'Internal Rotation Strength']
+            },
+            'rehab-initial': {
+                title: 'Phase 1 & 2 Rehab',
+                explanation: 'This protocol is designed for the early stages of rehabilitation. It utilizes gentle, low-load assessments like isometric strength and static balance tests. This allows therapists to safely monitor neuromuscular function and track progress from the very beginning of the recovery process without compromising healing tissue, providing a clear baseline for future comparison.',
+                tests: ['Isometric Strength Test (e.g., IMTP)', 'Single-Leg Balance (Eyes open/closed)', 'Weight-Bearing Symmetry']
             }
+        };
+        
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const upgradeTitle = document.getElementById('upgrade-title');
+        
+        function typeWords(element, wordsArray, speed) {
+            let i = 0;
+            element.innerHTML = '';
+            element.classList.add('typing-cursor');
 
-            const upgradeTitleObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        // --- UPDATED TYPING TEXT ---
-                        const words = [
-                            'Science-backed testing and training that ', 
-                            '<strong>boosts performance</strong>, ', 
-                            '<strong>prevents injuries</strong>,', 
-                            ' and ignites ', 
-                            '<strong>athlete engagement.</strong>'
-                        ];
-                        typeWords(upgradeTitle, words, 60);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.8 });
-
-            if (upgradeTitle) {
-                upgradeTitleObserver.observe(upgradeTitle);
-            }
-            
-            if (mobileNavToggle) {
-                mobileNavToggle.addEventListener('click', () => {
-                    document.body.classList.toggle('mobile-nav-open');
-                });
-            }
-            
-            const benefitCards = document.querySelectorAll('.benefit-card');
-            const benefitObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-revealed');
-                        benefitObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.2 });
-
-            benefitCards.forEach(card => {
-                benefitObserver.observe(card);
-            });
-
-            // ======== START: FINAL MODULES SCRIPT ========
-            const mainModuleButtons = document.querySelectorAll('.module-main-btn');
-            const moduleExplorer = document.querySelector('.module-explorer');
-            const allModuleBtns = document.querySelectorAll('.module-btn');
-            const moduleContentArea = document.getElementById('module-content-area');
-            const moduleTitleEl = document.getElementById('module-title');
-            const moduleDescriptionEl = document.getElementById('module-description');
-            const moduleImageEl = document.getElementById('module-img');
-            const moduleLearnMoreEl = document.getElementById('module-learn-more');
-
-            function updateModuleContent(moduleId) {
-                const data = moduleData[moduleId];
-                if (!data) {
-                    if(moduleContentArea) moduleContentArea.classList.remove('active');
-                    return
-                };
-
-                if(moduleContentArea) moduleContentArea.classList.remove('active');
-
-                setTimeout(() => {
-                    if(moduleTitleEl) moduleTitleEl.textContent = data.title;
-                    if(moduleDescriptionEl) moduleDescriptionEl.textContent = data.description;
-                    if(moduleImageEl) moduleImageEl.src = data.imageUrl;
-                    if(moduleImageEl) moduleImageEl.alt = `Screenshot of the ${data.title} module`;
-                    
-                    if (moduleLearnMoreEl) {
-                        if (data.learnMore) {
-                            moduleLearnMoreEl.style.display = 'inline-block';
-                        } else {
-                            moduleLearnMoreEl.style.display = 'none';
-                        }
-                    }
-                    if(moduleContentArea) moduleContentArea.classList.add('active');
-                }, 200);
-            }
-
-            mainModuleButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const filter = button.dataset.filter;
-                    
-                    if (moduleExplorer) {
-                        moduleExplorer.classList.add('visible');
-                    }
-
-                    mainModuleButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-
-                    let firstVisibleButton = null;
-
-                    allModuleBtns.forEach(btn => {
-                        if (btn.dataset.group === filter) {
-                            btn.classList.add('visible');
-                            if (!firstVisibleButton) {
-                                firstVisibleButton = btn;
-                            }
-                        } else {
-                            btn.classList.remove('visible');
-                        }
-                    });
-                    
-                    allModuleBtns.forEach(btn => btn.classList.remove('active'));
-
-                    if (firstVisibleButton) {
-                        firstVisibleButton.classList.add('active');
-                        updateModuleContent(firstVisibleButton.dataset.module);
-                    } else {
-                         updateModuleContent(null);
-                    }
-                });
-            });
-
-            allModuleBtns.forEach(button => {
-                button.addEventListener('click', () => {
-                    const moduleId = button.dataset.module;
-                    allModuleBtns.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    updateModuleContent(moduleId);
-                });
-            });
-
-            // Initial state: select the first main button
-             const initialMainButton = document.querySelector('.module-main-btn');
-             if(initialMainButton) {
-                 initialMainButton.click();
-             }
-            // ======== END: FINAL MODULES SCRIPT ========
-
-            // --- REPORT MODAL LOGIC ---
-            const reportModalOverlay = document.getElementById('report-modal-overlay');
-            const reportCards = document.querySelectorAll('.report-card');
-            const modalImage = document.getElementById('modal-report-image');
-            const modalTitle = document.getElementById('modal-report-title');
-            const modalExplanation = document.getElementById('modal-report-explanation');
-            const modalTestList = document.getElementById('modal-report-tests');
-            const closeReportModalBtn = document.querySelector('.close-report-modal');
-
-            function openReportModal(reportId) {
-                const data = reportData[reportId];
-                if (!data || !reportModalOverlay) return;
-
-                const clickedCard = document.querySelector(`.report-card[data-report-id="${reportId}"]`);
-                const imgSrc = clickedCard.querySelector('img').src;
-
-                modalImage.src = imgSrc;
-                modalImage.alt = data.title;
-                modalTitle.textContent = data.title;
-                modalExplanation.textContent = data.explanation;
-
-                modalTestList.innerHTML = '';
-                data.tests.forEach(test => {
-                    const li = document.createElement('li');
-                    li.textContent = test;
-                    modalTestList.appendChild(li);
-                });
-
-                document.body.classList.add('modal-open');
-                reportModalOverlay.classList.add('is-visible');
-            }
-
-            function closeReportModal() {
-                if (!reportModalOverlay) return;
-                document.body.classList.remove('modal-open');
-                reportModalOverlay.classList.remove('is-visible');
-            }
-
-            reportCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const reportId = card.dataset.reportId;
-                    openReportModal(reportId);
-                });
-            });
-
-            if (closeReportModalBtn) {
-                closeReportModalBtn.addEventListener('click', closeReportModal);
-            }
-            if (reportModalOverlay) {
-                reportModalOverlay.addEventListener('click', (e) => {
-                    if (e.target === reportModalOverlay) {
-                        closeReportModal();
-                    }
-                });
-            }
-             document.addEventListener('keydown', (e) => {
-                 if (e.key === "Escape" && reportModalOverlay && reportModalOverlay.classList.contains('is-visible')) {
-                     closeReportModal();
-                 }
-            });
-
-            // --- Research Carousel Logic ---
-            const researchTrack = document.querySelector('.research-carousel-track');
-            if (researchTrack) {
-                const researchCards = Array.from(researchTrack.children);
-                const originalCardCount = researchCards.length / 2; 
-                for(let i=0; i < originalCardCount; i++) {
-                    const clone = researchCards[i].cloneNode(true);
-                     researchTrack.appendChild(clone);
+            function type() {
+                if (i < wordsArray.length) {
+                    element.innerHTML += wordsArray[i];
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.remove('typing-cursor');
                 }
             }
-            
-            // --- Custom Video Player Logic ---
-            const videoWrappers = document.querySelectorAll('.video-wrapper');
+            type();
+        }
 
-            videoWrappers.forEach(wrapper => {
-                const video = wrapper.querySelector('video');
-                const playButton = wrapper.querySelector('.play-button');
-
-                if (playButton && video) {
-                    // Function to toggle play/pause
-                    function togglePlay() {
-                        if (video.paused || video.ended) {
-                            video.play();
-                        } else {
-                            video.pause();
-                        }
-                    }
-
-                    // Click on the whole wrapper to play/pause
-                    wrapper.addEventListener('click', togglePlay);
-
-                    video.addEventListener('play', () => {
-                        playButton.style.opacity = '0';
-                    });
-
-                    video.addEventListener('pause', () => {
-                        playButton.style.opacity = '1';
-                    });
+        const upgradeTitleObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    const words = [
+                        'Science-backed testing and training that ', 
+                        '<strong>boosts performance</strong>, ', 
+                        '<strong>prevents injuries</strong>,', 
+                        ' and ignites ', 
+                        '<strong>athlete engagement.</strong>'
+                    ];
+                    typeWords(upgradeTitle, words, 60);
+                    observer.unobserve(entry.target);
                 }
             });
+        }, { threshold: 0.8 });
 
-            // --- CUSTOM SLOW SCROLL FUNCTION ---
-            function slowScrollTo(targetSelector, duration) {
-                const target = document.querySelector(targetSelector);
-                if (!target) return;
+        if (upgradeTitle) {
+            upgradeTitleObserver.observe(upgradeTitle);
+        }
 
-                const targetPosition = target.getBoundingClientRect().top;
-                const startPosition = window.pageYOffset;
-                let startTime = null;
-
-                function animation(currentTime) {
-                    if (startTime === null) startTime = currentTime;
-                    const timeElapsed = currentTime - startTime;
-                    const run = ease(timeElapsed, startPosition, targetPosition, duration);
-                    window.scrollTo(0, run);
-                    if (timeElapsed < duration) requestAnimationFrame(animation);
-                }
-
-                function ease(t, b, c, d) {
-                    t /= d / 2;
-                    if (t < 1) return c / 2 * t * t + b;
-                    t--;
-                    return -c / 2 * (t * (t - 2) - 1) + b;
-                };
-
-                requestAnimationFrame(animation);
-            }
-
-            // --- SMOOTH SCROLL FOR NAV LINKS ---
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const targetId = this.getAttribute('href');
-                    
-                    // Close mobile nav if it's open and a link is clicked
-                    if (document.body.classList.contains('mobile-nav-open') && targetId !== '#') {
-                        document.body.classList.remove('mobile-nav-open');
-                    }
-
-                    // If it's a real anchor, prevent default and scroll
-                    if (targetId !== '#' && document.querySelector(targetId)) {
-                        e.preventDefault();
-                        slowScrollTo(targetId, 1500); // Set duration to 1500ms for a slower scroll
-                    }
-                });
+        if (mobileNavToggle) {
+            mobileNavToggle.addEventListener('click', () => {
+                document.body.classList.toggle('mobile-nav-open');
             });
+        }
+        
+        const benefitCards = document.querySelectorAll('.benefit-card');
+        const benefitObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    benefitObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
 
+        benefitCards.forEach(card => {
+            benefitObserver.observe(card);
         });
+
+        // ======== START: FINAL MODULES SCRIPT ========
+        const mainModuleButtons = document.querySelectorAll('.module-main-btn');
+        const moduleExplorer = document.querySelector('.module-explorer');
+        const allModuleBtns = document.querySelectorAll('.module-btn');
+        const moduleContentArea = document.getElementById('module-content-area');
+        const moduleTitleEl = document.getElementById('module-title');
+        const moduleDescriptionEl = document.getElementById('module-description');
+        const moduleImageEl = document.getElementById('module-img');
+        const moduleLearnMoreEl = document.getElementById('module-learn-more');
+
+        function updateModuleContent(moduleId) {
+            const data = moduleData[moduleId];
+            if (!data) {
+                if(moduleContentArea) moduleContentArea.classList.remove('active');
+                return
+            };
+
+            if(moduleContentArea) moduleContentArea.classList.remove('active');
+
+            setTimeout(() => {
+                if(moduleTitleEl) moduleTitleEl.textContent = data.title;
+                if(moduleDescriptionEl) moduleDescriptionEl.textContent = data.description;
+                if(moduleImageEl) moduleImageEl.src = data.imageUrl;
+                if(moduleImageEl) moduleImageEl.alt = `Screenshot of the ${data.title} module`;
+                
+                if (moduleLearnMoreEl) {
+                    if (data.learnMore) {
+                        moduleLearnMoreEl.style.display = 'inline-block';
+                    } else {
+                        moduleLearnMoreEl.style.display = 'none';
+                    }
+                }
+                if(moduleContentArea) moduleContentArea.classList.add('active');
+            }, 200);
+        }
+
+        mainModuleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+                
+                if (moduleExplorer) {
+                    moduleExplorer.classList.add('visible');
+                }
+
+                mainModuleButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                let firstVisibleButton = null;
+
+                allModuleBtns.forEach(btn => {
+                    if (btn.dataset.group === filter) {
+                        btn.classList.add('visible');
+                        if (!firstVisibleButton) {
+                            firstVisibleButton = btn;
+                        }
+                    } else {
+                        btn.classList.remove('visible');
+                    }
+                });
+                
+                allModuleBtns.forEach(btn => btn.classList.remove('active'));
+
+                if (firstVisibleButton) {
+                    firstVisibleButton.classList.add('active');
+                    updateModuleContent(firstVisibleButton.dataset.module);
+                } else {
+                     updateModuleContent(null);
+                }
+            });
+        });
+
+        allModuleBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                const moduleId = button.dataset.module;
+                allModuleBtns.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                updateModuleContent(moduleId);
+            });
+        });
+
+        // Initial state: select the first main button
+         const initialMainButton = document.querySelector('.module-main-btn');
+         if(initialMainButton) {
+              initialMainButton.click();
+         }
+        // ======== END: FINAL MODULES SCRIPT ========
+
+        // --- REPORT MODAL LOGIC ---
+        const reportModalOverlay = document.getElementById('report-modal-overlay');
+        const reportCards = document.querySelectorAll('.report-card');
+        const modalImage = document.getElementById('modal-report-image');
+        const modalTitle = document.getElementById('modal-report-title');
+        const modalExplanation = document.getElementById('modal-report-explanation');
+        const modalTestList = document.getElementById('modal-report-tests');
+        const closeReportModalBtn = document.querySelector('.close-report-modal');
+
+        function openReportModal(reportId) {
+            const data = reportData[reportId];
+            if (!data || !reportModalOverlay) return;
+
+            const clickedCard = document.querySelector(`.report-card[data-report-id="${reportId}"]`);
+            const imgSrc = clickedCard.querySelector('img').src;
+
+            modalImage.src = imgSrc;
+            modalImage.alt = data.title;
+            modalTitle.textContent = data.title;
+            modalExplanation.textContent = data.explanation;
+
+            modalTestList.innerHTML = '';
+            data.tests.forEach(test => {
+                const li = document.createElement('li');
+                li.textContent = test;
+                modalTestList.appendChild(li);
+            });
+
+            document.body.classList.add('modal-open');
+            reportModalOverlay.classList.add('is-visible');
+        }
+
+        function closeReportModal() {
+            if (!reportModalOverlay) return;
+            document.body.classList.remove('modal-open');
+            reportModalOverlay.classList.remove('is-visible');
+        }
+
+        reportCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const reportId = card.dataset.reportId;
+                openReportModal(reportId);
+            });
+        });
+
+        if (closeReportModalBtn) {
+            closeReportModalBtn.addEventListener('click', closeReportModal);
+        }
+        if (reportModalOverlay) {
+            reportModalOverlay.addEventListener('click', (e) => {
+                if (e.target === reportModalOverlay) {
+                    closeReportModal();
+                }
+            });
+        }
+         document.addEventListener('keydown', (e) => {
+             if (e.key === "Escape" && reportModalOverlay && reportModalOverlay.classList.contains('is-visible')) {
+                 closeReportModal();
+             }
+        });
+
+        // --- Research Carousel Logic ---
+        const researchTrack = document.querySelector('.research-carousel-track');
+        if (researchTrack) {
+            const researchCards = Array.from(researchTrack.children);
+            const originalCardCount = researchCards.length / 2; 
+            for(let i=0; i < originalCardCount; i++) {
+                const clone = researchCards[i].cloneNode(true);
+                 researchTrack.appendChild(clone);
+            }
+        }
+        
+        // --- Custom Video Player Logic ---
+        const videoWrappers = document.querySelectorAll('.video-wrapper');
+
+        videoWrappers.forEach(wrapper => {
+            const video = wrapper.querySelector('video');
+            const playButton = wrapper.querySelector('.play-button');
+
+            if (playButton && video) {
+                // Function to toggle play/pause
+                function togglePlay() {
+                    if (video.paused || video.ended) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                }
+
+                // Click on the whole wrapper to play/pause
+                wrapper.addEventListener('click', togglePlay);
+
+                video.addEventListener('play', () => {
+                    playButton.style.opacity = '0';
+                });
+
+                video.addEventListener('pause', () => {
+                    playButton.style.opacity = '1';
+                });
+            }
+        });
+
+        // --- CUSTOM SLOW SCROLL FUNCTION ---
+        function slowScrollTo(targetSelector, duration) {
+            const target = document.querySelector(targetSelector);
+            if (!target) return;
+
+            const targetPosition = target.getBoundingClientRect().top;
+            const startPosition = window.pageYOffset;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = ease(timeElapsed, startPosition, targetPosition, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function ease(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            };
+
+            requestAnimationFrame(animation);
+        }
+
+        // --- SMOOTH SCROLL FOR NAV LINKS ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                
+                // Close mobile nav if it's open and a link is clicked
+                if (document.body.classList.contains('mobile-nav-open') && targetId !== '#') {
+                    document.body.classList.remove('mobile-nav-open');
+                }
+
+                // If it's a real anchor, prevent default and scroll
+                if (targetId !== '#' && document.querySelector(targetId)) {
+                    e.preventDefault();
+                    slowScrollTo(targetId, 1500); // Set duration to 1500ms for a slower scroll
+                }
+            });
+        });
+
+    });
     </script>
 </body>
 </html>
