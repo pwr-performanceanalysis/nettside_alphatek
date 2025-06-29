@@ -23,7 +23,7 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html {
-            scroll-behavior: smooth;
+            /* scroll-behavior: smooth; REMOVED FOR CUSTOM JS SCROLLING */
         }
         body {
             font-family: var(--font-primary);
@@ -207,19 +207,20 @@
         .upgrade-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); max-width: 950px; margin: 0 auto; line-height: 1.4; font-weight: var(--font-weight-light); color: var(--color-brand-white); display: inline-block; opacity: 0; min-height: 130px; }
         .upgrade-title.is-visible { opacity: 1; }
         .upgrade-title strong { font-weight: var(--font-weight-bold); }
+        .upgrade-title b { font-weight: var(--font-weight-bold); }
         .typing-cursor::after { content: '|'; display: inline-block; animation: blink 0.7s infinite; color: var(--color-grey-light); }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* ===== START: 'ADVANTAGES' SECTION STYLES (CORRECTED) ===== */
-        .features-section {
-            padding: 100px 20px;
-            position: relative;
-            background-color: var(--color-grey-darkest);
+        /* ===== START: 'ADVANTAGES' SECTION STYLES (COPIED FROM PHYSIO) ===== */
+        .features-section { 
+            padding: 100px 20px; 
+            position: relative; 
+            background-color: var(--color-grey-darkest); 
         }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
+        .features-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 40px; 
         }
         .feature-card-v2 {
             position: relative;
@@ -315,21 +316,14 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
         .feature-content-v2 ul li {
             font-size: 0.95rem;
             color: var(--color-grey-lightest);
-            margin-bottom: 1.5em; 
+            margin-bottom: 1.2em; /* Changed from 0.8em to 1.2em */
             display: flex;
             align-items: flex-start;
             line-height: 1.5;
-        }
-        .feature-content-v2 ul li:last-child {
-             margin-bottom: 0;
         }
         .feature-content-v2 ul li i {
             color: var(--color-brand-accent);
@@ -343,6 +337,7 @@
              transform: scale(1.2);
         }
         /* ===== END: 'ADVANTAGES' SECTION STYLES ===== */
+
 
         /* Parallax Wrapper */
         .dark-parallax-wrapper { position: relative; background-image: url('https://storage.googleapis.com/intro_alphatek/Alphatek-6.jpg'); background-size: cover; background-position: center center; background-attachment: fixed; }
@@ -711,12 +706,12 @@
         .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: auto; }
         .category-card { border-radius: 12px; padding: 20px; min-height: 250px; text-align: center; display: flex; flex-direction: column; align-items: center; text-decoration: none; justify-content: center; position: relative; overflow: hidden; background-color: transparent; transition: transform 0.3s ease-out; }
         .category-card:hover { text-decoration: none; }
-        .card-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 1; filter: grayscale(100%) blur(8px); transition: filter 0.4s ease; }
-        .category-card:hover .card-background { filter: grayscale(100%) blur(0px); }
+        .category-card .card-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 1; filter: grayscale(100%) blur(8px); transition: filter 0.4s ease; }
+        .category-card:hover .card-background { filter: grayscale(0%) blur(0px); }
         #gym-card .card-background { background-image: url('https://storage.googleapis.com/intro_alphatek/gym.jpg'); }
         #clinics-card .card-background { background-image: url('https://storage.googleapis.com/intro_alphatek/clinics.jpg'); }
         #sport-card .card-background { background-image: url('https://storage.googleapis.com/intro_alphatek/sport.jpg'); }
-        .card-background::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
+        .category-card .card-background::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
         .card-content-wrapper { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .category-card h3, .category-card p { color: var(--color-brand-white); transition: color 0.3s ease; }
         .category-card h3 { margin-bottom: 8px; font-size: 1.6rem; font-weight: var(--font-weight-light); }
@@ -863,7 +858,7 @@
         <section id="features" class="features-section">
             <div class="container">
                 <div class="features-grid">
-                     <!-- CARD CONTENT UPDATED TO MATCH EXAMPLE -->
+                     <!-- CARD CONTENT UPDATED TO MATCH PHYSIO STYLE -->
                     <div class="feature-card-v2">
                         <div class="card-background">
                             <img src="https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.37.png" alt="Trainer with client">
@@ -879,7 +874,7 @@
                             </ul>
                         </div>
                     </div>
-                     <!-- CARD CONTENT UPDATED TO MATCH EXAMPLE -->
+                     <!-- CARD CONTENT UPDATED TO MATCH PHYSIO STYLE -->
                     <div class="feature-card-v2">
                         <div class="card-background">
                             <img src="https://storage.googleapis.com/files_webpage/GYM%20page%20pictures/Monika%20josefine.png" alt="Person feeling confident in a gym">
@@ -895,7 +890,7 @@
                             </ul>
                         </div>
                     </div>
-                     <!-- CARD CONTENT UPDATED TO MATCH EXAMPLE -->
+                     <!-- CARD CONTENT UPDATED TO MATCH PHYSIO STYLE -->
                     <div class="feature-card-v2">
                         <div class="card-background">
                              <img src="https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.18.png" alt="Data on a screen">
@@ -1193,7 +1188,7 @@
                     entry.target.classList.add('is-visible');
                     // --- CORRECTED TYPING TEXT WITH BOLD TAGS ---
                     const words = [
-                        'Alphatek', 'gives', 'personal', 'trainers', 'the', 'tools', 'needed', 'to', ' <strong>boost sales</strong>', ' and', ' <strong>keep the members</strong>', ' at', ' the', ' gym'
+                        'Alphatek gives personal trainers the tools needed to <b>boost sales</b> and <b>keep the members</b> at the gym'
                     ];
                     typeWords(upgradeTitle, words, 60);
                     observer.unobserve(entry.target);
@@ -1326,6 +1321,33 @@
                 closeReportModal();
             }
         });
+        
+        // --- CUSTOM SLOW SCROLL FUNCTION ---
+        function slowScrollTo(targetSelector, duration) {
+            const target = document.querySelector(targetSelector);
+            if (!target) return;
+
+            const targetPosition = target.getBoundingClientRect().top;
+            const startPosition = window.pageYOffset;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = ease(timeElapsed, startPosition, targetPosition, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function ease(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            };
+
+            requestAnimationFrame(animation);
+        }
 
         // --- SMOOTH SCROLL FOR NAV LINKS ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1340,9 +1362,7 @@
                 // If it's a real anchor, prevent default and scroll
                 if (targetId !== '#' && document.querySelector(targetId)) {
                     e.preventDefault();
-                    document.querySelector(targetId).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    slowScrollTo(targetId, 1500); // Set duration to 1500ms for a slower scroll
                 }
             });
         });
