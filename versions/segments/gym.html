@@ -341,10 +341,10 @@
         /* Parallax Wrapper */
         .dark-parallax-wrapper { position: relative; background-image: url('https://storage.googleapis.com/intro_alphatek/Alphatek-6.jpg'); background-size: cover; background-position: center center; background-attachment: fixed; }
         .dark-parallax-wrapper::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(13, 13, 13, 0.75); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 1; }
-        .reports-section, .case-studies-section { position: relative; z-index: 2; }
+        .reports-section { position: relative; z-index: 2; }
         .section-divider { width: 80px; height: 3px; background-color: var(--color-brand-accent); margin: 0 auto 2em; border-radius: 2px; }
 
-        .reports-section, .modules-section, .case-studies-section, .product-section { padding: 100px 20px; }
+        .reports-section, .modules-section, .product-section { padding: 100px 20px; }
 
         /* Reports Section */
         .reports-section { padding: 80px 0; overflow: hidden; }
@@ -578,77 +578,6 @@
             margin-top: 1em;
         }
 
-        /* Case Studies Section */
-        .case-studies-section {
-            padding: 100px 0;
-            position: relative;
-        }
-        .case-studies-section .container, .case-studies-section .case-studies-container {
-            position: relative;
-            z-index: 2;
-        }
-        .case-studies-section h2 {
-            text-align: center;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 2em;
-        }
-        .case-studies-container {
-            display: flex;
-            overflow-x: auto;
-            padding: 20px 5vw;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        .case-studies-container::-webkit-scrollbar {
-            display: none;
-        }
-        .case-study-card {
-            flex: 0 0 80%;
-            max-width: 80%;
-            margin-right: 40px;
-            scroll-snap-align: center;
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
-            align-items: center;
-            background: rgba(26, 26, 26, 0.4);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 40px;
-        }
-        .case-study-card:last-child {
-            margin-right: 0;
-        }
-        .case-study-video-container, .case-study-image-container {
-            width: 100%;
-            height: 400px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-        }
-        .case-study-video-container video, .case-study-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .case-study-text blockquote {
-            font-size: 1.4rem;
-            line-height: 1.6;
-            font-style: italic;
-            border-left: 3px solid var(--color-brand-accent);
-            padding-left: 20px;
-            margin: 0 0 20px 0;
-        }
-        .case-study-text .author {
-            font-weight: var(--font-weight-bold);
-            color: var(--color-brand-white);
-        }
-        .case-study-text .role {
-            font-size: 0.9rem;
-            color: var(--color-grey-light);
-        }
-
         /* --- New Product Section --- */
         .product-section {
             padding: 100px 20px;
@@ -693,6 +622,102 @@
             background-color: rgb(57, 154, 103);
             transform: translateY(-2px);
             text-decoration: none;
+        }
+
+        .success-stories-section {
+            padding: 100px 0;
+            position: relative;
+            background-image: url('https://storage.googleapis.com/intro_alphatek/Alphatek-6.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+        .success-stories-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 13, 13, 0.75);
+            z-index: 1;
+        }
+        .success-stories-section .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+        }
+        .success-stories-section h2 {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2em;
+        }
+        .stories-carousel-wrapper {
+            overflow-x: auto;
+            padding: 0 20px 20px;
+             -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .stories-carousel-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .stories-grid {
+            display: flex;
+            gap: 40px;
+            width: fit-content;
+            margin: 0 auto;
+        }
+        .story-card {
+            flex: 0 0 450px;
+            background-color: rgba(26, 26, 26, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .story-card:hover {
+            transform: translateY(-8px);
+            background-color: rgba(44, 44, 44, 0.7);
+        }
+        .story-image-wrapper {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 2em;
+            background-color: #000;
+            border: 3px solid var(--color-brand-accent);
+            flex-shrink: 0;
+        }
+        .story-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .story-quote {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--color-grey-lightest);
+            margin-bottom: 1.5em;
+            flex-grow: 1;
+            font-style: italic;
+        }
+        .story-author {
+            font-size: 1rem;
+            font-weight: var(--font-weight-light);
+            color: var(--color-brand-white);
+            margin-top: auto;
+        }
+        .story-author strong {
+            font-weight: var(--font-weight-bold);
+            display: block;
+            margin-bottom: 0.2em;
         }
 
         /* Final CTA Section & Category Cards - NEWLY ADDED FROM SPORTS PAGE */
@@ -743,8 +768,8 @@
         }
         @media(max-width:768px){
             .hero-headline{font-size:1.8rem;text-align:left;} 
-            .upgrade-section, .features-section, .reports-section, .modules-section, .case-studies-section, .product-section, .cta-final-section, .category-grid-section {padding: 60px 20px;}
-            .upgrade-title {font-size:1.4rem; min-height: 0;}
+            .upgrade-section, .features-section, .reports-section, .modules-section, .case-studies-section, .product-section, .cta-final-section, .category-grid-section, .success-stories-section {padding: 60px 20px;}
+            .upgrade-section .upgrade-title{font-size:1.4rem; min-height: 0;}
             .footer-logo-link { display: none; }
             .header-inner-container { justify-content: space-between; }
             .report-modal-content { grid-template-columns: 1fr; }
@@ -753,11 +778,13 @@
             .case-study-card { grid-template-columns: 1fr; flex: 0 0 90%; max-width: 90%;}
             .product-section .container { grid-template-columns: 1fr; text-align: center; }
             .product-text p { margin-left: auto; margin-right: auto;}
+            .story-card { flex-basis: 80vw; }
         }
         @media(max-width:480px){
             .hero-headline{font-size:1.5rem; height: auto;}
             .feature-card-v2 { min-height: 420px; } /* Adjust height for smaller screens */
             .feature-content-v2 h3 { font-size: 1.5rem; }
+            .story-card { flex-basis: 90vw; }
         }
     </style>
 </head>
@@ -803,7 +830,7 @@
     </header>
     
     <nav class="mobile-nav-menu">
-        <!-- MOBILE NAVIGATION UPDATED FOR SCROLLING -->
+        <!-- MOBILE NAVIGATION UPDATED -->
         <a href="../segments/sports.html">For Teams</a>
         <a href="../segments/gym.html">For Gyms</a>
         <a href="../segments/physio.html">For Clinicians</a>
@@ -857,7 +884,7 @@
         <section id="features" class="features-section">
             <div class="container">
                 <div class="features-grid">
-                     <!-- CARD CONTENT UPDATED TO MATCH PHYSIO STYLE -->
+                    <!-- CARD CONTENT UPDATED TO MATCH PHYSIO STYLE -->
                     <div class="feature-card-v2">
                         <div class="card-background">
                             <img src="https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.37.png" alt="Trainer with client">
@@ -873,7 +900,7 @@
                             </ul>
                         </div>
                     </div>
-                     <!-- CARD CONTENT UPDATED TO MATCH PHYSIO STYLE -->
+                    <!-- CARD CONTENT UPDATED TO MATCH PHYSIO STYLE -->
                     <div class="feature-card-v2">
                         <div class="card-background">
                             <img src="https://storage.googleapis.com/files_webpage/GYM%20page%20pictures/Monika%20josefine.png" alt="Person feeling confident in a gym">
@@ -889,7 +916,7 @@
                             </ul>
                         </div>
                     </div>
-                     <!-- CARD CONTENT UPDATED TO MATCH PHYSIO STYLE -->
+                    <!-- CARD CONTENT UPDATED TO MATCH PHYSIO STYLE -->
                     <div class="feature-card-v2">
                         <div class="card-background">
                              <img src="https://storage.googleapis.com/intro_alphatek/Skjermbilde%202025-06-28%20kl.%2022.02.18.png" alt="Data on a screen">
@@ -963,42 +990,7 @@
             </div>
         </section>
         
-        <div class="dark-parallax-wrapper">
-             <section id="success-stories" class="case-studies-section">
-                 <div class="container">
-                     <div class="section-divider"></div>
-                     <h2>Success Stories</h2>
-                </div>
-                <div class="case-studies-container">
-                    <div class="case-study-card">
-                        <div class="case-study-video-container">
-                            <video autoplay muted loop playsinline>
-                                <source src="https://storage.googleapis.com/intro_alphatek/screen%20photos/Fysio.v4.mov" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div class="case-study-text">
-                            <blockquote>"Since implementing Alphatek, my client retention has skyrocketed. The data provides undeniable proof of progress, and that keeps them motivated and committed. I'm not just selling training sessions anymore; I'm selling results."</blockquote>
-                            <p class="author">Jonas L.</p>
-                            <p class="role">Personal Trainer</p>
-                        </div>
-                    </div>
-                    <div class="case-study-card">
-                        <div class="case-study-image-container">
-                            <img src="https://placehold.co/600x800/333/fff?text=Gym+Owner" alt="Gym Owner Maria">
-                        </div>
-                        <div class="case-study-text">
-                            <blockquote>"Adding Alphatek was the best business decision I've made. We've introduced a new revenue stream by selling advanced testing reports, and our trainers are more confident and effective than ever. It sets us apart from the competition."</blockquote>
-                            <p class="author">Maria H.</p>
-                            <p class="role">Gym Owner</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ADDED ID FOR SCROLLING -->
-        <section class="product-section" id="product-section">
+        <section id="product-section" class="product-section">
             <div class="container">
                 <div class="product-image">
                     <img src="https://storage.googleapis.com/intro_alphatek/Medium%20Transparent.png" alt="Alphatek Product">
@@ -1011,7 +1003,58 @@
             </div>
         </section>
 
-        <!-- NEWLY ADDED SECTIONS FROM SPORTS PAGE -->
+        <section id="success-stories" class="success-stories-section">
+            <div class="container">
+                <h2>What Our Customers Say</h2>
+                <div class="stories-carousel-wrapper">
+                    <div class="stories-grid">
+                        <div class="story-card">
+                            <div class="story-image-wrapper">
+                                <img src="https://storage.googleapis.com/intro_alphatek/kundeomtalelser/Dennis.png" alt="Dennis Sveum" class="story-image">
+                            </div>
+                            <p class="story-quote">“Previously, we lacked the tools needed to maximize our strength and power training... Since implementing Alphatek, we've seen significant improvements in physical performance and motivation. For us at Stavanger Oilers, Alphatek has become essential in creating optimal training conditions.”</p>
+                            <p class="story-author"><strong>Dennis Sveum</strong>Strength & Conditioning Coach, Stavanger Oilers</p>
+                        </div>
+                        <div class="story-card">
+                            <div class="story-image-wrapper">
+                                <img src="https://storage.googleapis.com/intro_alphatek/kundeomtalelser/Magnus.png" alt="Magnus Håmsø" class="story-image">
+                            </div>
+                            <p class="story-quote">“Integrating objective measurements into our physiotherapy sessions was previously impractical... Alphatek, with its instant feedback and clear visual overview, has transformed this into an enjoyable process for both me and the patients.”</p>
+                            <p class="story-author"><strong>Magnus Håmsø</strong>Physiotherapist, Movon AS</p>
+                        </div>
+                        <div class="story-card">
+                            <div class="story-image-wrapper">
+                                <img src="https://storage.googleapis.com/intro_alphatek/kundeomtalelser/Eirik%20Hammer.png" alt="Eirik Andreassen" class="story-image">
+                            </div>
+                            <p class="story-quote">“Previously, we had no comprehensive insight into each athlete's recovery level and training status. The Alphatek platform is exceptionally user-friendly... Now, we have full control over training load, and our measurements are conducted quickly and efficiently.”</p>
+                            <p class="story-author"><strong>Eirik Andreassen</strong>Head of Training, Movon AS</p>
+                        </div>
+                        <div class="story-card">
+                            <div class="story-image-wrapper">
+                                <img src="https://storage.googleapis.com/intro_alphatek/kundeomtalelser/Tom.png" alt="Tom Gerald Lindinger" class="story-image">
+                            </div>
+                            <p class="story-quote">“Previously, we lacked a precise and objective method for measuring fall risk in our senior clients. Alphatek and their team were instrumental in developing targeted tests... Now, we can reliably assess fall risk and tailor our training programs accordingly.”</p>
+                            <p class="story-author"><strong>Tom Gerald Lindinger</strong>Head of Training Department, Volvat Nimi</p>
+                        </div>
+                         <div class="story-card">
+                            <div class="story-image-wrapper">
+                                <img src="https://storage.googleapis.com/intro_alphatek/kundeomtalelser/Eirik%20Haukali.png" alt="Eirik Haukali" class="story-image">
+                            </div>
+                            <p class="story-quote">“With Alphatek, our athletes train with greater intensity, higher motivation, and a renewed competitive spirit. It has significantly raised the quality of each training session and strengthened their desire to continuously improve.”</p>
+                            <p class="story-author"><strong>Eirik Haukali</strong>Strength & Conditioning Coach, Norwegian National Handball Team</p>
+                        </div>
+                         <div class="story-card">
+                            <div class="story-image-wrapper">
+                                <img src="https://storage.googleapis.com/intro_alphatek/kundeomtalelser/Aleksander%20Musi.png" alt="Alexander Musi Wennergren" class="story-image">
+                            </div>
+                            <p class="story-quote">“Before Alphatek, it was challenging to find user-friendly equipment that effectively combined both testing and training in rehabilitation. Alphatek provided exactly the solution we needed... We've also noticed a significant boost in patient motivation.”</p>
+                            <p class="story-author"><strong>Alexander Musi Wennergren</strong>Physioline Idrottsskadeklinik</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="contact" class="cta-final-section">
             <div class="container">
                 <h2>Ready to elevate your gym's performance?</h2>
@@ -1079,7 +1122,6 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // --- DATA FOR REPORT MODALS ---
         const reportData = {
             'performance': {
                 title: 'Performance Report',
@@ -1158,12 +1200,9 @@
             }
         };
 
-
-        // --- GENERAL PAGE SETUP ---
         const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
         const upgradeTitle = document.getElementById('upgrade-title');
         
-        // --- TYPEWRITER EFFECT (Corrected) ---
         function typeWords(element, wordsArray, speed) {
             let i = 0;
             element.innerHTML = '';
@@ -1185,7 +1224,6 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // --- CORRECTED TYPING TEXT WITH BOLD TAGS ---
                     const words = [
                         'Alphatek gives personal trainers the tools needed to <b>boost sales</b> and <b>keep the members</b> at the gym'
                     ];
@@ -1200,14 +1238,12 @@
             upgradeTitleObserver.observe(upgradeTitle);
         }
 
-        // --- MOBILE NAVIGATION TOGGLE ---
         if (mobileNavToggle) {
             mobileNavToggle.addEventListener('click', () => {
                 document.body.classList.toggle('mobile-nav-open');
             });
         }
         
-        // --- REPORT MODAL LOGIC ---
         const reportModalOverlay = document.getElementById('report-modal-overlay');
         const reportCards = document.querySelectorAll('.report-card');
         const modalImage = document.getElementById('modal-report-image');
@@ -1262,7 +1298,6 @@
             });
         }
         
-        // --- INTERACTIVE MODULES ---
         const moduleButtons = document.querySelectorAll('.module-btn');
         const moduleContentArea = document.getElementById('module-content-area');
         const moduleTitleEl = document.getElementById('module-title');
@@ -1311,7 +1346,6 @@
             });
         });
         
-        // Initial load
         updateModuleContent('squat', true);
 
 
@@ -1320,8 +1354,16 @@
                 closeReportModal();
             }
         });
-        
-        // --- CUSTOM SLOW SCROLL FUNCTION ---
+
+        const researchTrack = document.querySelector('.research-carousel-track');
+        if (researchTrack) {
+            const researchCards = Array.from(researchTrack.children);
+            researchCards.forEach(card => {
+                const clone = card.cloneNode(true);
+                researchTrack.appendChild(clone);
+            });
+        }
+
         function slowScrollTo(targetSelector, duration) {
             const target = document.querySelector(targetSelector);
             if (!target) return;
@@ -1348,20 +1390,17 @@
             requestAnimationFrame(animation);
         }
 
-        // --- SMOOTH SCROLL FOR NAV LINKS ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
                 
-                // Close mobile nav if it's open and a link is clicked
                 if (document.body.classList.contains('mobile-nav-open') && targetId !== '#') {
                     document.body.classList.remove('mobile-nav-open');
                 }
 
-                // If it's a real anchor, prevent default and scroll
                 if (targetId !== '#' && document.querySelector(targetId)) {
                     e.preventDefault();
-                    slowScrollTo(targetId, 1500); // Set duration to 1500ms for a slower scroll
+                    slowScrollTo(targetId, 1500); 
                 }
             });
         });
