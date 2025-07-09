@@ -410,8 +410,8 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             max-width: 350px;
             width: 100%;
-            /* Add a background color to prevent transparency during video load */
             background-color: var(--color-brand-black);
+            aspect-ratio: 9 / 16;
         }
         
         .videoLayout .videoContainer {
@@ -428,7 +428,12 @@
         }
 
         .videoContainer video {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
         }
         .videoText {
@@ -897,7 +902,7 @@
                 <h2>The gamechanger training equipment that generated over 355 million views.</h2>
                 <div class="videoLayout">
                     <div class="videoContainer">
-                        <video muted playsinline poster="https://storage.googleapis.com/intro_alphatek/videoer/Skjermbilde%202025-07-08%20kl.%2015.47.58.png" id="viral-video-1">
+                        <video muted loop playsinline poster="https://storage.googleapis.com/intro_alphatek/videoer/Skjermbilde%202025-07-08%20kl.%2015.47.58.png" id="viral-video-1">
                              <source data-src="https://storage.googleapis.com/intro_alphatek/videoer/What%E2%80%99s%20Your%20Animal%20Strength%EF%BC%9F.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -925,7 +930,7 @@
                 </div>
                 <div class="videoLayout reverse">
                     <div class="videoContainer">
-                        <video muted playsinline poster="https://storage.googleapis.com/intro_alphatek/videoer/Skjermbilde%202025-07-08%20kl.%2015.48.52.png" id="viral-video-2">
+                        <video muted loop playsinline poster="https://storage.googleapis.com/intro_alphatek/videoer/Skjermbilde%202025-07-08%20kl.%2015.48.52.png" id="viral-video-2">
                              <source data-src="https://storage.googleapis.com/intro_alphatek/videoer/videoplayback.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -1008,43 +1013,23 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            // Video loading optimization
-            const heroVideo = document.getElementById('hero-video');
-            const viralVideos = [
-                document.getElementById('viral-video-1'),
-                document.getElementById('viral-video-2')
-            ];
-
-            const loadViralVideos = () => {
-                viralVideos.forEach(video => {
-                    const source = video.querySelector('source');
-                    const dataSrc = source.getAttribute('data-src');
-                    if (dataSrc) {
-                        source.setAttribute('src', dataSrc);
-                        video.load();
-                        // Play the video once it's ready
-                        video.addEventListener('canplaythrough', () => {
-                            video.loop = true;
-                            video.play();
-                        }, { once: true });
-                    }
-                });
-            };
-            
-            // Check if hero video is already loaded (from cache)
-            if (heroVideo.readyState >= 3) { // HAVE_FUTURE_DATA or more
-                loadViralVideos();
-            } else {
-                heroVideo.addEventListener('loadeddata', loadViralVideos, { once: true });
+        // Ensure page loads at the top
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        } else {
+            window.onbeforeunload = function () {
+                window.scrollTo(0, 0);
             }
+        }
 
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll to top on initial load
+            window.scrollTo(0,0);
 
-            // Counter animation
+            // --- Counter animation function ---
             const animateCounter = (counter) => {
                 const target = parseFloat(counter.getAttribute('data-target'));
-                const duration = 2000; // Animation duration in ms
+                const duration = 2000;
                 const isDecimal = target % 1 !== 0;
                 let startTimestamp = null;
 
@@ -1078,30 +1063,47 @@
                 };
                 requestAnimationFrame(step);
             };
-
-            const observer = new IntersectionObserver((entries, observer) => {
+            
+            // --- Observer for scroll-based animations (counters and videos) ---
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // Animate counters in the section
                         const countersInSection = entry.target.querySelectorAll('.counter');
                         countersInSection.forEach(counter => {
-                           // Check if the counter has already been animated
-                            if (!counter.hasAttribute('data-animated')) {
+                           if (!counter.hasAttribute('data-animated')) {
                                 animateCounter(counter);
                                 counter.setAttribute('data-animated', 'true');
                             }
                         });
+
+                        // Load and play videos in the section
+                        const videosInSection = entry.target.querySelectorAll('video');
+                        videosInSection.forEach(video => {
+                            const source = video.querySelector('source');
+                            const dataSrc = source.getAttribute('data-src');
+                            if (dataSrc && !source.getAttribute('src')) {
+                                source.setAttribute('src', dataSrc);
+                                video.load();
+                                video.play().catch(e => console.log("Autoplay prevented by browser."));
+                            }
+                        });
+                        
+                        // Unobserve the section after triggering animations to save resources
+                        observer.unobserve(entry.target);
                     }
                 });
             }, {
-                threshold: 0.1 // Trigger when 10% of the element is visible
+                threshold: 0.1 
             });
 
-            const sectionsToObserve = document.querySelectorAll('.viralVideosSection');
-            sectionsToObserve.forEach(section => {
-                observer.observe(section);
-            });
+            // Set the viral videos section to be observed
+            const viralSection = document.querySelector('.viralVideosSection');
+            if (viralSection) {
+                scrollObserver.observe(viralSection);
+            }
 
-            // Mobile Carousel Logic for Features
+            // --- CAROUSEL LOGIC ---
             const featuresGrid = document.querySelector('.featuresGrid');
             const featureCards = document.querySelectorAll('.featureCardV2');
             const featuresDotsContainer = document.querySelector('.features-dots');
@@ -1133,7 +1135,6 @@
                 featureCards.forEach(card => featureCardObserver.observe(card));
             }
 
-            // Mobile Carousel Logic for Categories
             const categoryGrid = document.querySelector('.categoryGrid');
             const categoryCards = document.querySelectorAll('.categoryCard');
             const categoryDotsContainer = document.querySelector('.category-dots');
