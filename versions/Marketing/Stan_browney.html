@@ -50,7 +50,7 @@
         }
         header .headerInnerContainer {
             display: flex;
-            justify-content: center; /* Center the logo */
+            justify-content: center;
             align-items: center;
             width: 100%;
             position: relative;
@@ -92,6 +92,7 @@
             height: 100%;
             z-index: -1; 
             overflow: hidden;
+            background-color: var(--color-brand-black);
         }
         #hero-video {
             width: 100%;
@@ -184,7 +185,6 @@
             30%   { opacity: 1; clip-path: inset(60% 0 20% 0); }
             30.1%, 100% { opacity: 0; }
         }
-
 
         .scrollIndicator {
             position: absolute;
@@ -410,6 +410,8 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             max-width: 350px;
             width: 100%;
+            /* Add a background color to prevent transparency during video load */
+            background-color: var(--color-brand-black);
         }
         
         .videoLayout .videoContainer {
@@ -751,16 +753,15 @@
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
                 -webkit-overflow-scrolling: touch;
-                padding: 0 calc(50vw - 40vw);
-                margin: 0 calc(-50vw + 40vw);
+                padding: 0 calc(50vw - 35vw); /* Center the card */
             }
             .featuresGrid::-webkit-scrollbar {
                 display: none;
             }
             .featureCardV2 {
-                flex: 0 0 80vw;
+                flex: 0 0 70vw; /* Smaller cards */
                 scroll-snap-align: center;
-                min-height: 380px;
+                min-height: 360px; /* Shorter cards */
             }
             .features-dots {
                 display: block;
@@ -772,14 +773,13 @@
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
                 -webkit-overflow-scrolling: touch;
-                padding: 0 calc(50vw - 40vw);
-                margin: 0 calc(-50vw + 40vw);
+                padding: 0 calc(50vw - 35vw); /* Center the card */
             }
             .categoryGrid::-webkit-scrollbar {
                 display: none; 
             }
             .categoryCard {
-                flex: 0 0 80vw; 
+                flex: 0 0 70vw; 
                 scroll-snap-align: center;
             }
             .category-dots {
@@ -826,7 +826,7 @@
     <main class="scrollableContent">
         <section class="heroSection">
             <div class="heroVideoBg">
-                <video autoplay muted loop playsinline id="hero-video">
+                <video autoplay muted loop playsinline id="hero-video" preload="auto">
                     <source src="https://storage.googleapis.com/intro_alphatek/videoer/hero_stan.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -897,8 +897,8 @@
                 <h2>The gamechanger training equipment that generated over 355 million views.</h2>
                 <div class="videoLayout">
                     <div class="videoContainer">
-                        <video autoplay muted loop playsinline>
-                             <source src="https://storage.googleapis.com/intro_alphatek/videoer/What%E2%80%99s%20Your%20Animal%20Strength%EF%BC%9F.mp4" type="video/mp4">
+                        <video muted playsinline poster="https://storage.googleapis.com/intro_alphatek/videoer/Skjermbilde%202025-07-08%20kl.%2015.47.58.png" id="viral-video-1">
+                             <source data-src="https://storage.googleapis.com/intro_alphatek/videoer/What%E2%80%99s%20Your%20Animal%20Strength%EF%BC%9F.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="videoText">
@@ -920,6 +920,34 @@
                         </div>
                         <a href="https://www.youtube.com/shorts/qpBEEHActVo" target="_blank" class="btnYoutube">
                             <i class="fab fa-youtube"></i> Watch on YouTube
+                        </a>
+                    </div>
+                </div>
+                <div class="videoLayout reverse">
+                    <div class="videoContainer">
+                        <video muted playsinline poster="https://storage.googleapis.com/intro_alphatek/videoer/Skjermbilde%202025-07-08%20kl.%2015.48.52.png" id="viral-video-2">
+                             <source data-src="https://storage.googleapis.com/intro_alphatek/videoer/videoplayback.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="videoText">
+                         <h3 class="title">What Animal Would You Be?</h3>
+                         <div class="videoStats">
+                             <div class="stat views">
+                                <i class="fas fa-eye"></i>
+                                <div class="counter-wrapper">
+                                    <span class="counter" data-target="121">0</span>
+                                    <span class="stat-label green">Million Views</span>
+                                </div>
+                            </div>
+                             <div class="stat likes">
+                                <i class="fas fa-heart"></i>
+                                <div class="counter-wrapper">
+                                    <span class="counter" data-target="4.6">0</span><span class="likes-m">M</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://www.youtube.com/shorts/9mAROu9ySUk" target="_blank" class="btnYoutube">
+                           <i class="fab fa-youtube"></i> Watch on YouTube
                         </a>
                     </div>
                 </div>
@@ -981,6 +1009,38 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // Video loading optimization
+            const heroVideo = document.getElementById('hero-video');
+            const viralVideos = [
+                document.getElementById('viral-video-1'),
+                document.getElementById('viral-video-2')
+            ];
+
+            const loadViralVideos = () => {
+                viralVideos.forEach(video => {
+                    const source = video.querySelector('source');
+                    const dataSrc = source.getAttribute('data-src');
+                    if (dataSrc) {
+                        source.setAttribute('src', dataSrc);
+                        video.load();
+                        // Play the video once it's ready
+                        video.addEventListener('canplaythrough', () => {
+                            video.loop = true;
+                            video.play();
+                        }, { once: true });
+                    }
+                });
+            };
+            
+            // Check if hero video is already loaded (from cache)
+            if (heroVideo.readyState >= 3) { // HAVE_FUTURE_DATA or more
+                loadViralVideos();
+            } else {
+                heroVideo.addEventListener('loadeddata', loadViralVideos, { once: true });
+            }
+
+
             // Counter animation
             const animateCounter = (counter) => {
                 const target = parseFloat(counter.getAttribute('data-target'));
