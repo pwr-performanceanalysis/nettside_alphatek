@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphatek - Go Viral</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --color-brand-black: #0D0D0D;
+            --color-brand-accent: rgb(47, 124, 83);
+            --color-brand-white: #FFFFFF;
+            --color-grey-darkest: #1A1A1A;
+            --color-grey-dark: #2C2C2C;
+            --color-grey-medium: #595959;
+            --color-grey-light: #A6A6A6;
+            --color-grey-lightest: #D9D9D9;
+            --font-primary: 'Roboto', sans-serif;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-bold: 700;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-brand-black);
+            color: var(--color-grey-lightest);
+            line-height: 1.6;
+            font-weight: var(--font-weight-light);
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        a { color: var(--color-brand-accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        h2, h3, h4 { margin-bottom: 0.8em; font-weight: var(--font-weight-light); color: var(--color-brand-white); }
+        .textAccent { color: var(--color-brand-accent); }
+
+        /* Header & Logo */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 20px;
+            z-index: 1000;
+            padding: 10px 5vw;
+            transition: top 0.3s ease;
+        }
+        header .headerInnerContainer {
+            display: flex;
+            justify-content: center; /* Center the logo */
+            align-items: center;
+            width: 100%;
+            position: relative;
+            opacity: 0;
+            animation: fadeInHeader 0.7s ease-out forwards 1s;
+        }
+        @keyframes fadeInHeader { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .logoArea {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .headerLogoImg {
+            height: 55px;
+            width: auto;
+            display: block;
+        }
+        .siteTagline { position: fixed; bottom: 15px; right: 20px; font-size: 0.7em; font-weight: var(--font-weight-light); color: var(--color-grey-light); z-index: 999; }
+
+        /* General Sections */
+        .scrollableContent { position: relative; z-index: 1; background-color: var(--color-brand-black); flex-grow: 1; }
+        
+        /* HERO SECTION */
+        .heroSection {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            color: white;
+            overflow: hidden;
+            padding: 5vh 5vw;
+        }
+        .heroVideoBg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+            overflow: hidden;
+        }
+        #hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+        .heroContent {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1000px;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInFromBottomHeroContent 0.7s ease-out forwards 1s;
+        }
+        @keyframes fadeInFromBottomHeroContent { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .heroHeadline {
+            font-size: clamp(3.5rem, 7vw, 5rem);
+            color: var(--color-brand-white);
+            font-weight: var(--font-weight-light);
+            margin: 0;
+            line-height: 1.2;
+            height: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hype-text {
+            position: relative;
+            display: inline-block;
+            animation: main-sequence 8s infinite;
+        }
+        
+        .hype-text::before, .hype-text::after {
+            content: 'Join the Hype!';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: var(--color-brand-white);
+            opacity: 0;
+        }
+        .hype-text::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            animation: glitch-before 8s infinite steps(1);
+        }
+        .hype-text::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9;
+            animation: glitch-after 8s infinite steps(1);
+        }
+        
+        @keyframes main-sequence {
+            0% { transform: scale(1); }
+            10% { transform: scale(1.1); }
+            15% { transform: scale(1); }
+            15.1%, 30% { color: transparent; }
+            30.1%, 100% { color: var(--color-brand-white); }
+        }
+
+        @keyframes glitch-before {
+            0%, 15% { opacity: 0; }
+            15.1% { opacity: 1; clip-path: inset(40% 0 40% 0); }
+            16%   { clip-path: inset(15% 0 60% 0); }
+            17%   { clip-path: inset(80% 0 5% 0); }
+            18%   { clip-path: inset(95% 0 2% 0); }
+            20%   { clip-path: inset(40% 0 45% 0); }
+            22%   { clip-path: inset(20% 0 35% 0); }
+            24%   { clip-path: inset(10% 0 80% 0); }
+            26%   { clip-path: inset(5% 0 90% 0); }
+            30%   { opacity: 1; clip-path: inset(40% 0 40% 0); }
+            30.1%, 100% { opacity: 0; }
+        }
+
+        @keyframes glitch-after {
+            0%, 15% { opacity: 0; }
+            15.1% { opacity: 1; clip-path: inset(60% 0 20% 0); }
+            16%   { clip-path: inset(30% 0 40% 0); }
+            17%   { clip-path: inset(5% 0 85% 0); }
+            18%   { clip-path: inset(90% 0 8% 0); }
+            20%   { clip-path: inset(25% 0 50% 0); }
+            22%   { clip-path: inset(40% 0 30% 0); }
+            24%   { clip-path: inset(85% 0 5% 0); }
+            28%   { clip-path: inset(95% 0 2% 0); }
+            30%   { opacity: 1; clip-path: inset(60% 0 20% 0); }
+            30.1%, 100% { opacity: 0; }
+        }
+
+
+        .scrollIndicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            opacity: 0;
+            animation: fadeInHeader 1s ease-out forwards 2s;
+        }
+        .scrollIndicator span {
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-bottom: 2px solid var(--color-brand-white);
+            border-right: 2px solid var(--color-brand-white);
+            transform: rotate(45deg);
+            margin: -5px;
+            animation: pulse-arrow 2.5s infinite;
+        }
+        .scrollIndicator span:nth-child(2) {
+            animation-delay: -0.4s;
+        }
+        @keyframes pulse-arrow {
+            0% { opacity: 0; transform: rotate(45deg) translate(-10px, -10px); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: rotate(45deg) translate(10px, 10px); }
+        }
+
+        /* Intro Text Section */
+        .introTextSection {
+            background-color: var(--color-brand-black);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .introTextTitle {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            max-width: 950px;
+            margin: 0 auto;
+            line-height: 1.4;
+            font-weight: var(--font-weight-light);
+            color: var(--color-brand-white);
+        }
+        .introTextTitle b {
+            font-weight: var(--font-weight-bold);
+            color: var(--color-brand-white);
+        }
+
+        /* Blurry Background Section Style */
+        .backgroundSectionBlurry {
+            position: relative;
+            background-color: var(--color-brand-black); /* Fallback color */
+        }
+        .backgroundSectionBlurry::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://storage.googleapis.com/intro_alphatek/Alphatek-6.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            filter: blur(10px);
+            -webkit-filter: blur(10px);
+            opacity: 0.3; /* Soften the background */
+            z-index: 1;
+        }
+        .backgroundSectionBlurry .container {
+            position: relative;
+            z-index: 2; /* Ensure content is on top */
+        }
+
+
+        /* Viral Videos Section */
+        .viralVideosSection {
+            padding: 100px 20px;
+        }
+        .viralVideosSection h2 {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 2em;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .videoLayout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 90px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+        .videoLayout:last-child {
+            margin-bottom: 0;
+        }
+        .videoLayout.reverse .videoContainer {
+             order: 1;
+        }
+        .videoContainer {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            max-width: 350px;
+            width: 100%;
+        }
+        
+        .videoLayout .videoContainer {
+            justify-self: end; 
+        }
+        .videoLayout .videoText {
+            justify-self: start; 
+        }
+        .videoLayout.reverse .videoText {
+             justify-self: end; 
+        }
+        .videoLayout.reverse .videoContainer {
+            justify-self: start;
+        }
+
+        .videoContainer video {
+            width: 100%;
+            display: block;
+        }
+        .videoText {
+            text-align: left;
+        }
+        .videoStats {
+            margin-bottom: 1.5em;
+        }
+        .stat {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 0.5em;
+        }
+        .stat i {
+            font-size: 1.8rem;
+            color: var(--color-brand-accent);
+            flex-shrink: 0;
+        }
+        .stat .counter-wrapper {
+            display: flex;
+            align-items: baseline;
+        }
+        .stat .counter {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-brand-accent);
+            line-height: 1;
+        }
+        .stat.likes .counter {
+            font-size: clamp(2rem, 5vw, 3rem);
+        }
+        .stat .stat-label {
+            font-size: 1.5rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-grey-light);
+            opacity: 0;
+            transform: scale(3);
+            display: inline-block;
+            margin-left: 0.3em;
+        }
+        .stat .stat-label.green {
+            color: var(--color-brand-accent);
+        }
+        .stat-label.animate-stamp {
+            animation: stamp-in-calm 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes stamp-in-calm {
+            0% { opacity: 0; transform: scale(4) rotate(-25deg); }
+            60% { opacity: 1; transform: scale(0.9) rotate(5deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0); }
+        }
+        .stat .likes-m {
+            font-size: 2rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-brand-accent);
+            margin-left: 0.1em;
+        }
+        
+        .videoText .title {
+            font-size: 1.2rem;
+            color: var(--color-grey-light);
+            margin-bottom: 1.5em;
+        }
+        .btnYoutube {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #FF0000;
+            color: var(--color-brand-white);
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: var(--font-weight-normal);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btnYoutube:hover {
+            background-color: #cc0000;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+        .btnYoutube i {
+            font-size: 1.4rem;
+        }
+
+        /* Final CTA Section */
+        .ctaFinalSection {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: var(--color-grey-darkest);
+        }
+        .ctaFinalSection h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1em;
+        }
+        .ctaButtonLarge {
+            display: inline-block;
+            background-color: var(--color-brand-accent);
+            color: var(--color-brand-white);
+            border-radius: 8px;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: var(--font-weight-normal);
+            text-decoration: none;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .ctaButtonLarge:hover {
+            background-color: rgb(60, 150, 100);
+            transform: scale(1.05);
+        }
+        
+        /* Category Grid Section */
+        .categoryGridSection {
+            padding: 100px 20px;
+            background-color: var(--color-brand-black);
+        }
+        .category-title {
+            text-align: center;
+            margin-bottom: 2em;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+        }
+        .categoryGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .categoryCard {
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 250px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-color: transparent;
+            transition: transform 0.3s ease-out;
+        }
+        .categoryCard:hover {
+            text-decoration: none;
+        }
+        .categoryCard .cardBackground {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            filter: grayscale(100%) blur(8px);
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+        .categoryCard:hover .cardBackground {
+            filter: grayscale(0%) blur(0px);
+            transform: scale(1.1);
+        }
+        #gym-card .cardBackground { background-image: url('https://storage.googleapis.com/intro_alphatek/gym.jpg'); }
+        #clinics-card .cardBackground { background-image: url('https://storage.googleapis.com/intro_alphatek/clinics.jpg'); }
+        #sport-card .cardBackground { background-image: url('https://storage.googleapis.com/intro_alphatek/sport.jpg'); }
+        .categoryCard .cardBackground::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            transition: background-color 0.4s ease;
+        }
+        .categoryCard:hover .cardBackground::after {
+             background-color: rgba(47, 124, 83, 0.3);
+        }
+        .cardContentWrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .categoryCard h3, .categoryCard p {
+            color: var(--color-brand-white);
+            transition: color 0.3s ease;
+        }
+        .categoryCard h3 {
+            margin-bottom: 8px;
+            font-size: 1.8rem;
+            font-weight: var(--font-weight-light);
+        }
+        .categoryCard p {
+            font-size: 1rem;
+            line-height: 1.4;
+            font-weight: var(--font-weight-light);
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-brand-black); 
+            color: var(--color-grey-lightest); 
+            padding: 1.5em 0;
+            position: relative; 
+            z-index: 2;
+            text-align: center;
+            border-top: 1px solid var(--color-grey-darkest);
+        }
+        .footerLogoLink {
+            position: absolute;
+            left: 5vw;
+            bottom: 50%;
+            transform: translateY(50%);
+        }
+        .reddotLogo {
+            height: 75px;
+            width: auto;
+            display: block;
+        }
+        footer p {
+            font-weight: var(--font-weight-light);
+            margin-bottom: 0;
+            color: var(--color-grey-lightest);
+        }
+        .footerSocialIcons {
+            margin-top: 1em;
+        }
+        .footerSocialIcons a {
+            color: var(--color-grey-lightest);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        .footerSocialIcons a:hover {
+            color: var(--color-brand-accent);
+        }
+        
+        /* Responsive Styles */
+        @media(max-width:992px){
+            .videoLayout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .videoLayout .videoContainer, .videoLayout.reverse .videoContainer {
+                order: 0; /* Reset order */
+                justify-self: center; /* Center video when stacked vertically */
+            }
+            .videoText {
+                text-align: left;
+                justify-self: center; 
+                width: 80%; 
+                max-width: 350px;
+            }
+        }
+        @media(max-width:768px){
+            .featuresSection {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .features-carousel-wrapper {
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                padding: 20px;
+                margin: 0 -20px;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .features-carousel-wrapper::-webkit-scrollbar {
+                display: none;
+            }
+            .featuresGrid {
+                display: flex;
+                grid-template-columns: unset;
+                width: fit-content;
+                gap: 20px;
+                padding: 0 20px;
+            }
+            .featureCardV2 {
+                flex: 0 0 65vw;
+                min-height: 360px;
+                scroll-snap-align: start;
+            }
+            .featureIconTop {
+                font-size: 2rem;
+                margin-bottom: 0.8em;
+            }
+            .featureContentV2 {
+                padding: 25px 25px;
+            }
+            .featureContentV2 h3 {
+                font-size: 1.25rem;
+            }
+            .featureContentV2 p {
+                font-size: 0.8rem;
+            }
+
+            .heroHeadline{font-size: 2.5rem;} 
+            .introTextSection, .featuresSection, .viralVideosSection, .ctaFinalSection, .categoryGridSection {padding-top: 60px; padding-bottom: 60px;}
+            .introTextTitle{font-size:1.4rem;}
+            .footerLogoLink { display: none; }
+            
+            .videoLayout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-bottom: 50px;
+            }
+            .videoLayout .videoContainer {
+                max-width: 80%;
+                margin: 0 auto 1em auto;
+            }
+            .videoText {
+                width: 100%; 
+                padding: 0 10%; 
+            }
+            .videoStats {
+                justify-content: flex-start;
+                display: flex;
+                gap: 20px;
+            }
+             .stat .counter {
+                font-size: 2rem;
+            }
+            .stat.likes .counter {
+                font-size: 1.8rem;
+            }
+            .stat .stat-label, .stat .likes-m {
+                font-size: 1rem;
+            }
+            .videoText .title {
+                font-size: 1.1rem;
+            }
+            .btnYoutube {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+        @media(max-width:480px){
+            .heroHeadline{font-size:2rem; }
+            .featureCardV2 { 
+                min-height: auto; 
+                padding-bottom: 30px;
+                flex-basis: 75vw; /* Slightly larger on very small screens */
+            }
+            .featureContentV2 h3 { 
+                font-size: 1.2rem;
+            }
+            .videoLayout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .videoLayout .videoContainer {
+                max-width: 100%;
+            }
+            .videoText {
+                text-align: left;
+                width: 100%;
+                padding: 0;
+            }
+            .videoStats {
+                flex-direction: row; 
+                flex-wrap: wrap; 
+                align-items: center;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="headerInnerContainer">
+            <div class="logoArea">
+                <a href="#" class="logo">
+                    <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="headerLogoImg">
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <span class="siteTagline">Designed in Norway</span>
+
+    <main class="scrollableContent">
+        <section class="heroSection">
+            <div class="heroVideoBg">
+                <video autoplay muted loop playsinline id="hero-video">
+                    <source src="https://storage.googleapis.com/intro_alphatek/videoer/hero_stan.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="heroContent">
+                <h1 class="heroHeadline">
+                    <span class="hype-text">Join the Hype!</span>
+                </h1>
+            </div>
+             <div class="scrollIndicator">
+                <span></span>
+                <span></span>
+            </div>
+        </section>
+
+        <section class="introTextSection">
+            <div class="container">
+                <h2 class="introTextTitle">The tech behind <b>355 million views</b> is now <b>at your gym</b>. Recreate <b>viral moments</b> with your members and put <b>your brand in the spotlight</b>.</h2>
+            </div>
+        </section>
+
+        <section class="viralVideosSection backgroundSectionBlurry">
+            <div class="container">
+                <h2>The gamechanger training equipment that generated over 355 million views.</h2>
+                <div class="videoLayout">
+                    <div class="videoContainer">
+                        <video autoplay muted loop playsinline>
+                             <source src="https://storage.googleapis.com/intro_alphatek/videoer/What%E2%80%99s%20Your%20Animal%20Strength%EF%BC%9F.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="videoText">
+                        <h3 class="title">What’s Your Animal Strength?</h3>
+                        <div class="videoStats">
+                             <div class="stat views">
+                                <i class="fas fa-eye"></i>
+                                <div class="counter-wrapper">
+                                    <span class="counter" data-target="234">0</span>
+                                    <span class="stat-label green">Million Views</span>
+                                </div>
+                             </div>
+                             <div class="stat likes">
+                                <i class="fas fa-heart"></i>
+                                <div class="counter-wrapper">
+                                    <span class="counter" data-target="9.1">0</span><span class="likes-m">M</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://www.youtube.com/shorts/qpBEEHActVo" target="_blank" class="btnYoutube">
+                            <i class="fab fa-youtube"></i> Watch on YouTube
+                        </a>
+                    </div>
+                </div>
+                 <div class="videoLayout reverse">
+                    <div class="videoContainer">
+                        <video autoplay muted loop playsinline>
+                             <source src="https://storage.googleapis.com/intro_alphatek/videoer/videoplayback.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="videoText">
+                         <h3 class="title">What Animal Would You Be?</h3>
+                         <div class="videoStats">
+                             <div class="stat views">
+                                <i class="fas fa-eye"></i>
+                                <div class="counter-wrapper">
+                                    <span class="counter" data-target="121">0</span>
+                                    <span class="stat-label green">Million Views</span>
+                                </div>
+                            </div>
+                             <div class="stat likes">
+                                <i class="fas fa-heart"></i>
+                                <div class="counter-wrapper">
+                                    <span class="counter" data-target="4.6">0</span><span class="likes-m">M</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://www.youtube.com/shorts/9mAROu9ySUk" target="_blank" class="btnYoutube">
+                           <i class="fab fa-youtube"></i> Watch on YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="ctaFinalSection">
+            <div class="container">
+                <h2>Your Gym, Seen by Millions? Let’s Make It Happen.</h2>
+                <a href="#" class="ctaButtonLarge">Contact Us</a>
+            </div>
+        </section>
+        
+        <section class="categoryGridSection">
+            <div class="container">
+                 <h2 class="category-title">Learn more? Choose your industry</h2>
+                 <div class="categoryGrid">
+                      <a href="#" class="categoryCard" id="gym-card">
+                          <div class="cardBackground"></div>
+                          <div class="cardContentWrapper">
+                              <h3>Fitness Centers</h3>
+                              <p>Solutions for modern fitness centers.</p>
+                          </div>
+                      </a>
+                      <a href="#" class="categoryCard" id="clinics-card">
+                          <div class="cardBackground"></div>
+                          <div class="cardContentWrapper">
+                              <h3>Clinicians</h3> 
+                              <p>Advanced tools for patient rehabilitation.</p>
+                          </div>
+                      </a>
+                      <a href="#" class="categoryCard" id="sport-card">
+                          <div class="cardBackground"></div>
+                          <div class="cardContentWrapper">
+                              <h3>Sports Teams</h3>
+                              <p>Optimize athlete performance and recovery.</p>
+                          </div>
+                      </a>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer>
+        <a href="#" class="footerLogoLink" aria-label="Red Dot Design Award">
+             <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddotLogo">
+        </a>
+        <div class="container">
+            <p>© 2025 Alphatek. All rights reserved.</p>
+            <div class="footerSocialIcons">
+                <a href="https://www.instagram.com/alphatekofficial" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@AlphatekOfficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Counter animation
+            const animateCounter = (counter) => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                const duration = 2000; // Animation duration in ms
+                const isDecimal = target % 1 !== 0;
+                let startTimestamp = null;
+
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const currentValue = progress * target;
+
+                    if (isDecimal) {
+                        counter.innerText = currentValue.toFixed(1);
+                    } else {
+                        counter.innerText = Math.floor(currentValue).toLocaleString('en-US');
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        if (isDecimal) {
+                            counter.innerText = target.toFixed(1);
+                        } else {
+                            counter.innerText = target.toLocaleString('en-US');
+                        }
+                        
+                        const statElement = counter.closest('.stat');
+                        const labelElement = statElement.querySelector('.stat-label');
+
+                        if (labelElement) {
+                            labelElement.classList.add('animate-stamp');
+                        }
+                    }
+                };
+                requestAnimationFrame(step);
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const countersInSection = entry.target.querySelectorAll('.counter');
+                        countersInSection.forEach(counter => {
+                           // Check if the counter has already been animated
+                            if (!counter.hasAttribute('data-animated')) {
+                                animateCounter(counter);
+                                counter.setAttribute('data-animated', 'true');
+                            }
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            const sectionsToObserve = document.querySelectorAll('.viralVideosSection');
+            sectionsToObserve.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>
