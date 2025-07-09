@@ -233,6 +233,124 @@
             color: var(--color-brand-white);
         }
 
+        /* Features Section */
+        .featuresSection { 
+            padding: 100px 0;
+            background-color: var(--color-grey-darkest); 
+            overflow: hidden;
+        }
+        .featuresGrid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 40px; 
+        }
+        .featureCardV2 {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s ease;
+        }
+        .cardBackground {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .cardBackground img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .featureCardV2:hover .cardBackground img {
+            transform: scale(1.08);
+        }
+        .cardBackground::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80%;
+            background: linear-gradient(to top, var(--color-brand-black) 30%, transparent 100%);
+        }
+        .featureOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 13, 13, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 2;
+            transition: background 0.4s ease, backdrop-filter 0.4s ease;
+        }
+        .featureCardV2:hover .featureOverlay {
+            background: rgba(47, 124, 83, 0.5);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+        .featureContentV2 {
+            position: relative;
+            z-index: 3;
+            color: var(--color-brand-white);
+            padding: 30px 35px;
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            text-align: center;
+        }
+        .featureIconTop {
+            font-size: 2.5rem;
+            color: var(--color-brand-accent);
+            text-align: center;
+            width: 100%;
+            margin-bottom: 1em;
+            transition: color 0.4s ease, transform 0.4s ease;
+        }
+        .featureCardV2:hover .featureIconTop {
+            transform: scale(1.1);
+            color: var(--color-brand-white);
+        }
+        .featureContentV2 h3 {
+            font-size: 1.8rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-brand-white);
+            margin-bottom: 0.5em;
+            line-height: 1.2;
+        }
+        .featureContentV2 p {
+            font-size: 1rem;
+            color: var(--color-grey-lightest);
+            line-height: 1.6;
+            margin: 0;
+        }
+        .features-dots {
+            text-align: center;
+            margin-top: 2em;
+            display: none;
+        }
+        .feature-dot {
+            height: 10px;
+            width: 10px;
+            background-color: var(--color-grey-medium);
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+        .feature-dot.active {
+            background-color: var(--color-brand-accent);
+        }
+
         /* Blurry Background Section Style */
         .backgroundSectionBlurry {
             position: relative;
@@ -424,6 +542,7 @@
         .categoryGridSection {
             padding: 100px 20px;
             background-color: var(--color-brand-black);
+            overflow: hidden;
         }
         .category-title {
             text-align: center;
@@ -510,6 +629,24 @@
             font-weight: var(--font-weight-light);
             margin-bottom: 0;
         }
+        
+        .category-dots {
+            text-align: center;
+            margin-top: 2em;
+            display: none; 
+        }
+        .category-dot {
+            height: 10px;
+            width: 10px;
+            background-color: var(--color-grey-medium);
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+        .category-dot.active {
+            background-color: var(--color-brand-accent);
+        }
 
         /* Footer */
         footer {
@@ -568,47 +705,6 @@
             }
         }
         @media(max-width:768px){
-            .featuresSection {
-                padding-left: 0;
-                padding-right: 0;
-            }
-            .features-carousel-wrapper {
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                padding: 20px;
-                margin: 0 -20px;
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-            .features-carousel-wrapper::-webkit-scrollbar {
-                display: none;
-            }
-            .featuresGrid {
-                display: flex;
-                grid-template-columns: unset;
-                width: fit-content;
-                gap: 20px;
-                padding: 0 20px;
-            }
-            .featureCardV2 {
-                flex: 0 0 65vw;
-                min-height: 360px;
-                scroll-snap-align: start;
-            }
-            .featureIconTop {
-                font-size: 2rem;
-                margin-bottom: 0.8em;
-            }
-            .featureContentV2 {
-                padding: 25px 25px;
-            }
-            .featureContentV2 h3 {
-                font-size: 1.25rem;
-            }
-            .featureContentV2 p {
-                font-size: 0.8rem;
-            }
-
             .heroHeadline{font-size: 2.5rem;} 
             .introTextSection, .featuresSection, .viralVideosSection, .ctaFinalSection, .categoryGridSection {padding-top: 60px; padding-bottom: 60px;}
             .introTextTitle{font-size:1.4rem;}
@@ -648,17 +744,50 @@
                 padding: 10px 20px;
                 font-size: 1rem;
             }
+
+            /* Mobile carousel for Features */
+            .featuresGrid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding: 0 calc(50vw - 40vw);
+                margin: 0 calc(-50vw + 40vw);
+            }
+            .featuresGrid::-webkit-scrollbar {
+                display: none;
+            }
+            .featureCardV2 {
+                flex: 0 0 80vw;
+                scroll-snap-align: center;
+                min-height: 380px;
+            }
+            .features-dots {
+                display: block;
+            }
+
+            /* Mobile carousel for Categories */
+            .categoryGrid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding: 0 calc(50vw - 40vw);
+                margin: 0 calc(-50vw + 40vw);
+            }
+            .categoryGrid::-webkit-scrollbar {
+                display: none; 
+            }
+            .categoryCard {
+                flex: 0 0 80vw; 
+                scroll-snap-align: center;
+            }
+            .category-dots {
+                display: block; 
+            }
         }
         @media(max-width:480px){
             .heroHeadline{font-size:2rem; }
-            .featureCardV2 { 
-                min-height: auto; 
-                padding-bottom: 30px;
-                flex-basis: 75vw; /* Slightly larger on very small screens */
-            }
-            .featureContentV2 h3 { 
-                font-size: 1.2rem;
-            }
             .videoLayout {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -719,6 +848,50 @@
             </div>
         </section>
 
+        <section id="features" class="featuresSection">
+            <div class="container">
+                <div class="featuresGrid">
+                    <!-- Card 1 -->
+                    <div class="featureCardV2">
+                        <div class="cardBackground">
+                            <img src="https://storage.googleapis.com/intro_alphatek/videoer/Skjermbilde%202025-07-08%20kl.%2015.47.58.png" alt="Gym members trying the challenge">
+                        </div>
+                        <div class="featureOverlay"></div>
+                        <div class="featureContentV2">
+                            <div class="featureIconTop"><i class="fas fa-users"></i></div>
+                            <h3>Turn Attention into Memberships <span style="color:transparent">Experience</span></h3>
+                            <p>This isn’t just a test — it’s a magnet. People come to try it, film it, and share it. Your gym becomes the place to be.<br><span style="color:transparent">Vår teknologi garanterer engasjement.</span></p>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="featureCardV2">
+                        <div class="cardBackground">
+                            <img src="https://storage.googleapis.com/intro_alphatek/videoer/Skjermbilde%202025-07-08%20kl.%2015.48.52.png" alt="Viral Experience in Gym">
+                        </div>
+                        <div class="featureOverlay"></div>
+                        <div class="featureContentV2">
+                            <div class="featureIconTop"><i class="fas fa-video"></i></div>
+                            <h3>Bring the Viral Experience to Your Gym</h3>
+                            <p>Stan Browney made it viral. Now it’s your turn. Let people live what they saw online — but in your space, with your brand.<br><span style="color:transparent">Gjenskap de virale øyeblikkene.</span></p>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="featureCardV2">
+                        <div class="cardBackground">
+                             <img src="https://storage.googleapis.com/intro_alphatek/videoer/Skjermbilde%202025-07-08%20kl.%2015.49.22.png" alt="Motivated people in gym">
+                        </div>
+                        <div class="featureOverlay"></div>
+                        <div class="featureContentV2">
+                             <div class="featureIconTop"><i class="fas fa-heart"></i></div>
+                            <h3>Create Moments That Stick <span style="color:transparent">ExperienceExperience</span></h3>
+                            <p>This machine doesn't just measure strength — it moves people. Real reactions. Real motivation. That’s why your gym will stand out.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="features-dots"></div>
+            </div>
+        </section>
+
         <section class="viralVideosSection backgroundSectionBlurry">
             <div class="container">
                 <h2>The gamechanger training equipment that generated over 355 million views.</h2>
@@ -750,84 +923,58 @@
                         </a>
                     </div>
                 </div>
-                 <div class="videoLayout reverse">
-                    <div class="videoContainer">
-                        <video autoplay muted loop playsinline>
-                             <source src="https://storage.googleapis.com/intro_alphatek/videoer/videoplayback.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="videoText">
-                         <h3 class="title">What Animal Would You Be?</h3>
-                         <div class="videoStats">
-                             <div class="stat views">
-                                <i class="fas fa-eye"></i>
-                                <div class="counter-wrapper">
-                                    <span class="counter" data-target="121">0</span>
-                                    <span class="stat-label green">Million Views</span>
-                                </div>
-                            </div>
-                             <div class="stat likes">
-                                <i class="fas fa-heart"></i>
-                                <div class="counter-wrapper">
-                                    <span class="counter" data-target="4.6">0</span><span class="likes-m">M</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="https://www.youtube.com/shorts/9mAROu9ySUk" target="_blank" class="btnYoutube">
-                           <i class="fab fa-youtube"></i> Watch on YouTube
-                        </a>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <section id="contact" class="ctaFinalSection">
+        <section class="ctaFinalSection">
             <div class="container">
-                <h2>Your Gym, Seen by Millions? Let’s Make It Happen.</h2>
-                <a href="#" class="ctaButtonLarge">Contact Us</a>
+                <h2>Klar til å skape en hype?</h2>
+                <a href="#" class="ctaButtonLarge">Kontakt oss</a>
             </div>
         </section>
-        
+
         <section class="categoryGridSection">
             <div class="container">
-                 <h2 class="category-title">Learn more? Choose your industry</h2>
-                 <div class="categoryGrid">
-                      <a href="#" class="categoryCard" id="gym-card">
-                          <div class="cardBackground"></div>
-                          <div class="cardContentWrapper">
-                              <h3>Fitness Centers</h3>
-                              <p>Solutions for modern fitness centers.</p>
-                          </div>
-                      </a>
-                      <a href="#" class="categoryCard" id="clinics-card">
-                          <div class="cardBackground"></div>
-                          <div class="cardContentWrapper">
-                              <h3>Clinicians</h3> 
-                              <p>Advanced tools for patient rehabilitation.</p>
-                          </div>
-                      </a>
-                      <a href="#" class="categoryCard" id="sport-card">
-                          <div class="cardBackground"></div>
-                          <div class="cardContentWrapper">
-                              <h3>Sports Teams</h3>
-                              <p>Optimize athlete performance and recovery.</p>
-                          </div>
-                      </a>
-                 </div>
+                <h2 class="category-title">Learn more? Choose your industry</h2>
+                <div class="categoryGrid">
+                    <a href="#" id="gym-card" class="categoryCard">
+                        <div class="cardBackground"></div>
+                        <div class="cardContentWrapper">
+                            <h3>Fitness Centers</h3>
+                            <p>Solutions for modern fitness centers.</p>
+                        </div>
+                    </a>
+                    <a href="#" id="clinics-card" class="categoryCard">
+                        <div class="cardBackground"></div>
+                        <div class="cardContentWrapper">
+                            <h3>Clinicians</h3>
+                            <p>Advanced tools for patient rehabilitation.</p>
+                        </div>
+                    </a>
+                    <a href="#" id="sport-card" class="categoryCard">
+                        <div class="cardBackground"></div>
+                        <div class="cardContentWrapper">
+                            <h3>Sports Teams</h3>
+                            <p>Optimize athlete performance and recovery.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="category-dots"></div>
             </div>
         </section>
 
     </main>
     
     <footer>
-        <a href="#" class="footerLogoLink" aria-label="Red Dot Design Award">
-             <img src="https://storage.googleapis.com/intro_alphatek/RedDot%20logo.png" alt="Red Dot Design Award Winner" class="reddotLogo">
-        </a>
         <div class="container">
-            <p>© 2025 Alphatek. All rights reserved.</p>
+            <a href="#" class="footerLogoLink">
+                <img src="https://storage.googleapis.com/intro_alphatek/logo.png" alt="Alphatek Logo" class="reddotLogo">
+            </a>
+            <p>&copy; 2025 Alphatek. Alle rettigheter forbeholdt.</p>
             <div class="footerSocialIcons">
-                <a href="https://www.instagram.com/alphatekofficial" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@AlphatekOfficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </footer>
@@ -893,6 +1040,70 @@
             sectionsToObserve.forEach(section => {
                 observer.observe(section);
             });
+
+            // Mobile Carousel Logic for Features
+            const featuresGrid = document.querySelector('.featuresGrid');
+            const featureCards = document.querySelectorAll('.featureCardV2');
+            const featuresDotsContainer = document.querySelector('.features-dots');
+
+            if (featureCards.length > 0 && featuresDotsContainer) {
+                featureCards.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('feature-dot');
+                    if (index === 0) {
+                        dot.classList.add('active');
+                    }
+                    featuresDotsContainer.appendChild(dot);
+                });
+
+                const featureDots = document.querySelectorAll('.feature-dot');
+
+                const featureCardObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const cardIndex = Array.from(featureCards).indexOf(entry.target);
+                            featureDots.forEach(dot => dot.classList.remove('active'));
+                            if (featureDots[cardIndex]) {
+                                featureDots[cardIndex].classList.add('active');
+                            }
+                        }
+                    });
+                }, { root: featuresGrid, threshold: 0.5 });
+
+                featureCards.forEach(card => featureCardObserver.observe(card));
+            }
+
+            // Mobile Carousel Logic for Categories
+            const categoryGrid = document.querySelector('.categoryGrid');
+            const categoryCards = document.querySelectorAll('.categoryCard');
+            const categoryDotsContainer = document.querySelector('.category-dots');
+
+            if (categoryCards.length > 0 && categoryDotsContainer) {
+                categoryCards.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('category-dot');
+                    if (index === 0) {
+                        dot.classList.add('active');
+                    }
+                    categoryDotsContainer.appendChild(dot);
+                });
+
+                const categoryDots = document.querySelectorAll('.category-dot');
+
+                const categoryCardObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const cardIndex = Array.from(categoryCards).indexOf(entry.target);
+                            categoryDots.forEach(dot => dot.classList.remove('active'));
+                            if (categoryDots[cardIndex]) {
+                                categoryDots[cardIndex].classList.add('active');
+                            }
+                        }
+                    });
+                }, { root: categoryGrid, threshold: 0.5 });
+
+                categoryCards.forEach(card => categoryCardObserver.observe(card));
+            }
         });
     </script>
 
