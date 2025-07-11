@@ -1,0 +1,530 @@
+Skip to main content
+
+key
+Get API key
+Studio
+Dashboard
+Documentation
+open_in_new
+Erik
+Remove Section: 3-in-1 Device
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+Ok, jeg har endret navnene i karusellen som du ba om.
+Endringen er gjort i moduleData-objektet i JavaScript-koden. Siden både desktop- og mobil-menyene bygges dynamisk fra dette objektet, vil endringen automatisk oppdatere teksten på knappene i begge visningene.
+Her er den oppdaterte og komplette koden:
+Generated html
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphatek - Mobile Component</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --color-brand-black: #0D0D0D;
+            --color-brand-accent: rgb(47, 124, 83);
+            --color-brand-white: #FFFFFF;
+            --color-grey-darkest: #1A1A1A;
+            --color-grey-dark: #2C2C2C;
+            --color-grey-medium: #595959;
+            --color-grey-light: #A6A6A6;
+            --color-grey-lightest: #D9D9D9;
+            --font-primary: 'Roboto', sans-serif;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-bold: 700;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-brand-black);
+            color: var(--color-grey-lightest);
+            line-height: 1.6;
+            font-weight: var(--font-weight-light);
+            min-height: 100%;
+        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        h2, h3, h4 { margin-bottom: 0.8em; font-weight: var(--font-weight-light); color: var(--color-brand-white); }
+       
+        .dark-parallax-wrapper { 
+            position: relative; 
+            background-image: url('https://storage.googleapis.com/files_webpage/Bod%C3%B8Glimt%20squat.png'); 
+            background-size: cover; 
+            background-position: center center; 
+            background-attachment: fixed; 
+        }
+        .dark-parallax-wrapper::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; left: 0; width: 100%; height: 100%; 
+            background-color: rgba(13, 13, 13, 0.75); 
+            backdrop-filter: blur(25px); 
+            -webkit-backdrop-filter: blur(25px); 
+            z-index: 1; 
+        }
+        .modules-section { 
+            position: relative; 
+            z-index: 2; 
+            padding: 100px 20px;
+        }
+       
+        .modules-section .section-title { 
+            text-align: center; 
+            font-size: clamp(2rem, 5vw, 3rem); 
+            margin-bottom: 1.5em; 
+            max-width: 800px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            line-height: 1.2; 
+        }
+        
+        /* Video cards section */
+        .three-in-one-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .device-feature-card {
+            text-align: center;
+        }
+        .device-feature-card .video-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1em;
+            cursor: pointer;
+        }
+        .device-feature-card .video-wrapper video {
+            width: 100%;
+            display: block; 
+        }
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: transparent;
+            color: var(--color-brand-white);
+            border: none;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            z-index: 5;
+            opacity: 1;
+        }
+        .video-wrapper video.is-playing + .play-button {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .device-feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--color-brand-accent);
+            margin-bottom: 0.5em;
+            font-weight: var(--font-weight-normal);
+        }
+        .device-feature-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--color-grey-light);
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        /* Module Explorer Desktop Styles */
+        .module-explorer {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 80px;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .module-nav-desktop {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .module-btn-desktop {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: var(--font-weight-light);
+            color: var(--color-grey-light);
+            background-color: rgba(255, 255, 255, 0.02);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+        .module-btn-desktop:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--color-brand-white);
+        }
+        .module-btn-desktop.active {
+            background-color: rgba(47, 124, 83, 0.2);
+            color: var(--color-brand-white);
+            transform: translateX(10px);
+        }
+        
+        /* Module Content Styles (Shared) */
+        .module-content {
+            position: relative;
+            min-height: 400px;
+        }
+        .module-content-area {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s;
+            z-index: 10;
+        }
+        .module-content-area.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .module-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .module-text h3 {
+            font-size: 1.8rem;
+            color: var(--color-brand-accent);
+            margin-bottom: 0.5em;
+        }
+        .module-text p {
+            color: var(--color-grey-lightest);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* Initially hide mobile navigation elements */
+        .mobile-nav-wrapper {
+            display: none;
+        }
+
+        /* --- MOBILE STYLES --- */
+        @media (max-width: 992px) {
+            .modules-section { padding: 60px 20px; }
+            .modules-section .section-title {
+                font-size: 1.3rem;
+            }
+
+            /* Stack videos vertically on mobile */
+            .three-in-one-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            /* --- Module Explorer Mobile Transformation --- */
+
+            /* 1. Switch Layout */
+            .module-explorer {
+                display: block; /* Change from grid to block */
+            }
+            .module-nav-desktop {
+                display: none; /* Hide desktop sidebar */
+            }
+            .mobile-nav-wrapper {
+                display: block; /* Show new mobile wrapper */
+                position: relative; /* Crucial for positioning the arrow */
+                margin-bottom: 2rem;
+            }
+
+            /* 2. Style Horizontal Tab Bar */
+            .module-nav-mobile {
+                display: flex;
+                overflow-x: auto;
+                padding-bottom: 15px; /* Space for the bottom border */
+                margin-bottom: -15px; /* Counteract padding to keep alignment */
+                -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+                scrollbar-width: none; /* Hide scrollbar for Firefox */
+            }
+            .module-nav-mobile::-webkit-scrollbar {
+                display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+            }
+            
+            /* 3. Style Individual Tabs */
+            .module-btn-mobile {
+                flex: 0 0 auto; /* Prevent shrinking/wrapping */
+                padding: 10px 16px;
+                cursor: pointer;
+                background: transparent;
+                border: none;
+                color: var(--color-grey-light);
+                font-size: 1rem;
+                white-space: nowrap;
+                border-bottom: 2px solid transparent; /* Prevents layout jump */
+                transition: color 0.3s, border-bottom-color 0.3s;
+            }
+            .module-btn-mobile:hover {
+                color: var(--color-brand-white);
+            }
+            .module-btn-mobile.active {
+                color: var(--color-brand-white);
+                font-weight: var(--font-weight-normal);
+                border-bottom-color: var(--color-brand-accent);
+            }
+
+            /* 4. Style the Scroll Arrow & Fade Effect */
+            .scroll-indicator-arrow {
+                position: absolute;
+                right: 0;
+                top: 0;
+                bottom: 15px; /* Aligns with nav padding */
+                width: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                font-size: 1.8rem;
+                color: var(--color-brand-white);
+                background: linear-gradient(to right, rgba(13, 13, 13, 0), var(--color-brand-black) 55%);
+                pointer-events: none; /* Allows clicks to go through it */
+                opacity: 0; /* Hidden by default */
+                transition: opacity 0.3s ease;
+            }
+            .mobile-nav-wrapper.is-scrollable .scroll-indicator-arrow {
+                opacity: 1; /* Show arrow if scrollable */
+            }
+             .mobile-nav-wrapper.is-scrolled-to-end .scroll-indicator-arrow {
+                opacity: 0; /* Hide arrow if at the end */
+            }
+
+            /* 5. Adjust Content Area for Mobile */
+            .module-content-area {
+                grid-template-columns: 1fr; /* Single column layout */
+                gap: 20px;
+                text-align: center;
+            }
+            .module-image {
+                order: -1; /* Move image to the top */
+                margin-bottom: 1em;
+            }
+            .module-text {
+                text-align: left; /* Adjust text alignment for readability */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dark-parallax-wrapper">
+        <section id="modules" class="modules-section">
+            <div class="container">
+                <h2 class="section-title">The Ultimate 3-in-1 Device</h2>
+
+                <!-- This grid becomes vertical on mobile -->
+                <div class="three-in-one-grid">
+                    <div class="device-feature-card">
+                        <div class="video-wrapper">
+                            <video loop playsinline muted>
+                                <source src="https://storage.googleapis.com/intro_alphatek/videoer/Force%20Plate.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <button class="play-button" aria-label="Play video"><i class="fas fa-play"></i></button>
+                        </div>
+                        <h3>Force Plate</h3>
+                        <p>All jump features including TOV/TIA algorithms, jump analytics (force, time, velocity, displacement, and power metrics), plus isometrics.</p>
+                    </div>
+                    <div class="device-feature-card">
+                         <div class="video-wrapper">
+                            <video loop playsinline muted>
+                                <source src="https://storage.googleapis.com/intro_alphatek/videoer/VBT.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <button class="play-button" aria-label="Play video"><i class="fas fa-play"></i></button>
+                        </div>
+                        <h3>Velocity Based Training</h3>
+                        <p>No need for accelerometer and wired encoder. Wireless VBT with COM-tracking for instant feedback, along with a full suite of Velocity-Based Training features.</p>
+                    </div>
+                    <div class="device-feature-card">
+                         <div class="video-wrapper">
+                            <video loop playsinline muted>
+                                <source src="https://storage.googleapis.com/intro_alphatek/videoer/NH.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <button class="play-button" aria-label="Play video"><i class="fas fa-play"></i></button>
+                        </div>
+                        <h3>Nordic Hamstrings</h3>
+                        <p>Real-time feedback of key metrics during the Nordic Hamstrings exercise for both effective training and precise testing.</p>
+                    </div>
+                </div>
+
+                <!-- Main component that transforms -->
+                <div class="module-explorer">
+                    
+                    <!-- Desktop Navigation (Vertical Sidebar) -->
+                    <div class="module-nav-desktop"></div>
+
+                    <!-- Wrapper for Mobile Nav + Arrow -->
+                    <div class="mobile-nav-wrapper">
+                        <!-- Mobile Navigation (Horizontal Carousel) -->
+                        <div class="module-nav-mobile"></div>
+                        <div class="scroll-indicator-arrow">›</div>
+                    </div>
+                    
+                    <!-- Shared Content Area -->
+                    <div class="module-content">
+                        <!-- Content panes will be injected here by JS -->
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    
+        // *** CHANGED HERE: Updated titles as requested ***
+        const moduleData = {
+            'squat': { title: 'VBT', description: "Forget traditional RMs and RIR. Alphatek's VBT provides dynamic load management and objective velocity drop, ensuring optimal effort and quality in every squat. This instant feedback keeps training fun and highly engaging for athletes, scientifically balancing impressive performance boosts with long-term resilience.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/1.png' },
+            'squat-analytics': { title: 'Squat analytics', description: "Go beyond basic observation. Alphatek's advanced analytics offers unparalleled insights into squat technique: monitor right-left and front-to-back balance to eliminate inefficiencies, expose sticking points that hinder progress, and confirm accurate squat depth.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/2.png' },
+            'pull': { title: 'Mid tigh pull', description: "Gain precise insights into your athletes' pulling strength. Its design ensures a controlled, low-risk assessment environment, allowing for maximal effort with minimal strain. The immediate feedback captivates athletes, making testing both fun and powerfully engaging.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/3.png' },
+            'jump': { title: 'Jump', description: "Dive deep into vertical performance. Alphatek offers a variety of precise jump tests, integrating advanced metrics like TIA and TOV algorithms for precise calculations, RSI for the stretch-shortening cycle, and ground contact time for reactivity.", imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/4.png' },
+            'balance': { title: 'Balance', description: 'Balance is a key physical attribute that is often overlooked. This module helps with daily function and can be used for both engaging testing and training.', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/5.png' },
+            'monitor': { title: 'Monitor', description: 'Use this open module for creative tests like push-ups to get an immediate measure of strength. Make balance training more fun with real-time feedback of the center of pressure (COP).', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/6.png' },
+            'nordic-hamstrings': { title: 'Nordic Hamstring', description: 'Get real-time feedback on the quality of Nordic Hamstrings training. Engaging, easy to use, and proven highly effective for preventing injuries in high-speed sports.', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/7.png' }
+        };
+
+        const desktopNavContainer = document.querySelector('.module-nav-desktop');
+        const mobileNavContainer = document.querySelector('.module-nav-mobile');
+        const contentContainer = document.querySelector('.module-content');
+        let firstModuleId = null;
+
+        // --- Part 1: Dynamic Generation ---
+        for (const moduleId in moduleData) {
+            if (!firstModuleId) firstModuleId = moduleId; 
+            const data = moduleData[moduleId];
+
+            const desktopBtn = document.createElement('button');
+            desktopBtn.className = 'module-btn-desktop';
+            desktopBtn.dataset.module = moduleId;
+            desktopBtn.textContent = data.title;
+            desktopNavContainer.appendChild(desktopBtn);
+            
+            const mobileBtn = document.createElement('button');
+            mobileBtn.className = 'module-btn-mobile';
+            mobileBtn.dataset.module = moduleId;
+            mobileBtn.textContent = data.title;
+            mobileNavContainer.appendChild(mobileBtn);
+
+            const contentPane = document.createElement('div');
+            contentPane.className = 'module-content-area';
+            contentPane.id = `content-${moduleId}`;
+            // The content's h3 tag will now also use the new titles
+            contentPane.innerHTML = `
+                <div class="module-image"><img src="${data.imageUrl}" alt="Screenshot of ${data.title} module"></div>
+                <div class="module-text">
+                    <h3>${data.title}</h3>
+                    <p>${data.description}</p>
+                </div>
+            `;
+            contentContainer.appendChild(contentPane);
+        }
+
+        const allModuleBtns = document.querySelectorAll('.module-btn-desktop, .module-btn-mobile');
+        const allContentPanes = document.querySelectorAll('.module-content-area');
+
+        // --- Part 2: Core Tab-Switching Logic ---
+        function updateModuleContent(moduleId) {
+            allContentPanes.forEach(pane => {
+                pane.classList.toggle('active', pane.id === `content-${moduleId}`);
+            });
+            allModuleBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.module === moduleId);
+            });
+        }
+        
+        allModuleBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                updateModuleContent(button.dataset.module);
+            });
+        });
+
+        if (firstModuleId) {
+            updateModuleContent(firstModuleId);
+        }
+
+        // --- Part 3: Scroll Arrow Visibility Logic ---
+        const mobileNavWrapper = document.querySelector('.mobile-nav-wrapper');
+        
+        function checkScroll() {
+            if (!mobileNavContainer) return;
+            const isScrollable = mobileNavContainer.scrollWidth > mobileNavContainer.clientWidth;
+            const isAtEnd = Math.ceil(mobileNavContainer.scrollLeft + mobileNavContainer.clientWidth) >= mobileNavContainer.scrollWidth;
+
+            mobileNavWrapper.classList.toggle('is-scrollable', isScrollable);
+            mobileNavWrapper.classList.toggle('is-scrolled-to-end', isAtEnd);
+        }
+
+        mobileNavContainer.addEventListener('scroll', checkScroll);
+        window.addEventListener('resize', checkScroll);
+        setTimeout(checkScroll, 100); 
+
+        // --- Video Player Logic ---
+        const videoWrappers = document.querySelectorAll('.video-wrapper');
+        videoWrappers.forEach(wrapper => {
+            const video = wrapper.querySelector('video');
+            const playButton = wrapper.querySelector('.play-button');
+
+            if (playButton && video) {
+                const togglePlay = () => video.paused ? video.play() : video.pause();
+                wrapper.addEventListener('click', togglePlay);
+                video.addEventListener('play', () => video.classList.add('is-playing'));
+                video.addEventListener('pause', () => video.classList.remove('is-playing'));
+            }
+        });
+    });
+    </script>
+</body>
+</html>
+Use code with caution.
+Html
+50.2s
+Start typing a prompt
+
+Run
+Ctrl
+Gemini 2.5 Pro
+1
+
+
