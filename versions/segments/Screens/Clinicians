@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphatek - Modules Section</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for potential icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* CSS variables and basic setup from the original file */
+        :root {
+            --color-brand-black: #0D0D0D;
+            --color-brand-accent: rgb(47, 124, 83);
+            --color-brand-white: #FFFFFF;
+            --color-grey-darkest: #1A1A1A;
+            --color-grey-dark: #2C2C2C;
+            --color-grey-medium: #595959;
+            --color-grey-light: #A6A6A6;
+            --color-grey-lightest: #D9D9D9;
+            --font-primary: 'Roboto', sans-serif;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-bold: 700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-brand-black);
+            color: var(--color-grey-lightest);
+            line-height: 1.6;
+            font-weight: var(--font-weight-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2, h3, h4 {
+            margin-bottom: 0.8em;
+            font-weight: var(--font-weight-light);
+            color: var(--color-brand-white);
+        }
+        
+        a {
+            color: var(--color-brand-accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Styles specific to the modules section */
+        .dark-parallax-wrapper {
+            width: 100%;
+            position: relative; 
+            /* Parallax background is simplified to a solid color for this isolated component */
+            background-color: var(--color-brand-black);
+        }
+
+        .modules-section { 
+            position: relative; 
+            z-index: 2; 
+            padding: 100px 20px;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background-color: var(--color-brand-accent);
+            margin: 0 auto 2em;
+            border-radius: 2px;
+        }
+        
+        .modules-section .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2.5em;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .module-explorer {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .module-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .module-btn {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: var(--font-weight-light);
+            color: var(--color-grey-light);
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .module-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--color-brand-white);
+        }
+
+        .module-btn.active {
+            background-color: rgba(47, 124, 83, 0.2);
+            color: var(--color-brand-white);
+            transform: translateX(10px);
+            border-color: rgba(47, 124, 83, 0.5);
+        }
+
+        .module-content {
+            position: relative;
+            min-height: 400px;
+        }
+
+        .module-content-area {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s;
+        }
+
+        .module-content-area.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .module-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .module-text h3 {
+            font-size: 1.8rem;
+            color: var(--color-brand-accent);
+            margin-bottom: 0.5em;
+        }
+
+        .module-text p {
+            color: var(--color-grey-lightest);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .module-text .learn-more {
+            font-size: 0.9rem;
+            text-decoration: underline;
+            color: var(--color-brand-accent);
+            display: inline-block;
+            margin-top: 1em;
+        }
+
+        /* Responsive Styles */
+        @media(max-width: 992px) {
+            .module-explorer {
+                grid-template-columns: 1fr;
+            }
+            .module-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .modules-section {
+                padding: 60px 20px;
+            }
+            .module-content-area {
+                grid-template-columns: 1fr;
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none; /* Initially hide all */
+            }
+            .module-content-area.active {
+                display: grid; /* Show the active one */
+            }
+            .module-image {
+                order: -1;
+                margin-bottom: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dark-parallax-wrapper">
+        <section id="modules" class="modules-section">
+            <div class="container">
+                <div class="section-divider"></div>
+                <h2 class="section-title">Powerful modules for every stage of recovery</h2>
+                <div class="module-explorer">
+                    <div class="module-nav">
+                        <button class="module-btn active" data-module="squat">Squat</button>
+                        <button class="module-btn" data-module="squat-analytics">Squat Analytics</button>
+                        <button class="module-btn" data-module="pull">Pull</button>
+                        <button class="module-btn" data-module="jump">Jump</button>
+                        <button class="module-btn" data-module="balance">Balance</button>
+                        <button class="module-btn" data-module="monitor">Monitor</button>
+                        <button class="module-btn" data-module="nordic-hamstrings">Nordic Hamstrings</button>
+                    </div>
+                    <div class="module-content">
+                        <!-- Content areas will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // Data for each module
+        const moduleData = {
+            'squat': {
+                title: 'Ease progression with velocity-based training.',
+                description: 'Force is directly related to velocity — by controlling movement speed, you control the load placed on the injured limb. Alphatek tracks center of mass velocity in real time, giving therapists precise control over rehab intensity.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/1.png',
+                learnMore: true
+            },
+            'squat-analytics': {
+                title: 'Detect asymmetries in movement and force.',
+                description: 'By comparing left and right side performance, therapists gain early insight into compensation patterns and load tolerance. This guides individualized progression and reduces reinjury risk.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/2.png',
+                learnMore: false
+            },
+            'pull': {
+                title: 'Get a clear picture of strength differences.',
+                description: 'Start rehab with a clear picture of left–right strength differences in a safe, isometric setting. Ideal before introducing dynamic movements like squats. Also a great tool to motivate patients — real-time feedback makes progress visible and engaging.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/3.png',
+                learnMore: false
+            },
+            'jump': {
+                title: 'Assess readiness for return to sport.',
+                description: 'Jumping involves high, dynamic forces — making it a powerful test of strength, coordination, and limb symmetry. Objective data helps ensure your patient is truly ready before discharge or return to play.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/4.png',
+                learnMore: false
+            },
+            'balance': {
+                title: 'Support basic movement and control.',
+                description: 'Used early in rehab to support basic movement and control. Also ideal for older adults — provides clear feedback on stability and helps identify fall risk. Simple, engaging, and backed by real-time data.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/5.png',
+                learnMore: false
+            },
+            'monitor': {
+                title: 'Live force feedback for creative rehab.',
+                description: 'Use it for load monitoring or engaging tasks like the Circle Test to boost motivation early in recovery. Gives therapists full flexibility — from controlled loading to interactive movement challenges.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/6.png',
+                learnMore: false
+            },
+            'nordic-hamstrings': {
+                title: 'Training Hamstrings Has Never Been This Fun',
+                description: 'Get real-time feedback on the quality of Nordic Hamstrings training. It\'s engaging, easy to use, and proven to be highly effective in preventing injuries in fast-paced sports.',
+                imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/7.png',
+                learnMore: false
+            }
+        };
+
+        const moduleButtons = document.querySelectorAll('.module-btn');
+        const moduleContentContainer = document.querySelector('.module-content');
+
+        // Function to create and update module content
+        function updateModuleContent(moduleId) {
+            const data = moduleData[moduleId];
+            if (!data) return;
+
+            // Deactivate all content areas
+            const allContentAreas = moduleContentContainer.querySelectorAll('.module-content-area');
+            allContentAreas.forEach(area => area.classList.remove('active'));
+            
+            // Find existing content area or create a new one
+            let contentArea = moduleContentContainer.querySelector(`#module-content-${moduleId}`);
+            if (!contentArea) {
+                contentArea = document.createElement('div');
+                contentArea.className = 'module-content-area';
+                contentArea.id = `module-content-${moduleId}`;
+
+                contentArea.innerHTML = `
+                    <div class="module-image">
+                        <img src="${data.imageUrl}" alt="${data.title}">
+                    </div>
+                    <div class="module-text">
+                        <h3>${data.title}</h3>
+                        <p>${data.description}</p>
+                        <a href="#" class="learn-more" style="display: ${data.learnMore ? 'inline-block' : 'none'};">Learn more...</a>
+                    </div>
+                `;
+                moduleContentContainer.appendChild(contentArea);
+            }
+
+            // Activate the correct content area with a slight delay for transition
+            setTimeout(() => {
+                contentArea.classList.add('active');
+            }, 10); // Small delay to allow CSS transitions to trigger
+
+            // Update active state on buttons
+            moduleButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.dataset.module === moduleId) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Add click event listeners to all buttons
+        moduleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const moduleId = button.dataset.module;
+                updateModuleContent(moduleId); 
+            });
+        });
+        
+        // Initialize the component with the first module
+        updateModuleContent('squat');
+    });
+    </script>
+
+</body>
+</html>
+Use code with caution.
+Html
+43.3s
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
