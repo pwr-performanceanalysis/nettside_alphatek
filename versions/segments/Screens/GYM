@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphatek - Training Modules</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-brand-black: #0D0D0D;
+            --color-brand-accent: rgb(47, 124, 83);
+            --color-brand-white: #FFFFFF;
+            --color-grey-darkest: #1A1A1A;
+            --color-grey-dark: #2C2C2C;
+            --color-grey-medium: #595959;
+            --color-grey-light: #A6A6A6;
+            --color-grey-lightest: #D9D9D9;
+            --font-primary: 'Roboto', sans-serif;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-bold: 700;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-brand-black);
+            color: var(--color-grey-lightest);
+            line-height: 1.6;
+            font-weight: var(--font-weight-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        h2, h3 { 
+            margin-bottom: 0.8em; 
+            font-weight: var(--font-weight-light); 
+            color: var(--color-brand-white); 
+        }
+        .section-divider { 
+            width: 80px; 
+            height: 3px; 
+            background-color: var(--color-brand-accent); 
+            margin: 0 auto 2em; 
+            border-radius: 2px; 
+        }
+
+        /* --- DESKTOP STYLES --- */
+        .modules-section {
+            background-color: var(--color-brand-black);
+            padding: 100px 20px;
+            width: 100%;
+        }
+        .modules-section .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2.5em;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .module-explorer {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .module-nav-desktop {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .module-btn-desktop {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: var(--font-weight-light);
+            color: var(--color-grey-light);
+            background-color: rgba(255, 255, 255, 0.02);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+        .module-btn-desktop:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--color-brand-white);
+        }
+        .module-btn-desktop.active {
+            background-color: rgba(47, 124, 83, 0.2);
+            color: var(--color-brand-white);
+            transform: translateX(10px);
+        }
+        .module-content {
+            position: relative;
+            min-height: 400px;
+        }
+        .module-content-area {
+            display: none; 
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .module-content-area.active {
+            display: grid; 
+            opacity: 1;
+        }
+        .module-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .module-text h3 {
+            font-size: 1.8rem;
+            color: var(--color-brand-accent);
+            margin-bottom: 0.5em;
+        }
+        .module-text p {
+            color: var(--color-grey-lightest);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+       
+        /* Hide mobile-specific elements on desktop */
+        .mobile-nav-wrapper {
+            display: none;
+        }
+
+        /* --- MOBILE STYLES --- */
+        @media(max-width: 992px){
+            .modules-section {
+                padding: 60px 10px;
+            }
+            
+            /* CHANGE 1: Title font size reduced by another 5% */
+            .modules-section .section-title {
+                font-size: 1.3rem; /* Further reduced from 1.36rem */
+                line-height: 1.4;   
+                margin-bottom: 1.5em; 
+                text-align: center;
+            }
+            
+            /* General mobile layout */
+            .module-explorer {
+                display: block;
+            }
+            .module-nav-desktop {
+                display: none;
+            }
+
+            /* CHANGE 2: Wrapper and arrow for Horizontal Tab Bar */
+            .mobile-nav-wrapper {
+                display: block;
+                position: relative; /* Needed for positioning the arrow */
+                margin: 0 -10px; /* Allow nav to touch screen edges */
+            }
+            .scroll-indicator-arrow {
+                display: flex;
+                align-items: center;
+                position: absolute;
+                right: 0;
+                top: 0;
+                bottom: 15px; /* Match the nav's padding-bottom */
+                padding-left: 25px;
+                padding-right: 15px;
+                font-size: 1.2rem;
+                color: var(--color-brand-white);
+                background: linear-gradient(to right, rgba(13, 13, 13, 0), var(--color-brand-black) 55%);
+                pointer-events: none; /* Make it non-clickable */
+                opacity: 0; /* Hidden by default */
+                transition: opacity 0.3s ease;
+            }
+            .mobile-nav-wrapper.is-scrollable .scroll-indicator-arrow {
+                opacity: 1; /* Show when scrollable */
+            }
+            .mobile-nav-wrapper.is-scrolled-to-end .scroll-indicator-arrow {
+                opacity: 0; /* Hide when at the end */
+            }
+
+            .module-nav-mobile {
+                display: flex;
+                overflow-x: auto;
+                padding: 0 10px;
+                padding-bottom: 15px; /* Space for scrollbar without layout shift */
+                margin-bottom: 25px;
+                border-bottom: 1px solid var(--color-grey-dark);
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .module-nav-mobile::-webkit-scrollbar {
+                display: none;
+            }
+            .module-btn-mobile {
+                flex: 0 0 auto;
+                padding: 8px 16px;
+                margin: 0 5px;
+                font-size: 0.95rem;
+                color: var(--color-grey-light);
+                background-color: transparent;
+                border: none;
+                border-bottom: 2px solid transparent;
+                cursor: pointer;
+                white-space: nowrap;
+                transition: color 0.3s ease, border-color 0.3s ease;
+            }
+            .module-btn-mobile:first-child { margin-left: 0; }
+            .module-btn-mobile:last-child { margin-right: 0; }
+
+            .module-btn-mobile:hover {
+                color: var(--color-brand-white);
+            }
+            .module-btn-mobile.active {
+                color: var(--color-brand-white);
+                font-weight: var(--font-weight-normal);
+                border-bottom-color: var(--color-brand-accent);
+            }
+            .module-content {
+                min-height: 0;
+                padding: 0 10px;
+            }
+            .module-content-area {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .module-text h3 {
+                font-size: 1.5rem;
+            }
+            .module-text {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section id="modules" class="modules-section">
+        <div class="container">
+            <div class="section-divider"></div>
+            <h2 class="section-title">Powerful training modules to boost personal trainers' expertise</h2>
+            
+            <div class="module-explorer">
+                <!-- Wrapper for Mobile Nav + Arrow -->
+                <div class="mobile-nav-wrapper">
+                    <div class="module-nav-mobile"></div>
+                    <div class="scroll-indicator-arrow">›</div>
+                </div>
+                <!-- Desktop Nav -->
+                <div class="module-nav-desktop"></div>
+                <!-- Shared Content Area -->
+                <div class="module-content"></div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const moduleData = {
+            'squat': { title: 'Become a Squat Expert', description: 'Our AI-driven module helps you guide clients to perfection...', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/1.png' },
+            'squat-analytics': { title: 'Become an Expert in Squat Technique', description: 'It has never been easier to give clients a quick analysis of their squat technique...', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/2.png' },
+            'pull': { title: 'Test Your Strength, Quick and Easy', description: 'One of our most engaging modules. With gamification inspired by viral trends...', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/3.png' },
+            'jump': { title: 'Functional Strength Test and Training', description: 'Get real-time feedback on jump height to optimize functional training...', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/4.png' },
+            'balance': { title: 'Check Your Balance, Made for Everyone', description: 'From seniors to young athletes, balance is a key physical feature that is often forgotten...', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/5.png' },
+            'monitor': { title: 'Explore Your Creativity', description: 'Use this open-ended module for tests like push-ups to get an immediate measure of strength...', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/6.png' },
+            'nordic-hamstrings': { title: 'Training Hamstrings Has Never Been This Fun', description: 'Get real-time feedback on the quality of Nordic Hamstrings training...', imageUrl: 'https://storage.googleapis.com/intro_alphatek/screen%20photos/7.png' }
+        };
+
+        const navDesktopContainer = document.querySelector('.module-nav-desktop');
+        const navMobileContainer = document.querySelector('.module-nav-mobile');
+        const contentContainer = document.querySelector('.module-content');
+        
+        Object.keys(moduleData).forEach(key => {
+            const data = moduleData[key];
+            const name = key.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+            // Create and append desktop button
+            const desktopButton = document.createElement('button');
+            desktopButton.className = 'module-btn-desktop';
+            desktopButton.dataset.module = key;
+            desktopButton.textContent = name;
+            navDesktopContainer.appendChild(desktopButton);
+
+            // Create and append mobile button
+            const mobileButton = document.createElement('button');
+            mobileButton.className = 'module-btn-mobile';
+            mobileButton.dataset.module = key;
+            mobileButton.textContent = name;
+            navMobileContainer.appendChild(mobileButton);
+            
+            // Create and append content pane
+            const contentArea = document.createElement('div');
+            contentArea.className = 'module-content-area';
+            contentArea.id = `module-content-${key}`;
+            contentArea.innerHTML = `
+                <div class="module-image">
+                    <img src="${data.imageUrl}" alt="${data.title}">
+                </div>
+                <div class="module-text">
+                    <h3>${data.title}</h3>
+                    <p>${data.description}</p>
+                </div>
+            `;
+            contentContainer.appendChild(contentArea);
+        });
+
+        const allButtons = document.querySelectorAll('.module-btn-desktop, .module-btn-mobile');
+
+        function updateModuleContent(moduleId) {
+            allButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.module === moduleId);
+            });
+            
+            document.querySelectorAll('.module-content-area').forEach(area => {
+                const areaId = area.id.replace('module-content-', '');
+                area.classList.toggle('active', areaId === moduleId);
+            });
+        }
+
+        allButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const moduleId = e.currentTarget.dataset.module;
+                updateModuleContent(moduleId); 
+            });
+        });
+        
+        updateModuleContent('squat');
+
+        // --- CHANGE 2: Logic for the scroll indicator arrow ---
+        const mobileNavWrapper = document.querySelector('.mobile-nav-wrapper');
+        const mobileNav = document.querySelector('.module-nav-mobile');
+
+        function checkScroll() {
+            if (!mobileNav) return;
+
+            // Check if the content is wider than the container
+            const isScrollable = mobileNav.scrollWidth > mobileNav.clientWidth;
+            mobileNavWrapper.classList.toggle('is-scrollable', isScrollable);
+
+            if (isScrollable) {
+                // Check if scrolled to the very end (with a 1px tolerance)
+                const isAtEnd = mobileNav.scrollLeft + mobileNav.clientWidth >= mobileNav.scrollWidth - 1;
+                mobileNavWrapper.classList.toggle('is-scrolled-to-end', isAtEnd);
+            }
+        }
+
+        // Attach listeners to check on scroll and window resize
+        mobileNav.addEventListener('scroll', checkScroll);
+        window.addEventListener('resize', checkScroll);
+
+        // A small delay for initial check ensures the browser has rendered everything
+        setTimeout(checkScroll, 150);
+    });
+    </script>
+
+</body>
+</html>
