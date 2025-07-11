@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphatek - Kunder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-brand-black: #0D0D0D;
+            --color-brand-accent: rgb(47, 124, 83);
+            --color-brand-white: #FFFFFF;
+            --color-grey-lightest: #D9D9D9;
+            --color-grey-medium: #595959;
+            --font-primary: 'Roboto', sans-serif;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-bold: 700;
+        }
+
+        /* Generell styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth; /* For elegant scrolling */
+        }
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-brand-black);
+            color: var(--color-grey-lightest);
+            line-height: 1.6;
+            font-weight: var(--font-weight-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        /* Seksjons-styling */
+        .sports-teams-section {
+            padding: 80px 0;
+            background-color: var(--color-brand-black);
+            text-align: center;
+            width: 100%;
+            overflow: hidden; 
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .sports-teams-section h2 {
+            /* ENDRING HER: Fontstørrelsen er redusert med 10% */
+            font-size: clamp(1.62rem, 3.6vw, 2.25rem);
+            margin-bottom: 2em;
+            font-weight: var(--font-weight-light);
+            color: var(--color-brand-white);
+        }
+
+        /* Standard layout for store skjermer */
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            background-color: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(26, 26, 26, 0.7);
+        }
+        .team-logo-container {
+            height: 80px;
+            margin-bottom: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .team-logo {
+            max-height: 100%;
+            max-width: 180px;
+            object-fit: contain;
+        }
+        .team-card h3 {
+            font-size: 1.5rem;
+            color: var(--color-brand-white);
+            margin-bottom: 0.2em;
+            font-weight: var(--font-weight-normal);
+        }
+        .team-card .sport {
+            font-size: 1rem;
+            color: var(--color-brand-accent);
+            margin-bottom: 1em;
+            font-weight: bold;
+        }
+        .team-card .description {
+            font-size: 0.95rem;
+            color: var(--color-grey-lightest);
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        /* Styling for navigasjonsprikker (skjult som standard) */
+        .carousel-dots {
+            display: none;
+            text-align: center;
+            padding-top: 25px;
+        }
+        .dot {
+            cursor: pointer;
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: var(--color-grey-medium);
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .dot.active {
+            background-color: var(--color-brand-accent);
+            transform: scale(1.2);
+        }
+
+
+        /* Mobilvennlig karusell-layout */
+        @media(max-width: 768px){
+            .sports-teams-section {
+                padding: 60px 0; 
+            }
+            .sports-teams-section .container {
+                width: 100%; 
+            }
+            .teams-grid {
+                display: flex; 
+                overflow-x: auto; 
+                scroll-snap-type: x mandatory; 
+                gap: 20px; 
+                padding: 0 20px 20px 20px; 
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .teams-grid::-webkit-scrollbar {
+                display: none; 
+            }
+            .team-card {
+                flex: 0 0 80%; 
+                scroll-snap-align: center; 
+            }
+            
+            /* Viser prikkene på mobil */
+            .carousel-dots {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="sports-teams-section">
+        <div class="container">
+            <h2>Trusted by leading teams and organisations</h2>
+            <div class="teams-grid" id="teams-carousel">
+                <div class="team-card" id="card-1">
+                    <div class="team-logo-container">
+                        <img src="https://storage.googleapis.com/files_webpage/Olympiatoppen%20logo%20(1).png" alt="Olympiatoppen Logo" class="team-logo">
+                    </div>
+                    <h3>Olympiatoppen</h3>
+                    <p class="sport">Olympic Sports</p>
+                    <p class="description">Olympiatoppen (OLT) is Norway's elite sports center and is internationally recognized as a leading institution in sports development.</p>
+                </div>
+                 <div class="team-card" id="card-2">
+                    <div class="team-logo-container">
+                        <img src="https://storage.googleapis.com/files_webpage/Customer%20logos/Bod%C3%B8-Glimt.png" alt="Bodø/Glimt Logo" class="team-logo">
+                    </div>
+                    <h3>Bodø / Glimt</h3>
+                    <p class="sport">Football</p>
+                    <p class="description">Bodø/Glimt has rapidly established itself as one of Norway's most successful football clubs, consistently achieving domestic titles and reaching European group stages.</p>
+                </div>
+                 <div class="team-card" id="card-3">
+                    <div class="team-logo-container">
+                        <img src="https://storage.googleapis.com/files_webpage/Customer%20logos/F%C3%A4rjestad%20BK.png" alt="Färjestad BK Logo" class="team-logo">
+                    </div>
+                    <h3>Färjestad BK</h3>
+                    <p class="sport">Ice Hockey</p>
+                    <p class="description">Färjestad BK has firmly established itself as one of Sweden's most successful ice hockey clubs, boasting numerous Swedish Championship titles.</p>
+                </div>
+            </div>
+            <div class="carousel-dots" id="carousel-dots"></div>
+        </div>
+    </section>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const carousel = document.getElementById('teams-carousel');
+        const dotsContainer = document.getElementById('carousel-dots');
+        const cards = document.querySelectorAll('.team-card');
+
+        if (carousel && dotsContainer && cards.length > 0) {
+            
+            // 1. Lag prikker dynamisk
+            cards.forEach((card, index) => {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                dot.setAttribute('data-card-index', index);
+                dot.addEventListener('click', () => {
+                    const targetCard = cards[index];
+                    const carouselRect = carousel.getBoundingClientRect();
+                    const cardRect = targetCard.getBoundingClientRect();
+                    
+                    const scrollLeft = cardRect.left - carouselRect.left + carousel.scrollLeft - (carouselRect.width - cardRect.width) / 2;
+
+                    carousel.scrollTo({
+                        left: scrollLeft,
+                        behavior: 'smooth'
+                    });
+                });
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = document.querySelectorAll('.dot');
+            dots[0].classList.add('active'); // Sett første prikk som aktiv
+
+            // 2. Oppdater aktiv prikk ved scrolling
+            const updateDots = () => {
+                let mostVisibleIndex = 0;
+                let maxVisibility = 0;
+                
+                cards.forEach((card, index) => {
+                    const rect = card.getBoundingClientRect();
+                    const carouselRect = carousel.getBoundingClientRect();
+
+                    // Beregn hvor mye av kortet som er synlig innenfor karusellens ramme
+                    const visibleWidth = Math.max(0, Math.min(rect.right, carouselRect.right) - Math.max(rect.left, carouselRect.left));
+                    const visibility = visibleWidth / rect.width;
+
+                    if (visibility > maxVisibility) {
+                        maxVisibility = visibility;
+                        mostVisibleIndex = index;
+                    }
+                });
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === mostVisibleIndex);
+                });
+            };
+
+            // Bruk Intersection Observer for bedre ytelse enn scroll-event
+            const observer = new IntersectionObserver((entries) => {
+                 updateDots();
+            }, { 
+                root: carousel, 
+                threshold: 0.5 // Utløs når 50% av et kort er synlig
+            });
+
+            cards.forEach(card => observer.observe(card));
+            
+            // Fallback for eldre nettlesere som ikke støtter IntersectionObserver
+             carousel.addEventListener('scroll', updateDots);
+        }
+    });
+    </script>
+
+</body>
+</html>
